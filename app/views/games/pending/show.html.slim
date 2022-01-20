@@ -1,0 +1,87 @@
+- teams = @game.teams
+- team_stats = @game.team_stats
+section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
+  .w-full.md:w-1/6.lg:w-1/6
+    h5.strong Pending Game
+  .w-full.md:w-2/3 
+    = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-orange mr-2'
+
+    - if is_manager? && @game.state[:can_delete]
+
+      = link_to icon('fas fa-trash','Delete Incomplete Game'),@game, 
+         class: 'pt-btn btn-danger w100', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-secondary '
+.px-2.bg-lime-lighter
+  = render partial: 'games/shared/event'
+
+- zero_team = @game.state[:has_zero_team]
+- if is_manager?
+  -if zero_team
+    h4 = callout_alert("A Participant was either added or deleted after the teams were formed. You must either ReForm Teams or Adjust Teams before scoring.")
+
+.bg-lime-lighter.border-bottom.p-2.flex
+
+  .flex-auto.flex
+    - if is_manager?
+      - unless zero_team
+        = link_to icon('fas fa-pencil-alt', 'Score Teams'), score_teams_games_pending_path(@game),
+          class: 'btn btn-success mr-2'
+
+      = link_to icon('fas fa-user-plus', 'Add Late Player'),  @game.namespace_url('add_players'),
+        class: 'btn btn-warning mr-2',
+        title: "Pete showed up late at the tee box, there was a treesome teeing off. Put Pete in the threesome and when you get in use this button to add Pete. Then adjust teams to change the threesome to a foursome"
+      = link_to icon('fas fa-arrows-alt-h', 'Adjust Teams'), @game.namespace_url('adjust_teams'),
+        class: 'btn btn-warning mr-2',
+        title: "Joe would like to play with Pete! You can move Joe to another team and move another player from Pete's to Joe's team. Pick player in same point range if using seeded teams."
+
+      = link_to icon('fas fa-arrows-alt-h', 'Swap Teams'), @game.namespace_url('swap_teams'),
+        class: 'btn btn-warning mr-2',
+        title: "Joe needs to go off early, swap his team to first."
+      
+      = link_to icon('fas fa-users', 'Reform Teams'), @game.namespace_url('reform_teams'),
+        class: 'btn btn-warning mr-2'
+  .flex-auto.flex.justify-end
+    = link_to icon('fas fa-print',"Print List"), print_teams_games_pending_path(@game), title: 'Print it',
+      class: 'btn btn-info mr-2', target:"_blank"
+    = link_to icon('fas fa-print',"ScoreCard Landscape"), @game.namespace_url('score_card'), title: 'Print it',
+      target:"_blank", class: 'btn btn-icon btn-info mr-2'
+    = link_to icon('fas fa-print',"ScoreCard Portrait"), @game.namespace_url('score_cardp'), title: 'Print it',
+      class: 'btn btn-icon btn-info mr-2', target:"_blank"
+
+
+
+.flex.flex-wrap
+  - team_keys  = teams.keys.sort
+  - map = col_map_array(team_keys,2)
+  - map.each do |row|
+    .w-full.md:w-1/2.px-2
+      - row.each do |tm|
+        - team = teams[tm]
+        - stats = team_stats[tm]
+        - hole = (stats[:quota]/18.0).round(1)
+        - side_quota = stats[:side_quota]
+
+        table.w100.small-table.stripped
+          caption.noprint = link_to "Score Team", score_teams_games_pending_path(@game,team:tm), class:'blue-link' if is_manager? && !@game.state[:indiv_teams] && !zero_team
+
+          tr
+            th[colspan="5" ] = "Team - #{tm} Q(T/S/H): #{stats[:quota]}/#{stats[:side_quota]}/#{hole}"
+          tr
+            th.w30p Name
+            th.w20p Tee
+            th Quota
+            th Side
+            th Scored
+          - team.each do |mate|
+            tr
+              td= mate.player_name
+              td= mate.tee
+              td= mate.quota_limited 
+              / ? stats.limits.quota_astrick(mate[:quota]) : mate[:quota].to_s 
+              td= mate.quota / 2.0
+              td
+                = check_box_tag( '',nil, (!mate.total.nil?))  
+                span = "(#{mate.front}/#{mate.back}/#{mate.total})" if !mate.total.nil?
+        / - team_numb = team_keys.shift
+

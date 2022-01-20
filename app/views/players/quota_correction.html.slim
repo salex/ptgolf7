@@ -1,0 +1,52 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m4 
+      h5.strong  = "Group Player Quota Correction (perc=#{@perc})"
+    .w3-col.m6
+      / span.lime-link-btn.span-btn.btn-primary = link_to 'plural_table_name.capitalize',players_path
+      = link_to icon('fas fa-list', 'List Players'),  players_path, class: 'btn btn-success mr-2'
+      - if Current.user.is_super?
+        = link_to icon('fas fa-edit', "Add #{@perc}% correction round"),  add_correction_players_path, class: 'btn btn-warning mr-2'
+
+    .w3-col.m2.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+        span.span-btn= Player
+
+
+.w3-container.w3-white
+  .w3-row-padding
+    .w3-twothird
+      table.small-table
+        tr
+          th Name
+          th Beg Quota
+          th End Qouta
+          th Rnds
+          th Diff
+          th Diff%
+          th New rQuota
+          th Corr Quota
+          th &#177;
+        - @players.each do |k,gp|
+          tr
+            td = gp[:name]
+            td = gp[:fq]
+            td = gp[:tq]
+            td = gp[:rnd_between]
+            td = (gp[:tq] - gp[:fq]).round(1)
+            td = gp[:diff_perc]
+            td = gp[:corr_rquota]
+            td = gp[:corr_quota]
+            td = (gp[:corr_rquota] - gp[:tq]).round(1)
+    .w3-third
+      h5 Simple Math Quota correction
+      ol
+        li Get Raw Quoto on or before 2020-05-31 (From)
+        li Get Current Raw Quota after 2020-05-31 (To)
+        li Get Number of rounds between From and To dates
+        li Get difference between the two quotas
+        li Compute New quota by taking a percentage (default 40%) of the difference and adding it to the Old Quota
+        li Round new raw quota to nearest whole number
+        li Add from 0 to 10 rounds with the new corrected quota (0 if you've only played once, 10 if you played 10 or more times)
+

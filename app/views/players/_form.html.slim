@@ -1,0 +1,51 @@
+= form_for @player do |f|
+  - if @player.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@player.errors.count, "error")} prohibited this player from being saved:"
+      ul
+        - @player.errors.full_messages.each do |message|
+          li = message
+  .form-fields
+    .field
+      label
+      button.btn-submit = f.submit
+    .field
+      = f.label :group
+      = f.hidden_field :group_id
+      span = Current.group.name
+    - if Current.user.is_super?
+      .field
+        = f.label "Transfer Group"
+        = f.text_field :group_id
+    .field
+      = f.label :first_name
+      = f.text_field :first_name
+    .field
+      = f.label :last_name
+      = f.text_field :last_name
+    .field
+      = f.label :nickname
+      = f.text_field :nickname
+    .field
+      = f.label :use_nickname
+      = f.check_box :use_nickname
+    .field
+      = f.label :tee
+      = f.select :tee,tee_select_options(Current.group.tees.split,@player.tee),{},class: 'w15p'
+    .field
+      = f.label :quota
+      = f.number_field :quota
+    .field
+      = f.label :rquota
+      = f.text_field :rquota
+    .field
+      = f.label :phone
+      = f.text_field :phone
+    .field
+      = f.label :last_played
+      = f.text_field :last_played,data:{controller:'flatpickr'}
+    .field
+      = f.label :is_frozen
+      = f.check_box :is_frozen
+
+  

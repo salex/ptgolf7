@@ -1,0 +1,35 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m2 
+      h5.strong Dashboard Groups
+    .w3-col.m6
+      - if is_super?
+        span.lime-link-btn.span-btn.btn-primary= link_to 'New Group', new_group_path
+
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Cancel'),  root_path, class: 'btn btn-warning'
+
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+
+
+table.small-table
+  thead
+    tr
+      th Club
+      th Name
+      th Tees
+      - if is_super?
+        th Actions
+
+  tbody
+    - @groups.each do |group|
+      tr
+        td = group.club.name
+        td = group.name
+        td = group.tees
+        - if is_super?
+          td 
+            = link_to icon('fas fa-eye'),  group, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
+            = link_to icon('fas fa-edit'), edit_group_path(group), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
+            = link_to icon('fas fa-trash'),  group, title: 'Destroy it', class: 'btn btn-icon btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true }

@@ -1,0 +1,9 @@
+fieldset.row
+  h3 Editing inquiry
+
+  == render 'form'
+
+  = link_to 'Show', inquiry_path(@inquiry.id) 
+  '|
+  = link_to 'Back', inquiries_path
+

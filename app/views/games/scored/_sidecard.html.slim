@@ -1,0 +1,22 @@
+.w3-row
+  .w3-col.l6
+
+    .row-box-18
+      .row-box
+        - 1.upto(9) do |i|
+          = content_tag :span,i, class:"skin_hole"
+    .row-box-18
+      .row-box
+        - 1.upto(9) do |i|
+          - cc = par[i-1] == '.' ? "" :"card-#{par[i-1]}"
+          = content_tag :span,par[i-1], class: cc, data:{hole:i,idx:idx,action:"click->sideSkins#holeClicked"}
+  .w3-col.l6
+    .row-box-18
+      .row-box
+        - 10.upto(18) do |i|
+          = content_tag :span,i, class:"skin_hole"
+    .row-box-18
+      .row-box
+        - 10.upto(18) do |i|
+          - cc = par[i-1] == '.' ? "" :"card-#{par[i-1]}"
+          = content_tag :span,par[i-1], class: cc, data:{hole:i,idx:idx,action:"click->sideSkins#holeClicked"}

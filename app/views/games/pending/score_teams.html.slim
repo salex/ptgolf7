@@ -1,0 +1,109 @@
+section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
+  .w-full.md:w-1/6.lg:w-1/6
+    h5.strong Score Teams
+  .w-full.md:w-2/3 
+    = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
+    - if @game.state[:can_delete]
+
+      = link_to @game, 
+         title: 'Destroy incomplete game', 
+         class: 'btn btn-danger w100', method: :delete, data: { confirm: 'Are you sure?', remote: true } do
+         = icon('fas fa-trash','Delete Incomplete Game')
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-secondary '
+
+= render partial:'games/shared/event'
+= form_with(url:update_scores_games_pending_path(@game), method: :patch, data: { type: "html"} )do |f|
+  .w3-row-padding
+    .s12.m3.w3-col
+      / [data-sticky-container]
+      .sticky-col
+        .btn-submit.text-center.font-bold = f.submit("Update Scores", class:'w3-disabled',autocomplete: :off,disabled: :disabled,id:'submit_form')
+        hr.underline
+        .lime-link-btn.btn-warning.w100 = link_to "Cancel", @game.namespace_url, class:'link-btn strong'
+        hr.underline
+        - link_params = params[:team].present? ? {team:params[:team]} : {}
+        - useKeys = Current.group.use_keyboard_scoring
+        - if params[:keys].present? 
+          - if params[:keys] == '1'
+            - useKeys = true
+          - else
+            - useKeys = false
+        - if useKeys
+          - link_params[:keys] = '0'
+          .lime-link-btn.w100 =  link_to "Use Mouse Entry", score_teams_games_pending_path(@game,link_params),class:'link-btn strong '
+        -else
+          - link_params[:keys] = '1'
+          .lime-link-btn.w100 = link_to "Use Keyboard Entry", score_teams_games_pending_path(@game,link_params),class:'link-btn strong '
+        hr.underline.w100
+    - select_points = !useKeys
+    .s12.m9.w3-col
+      #status_box.w3-text-red.strong No team(s) have been scored
+
+      - teams = @game.game_teams(params[:team])
+      - teams.each_with_index do |(team,mates),i|
+         
+        -tq = mates.sum(:quota)
+        -sq = tq/2.0
+        -hq = (tq/18.0).round(2)
+        table.small-table.w100[data-controller="scoreTeam someJunk"]
+
+          tr
+            th.w50p colspan="4" 
+              - if @game.stats[:makeup] == "individuals"
+                = "Tee Time #{team}"
+              - else
+                = "Team - #{team} Quota:#{tq} Side: #{sq} Hole: #{hq}"
+              = hidden_field_tag("team[#{team}][quota]",tq,data:{scoreTeam_target:"teamQuota"})
+              / div[id="teamUpdate#{i}" style="display:none;" data-action="click->scoreTeam#compute"]
+            th.w15p[data-scoreTeam-target="teamFront", data-someJunk-target="whooa"]
+            th.w15p[data-scoreTeam-target="teamBack"]
+            th.w15p[data-scoreTeam-target="teamTotal"]
+            th.w05p[data-scoreTeam-target="teamPM"]
+      
+          tr
+            th Name
+            th Tee
+            th Quota
+            th Side
+            th Front
+            th Back
+            th Total
+            th &#177;
+
+          - mates.each do |mate|
+            - side = mate.quota / 2.0
+            tr[data-controller="scoreMate"]
+              td
+                = mate.full_name
+                / = hidden_field_tag('jsteam',i,data:{scoreMate_target:"jsTeam"})
+              td= mate.tee
+              - if mate.limited.present?
+                - q = "#{mate.quota}  &#177;#{mate.limited }".html_safe
+              - else
+                - q = mate.quota
+              td
+                = q
+                = hidden_field_tag("participant[#{mate.id}][quota]",mate.quota,data:{scoreMate_target:"mateQuota"})
+              td
+                = side
+                = hidden_field_tag("participant[#{mate.id}][team]",team)
+              - if select_points
+                - opt = pulled_options(mate.quota)
+                / p.mb-3 " #{mate.full_name} #{mate.quota} #{mate.front} #{mate.back} #{mate.total}"
+                td= select_tag("participant[#{mate.id}][front]", options_for_select(opt[:side],\
+                  mate.front.present? && !mate.front.zero? ? mate.front : 'Select')\
+                  , data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:" w3-select")
+                td= select_tag("participant[#{mate.id}][back]", options_for_select(opt[:side],\
+                  mate.back.present? && !mate.back.zero? ? mate.back : 'Select'),
+                    data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack", someJunk_target:"ohno",
+                    action:"change->scoreMate#back change->scoreTeam#compute"},
+                    class:"w3-select")
+              - else
+                td= number_field_tag("participant[#{mate.id}][front]", mate.front,data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:"w100")
+                td= number_field_tag("participant[#{mate.id}][back]",mate.back, data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack",action:"change->scoreMate#back change->scoreTeam#compute"},class:"w100")
+              td= text_field_tag("participant[#{mate.id}][total]",mate.total, disabled:true, data:{scoreMate_target:"mateTotal", scoreTeam_target:"mateTotal"},class:"w100")
+              th[data-scoreMate-target="matePM", data-scoreTeam-target="matePM" class='mate-pm'] 
+                - if mate.total.present?
+                  = mate.total - mate.quota
+        hr.underline

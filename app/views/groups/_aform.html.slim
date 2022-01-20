@@ -1,0 +1,52 @@
+= form_for @group, method: :patch do |f|
+  - if @group.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@group.errors.count, "error")} prohibited this group from being saved:"
+      ul
+        - @group.errors.full_messages.each do |message|
+          li = message
+  .form-fields.half
+    .w3-half
+      label
+      button.btn-submit = f.submit "Update Group"
+    .w3-half
+      br
+      .strong Limits/Scoring Settings
+    .w3-row-padding
+      - settings =  @group.settings
+      - keys = settings.keys
+      - len = settings.keys.length
+      - half = (len / 2 )- 4
+
+
+      .w3-half
+        .field
+          label.half  Club
+          = f.text_field :club_id
+        .field
+          label.half  Name
+          = f.text_field :name
+        .field
+          label.half  Tees Used
+          = f.text_field :tees
+
+        p.strong Settings/Options
+        - 0.upto(half) do |i|
+          .field
+            label.half = keys[i]
+            - if [TrueClass,FalseClass].include?(settings[keys[i]].class)
+              = f.check_box( keys[i])
+            - else
+            - if settings[keys[i]].class == String && settings[keys[i]].length > 30
+              = f.text_area(keys[i])
+            - else
+              = f.text_field(keys[i])
+      .w3-half
+        - (half + 1).upto(len -1) do |i|
+          .field
+          label.half = keys[i]
+          - if [TrueClass,FalseClass].include?(settings[keys[i]].class)
+            = f.check_box( keys[i])
+          - else
+            = f.text_field(keys[i])
+

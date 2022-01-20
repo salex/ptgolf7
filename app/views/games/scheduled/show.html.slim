@@ -1,0 +1,140 @@
+section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
+  .w-full.md:w-1/6.lg:w-1/6
+    h5.strong Scheduled Game
+  .w-full.md:w-2/3 
+    = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
+
+    - if is_manager? && @game.state[:can_delete]
+
+      = link_to icon('fas fa-trash','Delete Incomplete Game'),@game, 
+         class: 'pt-btn btn-danger w100', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn  btn-secondary '
+  
+.w3-row-padding.w3-border-bottom.hidden.md:block
+  div.content-center[ data-controller="toggle"]
+    button[class="#{btn_green} " data-action="click->toggle#toggleMenu"] 
+      | Schedule Game Instructions
+      i[class="fas fa-angle-down px-2"]
+
+    div[class=" bg-green-50 w-full px-2 hidden" data-toggle-target="menu"]
+      .w3-row-padding
+        .w3-col.m1
+          strong Instructions
+          .annotate Adding Scheduled Players or changing Current Players
+        .w3-col.m6
+          ul[style='margin-top:0;' class="list-disc list-inside mb-2"]
+            li Click on Player name button in Uscheduled sections to schedule player
+            li Click on Player in Scheduled section to move them back  to Unscheduled
+            li Click the Update Game at any time it is visable.
+            li You can Update Game multiple times until teams are formed
+        .w3-col.m5
+          ul[style='margin-top:0;' class="list-disc list-inside mb-2"]
+            li Click on Del checkbox in Current Players to remove Player
+            li Change Tee select if Player playing from different Tee
+            li Click the Update Game to Del player or change Tee
+            li Click the Form Teams button to complete the Scheduling Process
+
+- @expired = @game.expired_players
+- @active = @game.active_players
+- @inactive = @game.inactive_players
+
+section.scheduler[ data-controller="schedule"]
+  div.bg-lime-lighter.border-bottom = render partial:'games/shared/event'
+
+  div.my-2[data-schedule-target="group" data-preferences="#{Current.group.options.to_json}"]
+  div[class="flex flex-wrap "]
+    div[class="flex-shrink mx-2"]
+      #schedule
+        strong Actions
+        - if @game.state[:can_form] || @game.state[:can_reform]
+          button.btn.btn-submit.w100[data-schedule-target="formbtn"] = link_to('Form Teams',form_teams_games_scheduled_path(@game))
+        button.btn.btn-submit.w100[data-schedule-target="update" data-action="click->schedule#submit" style="display:none;"] Update Game
+        hr.border-bottom
+        .text-lg.strong New Scheduled Players
+
+
+    div[class="flex-grow mx-2"]
+ 
+      .block.md:hidden
+        strong Unscheduled Active
+        .status[class="flex flex-wrap  mx-3"] 
+          - mapping = get_col_mapping(@active.size,2)
+          - 2.times do |i|
+            div[class="w-1/2"]
+              - mapping[i].each do |m|
+                div[class="btn-sqr-blue p-1 py-0.5" id="pid-l#{@active[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@active[m].id}"] = @active[m].name
+
+        strong Unscheduled Inactive
+        .status[class="flex flex-wrap  mx-3"] 
+          - mapping = get_col_mapping(@inactive.size,2)
+          - 2.times do |i|
+            div[class="w-1/2"]
+              - mapping[i].each do |m|
+                div[class="btn-sqr-blue p-1 py-0.5 " id="pid-l#{@inactive[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@inactive[m].id}"] = @inactive[m].name
+
+        strong Unscheduled Expired
+        .status[class="flex flex-wrap  mx-3"] 
+          - mapping = get_col_mapping(@expired.size,2)
+          - 2.times do |i|
+            div[class="w-1/2"]
+              - mapping[i].each do |m|
+                div[class="btn-sqr-blue  p-1 py-0.5 " id="pid-l#{@expired[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@expired[m].id}"] = @expired[m].name
+
+
+      .hidden.md:block
+        strong Unscheduled Active
+        .status[class="flex flex-wrap  mx-3"] 
+          - mapping = get_col_mapping(@active.size,3)
+          - 3.times do |i|
+            div[class="w-full md:w-1/3"]
+              - mapping[i].each do |m|
+                div[class="btn-sqr-blue p-1 py-0.5" id="pid-m#{@active[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@active[m].id}"] = @active[m].name
+
+        strong Unscheduled Inactive
+        .status[class="flex flex-wrap  mx-3"] 
+          - mapping = get_col_mapping(@inactive.size,3)
+          - 3.times do |i|
+            div[class="w-full md:w-1/3"]
+              - mapping[i].each do |m|
+                div[class="btn-sqr-blue  p-1 py-0.5 " id="pid-m#{@inactive[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@inactive[m].id}"] = @inactive[m].name
+
+        strong Unscheduled Expired
+        .status[class="flex flex-wrap  mx-3"] 
+          - mapping = get_col_mapping(@expired.size,3)
+          - 3.times do |i|
+            div[class="w-full md:w-1/3"]
+              - mapping[i].each do |m|
+                div[class="btn-sqr-blue  p-1 py-0.5" id="pid-m#{@expired[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@expired[m].id}"] = @expired[m].name
+
+    .scheduled[class="mx-2 "]
+      strong Current Scheduled
+      = form_with(url: @game.namespace_url, method: :patch, 
+        html:{id:"update_participants"},data:{schedule_target:"form",remote:"true"} )do |f|
+
+        table.small-table id="current_members"
+          thead[data-controller="sortTable"]
+            tr
+              th Del
+              th[data-action="click->sortTable#sortBy" data-stype="T"]
+                i.fas.fa-sort.noprint
+                |Name
+              th[data-action="click->sortTable#sortBy" data-stype="N"]
+                i.fas.fa-sort.noprint
+                |RQ
+
+              th Tee
+              th[data-stype="N" data-action="click->sortTable#sortBy"]
+                i.fas.fa-sort.noprint
+                |TM
+
+          -  @game.current_players_name.each do |p|
+            tr[data-schedule-target="currentPlayers"]
+              td = check_box_tag "deleted[]", value=p.id,nil,data:{action:'schedule#update_player'}
+              td = p.name
+              td = p.player.rquota_limited
+              td = select_tag 'tee[]', tee_options(@game.group,p,true),data:{action:'schedule#update_player'}
+              td = p.team
+        #new_players
+
+        = f.submit('Update Participants', id:'commit',data:{schedule_target:'submit'},style:'display:none;')

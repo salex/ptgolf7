@@ -1,0 +1,53 @@
+
+section.bg-lime-light.p-2.border-b-1
+  .w3-row-padding
+    .w3-col.m2 
+      h5.strong = "#{Current.group.name} Games"
+    .w3-col.m3
+      |&nbsp;
+      - if is_manager?
+        = link_to icon('fas fa-plus','New Game'), new_game_path,
+          class: 'btn btn-success'
+
+    .w3-col.m3
+
+      == pagy_nav(@pagy)
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+.px-2.bg-lime-lighter
+  = render partial:"shared/group_game_status"
+
+.mx-1
+  table.small-table-stripped.w100
+    thead
+      tr
+        th Date
+        th Status
+        th Pay
+        th Players
+        th Teams
+        th Formed
+        th Makeup
+        - if is_manager?
+          th Actions
+
+    tbody
+      - @games.each do |game|
+        tr
+          td 
+            = link_to(game.date,game.namespace_url,class:'blue-link')
+          td = game.status
+          td = game.method
+          td = game.stats[:round][:players]
+          td = game.stats[:round][:teams]
+          td = game.stats[:round][:seed_method]
+          td = game.stats[:round][:makeup]
+
+          - if is_manager?
+            td 
+              = link_to icon('fas fa-eye'),  game, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
+              = link_to icon('fas fa-edit'), edit_game_path(game), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
+              = link_to icon('fas fa-trash'),  game, title: 'Destroy it', class: 'btn btn-icon btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+
+

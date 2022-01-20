@@ -1,0 +1,23 @@
+= form_for @game do |f|
+  - if @game.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@game.errors.count, "error")} prohibited this game from being saved:"
+      ul
+        - @game.errors.full_messages.each do |message|
+          li = message
+  .form-fields
+    .field 
+      label
+      button.btn-submit = f.submit
+    .field
+      = f.label :group
+      = @game.group.name
+    .field
+      = f.label :date
+      = f.text_field :date,data:{controller:'flatpickr'}
+    .field
+      = f.label :status
+      = f.select :status,%w{Scheduled Pending Scored}
+    .field
+      = f.label :method
+      = f.text_field :method

@@ -1,0 +1,48 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m3 
+      h5.strong PtGolf Clubs and Group
+ 
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+.w3-row-padding
+
+
+  .w3-col.m6
+    - @clubs.includes(:groups).each do |club|
+      .w3-row
+        h5.w3-col.s6.strong = club.name
+        h5.w3-col.s6.strong = "#{club.city}, #{club.state}"
+      .w3-container.w3-card-4.lite-lime
+        .w3-row-padding
+          .w3-col.s5.strong Group Name
+          .w3-col.s3.strong.w3-center Players (A/I/E)
+          .w3-col.s4.strong Visit/Leave
+
+
+        -club.groups.each do |group|
+          .w3-row-padding
+
+            .w3-col.s5 = group.name
+            .w3-col.s3.w3-center = "#{group.active_players.length}/#{group.inactive_players.length}/#{group.expired_players.length}"
+            .w3-col.s4 
+              - if Current.group && Current.group.id == group.id
+                = link_to "Leave", leave_group_path(group), class:'green-link small-caps'
+              - else
+                = link_to "Visit", visit_group_path(group), class:'green-link small-caps'
+  .w3-col.m6 
+    strong.fs2 Welcome to PointGolf (PtGolf.us)
+    p.mb-3 A Web tool for managing quotas for your golf groups Low Ball or Dog Fight games.
+    p.mb-3 Select a Club/Group by clicking on the 'Visit' link in the Groups list on the right. Once you visit a group you will go directly to that group's home whenever you access PtGolf. If you leave the group, you can visit another group.
+    .button-bar
+      .annotate Learn more about PtGolf by clicking on the About button.
+      button.lime-link-btn = link_to 'About PtGolf.us', '/about'
+
+    p.mb-3 PtGolf.us is currently in limited production with only Club/Groups personally known by the author. If you like to inquire about adding you Club/Group, please click the <b>Contact Us</b> button below and provide contact information.
+    .button-bar
+        button.lime-link-btn = link_to 'Contact Us', '/inquiries/new'
+
+    hr.underline
+    .annotate Rails Version 6.1.3
+

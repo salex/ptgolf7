@@ -1,0 +1,36 @@
+- players = @game.players.order(:name)
+- quotas = Quotas.new(Current.group)
+.w3-container.w3-white
+  .w3-row-padding
+    table.small-table-stripped.w100
+      caption.lime-link-btn = "Correction Game Players Quotas Use #{Current.group.rounds_used} Rounds, Use Hi/Low: #{Current.group.use_hi_lo_rule}" 
+      thead
+        tr
+          th Player
+          th RawQ
+          th Quota
+          th Tee
+          th Q
+          th LP
+          -1.upto(Current.group.rounds_used) do |i|
+            th=i
+          th Dlast
+      tbody
+        -pid = 0
+        - players.each do |p|
+          - if p.id != pid
+            - s = quotas.quota_summary(p).first
+            tr
+              td = p.name
+              td = p.rquota
+              td = p.quota
+              td= s[:tee]
+              td= s[:quota].to_s + (s[:limited] ? "*" : '')
+              td= s[:last_played].strftime("%m/%d/%y") if s[:last_played].present?
+              - 0.upto(Current.group.rounds_used - 1) do |r|
+                td = s[:totals][r] if s[:totals].present?
+              td= s[:dropped]
+
+            - pid = p.id
+
+    

@@ -1,0 +1,27 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m2 
+      h5.strong  Show Notice
+    .w3-col.m6
+      / span.lime-link-btn.span-btn.btn-primary = link_to 'plural_table_name.capitalize',players_path
+      = link_to icon('fas fa-list', 'List Notices'),  notices_path, class: 'btn btn-success mr-2'
+
+      = link_to icon('fas fa-edit','Edit Notice'), 
+        edit_notice_path(@notice), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2' if is_manager?
+      = link_to icon('fas fa-trash','Destroy Notice'),  @notice, title: 'Destroy it', class: 'btn btn-icon btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true } if is_manager?
+.form-fields
+  .field
+    label Date
+    = @notice.date
+  .field
+    label Slim
+    = @notice.slim
+  .field
+    label Status
+    = @notice.status
+  .field
+    label Expires
+    = @notice.date_data
+.w3-row-padding
+  .w3-col.s12
+    = slim_text(@notice.slim)

@@ -1,0 +1,46 @@
+.w3-row-padding
+  table.small-table-stripped.w100.sortable
+    - bal = 0.0
+    thead[data-controller="sortTable"]
+      tr
+        th[data-action="click->sortTable#sortBy"] 
+          i.fas.fa-sort.noprint
+          | Name
+        th First
+        th Last
+        th Nick
+        / th Use NN
+        th Tee
+        th[data-action="click->sortTable#sortBy"] 
+          i.fas.fa-sort.noprint
+          | Quota
+        th[data-action="click->sortTable#sortBy"] 
+          i.fas.fa-sort.noprint
+          | Rquota
+        / th Phone
+        th LPlayed
+        th frozen
+        - if is_manager?
+          th Actions
+
+    tbody
+      - @players.each do |player|
+        tr
+          td 
+            = player.name
+            = link_to icon('fas fa-eye'),  player, title: 'Show it', class: 'btn btn-icon mr-2'
+          td = player.first_name
+          td = player.last_name
+          / td = player.nickname
+          td = player.use_nickname
+          td = player.tee
+          td = player.quota
+          td = player.rquota
+          / td = player.phone
+          td = player.last_played
+          td = player.is_frozen
+          - if is_manager?
+            td 
+              = link_to icon('fas fa-eye'),  player, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
+              = link_to icon('fas fa-edit'), edit_player_path(player), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
+              = link_to icon('fas fa-trash'),  player, title: 'Destroy it', class: 'btn btn-icon btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true }

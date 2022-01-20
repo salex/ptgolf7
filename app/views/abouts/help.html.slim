@@ -1,0 +1,124 @@
+fieldset.lighten
+  .medium-10.columns[data-controller="toggleAnswer"]
+    / .callout.alert This is work in progress, not done yet
+    h4.strong Frequently asked questions and "How to" help.
+    .annotate Click on question to open/close answers.
+    .section#general 
+      strong General
+
+      .question.ul[data-action='click->toggleAnswer#toggle'] 
+        |How does PtGolf work?
+        div.w3-hide#o_a_1
+          p.slim Most people who use the Web to lookup information or buy stuff are at first confused by a database application written for the Web. Its really not much different than a Shopping Cart application, it's just there are many more options other than "Find", "Add to Cart" and "Checkout". Instead of "Finding" a product, you are finding other things (Players, Groups, Events, Rounds). If you can't find something, you may need to C(reate it. If you found something, you might want to R(ead it or display the information. That information my also contain other linked information (e.g. the Rounds the player has played).  After you read something you may want to U(pdate it. At some point you may also want to D(estroy the information.
+          p.slim The process of Creating, Reading, Updating and Destroying is referred to as a CRUD process for handling Resources or Things. Again, Things or Resources in PtGolf are Players, Groups, Events, Rounds, etc.
+          p.slim The hardest thing to understand about a Web application is that just because you fill out a form on the web, it is not saved until you take some action to update the information. This is usually some form of and update button. Unlike a word processor, there is no auto-save option.
+
+          p.slim The "How to" questions below are just explanations on to do the creating, reading, updating and destroying actions you must follow for PtGolf to do its stuff!
+    .section#players 
+      strong Players 
+      .question.ul[data-action='click->toggleAnswer#toggle'] 
+        |How to add a new player?
+        ul.w3-hide#p_a_1
+          li Click on Group Player button in top menu or sidebar. Opens list of players
+          li Search for Player by using a part of their name (e.g, John) in the search field and press return/enter
+          li If the player is found in the current group, they are already in the group. You many want to edit their name if it is incorrect 
+          li If the player is in another group for this club, see the Add/Move question below.
+          li If the player is not found, click the Add Player button.
+          li Enter Player information in the fields (name, default tee, declared quota, etc.).
+          li Click the <strong>Create Group Player</strong> button
+          li Players show page should reflect the new player
+      .question.ul[data-action='click->toggleAnswer#toggle'] 
+        |How to Add or Move a player from another group?
+        ul.w3-hide#p_a_3
+          li Click on Group Player button in top menu or sidebar. Opens list of players
+          li Search for Player by using a part of their name (e.g, John) in the search field and press return/enter
+          li If the player is in another group for this club, click the "Show/Add/Move" link next to their name.
+          li The show page for the player in the other group will be displayed.
+          li Click the <b>Add Player</b> button if the player plays with both group. This will create a new player in your group with the same information but no rounds.
+          li Click the <b>Move Player</b> button if the player has quit the other group or the other group has been disbanded. This will move the player to your group, including their round history.
+          li Clink the <b>Back</b> button if you don't want to add/move player
+          li If you move or add the player an Edit page will be displayed if you need to make any changes.
+
+      .question.ul[data-action='click->toggleAnswer#toggle'] 
+        |How to change a players Default Tee?
+        ul.w3-hide#p_a_2
+          li Click on Group Player button in top menu or sidebar. Opens list of players
+          li Clink on players name in list of players. Opens Players show page.
+          li Click on Edit button in top Link bar. Open Players edit page.
+          li Click in the *Tee field to open the tee selection pulldown menu.
+          li Select tee player is moving to.
+          li Click Update Player button
+          li Players show page should reflect the changes
+
+
+    .section#events
+      strong Events 
+      .question.ul[data-action='click->toggleAnswer#toggle'] 
+        |How to create a new event?
+        ul.w3-hide#e_a_0
+          li Clink the home button in the top menu bar.
+          li In the New, Scheduled, Pending Events callout box there should be a button "Create New Event for Today". Click that button if their. If an event has already created with todays date and in should be listed below if it is Scheduled or Pending.
+          li You can also click the "Create New Event" button in the home page sidebar. You should only use this if your creating an event for a different day.
+          li You can also open the Events list in the top menu bar and click the "Create New Event" button.
+          li= link_to "Follow instruction for the Event Process to update event",eprocess_about_path
+      .question.ul[data-action='click->toggleAnswer#toggle'] 
+        |How to delete/remove/destroy an incomplete or error event?
+        ul.w3-hide#e_a_1
+          li.anno Events/Games are sometimes rained out! Events that are not scored after one day are potentially incomplete events.
+          li Open event from the home page link or the Events list.
+          li Click the "Destroy Incomplete Event" button in the show page link bar.
+          li A dialog will be displayed with the question "Are you sure?" with options of Cancel and OK.
+          li Click "OK" to destroy the event. Click "Cancel" if you opened the wrong event.
+          li.anno Events are sometimes created by mistake (duplicates). Theses events are considered error events if teams have not been formed and the event is over a day old.  They are handle the same as the incomplete event.
+          li You can also destroy events by clicking on the "Destroy" link for an event in the Events list
+
+      .question.ul[data-action='click->toggleAnswer#toggle'] 
+        |How to change a players Tee for the current event?
+        ul.w3-hide#e_a_2
+          li.anno For a Scheduled event where teams have <b>not</b> been formed
+          li Open current Scheduled event
+          li Look for Player in table "Current Participant".
+          li Click in the the field in the(T) column for that player to open tee selection pulldown menu.
+          li Select the Tee that player is going to play from.
+          li Click Update Participants button
+          li Players quota and tee should reflect the changes
+          li.anno For a Pending event where teams have been formed
+          li Open Pending event
+          li Clink the Adjust Teams button in the event link bar
+          li Look for Player in teams table.
+          li Click in the the field in Tee column for that player to open tee selection pulldown menu.
+          li Select the Tee that player is going to play from.
+          li Click Update Adjust Teams button
+          li Players quota and tee should reflect the changes
+      .question.ul[data-action='click->toggleAnswer#toggle'] 
+        |How to handle a player's request to go off first because of an appointment.?
+        ul.w3-hide#e_a_3
+          li.anno After teams are formed and its all threesomes or foursomes.
+          li Simply have that players team swap starting order with the first team!
+          li.anno After teams are formed and there are mixed threesomes or foursomes.
+          li Click the "Adjust Teams" button.
+          li Change the team number for the player making the request to 1.
+          li Change the team number of someone in team 1 (usually the same quota range of the player making the request) to the players team.
+          li Clink the "Adjust Team" button to update the teams.
+      .question.ul[data-action='click->toggleAnswer#toggle'] 
+        |How to handle someone showing up after teams have been formed.?
+        ul.w3-hide#e_a_4
+          li.anno Its up to the group if they just want to tell them "Sorry it's too late". But...
+          li Open event and click "Add Late Participant".
+          li Add player to event as you would in creating the event.
+          li Click update participants.
+          li The event will show a warning box that someone was added to the event and that teams must be reformed or adjusted.
+          li.anno If there are mixed teams?
+          li Click the adjust teams button.
+          li The player added will show up on team 0. Change it to the last threesome.
+          li Click the "Adjust Teams" button to update the event/teams
+          li.anno If there is all threesomes
+          li Click the adjust teams button.
+          li The player added will show up on team 0. Change it to the last threesome, making it a foursome
+          li Click the "Adjust Teams" button to update the event/teams
+          li.anno If there are all foursomes, your only choice is to say "Sorry" or reform teams. If scorecards are not distributed and everyone is not loaded up, no big problem is you still have time to make the changes.
+          li Click the ReForm teams button and print new scorecards.
+        
+    .section#errors 
+      strong Errors
+

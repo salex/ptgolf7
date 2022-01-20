@@ -1,0 +1,48 @@
+= turbo_frame_tag "refresh"
+  - i = 1
+  - bal = 0.0
+  - options = @groupStats.game_options
+  - game = options[:game].to_sym
+  - header = {quality:"Team Game Leaders (#{options[:order].capitalize})",skins:'Skins/Birdie Leaders',par3:'Par3 Leaders',other:'Best Sides Leaders'}.with_indifferent_access
+  h4.strong.text-center = header[game]
+
+  table.small-table-stripped.w100.sortable
+    thead[data-controller="sortTable"]
+      tr
+        th #
+        th[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint
+          | Player
+        th[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint
+          | Rnds
+        th[data-action="click->sortTable#sortBy"] 
+          i.fas.fa-sort.noprint
+          | Won
+        th[data-action="click->sortTable#sortBy"] 
+          i.fas.fa-sort.noprint
+          | Dues
+        th[data-action="click->sortTable#sortBy"] 
+          i.fas.fa-sort.noprint
+          | Bal
+        th[data-action="click->sortTable#sortBy"] 
+          i.fas.fa-sort.noprint
+          | PTRank
+        th[data-action="click->sortTable#sortBy"] 
+          i.fas.fa-sort.noprint
+          | Avg
+    tbody
+      - @groupStats.money_list(game).each do |a|
+        -if a[1] > 2
+          tr
+            td=i
+            td= a[0]
+            td.text-right=a[1]
+            td.text-right=to_nickels a[2],true
+            td.text-right=a[3]
+            td.text-right=to_nickels a[4],true
+            td.text-right=sprintf( "%0.03f", a[5])
+            td.text-right=sprintf( "%0.03f", a[6])
+          - bal += a[4]
+          - i+=1
+  p = "Balance: #{to_nickels bal,true}"

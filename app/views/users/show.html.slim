@@ -1,0 +1,37 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m2 
+      h5.strong Dashboard Edit User
+    .w3-col.m6
+      span.lime-link-btn = link_to 'Users',users_path
+
+
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Cancel'),  users_path, class: 'btn btn-warning'
+
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+        span.span-btn= 'User'
+
+table.show-table
+
+  tr
+    th Group:
+    td = @user.group.name
+  tr
+    th Player:
+    td = @user.player.present? ? @user.player.name : 'Unlinked Player'
+  tr
+    th Email:
+    td = @user.email
+  tr
+    th Username:
+    td = @user.username
+  tr
+    th Role:
+    td = @user.role
+  tr
+    th Reset token:
+    td = @user.reset_token
+
+

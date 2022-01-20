@@ -1,0 +1,24 @@
+fieldset.row
+  p
+    strong Name:&nbsp;
+    = @inquiry.inquiry[:name]
+  p
+    strong Email:&nbsp;
+    = @inquiry.inquiry[:email]
+  p
+    strong Phone:&nbsp;
+    = @inquiry.inquiry[:phone]
+  p
+    strong Remarks:&nbsp;
+    = @inquiry.inquiry[:remarks]
+  p.mb-3 
+    strong Replied:&nbsp;
+    = @inquiry.date
+  p.mb-3 
+    strong Reply:&nbsp;
+    = @inquiry.inquiry[:reply]
+
+
+  = link_to 'Edit', edit_inquiry_path(@inquiry.id)
+  '|
+  = link_to 'Back', inquiries_path

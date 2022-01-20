@@ -1,0 +1,81 @@
+// skins.scss
+
+@mixin width-height($width,$height) {
+  width:$width;
+  height:$height;
+}
+@mixin row-box-base($width,$height) { 
+  .row-box{
+    height:$height;
+    font-weight: 200;
+    margin:0;
+    padding:0;
+    border-left: solid 1px #aaddaa;
+    border-top: solid 1px #aaddaa;
+    display: inline-block;
+    background-color: white;
+    line-height: $height;
+    font-size: 0.9rem;
+    &.lbl{
+      background-color: #e7ffe7;
+      font-weight: 500;
+    };
+    span {
+      width:$width;
+      height:inherit;
+      text-align:center;
+      border-right:solid 1px #aaddaa;
+      border-bottom:solid 1px #aaddaa;
+      display:inline-block;
+      overflow: hidden;
+      &.lbl{
+        background-color: #e7ffe7;
+        font-weight: 500;
+      };
+      &.err{
+        color:red;
+      }
+      &.cut{
+        color:red;
+        background-color: lighten(red,45%);
+        font-weight:700;
+      }
+      &.good,&.birdie,&.card-B {
+        color:green;
+        background-color: lighten(green,60%);
+        font-weight:700;
+      }
+      &.eagle,&.card-E{
+        color:#00f;
+        background-color: lighten(blue,35%);
+        font-weight:700;
+      }
+      &.albatros,&.card-A{
+        color:yellow;
+        background-color: darken(yellow,20%);
+        font-weight:700;
+      }
+
+      &.title{
+        width:$width * 2;
+        font-weight:700;
+      }
+
+    };
+  };
+
+}
+
+.boxes, .row-box-18{
+  @include row-box-base(2.0rem,1.5rem)
+}
+
+.row-box-small{
+  @include row-box-base(1.1rem,1.1rem)
+  font-size: 0.7rem;
+}
+
+div.lbox1 {border-left:solid 1px black;border-top:solid 1px black;display:inline-block;}
+span.lbox1 {width:2.0em;height:1.6em;text-align:center;border-right:solid 1px black;border-bottom:solid 1px black;display:inline-block;}
+.lboxr {color:red;}
+.lboxg {color:green;}

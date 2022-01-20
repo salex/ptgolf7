@@ -1,0 +1,26 @@
+h1 Listing Notices
+
+table.small-table
+  thead
+    tr
+      th Date
+      th Slim
+      th Status
+      th Expires
+      th
+      th
+      th
+  tbody
+    - @notices.each do |n|
+      tr
+        td = n.date
+        td = text_area_tag nil,n.slim
+        td = n.status
+        td = n.date_data
+        td = link_to 'Show', notice_path(n.id)
+        td = link_to 'Edit', edit_notice_path(n.id)
+        td = link_to 'Destroy', notice_path(n.id), data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Notice', new_notice_path

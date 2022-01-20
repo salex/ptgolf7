@@ -1,0 +1,49 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m2 
+      h5.strong Clubs
+    .w3-col.m6
+      - if is_super?
+        = link_to icon('fas fa-plus','New Club'), new_club_path,
+          class: 'btn btn-success'
+
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+        / span.span-btn= clubs
+
+
+table.small-table
+  thead
+    tr
+      th Short name
+      th Name
+      th Address
+      th City
+      th State
+      th Zip
+      th Phone
+      th Par in
+      th Par out
+      th Tees
+      th Actions
+
+  tbody
+    - @clubs.each do |club|
+      tr
+        td = club.short_name
+        td = club.name
+        td = club.address
+        td = club.city
+        td = club.state
+        td = club.zip
+        td = club.phone
+        td = club.par_in
+        td = club.par_out
+        td = club.tees
+        td 
+          = link_to icon('fas fa-eye'),  club, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
+          - if is_super?
+            = link_to icon('fas fa-edit'), edit_club_path(club), title: 'Edit it', 
+              class: 'btn btn-icon btn-warning mr-2'
+            = link_to icon('fas fa-trash'),  club, title: 'Destroy it', class: 'btn btn-icon btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true }

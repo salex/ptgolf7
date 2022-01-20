@@ -1,0 +1,60 @@
+
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m2 
+      h5.strong.w3-text-red Invalid Game
+    .w3-col.m6
+      span.lime-link-btn = link_to 'Games', games_path
+
+
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Cancel'),  games_path, class: 'btn btn-warning'
+
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+        span.span-btn= Game
+h3.strong.w3-text-red A player(s) have been deleted from this game, scoring not available
+
+table.show-table
+
+  tr
+    th Group:
+    td = @game.group
+  tr
+    th Date:
+    td = @game.date
+  tr
+    th Status:
+    td = @game.status
+  tr
+    th Method:
+    td = @game.method
+  tr
+    th Stats:
+    td = @game.stats
+
+table.small-table.w70p
+  tr
+    th.w20p Name
+    th Tee
+    th Team
+    th Quoda
+    th Side
+    th Front
+    th Back
+    th Total
+    th PM
+  - @game.participants.each do |p|
+    tr
+      td = p.player.name
+      td = p.tee
+      td = p.team
+      td = p.quota
+      td = p.quota.to_f / 2
+      td = p.front
+      td = p.back
+      td = p.total
+      td = p.total - p.quota
+
+  
+

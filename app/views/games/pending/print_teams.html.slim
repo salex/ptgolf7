@@ -1,0 +1,60 @@
+- teams = @game.event_teams
+.button-bar.noprint 
+  = link_to icon('fas fa-arrow-left', 'Game'), @game.namespace_url, class: 'btn btn-warning '
+  = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn btn-icon btn-info', onclick: "window.print();"
+
+.w3-row-padding
+  .s10.w3-col
+    - if  @game.stats[:makeup] == 'individuals' || @game.stats[:seed_method] == 'blind_draw'
+      table.small-table[style="font-size:120%;"]
+        tr
+          td.strong.name Name
+          td.strong Quota
+          td.strong Side
+          td.strong Team
+          td.strong Front
+          td.strong Back
+          td.strong Total
+          td.strong Birdies
+        - @game.current_players_name.each do |m|
+          tr 
+            td.name = m.name[0..22]
+            td = m.quota_limited
+            td = m.quota / 2.0
+            td 
+            td
+            td
+            td
+            td
+    - else
+      table.small-table
+        caption = @game.stats[:makeup]
+        tr
+          td.strong.name Name
+          td.strong Quota
+          td.strong Side
+          td.strong Front
+          td.strong Back
+          td.strong Total
+
+
+        - teams.each do |t,members|
+          - tquota = 0
+          - members.map{|m| tquota += m.quota}
+          - members.each do |m|
+            tr 
+              td.name = m.name
+              td = m.quota_limited
+              td = m.quota / 2.0
+              td
+              td
+              td
+          tr
+            td.strong colspan="6" = "Team #{t} - Quota #{tquota} Side #{tquota/2.0} Hole #{(tquota / 18.0).round(1)}"
+
+          tr
+            td colspan="3" &nbsp;
+  .s2.w3-col[style="font-size:14px;"]
+    - @game.current_players_name.each do |p|
+      .box = p.name
+

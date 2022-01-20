@@ -1,0 +1,94 @@
+- scoring = @scoring
+- game_stats = scoring.team_scores
+- teams = scoring.teams
+- win = scoring.winners
+section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
+  .w-full.md:w-1/6.lg:w-1/6
+    h5.strong Scored Game
+  .w-full.md:w-2/3 
+    = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
+
+    - if is_manager? && @game.state[:can_delete]
+
+      = link_to icon('fas fa-trash','Delete Incomplete Game'),@game, 
+         class: 'pt-btn btn-danger w100', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn  btn-secondary '
+.px-2.bg-lime-lighter
+  = render partial: 'games/shared/event'
+
+.bg-lime-lighter.p-2
+  - if is_manager?
+    = link_to icon('fas fa-pencil-alt', 'ReScore Teams'), @game.namespace_url('rescore_teams'),
+      class: 'btn btn-warning mr-2'
+    = link_to icon('fas fa-pencil-alt', 'Score Skins/Birdies'), @game.namespace_url('score_skins'),
+      class: 'btn btn-success mr-2'
+    = link_to icon('fas fa-pencil-alt', 'Score Par3s'), @game.namespace_url('score_par3s'),
+      class: 'btn btn-success mr-2'
+
+
+.flex.flex-wrap
+  - team_keys  = teams.keys
+  - map = col_map_array(team_keys,2)
+
+  - map.each do |row|
+    .w-full.md:w-1/2.px-2
+      - row.each do |tm|
+        - team = teams[tm]
+        - if team.blank?
+          strong Error, Group deleted players for team and scoreing cannot be displayed
+          - next
+
+        - team_stats = game_stats[tm]
+        / - hole = (team_stats[:quota]/18.0).round(1)
+        - if team.blank?
+          strong Error, Group deleted players for team and scoreing cannot be displayed
+          - next
+        table.small-table.w100.w3-striped.w3-margin-top class="#{!scoring.is_winner?(tm) ? '' : 'lite-lime'}"
+          tr
+            th.w25p Name
+            th Tm
+            th T
+            th Q
+            th Side
+            th Front
+            th Back
+            th Total
+
+          - team.each do |mate|
+            tr
+              - sideq = mate[:quota] / 2.0
+              td= mate[:player_name]
+              td= mate.team
+              td= mate[:tee]
+              td= mate[:limited] ? mate[:quota].to_s + '*' : mate[:quota].to_s 
+              td= sideq
+              td= pulled(mate[:front],mate[:front_net],sideq,mate[:limited])
+              td= pulled(mate[:back],mate[:back_net],sideq,mate[:limited])
+              td= pulled(mate[:total],mate[:total_net],mate[:quota],mate[:limited]) 
+
+          - if !team_stats[:team_quality].zero?
+            th colspan="7" 
+              = "Team won $#{to_nickels(team_stats[:team_quality],true)}, Each Team Mate $#{to_quarters(team_stats[:mate_quality],true)} "
+
+hr.underline
+.w3-row-padding 
+  - if @game.method == 'sides'
+    strong.annotate Team Winners
+    table.small-table.w100
+      tr
+        - sides[:winners].each do |a|
+          th = "#{a[0]} Team #{a[1]} &#177; #{a[2]} $#{to_nickels(a[3],true)}".html_safe
+  -else
+    .annotate Team Winners
+    table.small-table.w100
+      tr
+        - scoring.winners.each do |k,v|
+          th = "#{k.ordinalize} Place,  Teams #{v[:team]} &#177; #{v[:pm]} $#{to_nickels(v[:quality],true)}".html_safe
+
+
+.w3-row-padding 
+  = render partial:'games/scored/best_sides',locals:{scoring:scoring}
+  
+= render partial:'games/scored/game_stats'
+

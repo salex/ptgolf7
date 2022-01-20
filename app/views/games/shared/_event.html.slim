@@ -1,0 +1,23 @@
+- @game.set_state if @game.state.blank?
+
+div[class="flex flex-wrap"]
+  div.mx-2
+    span.font-bold Game Status: 
+    span = @game.status
+  div.mx-2
+    span.font-bold Game Date: 
+    span = @game.date
+  div.mx-2
+    span.font-bold Method: 
+    span = (@game.method ||='')+"/#{@game.stats[:makeup]}"
+  div.mx-2
+    span.font-bold Players: 
+    span[data-schedule-target="players"] =  @game.state[:players]
+  div.mx-2
+    span.font-bold Round/Side Pot: 
+    span[data-schedule-target="pot"] = "#{@game.state[:pot]}/#{@game.state[:side]}"
+
+  -if @game.state[:players] > 0
+    div.mx-2
+      span.font-bold Teams/Seed: 
+      span =  "#{@game.state[:teams].count}/#{@game.stats[:seed_method]}"

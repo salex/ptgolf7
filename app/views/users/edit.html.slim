@@ -1,0 +1,17 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m2 
+      h5.strong Edit User
+    .w3-col.m6
+      span.lime-link-btn.span-btn = link_to 'Users',users_path
+
+
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Cancel'),  users_path, class: 'btn btn-warning'
+
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+        span.span-btn= 'User'
+
+== render 'form'
+

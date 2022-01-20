@@ -1,0 +1,54 @@
+- teams = @game.event_teams
+.button-bar.noprint 
+  = link_to icon('fas fa-arrow-left', 'Game'), @game.namespace_url, class: 'btn btn-warning '
+  = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn btn-icon btn-info', onclick: "window.print();"
+
+.w3-row
+  .s12.w3-col
+    table.small-table[style="font-size:16px;"]
+      tr
+        td.strong.name Name
+        td.strong Quota
+        td.strong Side
+        td.strong T
+        - (1..9).each do |i| 
+          td.w03p.strong= i
+        end
+        td.strong.w05p In
+        - (10..18).each do |i| 
+          td.w03p.strong= i
+        end
+        
+        td.strong.w05p Out
+        td.strong Total
+        td.strong PM
+      - @game.current_players_name.each do |m|
+        tr 
+          td.name = m.name
+          td = m.quota_limited
+          td = m.quota / 2.0
+          td = m.tee[0]
+          td 
+          td
+          td
+          td
+          td 
+          td
+          td
+          td
+          td 
+          td
+          td
+          td
+          td 
+          td
+          td
+          td
+          td 
+          td
+          td
+          td
+          td
+          td
+
+ 

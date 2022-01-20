@@ -1,0 +1,64 @@
+h6.ml-4.strong.dark-lime Active Players
+.w3-row-padding
+  - map = col_map_index(@active.size,3)
+  - map.each do |row|
+    .w3-col.l4.m6
+      table.small-table-stripped.w100
+        tr
+          th Name
+          th T
+          th Q
+          th LPlay
+
+        - row.each do |m|
+            - name = @active[m].name
+            tr
+              td = link_to name, player_path(@active[m]),class:'blue-link'
+              td = @active[m].tee[0]
+              td = @active[m].quota_limited
+
+              / + @limits.player_limits(m)).html_safe
+              td = @active[m].last_played.strftime("%m/%d/%y") if @active[m].last_played.present?
+
+h6.ml-4.strong.dark-lime Inactive Players
+.w3-row-padding
+  - map = col_map_index(@inactive.size,3)
+  - map.each do |row|
+    .w3-col.l4.m6
+      table.small-table-stripped.w100
+        tr
+          th Name
+          th T
+          th Q
+          th LPlay
+
+        - row.each do |m|
+            - name = @inactive[m].name
+            tr
+              td = link_to name, player_path(@inactive[m]),class:'blue-link'
+              td = @inactive[m].tee[0]
+              td = @inactive[m].quota_limited
+
+              / + @limits.player_limits(m)).html_safe
+              td = @inactive[m].last_played.strftime("%m/%d/%y") if @inactive[m].last_played.present?
+h6.ml-4.strong.dark-lime Expired Players
+.w3-row-padding
+  - map = col_map_index(@expired.size,3)
+  - map.each do |row|
+    .w3-col.l4.m6
+      table.small-table-stripped.w100
+        tr
+          th Name
+          th T
+          th Q
+          th LPlay
+
+        - row.each do |m|
+            - name = @expired[m].name
+            tr
+              td = link_to name, player_path(@expired[m]),class:'blue-link'
+              td = @expired[m].tee[0]
+              td = @expired[m].quota_limited
+
+              / + @limits.player_limits(m)).html_safe
+              td = @expired[m].last_played.strftime("%m/%d/%y") if @expired[m].last_played.present?

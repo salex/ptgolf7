@@ -1,0 +1,40 @@
+- i = 1
+- bal = 0.0
+table.small-table.sortable
+  tr
+    th #
+    th 
+      i.fas.fa-sort.noprint
+      | Player
+    th 
+      i.fas.fa-sort.noprint
+      | Rnds
+    th 
+      i.fas.fa-sort.noprint
+      | Won
+    th 
+      i.fas.fa-sort.noprint
+      | Dues
+    th 
+      i.fas.fa-sort.noprint
+      | Bal
+    th 
+      i.fas.fa-sort.noprint
+      | PTRank
+    th 
+      i.fas.fa-sort.noprint
+      | Avg
+  - money_list.each do |a|
+    -if a[1] > 2
+      tr
+        td=i
+        td= a[0]
+        td.text-right=a[1]
+        td.text-right=to_nickels a[2],true
+        td.text-right=a[3]
+        td.text-right=to_nickels a[4],true
+        td.text-right=sprintf( "%0.03f", a[5])
+        td.text-right=sprintf( "%0.03f", a[6])
+      - bal += a[4]
+      - i+=1
+p = "Balance: #{to_nickels bal,true}"

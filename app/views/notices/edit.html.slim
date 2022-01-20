@@ -1,0 +1,9 @@
+fieldset.row
+  h3 Editing Notice
+
+  == render 'form'
+
+  = link_to 'Show', notice_path(@notice) 
+  '|
+  = link_to 'Back', notices_path
+

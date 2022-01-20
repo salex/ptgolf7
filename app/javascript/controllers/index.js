@@ -9,3 +9,8 @@ eagerLoadControllersFrom("controllers", application)
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
+import Flatpickr from 'stimulus-flatpickr'
+application.register('flatpickr', Flatpickr)
+
+import { Autocomplete } from 'stimulus-autocomplete'
+application.register('autocomplete', Autocomplete)

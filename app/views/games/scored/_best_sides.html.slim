@@ -1,0 +1,33 @@
+strong Best Sides
+
+span.annotate
+  | &nbsp;
+  | [Side,
+  | &nbsp;
+  | &#177;
+  |, &nbsp;
+  | Player(s)]
+
+table.small-table.w100
+  tr
+    td 
+      table
+        tr
+          th Front
+          td = scoring.best_front_players[:score]
+          - scoring.best_front_players[:players].each do |gp|
+            td = gp
+    td
+      table
+        tr
+          th Back
+          td = scoring.best_back_players[:score]
+          - scoring.best_back_players[:players].each do |gp|
+            td = gp
+    td
+      table
+        tr
+          th Total
+          td = scoring.best_total_players[:score]
+          - scoring.best_total_players[:players].each do |gp|
+            td = gp

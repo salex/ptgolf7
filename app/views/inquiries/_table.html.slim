@@ -1,0 +1,23 @@
+table.small-table
+  thead
+    tr
+      th Name
+      th Email
+      th Phone
+      th Remarks
+      th Replied
+      th
+      th
+      th
+
+  tbody
+    - @inquiries.each do |i|
+      tr
+        td = i.inquiry[:name]
+        td = i.inquiry[:email]
+        td = i.inquiry[:phone]
+        td = i.inquiry[:remarks]
+        td = i.date
+        td = link_to 'Show', inquiry_path(i.id)
+        td = link_to 'Edit', edit_inquiry_path(i.id)
+        td = link_to 'Destroy', inquiry_path(i.id), data: { confirm: 'Are you sure?' }, method: :delete

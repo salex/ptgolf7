@@ -1,0 +1,34 @@
+
+div.border-gold.bg-malt.border-4
+  h3.p-2.text-white.text-lg
+    strong Demo#show
+  span.mx-2.text-gold Find me in app/views/demo/show.html.slim
+  span = link_to('Reload Page',home_show_path, class:"bg-green-500 hover:bg-green-700 text-white font-bold mx-2 py px-2 rounded inline-block")
+
+.grid.grid-cols-3.gap-4.mx-4
+  div
+    strong AutoPickr Demo 
+    i Just enter a name to search field
+
+    div[
+      data-autopickr-url-value="/home/search" 
+      data-controller="autopickr"
+      data-autopickr-slen-value="1"
+      class=blueBox
+      ]
+      div
+        = text_field_tag(:input,nil,
+          data:{autopickr_target:"input", action:"autopickr#search" },
+          placeholder:"Search...",class:"w-48 px-1 my-2",autofocus:true)
+        / span = link_to('Pick',nil,data:{autopickr_target:"button"}, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
+
+      div = hidden_field_tag('selected_id',nil,
+        data:{autopickr_target:"hidden",action:"change->autopickr#selected"})
+      ul.text-black.bg-gray-100.max-h-52.divide-y.divide-fuchsia-300.overflow-scroll[data-autopickr-target="results"] 
+  div
+    strong Flatpicker Demo 
+    i Just enter text field and pick a date
+
+    p[class=greenBox]= text_field_tag "date",nil,data:{controller:'flatpickr'}, placeholder:"Enter a Date",class:" px-1 my-2"
+
+  div Side Bar

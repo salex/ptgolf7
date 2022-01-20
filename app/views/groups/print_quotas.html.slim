@@ -1,0 +1,35 @@
+- [:active,:inactive].each do |status|
+
+  table.small-table.print-list style="width:7.5in;font-size:0.7rem"
+    tr.list-header
+      th colspan="5" = "Group #{@current_group.name}'s #{status.to_s.capitalize} Quota Summary"
+      th colspan=(@current_group.rounds_used+1)
+        
+          |Last #{@current_group.rounds_used+1} Scores (* Score #{@current_group.rounds_used+1} not used)
+    tr.list-header
+      th Name
+      th Tee
+      th Q
+      th Last Played
+      / th BQ
+      - 1.upto(@current_group.rounds_used) do |i|
+        th.ta-center= i
+      th
+        | #{@current_group.rounds_used+1}*
+      / th Quota
+      - @summary[status].each do |m|
+        tr
+          td = m[:name]
+          / - primary, other, history, last_played = get_tee_columns(m)
+          td = m[:tee]
+          td = "#{m[:quota]}#{m[:limited] ? '*' : ''}"
+          td = m[:last_played]
+          / td = m[:base]
+          - if m[:totals].present?
+            - 0.upto(@current_group.rounds_used - 1) do |i|
+              td= m[:totals][i] 
+            td = m[:dropped] 
+  - if status == :active && (@summary[:active].size + @summary[:active].size ) > 40
+    .page-break
+
+     

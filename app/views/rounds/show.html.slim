@@ -1,0 +1,58 @@
+section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
+  / .w3-col.m2
+  .w-full.md:w-1/6.lg:w-1/6
+    .text-2xl.strong Show Round
+  / .w3-col.m8
+  .w-full.md:w-2/3 
+    - if is_manager?
+      = link_to icon('fas fa-edit','Edit Round'), edit_round_path(@round), title: 'Edit it', class: 'btn btn-warning mr-2' if is_manager?
+      = link_to icon('fas fa-trash','Destroy'),  @round, title: 'Destroy it', class: 'btn btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+  / .w3-col.m3.pt-breadcrumb
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+
+.show-fields
+  label Group
+  span = @round.game.group.name
+
+
+.show-fields
+  label Name
+  span = @round.player.name
+
+.show-fields
+  label Type
+  span = @round.type
+
+
+
+table.medium-table
+  tr
+    th Date
+    th Team
+    th Tee
+    th Quota
+    th Front
+    th Back
+    th Total
+    th &#177;
+    th R
+    th S
+    th P
+    th O
+  
+    tr
+      td= @round.game_id.present? ? link_to( @round.date, game_path(@round.game_id)) : @round.date
+      td= @round.team
+      td= @round.tee
+      td= "#{@round.quota}   #{@round.limited }"
+      td= @round.front
+      td= @round.back
+      td= @round.total
+      td.text-right= @round.total - @round.quota
+      td.text-right= to_nickels(@round.quality,1) if @round.quality.present? && !@round.quality.zero?
+      td.text-right= to_nickels(@round.skins,1) if @round.skins.present? && !@round.skins.zero?
+      td.text-right= to_nickels(@round.par3,1) if @round.par3.present? && !@round.par3.zero?
+      td.text-right= to_nickels(@round.other,1) if @round.other.present? && !@round.other.zero?
+  

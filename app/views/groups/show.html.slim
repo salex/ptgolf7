@@ -1,0 +1,45 @@
+section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
+  / .w3-col.m2
+  .w-full.md:w-1/6.lg:w-1/6
+    .text-2xl.strong Show Group
+  / .w3-col.m8
+  .w-full.md:w-2/3 
+    - if is_manager?
+      = link_to icon('fas fa-list', 'List Groups'),  groups_path, class: 'btn btn-success mr-2'
+      = link_to icon('fas fa-edit','Edit Group'), edit_group_path(@group), title: 'Edit it', class: 'btn btn-warning mr-2' if is_manager?
+      = link_to icon('fas fa-calculator','Recompute Quota'), recompute_quotas_group_path(@group), class: 'btn btn-warning mr-2',method: :patch
+      = link_to icon('fas fa-cut','Trim Games/Rounds'), trim_rounds_group_path(@group), class: 'btn btn-danger mr-2',method: :patch, data: {:confirm => "Are you sure? Group games and Rounds over #{@group.trim_months} months old will be deleted and quotas recomputed"}
+  / .w3-col.m3.pt-breadcrumb
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+
+table.show-table
+
+  tr
+    th Club:
+    td = @group.club.name
+  tr
+    th Name:
+    td = @group.name
+  tr
+    th Tees:
+    td = @group.tees
+- settings =  @group.settings
+- keys = settings.keys
+- len = settings.keys.length
+.text-2xl.bg-lime-lighter.strong.w3-center Group Options/Settings
+- half = (len / 2) - 3
+.form-fields.w3-half
+  - 0.upto(half) do |i|
+    .field
+      label.half = keys[i]
+      span = settings[keys[i]]
+.form-fields.w3-half
+  - (half + 1).upto(len -1) do |i|
+    .field
+      label.half = keys[i]
+      span = settings[keys[i]]
+
+
+

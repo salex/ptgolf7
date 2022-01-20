@@ -1,0 +1,39 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m2 
+      h5.strong Users List
+    .w3-col.m6
+      = link_to icon('fas fa-user-plus', 'New User'),  new_user_path, class: 'btn btn-success mr-2'
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+        span.span-btn= 'Users'
+
+
+table.small-table.w100
+  thead
+    tr
+      th Group
+      th Player
+      th Email
+      th Username
+      / th Role
+      th Password
+      th Reset token
+      th Actions
+
+  tbody
+    - @users.each do |user|
+      -if !user.is_super? || Current.user.is_super?
+        tr
+          td = user.group.name
+          td = user.player.present? ? user.player.name : 'Unlinked Player'
+          td = user.email
+          td = user.username
+          / td = user.role.to_s
+          td = user.password
+          td = user.reset_token
+          td 
+            = link_to icon('fas fa-eye'),  user, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
+            = link_to icon('fas fa-edit'), edit_user_path(user), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
+            = link_to icon('fas fa-trash'),  user, title: 'Destroy it', class: 'btn btn-icon btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true }

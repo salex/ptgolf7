@@ -1,0 +1,137 @@
+section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
+  .w-full.md:w-1/6.lg:w-1/6
+    h5.strong Show Player
+  .w-full.md:w-2/3 
+    = link_to icon('fas fa-list', 'List Players'),  players_path, class: to_tw('btn btn-success mr-2')
+    = link_to icon('fas fa-edit','Edit Player'), 
+      edit_player_path(@player), title: 'Edit it', class: to_tw('btn btn-warning mr-2') if is_manager?
+    = link_to icon('fas fa-trash','Destroy Player'),  @player, title: 'Destroy it', class: to_tw( 'btn btn-danger mr-2'), method: :delete, data: { confirm: 'Are you sure?', remote: true } if is_manager?
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: to_tw( 'btn btn-secondary ')
+
+div.mt-1.flex.flex-wrap
+  .px-1.w-full.lg:w-1/6
+    table.small-table.w100
+      tr
+        th.w25p Name
+        td = @player.name
+      tr
+        th.w25p First
+        td = @player.first_name
+      tr
+        th.w25p Last
+        td = @player.last_name
+      tr
+        th.w25p Nick
+        td = @player.nickname
+      tr
+        th.w25p Phone
+        td = @player.format_phone
+      tr
+        th.w25p Pin
+        td = @player.pin
+
+  .px-1.w-full.lg:w-1/6
+    table.small-table.w100
+      tr
+        th.w25p Frozen
+        td = @player.is_frozen
+      tr
+        th.w25p Tee
+        td = @player.tee
+      tr
+        th.w25p Quota
+        td = @player.quota
+      tr
+        th.w25p rQuota
+        td = @player.rquota
+      tr
+        th.w25p Limited
+        td = @player.limited
+      tr
+        th.w25p LPlayed
+        td = time_ago_in_words(@player.last_played)
+
+  .px-1.w-full.lg:w-2/3
+    table.small-table-stripped.w100
+      caption.bg-lime-darker.font-bold = "Quotas Use #{Current.group.rounds_used} Rounds, Use Hi/Low: #{Current.group.use_hi_lo_rule}" 
+      thead
+        tr
+          th Tee
+          th Q
+          th LP
+          -1.upto(Current.group.rounds_used) do |i|
+            th=i
+          th D
+          th T
+      tbody
+      - @quota_summary.each do |k,s|
+        tr
+          td= s[:tee]
+          td= s[:quota].to_s + (s[:limited] ? "*" : '')
+          td= s[:last_played].strftime("%m/%d/%y") if s[:last_played].present?
+          - 0.upto(Current.group.rounds_used - 1) do |r|
+            td = s[:totals][r] if s[:totals].present?
+          td= s[:dropped]
+          td= get_trend(s[:totals])
+
+    .w3-row
+      h5.strong Round History
+      - qs = @player.quality_stats
+
+      - qs.each do |k,a|
+        .w3-col.m12.l4
+          - unless a[1].zero?
+            table.small-table.w90p
+              tr
+                th.w-1/4 = k == 'quality' ? 'Rnds' : k.capitalize
+                th.w-1/4 Won
+                th.w-1/4 Dues
+                th.w-1/4 Bal
+              tr 
+                td = a[1]
+                td = a[2].round(2)
+                td = a[3]
+                td = a[4].round(2)
+
+.w3-row-padding
+  div &nbsp;
+  #search
+  / h6.annotate = "Totals-> Rounds: #{rounds}, Dues: #{dues}, Won: #{quality}, Balance: #{(quality - dues).round(2)}"
+  table.small-table-stripped.w-full
+    thead
+      tr
+        th Date
+        th Team
+        th Tee
+        th Quota
+        th Front
+        th Back
+        th Total
+        th &#177;
+        th R$
+        th S$
+        th P$
+        / th O
+    tbody
+    -@rounds.each do |r|
+      tr
+        td
+          = r.game_id.present? ? link_to( r.date, games_scored_path(r.game_id),class:'green-link') : r.date
+          |&nbsp;
+          - if @current_user.present? && @current_user.is_super?
+            = link_to "Show", round_path(r),class:'blue-link'
+        td= r.team
+        td= r.tee[0..0]
+        td= "#{r.quota} #{r.limited} "
+        td= r.front
+        td= r.back
+        td= r.total
+        td.text-right= r.total - r.quota
+        td.text-right= to_nickels(r.quality,1) if r.quality.present? && !r.quality.zero?
+        td.text-right= to_nickels(r.skins,1) if r.skins.present? && !r.skins.zero?
+        td.text-right= to_nickels(r.par3,1) if r.par3.present? && !r.par3.zero?
+        / td.text-right= to_nickels(r.other,1) if r.other.present? && !r.other.zero?
+
+
+  == pagy_nav(@pagy)

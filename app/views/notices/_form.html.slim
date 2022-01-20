@@ -1,0 +1,30 @@
+/ - if @notice.new_record?
+/   -url = inquiries_path
+/ - else
+/   - url = notice_path(@notice.id)
+= form_for @notice, format: :html do |f|
+  - if @notice.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@notice.errors.count, "error")} prohibited this notice from being saved:"
+      ul
+        - @notice.errors.full_messages.each do |message|
+          li = message
+  .form-fields
+    button.submit.actions = f.submit "Submit"
+
+    .field
+      = f.label "Date"
+      = f.text_field :date, data:{controller:'flatpickr'}
+    .field
+      = f.label :Slim
+      = f.text_area :slim, rows:15, cols:60
+    .field
+      = f.label :NoticeType
+      = f.select :status, %w{alert warning success info},include_blank:true
+    .field
+      = f.label 'Expires'
+      = f.text_field :date_data,data:{controller:'flatpickr'}
+
+
+
+ 

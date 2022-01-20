@@ -1,0 +1,50 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+  .form-fields
+    button.submit.actions = f.submit
+
+    .field
+      = f.label :group
+      = f.hidden_field :group
+      = @user.group.name
+    .field
+      = f.label :player
+      = f.select :player_id, Current.group.players.order(:name).collect {|p| [ p.name, p.id ] }
+    - if Current.user.is_super?
+      .field
+        = f.label "Transfer"
+        = f.label :group_id 
+        = f.text_field :group_id
+
+    .field
+      = f.label 'eMail'
+      = f.text_field :email
+    .field
+      = f.label :username
+      = f.text_field :username
+    .field
+      = f.label :password
+      = f.password_field :password
+    .field
+      = f.label 'Confirm Password'
+      = f.password_field :password_confirmation
+
+    .field
+      = f.label :reset_token
+      = f.text_field :reset_token
+      span.annotate Enter True for new user 
+  .w3-row
+    .m6.w3-col
+      .strong Roles
+      - checkboxes = role_checkboxes(@user.role)
+      - checkboxes.each do |b|
+        .m3.w3-col
+          = check_box_tag 'user[role][]', b[0],b[1]
+          |&nbsp;
+          = b[0]
+

@@ -1,0 +1,39 @@
+= form_for @club do |f|
+  - if @club.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@club.errors.count, "error")} prohibited this club from being saved:"
+      ul
+        - @club.errors.full_messages.each do |message|
+          li = message
+  button.submit = f.submit
+  .form-fields
+    .field
+      = f.label :short_name
+      = f.text_field :short_name
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :address
+      = f.text_field :address
+    .field
+      = f.label :city
+      = f.text_field :city
+    .field
+      = f.label :state
+      = f.text_field :state
+    .field
+      = f.label :zip
+      = f.text_field :zip
+    .field
+      = f.label :phone
+      = f.text_field :phone
+    .field
+      = f.label :par_in
+      = f.text_field :par_in
+    .field
+      = f.label :par_out
+      = f.text_field :par_out
+    .field
+      = f.label :tees
+      = f.text_field :tees

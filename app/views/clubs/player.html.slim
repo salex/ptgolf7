@@ -1,0 +1,92 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m2 
+      h5.strong  Show Player
+    .w3-col.m6
+      = link_to icon('fas fa-list', 'List Players'),  players_path, class: 'btn btn-success mr-2'
+
+  
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Cancel'),  players_path, class: 'btn btn-warning'
+
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+        span.span-btn= Player
+
+.w3-container.w3-white
+  .w3-row-padding
+    .w3-col.l3
+
+      table.small-table.w100
+        tr
+          th.w25p Group
+          td = @player.group.name
+        tr
+          th.w25p Name
+          td = @player.name
+        tr
+          th.w25p FirstName
+          td = @player.first_name
+        tr
+          th.w25p LastName
+          td = @player.last_name
+        tr
+          th.w25p NickName
+          td = @player.nickname
+        tr
+          th.w25p Phone
+          td = @player.format_phone
+
+    .w3-col.l3
+
+      table.small-table.w100
+        tr
+          th.w25p Frozen
+          td = @player.is_frozen
+        tr
+          th.w25p Tee
+          td = @player.tee
+        tr
+          th.w25p Quota
+          td = @player.quota
+        tr
+          th.w25p rQuota
+          td = @player.rquota
+        tr
+          th.w25p LPlayed
+          td = time_ago_in_words(@player.last_played)
+        tr
+          th.w25p Pin
+          td = @player.pin
+
+
+
+    .w3-col.m6
+      table.small-table-stripped.w100
+        caption.lime-link-btn = "Quotas Use #{Current.group.rounds_used} Rounds, Use Hi/Low: #{Current.group.use_hi_lo_rule}" 
+        thead
+          tr
+            th Tee
+            th Q
+            th LP
+            -1.upto(Current.group.rounds_used) do |i|
+              th=i
+            th D
+            th T
+        tbody
+        - @quota_summary.each do |k,s|
+          tr
+            td= s[:tee]
+            td= s[:quota].to_s + (s[:limited] ? "*" : '')
+            td= s[:last_played].strftime("%m/%d/%y") if s[:last_played].present?
+            - 0.upto(Current.group.rounds_used - 1) do |r|
+              td = s[:totals][r] if s[:totals].present?
+            td= s[:dropped]
+
+            td= get_trend(s[:totals])
+  - if @player.group_id == Current.group.id
+    p.mb-3 Player is in your Group. Cannot Duplicate
+  - else
+    p.mb-3 need to put duplicate button
+    = link_to icon("fas fa-copy"," Duplicate Player #{@player.name}"), duplicate_other_player_group_path(Current.group,opid:@player.id), data: { confirm: 'Duplicate Entry: Are you sure?', method: :patch }, class:'btn btn-icon btn-warning'
+    

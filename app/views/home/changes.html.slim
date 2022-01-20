@@ -1,0 +1,42 @@
+
+.w3-row-padding
+  .w3-half
+    h5.strong What's changed?
+
+    dl.indent-dd
+      dt.strong Look and Feel
+      dd It looks a little different in that I changed the styling framework. CSS or CascadingStyleSheets is what give the web page all of it colors, buttons, blocks etc. The are hundreds of CSS frameworks out there, but the one I was using relied on another piece of software jQuery. That combination just was not working with the latest update of RubyOnRails.
+      dd With the new CSS (W3-CSS) I tried to be a little more consistent on how pages look, what buttons I use etc. I've adopted more Icon link buttons and some consistent colors - still lots of shades of Green.
+
+      dt.strong Javascript
+      dd Most new web application use a language called Javascript to do things the server can't do. I didn't have a lot, but enough that jQuery became a problem. Things like clicking on a players name box moving them from unscheduled to scheduled is handled by Javascript. It took a little while to convert to the new way, but I feel much better using a more modern approach to Javascript.
+      dt.strong Event changed to Game
+      dd This is just a name change. You don't go to the golf course to play an Event, you go to play a game.
+
+      dt.strong Sidebar
+      dd There is a Sidebar (list of link buttons) on the Home page, but there is also a Sidebar on every page using the 'Hamburger' icon in the top-left of every page. Click on it and it will appear.
+  .w3-half
+    h5.strong What hasn't changed?
+    dl.indent-dd
+      dt.strong The process
+      dd 
+        |You still
+        ul
+          li Schedule a Game for today
+          li Add Players to the Game
+          li Form teams, maybe print scorecards
+          li Play
+          li Score the Game/Teams
+      dt While the Process hasn't changed, some of the guts have.
+      dd SideGames (Skins/Birdies) was a tangled web. It still works about the same but was completely rewritten
+      dd You now have to Score Skins and Par3s on separate pages. The Pop-up dialog for Skins is gone and replaced by boxes next to the in-players.
+      dt.strong Authorization 
+      dd Authorization controls who can do what. You have to be logged make any changes, but some people have more privileges than others, based on a Roles. I've streamlined that a little. There are three major roles.
+      ul
+        li Manager - A manager can do almost everything. Creating games, scheduling, scoring etc. What they can't do is create new users, Trim rounds and change Group settings, and a few other things.
+        li Coordinator(Sheriff!) - can do everything a manager can do plus what they can't do
+        li Super (that be me) - can create new Groups and Clubs, login to different groups if  needed to fixed something.
+p 
+  |I'm sure there more subtle changes that I have not addressed, but I'm tired of writing, so go look for yourself. Might also want to look at
+  button.w3-green= link_to "About/Features",features_about_path
+  | for some new or little know features.

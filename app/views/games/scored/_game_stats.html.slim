@@ -1,0 +1,90 @@
+hr.underline
+ 
+.w3-row-padding
+  .l4.w3-col
+    - if @game.has_skins?
+      - skins = GameObjects::Skins.new(@game)
+      .box.strong Skins/Birdies
+      .row-box-18
+        .row-box
+          span.title
+            | SkinsF
+          - 1.upto(9) do |i|
+            - if skins.good[i-1] == '.'
+              = content_tag :span, i, class:"skin_hole"
+            - elsif skins.good[i-1] == '9'
+              = content_tag :span, i, class:"skin_hole cut"
+            - elsif skins.good[i-1] == '1'
+              = content_tag :span, i, class:"skin_hole birdie"
+            - elsif skins.good[i-1] == '2'
+              = content_tag :span, i, class:"skin_hole eagle"
+            - elsif skins.good[i-1] == '3'
+              = content_tag :span, i, class:"skin_hole albatros"
+            - else
+              = content_tag :span, i, class:"skin_hole"
+      .row-box-18
+        .row-box
+          span.title
+            | SkinsB     
+          - 10.upto(18) do |i|
+            - if skins.good[i-1] == '.'
+              = content_tag :span, i, class:"skin_hole"
+            - elsif skins.good[i-1] == '9'
+              = content_tag :span, i, class:"skin_hole cut"
+            - elsif skins.good[i-1] == '1'
+              = content_tag :span, i, class:"skin_hole birdie"
+            - elsif skins.good[i-1] == '2'
+              = content_tag :span, i, class:"skin_hole eagle"
+            - elsif skins.good[i-1] == '3'
+              = content_tag :span, i, class:"skin_hole albatros"
+            - else
+              = content_tag :span, i, class:"skin_hole"
+
+      strong Skins Stats
+      .form-fields
+
+        - skins.stats.each do |k,v|
+          - unless k == 'winners' || v == 0
+            .field
+              label =  k
+              = v
+      
+      table.small-table-stripped
+        caption.strong Winners
+        tr
+          th Hole
+          th Player
+          th Won
+
+        - skins.winners.each do |k,a|
+          tr
+            td = k
+            td = a[2]
+            td = a[1]
+  .l4.w3-col
+    - if @game.has_par3?
+     - par3 = GameObjects::Par3.new(@game)
+
+
+     .box.strong Par 3 Stats
+     / - stats = par3.par3_stats
+     .form-fields
+
+       - par3.stats.each do |k,v|
+        .field
+          label =  k
+          = v
+
+     table.small-table-stripped
+       caption.strong Winners
+       tr
+         th Par#
+         th Player
+         th Won
+
+       - par3.winners.each do |k,a|
+
+         tr
+           td = k
+           td = a[2] 
+           td = a[1]

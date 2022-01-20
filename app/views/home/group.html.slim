@@ -1,0 +1,40 @@
+section[class="w3-#{Current.group.group_color} flex py-2"]
+  .flex-auto.mx-3
+    .text-xl[class="strong text-2xl text-white"] = "#{Current.group.name} Home Page"
+
+  .justify-right
+    = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-orange'
+
+.w3-row-padding
+  .w3-col.m9
+    - if Current.group.welcome.present?
+      .strong.text-center.text-4xl.small-caps Welcome
+      p= Current.group.welcome.html_safe
+
+    = render partial:"shared/group_game_status"
+ 
+    - if Current.group.alert.present?
+      p.mb-3 = callout_alert Current.group.alert.html_safe
+ 
+    .w3-row
+      - if Current.user&.is_super?
+        - @inquiries = Inquiry.get_new
+        - if @inquiries.present?
+          h6 New Inquiries
+          - flash.now[:alert] = "You have a new Inquiry"
+          = render partial:'inquiries/table'
+      - if @notice.present?
+        - case @notice.status
+          - when 'alert'
+            = callout_alert slim_text(@notice.slim)
+          - when 'warning'
+            = callout_warning slim_text(@notice.slim)
+          - when 'success'
+            = callout_success slim_text(@notice.slim)
+          - when 'info'
+            = callout_info slim_text(@notice.slim)
+    br
+ 
+  .w3-col.m3
+    = render partial:'home/sidebar'
+

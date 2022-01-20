@@ -1,0 +1,15 @@
+section.dashboard
+  .w3-row-padding.w3-border-bottom
+    .w3-col.m3 
+      h5.strong  Edit Game
+    .w3-col.m5
+      = link_to icon('fas fa-list','Cancel - List Games'), games_path, title: 'List it', class: 'btn btn-icon btn-warning mr-2'
+
+
+    .w3-col.m4.pt-breadcrumb
+      .crumbs
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+        span.span-btn= 'Game'
+
+== render 'form'
+

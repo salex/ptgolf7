@@ -1,0 +1,73 @@
+.w3-row-padding
+  .s12.m5.w3-col.callout.success.noprint.w3-border-right.lite-lime
+    h5.w3-left.strong A version of FedEx points based on winning!
+    .w3-right.button-bar.noprint 
+      = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn btn-icon btn-info', onclick: "window.print();"
+
+    p.mb-4.w3-clear This page will calculate standings of group players by points won (money).
+    - options = @groupStats.money_list_options
+    - game = options[:game]
+
+    .w3-white.w3-card-4
+      .w3-green.w3-container
+        h6.strong Group Players Stats Options/Filter
+      .w3-padding  = form_with url: "/groups/#{@group.id}/stats_refresh", method: :patch
+        strong Game
+        div
+          = select_tag 'stats[game]', options_for_select([['Team Game','quality'],['Birdies/Skins','skins'],['Par3','par3'],['Best Sides','other']],params[:stats].present? ? params[:stats][:game] : 'quality'),class:'w3-select'
+        .strong 
+          strong  Limit By:
+        
+        - by = options[:limit_by]
+        .grid.grid-cols-2.m-2
+          div
+            = radio_button_tag 'stats[limit_by]', 'rounds', by=='rounds',class:'xx'
+            strong  #Rounds
+          div
+            strong  Number of Rounds: &nbsp;
+            = text_field_tag 'stats[limit]', options[:limit]
+        .grid.grid-cols-2.m-2
+
+          div
+            = radio_button_tag 'stats[limit_by]', 'date', by=='date',class:'xx'
+            strong  Date>=
+          div
+            = text_field_tag 'stats[from]', options[:from], data:{controller:'flatpickr'}
+        - sel = options[:order]
+        div.strong Sort Order
+        .grid.grid-cols-4.m-2
+          div 
+            = radio_button_tag 'stats[order]', 'perc', sel=='perc',class:'xx'
+            strong  PTRank
+          div 
+            = radio_button_tag 'stats[order]', 'bal', sel=='bal',class:'xx'
+            strong  Bal
+          div 
+            = radio_button_tag 'stats[order]', 'won', sel=='won',class:'xx'
+            strong  Won
+          div 
+            = radio_button_tag 'stats[order]', 'avg', sel=='avg',class:'xx'
+            strong  Avg
+
+        div
+          button.lime-link-btn ReSelect
+
+    p.mb-4 Stats are available for the Team game (Sides or Places) and optional side games (Birdies/Skins, Par3's, and Individual Best Sides)
+    p.mb-4 Your can sort the list by four columns (Won is default) (you also sort by any column)
+    ul[class="list-disc list-inside mb-2"]
+      li Won - Total points won
+      li Bal - Total points won - dues (profit or loss)
+      li PTrank - ratio  of (Won/Dues * number of rounds) - who wins the most normalized by number of rounds
+      li Avg - ratio of (Won/Rounds) - Average winning for each round played
+
+    p.mb-3.leading-tight You must have at least 3 rounds to make the list. You can limit the rounds used either by the number or rounds played, or by rounds played after a limit date. The last 100 rounds are used as the default round limit, but you can limit it to a different numbers of rounds.  The first of the current year is the dafault date limit, again it can be changed(e.g. last 3 months). The group can also set the default number of rounds or date used in their group settings.
+
+
+  #stats.s12.m7.w3-col
+
+    / - game = options[:game].to_sym
+    / - header = {quality:"Team Game Leaders (#{options[:order].capitalize})",skins:'Skins/Birdie Leaders',par3:'Par3 Leaders',other:'Best Sides Leaders'}
+    / h4.strong.text-center = header[game]
+
+    = render partial:'groups/stats_refresh'
+    / , locals:{options: options,money_list:@groupStats.money_list(options[:game].to_sym),game:game}

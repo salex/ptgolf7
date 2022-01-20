@@ -1,0 +1,63 @@
+/ - if @inquiry.new_record?
+/   -url = inquiries_path
+/ - else
+/   - url = inquiry_path(@inquiry.id)
+= form_for @inquiry, format: :html do |f|
+  - if @inquiry.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@inquiry.errors.count, "error")} prohibited this inquiry from being saved:"
+      ul
+        - @inquiry.errors.full_messages.each do |message|
+          li = message
+
+  = f.fields_for :inquiry, OpenStruct.new(@inquiry.inquiry) do |ff|
+    .form-fields[data-controller="real"]
+      button.submit.actions.mx-4 = f.submit "Submit"
+      / , disabled: true, class:'w3-disabled'
+      .field
+        = ff.label :name
+        = ff.text_field :name
+      .field
+        = ff.label :email
+        = ff.text_field :email
+      .field
+        = ff.label :phone
+        = ff.text_field :phone
+      .field
+        = ff.label :remarks
+        = ff.text_area :remarks,row:6, cols:60
+      - if Current.user && Current.user.is_super?
+        .field
+          = ff.label :reply
+          = ff.text_area :reply,row:6, cols:60
+        .field
+          = f.label :date_replied
+          = f.text_field :date,data:{controller:'flatpickr'}
+
+
+
+
+    
+      / .small-6.columns
+
+      /   = ff.text_field :name
+      /   = ff.text_field :email
+      /   = ff.text_field :phone
+      / .small-6.columns
+      /   = ff.text_area :remarks,rows: 6
+      - r = rand(100)
+      - a = (r..(r+10)).to_a
+      -  h = a[rand(10)]
+    
+      .strong.w3-center 
+        span.ans-button[data-target="real.ask"]= h
+      .strong.w3-center I'm a real person! Click the box below containing the number above.
+      #answers.w3-center
+        - a.each do |i|
+          span.ans-button[data-action="click->real#answered"] = i
+      / = ff.input :real, collection: a, label: "I'm a real person", prompt:'Select above number'
+      = ff.hidden_field :answer, data:{target:"real.answer"}
+
+
+        / .form-actions
+        /     = f.button :submit

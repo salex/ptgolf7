@@ -1,0 +1,54 @@
+section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
+  .w-full.md:w-1/6.lg:w-1/6
+    h5.strong Score Par3's
+  .w-full.md:w-2/3 
+     = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,
+       class: 'btn btn-warning mr-2'
+     = link_to icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,
+       class: 'btn btn-warning mr-2'
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-secondary '
+
+= render partial:'games/shared/event'
+
+- par3 = GameObjects::Par3.new(@game)
+- players = par3.rounds.pluck(:id,:player_name)
+
+
+.w3-row-padding
+  #players= form_with(url:update_par3s_games_scored_path(@game), method: :patch) do |f|
+    .s6.w3-col
+      button.submit= f.submit("Update Par3", class:'button medium radius w100 strong')
+      = hidden_field_tag 'side_game','par3o'
+
+    .m10.w3-col[data-controller="sidePar3"]
+      .annotate 
+        |Instructions: Click on any of the Side Games "In" header to toggle(add/remove) all Players. Click on Checkbox in "In" column to toggle individual player. more....
+      br
+      table.medium-table.w60p
+        tr
+          th colspan="1" Players
+          th colspan="2"
+            |Par3&nbsp;-&nbsp;
+            span[data-sidePar3-target='par3Cnt'] = par3.in_par3.blank? ? 0 :  par3.in_par3.size            
+        tr
+          td.w25p.strong 
+          = content_tag( :th, icon("far fa-check-square","In"), class:'btn-success w05p', data:{action:'click->sidePar3#togglePar3'})
+          td.w10p.strong Good
+        - players.each_with_index do |(pid,name),idx|
+          tr
+            td 
+              = name
+            - par3_in = par3.in_par3?(pid)
+            td= check_box_tag "par3[in][#{pid}]",pid,par3_in, data:{sidePar3_target:"par3Player",action:'sidePar3#togglePar3Player', who:pid,idx:idx}
+            td
+              div data-sidePar3-target='par3Hide' class="#{par3_in ? '' : 'w3-hide'}"
+                .row-box-small
+                  .row-box
+                    - 1.upto(par3.stats['par3s']) do |i|
+                      span = i
+                .row-box-small
+                  .row-box
+                    - 1.upto(par3.stats['par3s']) do |i|
+                      -checked = par3.par3_winner?(pid,i)
+                      span= radio_button_tag "par3[good][#{i}]",pid,checked

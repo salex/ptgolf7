@@ -1,0 +1,104 @@
+section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
+  .w-full.md:w-1/6.lg:w-1/6
+    h5.strong 
+      h5.strong 
+        = @game.status == 'Scheduled' ? "Form Teams" : "Reform Teams"
+  .w-full.md:w-2/3 
+     = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,
+       class: 'btn btn-warning mr-2'
+     = link_to icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,
+       class: 'btn btn-warning mr-2'
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-secondary '
+/ section.dashboard
+/   .w3-row-padding.w3-border-bottom
+/     .w3-col.m2 
+/       h5.strong Form Teams
+/     .w3-col.m6
+/       = link_to icon('fas fa-arrow-left', 'List Games'),  games_path, class: 'btn btn-info mr-2'
+/       = link_to icon('fas fa-arrow-left', "#{@game.status} Game(Cancel)"),  games_scheduled_path(@game), class: 'btn btn-warning'
+/     .w3-col.m4.pt-breadcrumb
+/       .crumbs
+/         = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+/         span.span-btn= Game
+= render partial:'games/shared/event'
+
+- participants = @game.current_players
+/ - pids = participants.pluck(:player_id)
+/ - ptranking = @game.players_quality_stats
+.w3-row-padding
+  .w3-col.m5[data-controller='alert']
+    = form_with(url:update_teams_games_scheduled_path(@game), method: :patch)do |f|
+      h5.strong Team Options
+      / - options = @teams.options
+      - @teams.options.each do |k,v|
+        .w3-row-padding
+          .s6.w3-col 
+            = radio_button_tag 'team_makeup', k, false, data:{alert_target:'options'}
+            strong style="padding-left:4px;" = k.to_s.capitalize
+          .s6.w3-col = v
+          hr
+      h5.strong Form Teams Method
+      div
+      div
+      div
+      .w3-row-padding
+        .l6.w3-col
+          = radio_button_tag 'seed_method', 'random'
+          strong style="padding-left:4px;" Random
+        .l6.w3-col
+          = radio_button_tag 'seed_method', 'seeded'
+          strong style="padding-left:4px;" Seeded
+        .l6.w3-col
+          = radio_button_tag 'seed_method', 'draw', checked:true
+          strong style="padding-left:4px;" Draw(Seeded)
+        .l6.w3-col
+          = radio_button_tag 'seed_method', 'least_paired'
+          strong style="padding-left:4px;" Least Paired 
+        .l6.w3-col
+          = radio_button_tag 'seed_method', 'stacked'
+          strong style="padding-left:4px;" Stacked(Seed)
+        .l6.w3-col
+          = radio_button_tag 'seed_method', 'stacked_draw'
+          strong style="padding-left:4px;" Stacked(Draw)
+        .l6.w3-col
+          = radio_button_tag 'seed_method', 'abcd_battle'
+          strong style="padding-left:4px;" ABCD Battle
+        .l6.w3-col
+          = radio_button_tag 'seed_method', 'redistribution'
+          strong style="padding-left:4px;" Redistribution
+        .l6.w3-col
+          = radio_button_tag 'seed_method', 'blind_draw',nil, data:{action:'click->alert#blind'}
+          strong style="padding-left:4px;" Blind Draw
+         
+      hr
+        button.btn.btn-info.w100= f.submit("Form Teams", class:'button small w100 strong fs125', data:{action: 'click->alert#checkOptions'},id:'submit_form')
+        h4.strong.w3-center - Or Just pick your own teams! -
+        / = button_to  'Assign Teams',  action:'assign_teams', class: 'btn btn-icon btn-info dblock mr-2 w100 w3-center'
+
+        .btn.btn-warning.w100.w3-center.w3-text-large.w3-padding= link_to "Pick your own teams",@game.namespace_url('assign_teams'),class:'w3-text-white strong fs125 dblock'
+
+  .m7.w3-col
+    h5
+      .strong Current Participants
+      span.annotate Table is sortable by clicking on the column header! Click twice to change from decending to assending
+
+    table.w100.sortable
+      thead[data-controller="sortTable"]
+
+        tr
+          td.strong[data-action="click->sortTable#sortBy"] Name
+          td.strong[data-action="click->sortTable#sortBy"] PTRank
+          td.strong[data-action="click->sortTable#sortBy"] Tee
+          td.strong[data-action="click->sortTable#sortBy"] Quota(Q-R)
+          td.strong[data-action="click->sortTable#sortBy"] LPlay
+      tbody
+        - participants.each do |p|
+          - member = p.player
+          tr
+            td= member.name
+            td= sprintf( "%0.03f", member.pt_rank[5])
+            td= member.tee
+            td= "#{member.quota} - #{member.rquota}"
+            td= member.last_played
+  

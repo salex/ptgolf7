@@ -1,0 +1,20 @@
+.w3-row-padding.w3-green.font-bold
+  .w3-col.m3.text-xl
+    = link_to root_path do 
+      = image_tag("links.png",class:'inline')
+      
+      span.font-bold[style="text-transform:none;" ]PtGolf
+      span.font-bold[style="text-transform:none;font-size:.5rem;"].us
+
+  .w3-col.m6
+    .w3-center
+      - if @current_group
+        .small-caps = @current_group.name
+      -else
+       .small-caps  No One Does More For Golf Sherriff's
+  - if true
+    .w3-col.m3.w3-center
+      - if @current_user
+        .box = "User: #{@current_user.name}"
+      / .box= "Dept:#{ @current_user.department}" 
+      / .box= "Dist: #{@current_user.district}"

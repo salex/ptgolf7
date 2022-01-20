@@ -1,0 +1,41 @@
+section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
+  / .w3-col.m2
+  .w-full.md:w-1/6.lg:w-1/6
+    .text-2xl.strong Edit Round
+  / .w3-col.m8
+  .w-full.md:w-2/3 
+    - if is_manager?
+      .annotate This area is restricted to Cordinators. It can be used to change mistakes made in forming teams. Mistakes include, using the wrong Tee, Quota. Use Rescore_Teams if error was in scoring. You can also Delete/Destroy the players round if they dropped out, but you can also remove them by Adjusting Teams and removing them there.
+
+  / .w3-col.m3.pt-breadcrumb
+  .w-full.md:w-1/6.lg:w-1/6
+    .lg:float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+
+.form.w3-row
+  .s12.m6.w3-col
+
+    = form_with(model:@round,data:{controller:'doubleClick'}) do |f|
+      - if @round.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@round.errors.count, "error")} prohibited this round from being saved:"
+          ul
+            - @round.errors.full_messages.each do |message|
+      .form-fields
+        .field
+          label 
+          button.submit.actions = f.submit  data: { action: "click->doubleClick#disable" }
+
+        = formatField :date,f.text_field( :date,data:{controller:'flatpickr'})
+        = formatField :team,f.text_field(:team)
+        = formatField :quota, f.text_field(:quota)
+        = formatField :tee, f.select(:tee, collection:Current.group.tees.split)
+        = formatField :front, f.text_field(:front)
+        = formatField :back, f.text_field( :back)
+        = formatField :total,f.text_field( :total)
+        = formatField :quality,f.text_field( :quality)
+        = formatField :skins,f.text_field( :skins)
+        = formatField :par3,f.text_field( :par3)
+        = formatField :other,f.text_field( :other)
+
+
