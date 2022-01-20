@@ -25,6 +25,11 @@ development:
   <<: *default
   database: ptgolf_development
 
+staging:
+  <<: *default
+  database: ptgolf_staging
+
+
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -82,5 +87,5 @@ test:
 production:
   <<: *default
   database: ptgolf_production
-  username: ptgolf
-  password: <%= ENV["PTGOLF_DATABASE_PASSWORD"] %>
+  # username: ptgolf
+  # password: <%= ENV["PTGOLF_DATABASE_PASSWORD"] %>
