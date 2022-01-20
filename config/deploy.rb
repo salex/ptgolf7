@@ -1,9 +1,9 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
-set :application, "ptgolf"
+set :application, "ptgolf7"
 # set :repo_url, "developer@stevealex.us:/Users/developer/repo/#{fetch(:application)}.git"
-set :repo_url,  "ssh://post@stevealex.us:8611/home/post/repo/ptgolf.git"
+set :repo_url,  "ssh://post@stevealex.us:8611/home/post/repo/ptgolf7.git"
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
