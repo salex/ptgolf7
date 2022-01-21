@@ -88,4 +88,5 @@ gem 'activerecord_where_assoc', '~> 1.0'
 gem 'kramdown'
 gem 'rouge'
 
+gem 'capistrano-rails-collection'
 
