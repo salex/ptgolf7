@@ -27,7 +27,7 @@ development:
 
 staging:
   <<: *default
-  database: ptgolf7_staging
+  database: ptgolf_staging
 
 
   # The specified database role being used to connect to postgres.
