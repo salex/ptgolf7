@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: ptgolf7_development
+  database: ptgolf_development
 
 staging:
   <<: *default

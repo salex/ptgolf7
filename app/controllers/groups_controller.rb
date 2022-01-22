@@ -80,8 +80,8 @@ class GroupsController < ApplicationController
       cookies["last_group_#{user.group_id}_user"] = {value: user.id, expires: Time.now.midnight + 1.day}
       redirect_to root_url, notice: "Logged in!"
     else
-      flash.now.alert = "Email or password is invalid"
-      render "login"
+      # flash.now[:alert] = "Email or password is invalid"
+      redirect_to login_url, alert:"Email or password is invalid"
     end
   end
 
