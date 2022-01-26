@@ -132,7 +132,7 @@ section.scheduler[ data-controller="schedule"]
               td = check_box_tag "deleted[]", value=p.id,nil,data:{action:'schedule#update_player'}
               td = p.name
               td = p.player.rquota_limited
-              td.bg-green-100 = select_tag 'tee[]', tee_options(@game.group,p,true), class:" select",data:{action:'schedule#update_player'}
+              td.bg-green-100 = select_tag 'tee[]', tee_options(@game.group,p,true), class:"border border-green-500 select",data:{action:'schedule#update_player'}
               td = p.team
         #new_players
 
