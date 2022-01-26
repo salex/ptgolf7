@@ -10,8 +10,8 @@ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
 
     - if is_manager? && @game.state[:can_delete]
 
-      = link_to icon('fas fa-trash','Delete Incomplete Game'),@game, 
-         class: 'pr-btn btn-danger w100', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+      = destroyConfirmTag(game_path(@game),
+       prompt: icon('fas fa-trash','Delete Incomplete Game'))
   .w-full.md:w-1/6.lg:w-1/6
     .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-secondary '
 .px-2.bg-lime-lighter

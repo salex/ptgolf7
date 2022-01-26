@@ -2,7 +2,7 @@
   h3[class="text-center strong"] 
     | About 
     strong 
-      = image_tag('links.png')
+      .inline-block= image_tag('links.png')
       |PtGolf
       span style="font-size:.5rem;" .us
 
@@ -15,36 +15,33 @@
           dd
             button.lime-btn.w3-green = link_to "About Home",about_path
           dd 
-            button.lime-btn.w3-green = link_to "PTGOLF.EXE Structure",origin_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green = link_to "PtGolf.us Structure",structure_about_path, remote: true, class: "link-btn"
+            button.lime-btn.w3-green = link_to "PTGOLF.EXE Structure",origin_about_path, class: "link-btn"
+            button.lime-btn.w3-green = link_to "PtGolf.us Structure",structure_about_path, class: "link-btn"
 
-            button.lime-btn.w3-green= link_to "Terminology",terminology_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Group Settings",preferences_about_path, remote: true, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Terminology",terminology_about_path, class: "link-btn"
+            / button.lime-btn.w3-green= link_to "Group Settings",preferences_about_path, class: "link-btn"
           dt.strong Database Tables
           dd
-            button.lime-btn.w3-green= link_to "Clubs",club_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Groups",group_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Group Players",player_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Events",event_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Rounds",round_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Users",user_about_path, remote: true, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Clubs",club_about_path, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Groups",group_about_path, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Group Players",player_about_path, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Events",event_about_path, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Rounds",round_about_path, class: "link-btn"
+            / button.lime-btn.w3-green= link_to "Users",user_about_path, class: "link-btn"
 
           dt.strong Processes and Methods
           dd
-            button.lime-btn.w3-green= link_to "The Event Process",eprocess_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Forming Methods",forming_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Scoring",scoring_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Limiting",limiting_about_path, remote: true, class: "link-btn"
-            button.lime-btn.w3-green= link_to "Features",features_about_path, remote: true, class: "link-btn"
+            button.lime-btn.w3-green= link_to "The Event Process",eprocess_about_path, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Forming Methods",forming_about_path, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Scoring",scoring_about_path, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Limiting",limiting_about_path, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Features",features_about_path, class: "link-btn"
           dt.strong Development
           dd
-            button.lime-btn.w3-green= link_to "Recent Changes",changes_about_path, remote: true, class: "link-btn"
+            button.lime-btn.w3-green= link_to "Recent Changes",changes_about_path, class: "link-btn"
 
 
         br
 
     #about.s12.w3-col.l9.max-height
-      - if @template.present?
-        = render template: "abouts/#{@template}"
-      -else
-        = render partial: 'abouts/about'
+      = render partial: 'abouts/about'

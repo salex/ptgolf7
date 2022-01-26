@@ -35,7 +35,7 @@ class RoundsController < ApplicationController
     @round.destroy
     group_player.recompute_quota
     respond_to do |format|
-      format.html { redirect_to group_player, notice: 'Round was successfully destroyed.' }
+      format.html { redirect_to group_player, status: :see_other, notice: 'Round was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

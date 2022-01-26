@@ -34,6 +34,7 @@ table.small-table.w100
           td = user.password
           td = user.reset_token
           td 
-            = link_to icon('fas fa-eye'),  user, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
-            = link_to icon('fas fa-edit'), edit_user_path(user), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
-            = link_to icon('fas fa-trash'),  user, title: 'Destroy it', class: 'btn btn-icon btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+            = link_to icon('fas fa-eye'),  user, title: 'Show it', class: 'btn btn-info mr-2'
+            = link_to icon('fas fa-edit'), edit_user_path(user), title: 'Edit it', class: 'btn btn-warning mr-2'
+            = destroyConfirmTag(user,
+              prompt: icon("fas fa-trash"))

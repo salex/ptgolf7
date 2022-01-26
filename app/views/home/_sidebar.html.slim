@@ -1,30 +1,30 @@
 .card-4
-  .btn-sqr-blue.text-center.font-bold.py-1 = link_to "Signup/Score Sheet", "score_sheet", class: "link-btn", target:"_blank"
+  div[class="#{sidebar_menu}"] = link_to "Signup/Score Sheet", "score_sheet", class: "link-btn", target:"_blank"
 
   -if Current.group.present?
-    .btn-sqr-blue.text-center.font-bold.py-1 = link_to "Club Information", club_path(Current.club), class: "link-btn"
+    div[class="#{sidebar_menu}"] = link_to "Club Information", club_path(Current.club), class: "link-btn"
 
-    .btn-sqr-blue.text-center.font-bold.py-1 = link_to "Group Information", group_path(Current.group), class: "link-btn"
+    div[class="#{sidebar_menu}"] = link_to "Group Information", group_path(Current.group), class: "link-btn"
     / dt = link_to 'Group Players', group_players_path(@Current.group), class: "button unpad"
-    .btn-sqr-blue.text-center.font-bold.py-1 = link_to 'Group Players Stat$', stats_group_path(Current.group), class: "link-btn"
-    .btn-sqr-blue.text-center.font-bold.py-1 = link_to 'Print Quotas', print_quotas_group_path(Current.group), class: "link-btn"
+    div[class="#{sidebar_menu}"] = link_to 'Group Players Stat$', stats_group_path(Current.group), class: "link-btn"
+    div[class="#{sidebar_menu}"] = link_to 'Print Quotas', print_quotas_group_path(Current.group), class: "link-btn"
     hr.underline
 
   -if is_coordinator?
-    .btn-sqr-blue.text-center.font-bold.py-1 = link_to "User Management", users_path, class: "link-btn"
+    div[class="#{sidebar_menu}"] = link_to "User Management", users_path, class: "link-btn"
     hr.underline
 
   - if is_super?
-    .btn-sqr-blue.text-center.font-bold.py-1 = link_to 'Notice', notices_path, class: "link-btn"
-    .btn-sqr-blue.text-center.font-bold.py-1 = link_to 'Clubs', clubs_path, class: "link-btn"
-    .btn-sqr-blue.text-center.font-bold.py-1 = link_to 'inquiries', inquiries_path, class: "link-btn "
+    div[class="#{sidebar_menu}"] = link_to 'Notice', notices_path, class: "link-btn"
+    div[class="#{sidebar_menu}"] = link_to 'Clubs', clubs_path, class: "link-btn"
+    div[class="#{sidebar_menu}"] = link_to 'inquiries', inquiries_path, class: "link-btn "
     hr.underline
 
   h6.strong PtGolf.us
-  .btn-sqr-blue.text-center.font-bold.py-1= link_to 'About PtGolf.us', '/about'
-  .btn-sqr-blue.text-center.font-bold.py-1= link_to 'FAQ/Help', '/help'
-  .btn-sqr-blue.text-center.font-bold.py-1= link_to 'Contact Us', '/inquiries/new', class:"link-btn"
-  .btn-sqr-blue.text-center.font-bold.py-1= link_to 'Club/Groups', '/clubs/groups'
+  div[class="#{sidebar_menu}"]= link_to 'About PtGolf.us', '/about'
+  div[class="#{sidebar_menu}"]= link_to 'FAQ/Help', '/help'
+  div[class="#{sidebar_menu}"]= link_to 'Contact Us', '/inquiries/new', class:"link-btn"
+  div[class="#{sidebar_menu}"]= link_to 'Club/Groups', '/clubs/groups'
   .btn-sqr-blue.text-center.font-bold.py-1.w3-yellow= link_to "Whoa! What's Changed","/changes"
   / - if [1,2].include?(Current.group.id)
   /   .lime-btn.w3-yellow= link_to "Quota Correction???","/players/quota_correction", class: "link-btn"

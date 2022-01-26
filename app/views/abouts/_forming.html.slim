@@ -1,0 +1,291 @@
+= turbo_frame_tag "content"
+
+  h5.strong Forming Methods
+  .annotate I though I'd explain how the forming methods works using numbered poker chips to draw the teams. Each player has a Raw Quota, or the decimal value of what their quota would be without any rounding or truncation. The players for the event are sorted (seeded) by this number. 
+
+  h5.strong Seeded
+  p.slim Lets form teams with 16 players (4 foursome) using the `Seeded` method.
+  p.slim Layout 16 numbered cards or chip in order. Since there are four teams, separate the chips into four groups representing the A, B, C and D players. Player 1 has the highest point to pull, player 16 has the lowest points to pull.
+
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 4
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 5
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 8
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 9
+    span.w3-badge.w3-green 10
+    span.w3-badge.w3-green 11
+    span.w3-badge.w3-green 12
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 13
+    span.w3-badge.w3-green 14
+    span.w3-badge.w3-green 15
+    span.w3-badge.w3-green 16
+
+  p.slim Let reverse the order of the even number groups (B and D player). Why do this will be explained shortly!
+
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 4
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 8
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 5
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 9
+    span.w3-badge.w3-green 10
+    span.w3-badge.w3-green 11
+    span.w3-badge.w3-green 12
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 16
+    span.w3-badge.w3-green 15
+    span.w3-badge.w3-green 14
+    span.w3-badge.w3-green 13
+
+  p.slim Now lets draw the first chip from each group to form Team 1
+
+  p.slim Team 1
+  .box 
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 8
+    span.w3-badge.w3-green 9
+    span.w3-badge.w3-green 16
+
+  p.slim Team 1 is formed and it has the highest A player teamed with the lowest B player, the highest C player and the lowest D player. This is why we reverse the order of the even seeds. Now draw the other three teams from the remaining chips
+
+  .box
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 4
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 5
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 10
+    span.w3-badge.w3-green 11
+    span.w3-badge.w3-green 12
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 15
+    span.w3-badge.w3-green 14
+    span.w3-badge.w3-green 13
+
+  p.slim Again take the first chip from each group the form the other 3 teams
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 8
+    span.w3-badge.w3-green 9
+    span.w3-badge.w3-green 16
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 10
+    span.w3-badge.w3-green 15
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 11
+    span.w3-badge.w3-green 14
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 4
+    span.w3-badge.w3-green 5
+    span.w3-badge.w3-green 12
+    span.w3-badge.w3-green 13
+  .annotate Notice if the players quota in this example were equal to their seed number 1..16, each team would have to pull 34 points!
+  br
+  p.slimIf you have mixed threesomes and foursomes, lets say 14 players (two threesomes and two foursomes). You still have four teams so you have four groupings, but you seed the A, B and C players first into three groups of four players and you put aside the D players.
+
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 4
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 5
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 8
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 9
+    span.w3-badge.w3-green 10
+    span.w3-badge.w3-green 11
+    span.w3-badge.w3-green 12
+    span  &nbsp;>>|&nbsp
+    span.w3-badge.w3-green 13
+    span.w3-badge.w3-green 14
+  p.slim Again reverse the order of the even number group
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 4
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 8
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 5
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 9
+    span.w3-badge.w3-green 10
+    span.w3-badge.w3-green 11
+    span.w3-badge.w3-green 12
+    span  &nbsp;>>|&nbsp
+    span.w3-badge.w3-green 13
+    span.w3-badge.w3-green 14
+
+  p.slim Draw four threesomes
+
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 8
+    span.w3-badge.w3-green 9
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 10
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 11
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 4
+    span.w3-badge.w3-green 5
+    span.w3-badge.w3-green 12
+    span  &nbsp;>>|&nbsp
+    span.w3-badge.w3-green 13
+    span.w3-badge.w3-green 14
+
+  p.slim Now add the D players to the threesomes. I currently do this randomly, then sort the teams putting the threesomes first.
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 8
+    span.w3-badge.w3-green 9
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 11
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 4
+    span.w3-badge.w3-green 5
+    span.w3-badge.w3-green 12
+    span.w3-badge.w3-green 13
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 10
+    span.w3-badge.w3-green 14
+
+  h5.strong This is the Seeded method, but all other method follow the same dividing and sorting.
+
+  h5.strong Draw Method (default method)
+
+  p.slim Almost the same as seeded, except each group (ABCD) is `shuffled' so each team has a random A, B, C and D, but one from each seed
+
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 5
+    span.w3-badge.w3-green 9
+    span.w3-badge.w3-green 15
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 11
+    span.w3-badge.w3-green 15
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 10
+    span.w3-badge.w3-green 14
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 4
+    span.w3-badge.w3-green 8
+    span.w3-badge.w3-green 12
+    span.w3-badge.w3-green 14
+  br
+
+  h5.strong Random Method
+
+  p.slim Is just what it means, the seeded players are first shuffled then divided,
+
+  .strong ABCD Battle.
+
+  p.slimThe seeded players are the teams! Go D's beat those A's
+
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 4
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 5
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 8
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 9
+    span.w3-badge.w3-green 10
+    span.w3-badge.w3-green 11
+    span.w3-badge.w3-green 12
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 13
+    span.w3-badge.w3-green 14
+    span.w3-badge.w3-green 15
+    span.w3-badge.w3-green 16
+  br
+  h5.strong Stacked(Seed).
+
+  p.slim The A players don't get to play together very ofter. This method pairs 2 players from one group with two from another. For 16 players and 4 teams: 
+
+  .box
+    span.w3-badge.w3-green 1
+    span.w3-badge.w3-green 2
+    span.w3-badge.w3-green 15
+    span.w3-badge.w3-green 16
+    span &nbsp;|&nbsp
+    span.w3-badge.w3-green 3
+    span.w3-badge.w3-green 4
+    span.w3-badge.w3-green 13
+    span.w3-badge.w3-green 14
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 5
+    span.w3-badge.w3-green 6
+    span.w3-badge.w3-green 11
+    span.w3-badge.w3-green 12
+    span  &nbsp;|&nbsp
+    span.w3-badge.w3-green 7
+    span.w3-badge.w3-green 8
+    span.w3-badge.w3-green 9
+    span.w3-badge.w3-green 10
+
+  .annotate Notice again that if the players quota in this example were equal to their seed number 1..16, each team would have to pull 34 points! Teams 1 and 2 are made up of A and D players. Teams 3 and 4 are made up with B and C players.
+
+  br
+  h5.strong Stacked(Draw).
+
+  p.slim About the same except each seed is suffled. You will still get 2 A players on a team, but a random draw. 
+
+
+  br
+  h5.strong Least Paired
+
+  p.slim This method attempt to put players together that have not played together recently. The only difference between this method and others is that players are sorted by the number of 'interactions' they've had with others playing in the event. While this sounded like a neat concept, players A and B had not played together in a while, Players B and C may have played together 4 out the the last 6 Games! 
+
+  br
+  h5.strong Redistribution
+
+  p.slim This method is about the same as least paired. In this case, the deck is sorted by how many PTPoints they've accumulated (money?)
+
+  p.sllim.strong Both Redistributeion and Least Paired use the Stacked method to sort the teams. Players whose won the most or played the most will be teamed with players who won the least or played the least
+
+
+
+

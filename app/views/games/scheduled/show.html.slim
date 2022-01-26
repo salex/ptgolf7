@@ -2,12 +2,11 @@ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
   .w-full.md:w-1/6.lg:w-1/6
     h5.strong Scheduled Game
   .w-full.md:w-2/3 
-    = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
+    span = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
 
     - if is_manager? && @game.state[:can_delete]
-
-      = link_to icon('fas fa-trash','Delete Incomplete Game'),@game, 
-         class: 'pt-btn btn-danger w100', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+      = destroyConfirmTag(game_path(@game),
+       prompt: icon('fas fa-trash','Delete Incomplete Game'))
   .w-full.md:w-1/6.lg:w-1/6
     .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn  btn-secondary '
   
@@ -63,7 +62,7 @@ section.scheduler[ data-controller="schedule"]
           - 2.times do |i|
             div[class="w-1/2"]
               - mapping[i].each do |m|
-                div[class="btn-sqr-blue p-1 py-0.5" id="pid-l#{@active[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@active[m].id}"] = @active[m].name
+                div[class="btn-sqr-blue border border-zinc-100 p-1 py-0.5" id="pid-l#{@active[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@active[m].id}"] = @active[m].name
 
         strong Unscheduled Inactive
         .status[class="flex flex-wrap  mx-3"] 
@@ -71,7 +70,7 @@ section.scheduler[ data-controller="schedule"]
           - 2.times do |i|
             div[class="w-1/2"]
               - mapping[i].each do |m|
-                div[class="btn-sqr-blue p-1 py-0.5 " id="pid-l#{@inactive[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@inactive[m].id}"] = @inactive[m].name
+                div[class="btn-sqr-blue border border-zinc-100 p-1 py-0.5 " id="pid-l#{@inactive[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@inactive[m].id}"] = @inactive[m].name
 
         strong Unscheduled Expired
         .status[class="flex flex-wrap  mx-3"] 
@@ -79,7 +78,7 @@ section.scheduler[ data-controller="schedule"]
           - 2.times do |i|
             div[class="w-1/2"]
               - mapping[i].each do |m|
-                div[class="btn-sqr-blue  p-1 py-0.5 " id="pid-l#{@expired[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@expired[m].id}"] = @expired[m].name
+                div[class="btn-sqr-blue border border-zinc-100  p-1 py-0.5 " id="pid-l#{@expired[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@expired[m].id}"] = @expired[m].name
 
 
       .hidden.md:block
@@ -89,7 +88,7 @@ section.scheduler[ data-controller="schedule"]
           - 3.times do |i|
             div[class="w-full md:w-1/3"]
               - mapping[i].each do |m|
-                div[class="btn-sqr-blue p-1 py-0.5" id="pid-m#{@active[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@active[m].id}"] = @active[m].name
+                div[class="btn-sqr-blue border border-zinc-100 p-1 py-0.5" id="pid-m#{@active[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@active[m].id}"] = @active[m].name
 
         strong Unscheduled Inactive
         .status[class="flex flex-wrap  mx-3"] 
@@ -97,7 +96,7 @@ section.scheduler[ data-controller="schedule"]
           - 3.times do |i|
             div[class="w-full md:w-1/3"]
               - mapping[i].each do |m|
-                div[class="btn-sqr-blue  p-1 py-0.5 " id="pid-m#{@inactive[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@inactive[m].id}"] = @inactive[m].name
+                div[class="btn-sqr-blue border border-zinc-100 p-1 py-0.5 " id="pid-m#{@inactive[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@inactive[m].id}"] = @inactive[m].name
 
         strong Unscheduled Expired
         .status[class="flex flex-wrap  mx-3"] 
@@ -105,12 +104,12 @@ section.scheduler[ data-controller="schedule"]
           - 3.times do |i|
             div[class="w-full md:w-1/3"]
               - mapping[i].each do |m|
-                div[class="btn-sqr-blue  p-1 py-0.5" id="pid-m#{@expired[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@expired[m].id}"] = @expired[m].name
+                div[class="btn-sqr-blue border border-zinc-100 p-1 py-0.5" id="pid-m#{@expired[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@expired[m].id}"] = @expired[m].name
 
     .scheduled[class="mx-2 "]
       strong Current Scheduled
       = form_with(url: @game.namespace_url, method: :patch, 
-        html:{id:"update_participants"},data:{schedule_target:"form",remote:"true"} )do |f|
+        html:{id:"update_participants"},data:{schedule_target:"form"} )do |f|
 
         table.small-table id="current_members"
           thead[data-controller="sortTable"]
@@ -133,7 +132,7 @@ section.scheduler[ data-controller="schedule"]
               td = check_box_tag "deleted[]", value=p.id,nil,data:{action:'schedule#update_player'}
               td = p.name
               td = p.player.rquota_limited
-              td = select_tag 'tee[]', tee_options(@game.group,p,true),data:{action:'schedule#update_player'}
+              td.bg-green-100 = select_tag 'tee[]', tee_options(@game.group,p,true), class:" select",data:{action:'schedule#update_player'}
               td = p.team
         #new_players
 

@@ -1,19 +1,20 @@
- .sticky-menu
-  .w3-black.w3-bar.noprint[data-controller="toggleSidebar"]
+.sticky-menu
+  script crossorigin="anonymous" src="https://kit.fontawesome.com/69f9b59efd.js" 
 
-    button#openNav.w3-button.w3-green.w3-left[data-action="click->toggleSidebar#toggle"]  ☰ Menu
+  .flex.w3-black.noprint[data-controller="toggleSidebar"]
+    
+    div.flex-none
+      button#openNav.w3-button.w3-green.w3-left[data-action="click->toggleSidebar#toggle"]  ☰ Menu
 
-    = link_to "Home", root_path, class: "w3-bar-item w3-button"
-    = link_to "About", "about", class: "w3-bar-item w3-button" unless Current.group
-    script crossorigin="anonymous" src="https://kit.fontawesome.com/69f9b59efd.js" 
+    div.flex-name
+      = link_to "Home", root_path, class: "w3-button"
+      = link_to "Games", games_path, class:"w3-button" if Current.group
+      = link_to "Players", players_path, class:"w3-button" if Current.group
+      = link_to "About", "about", class: "w3-button" unless Current.group
 
 
-    - if Current.group
-      = link_to "Players", players_path, class:"w3-bar-item w3-button"
-      = link_to "Games", games_path, class:"w3-bar-item w3-button"
-
-    .w3-right
-      .w3-right
+    div.flex-grow
+      .float-right
         - flash.each do |name, msg|
           - if msg.is_a?(String)
             .flash-box.w3-padding.w3-animate-right[
@@ -23,11 +24,8 @@
             ]
               = content_tag :span, content_tag(:strong,msg)
 
-        / - flash.each do |name, msg|
-        /   - if msg.is_a?(String)
-        /     .flash-box.w3-padding.w3-animate-right[data-controller="flashIt" data-flashIt-target="flashBox" class="#{name.to_s == 'notice' ? 'w3-pale-green' : 'w3-pale-red'}"]
-        /       = content_tag :span, content_tag(:strong,msg)
-      .w3-right
+    div.flex-none
+      .float-right
         - if @current_user.present?
           span.w3-bar-item.w3-button.w3-right = link_to "Logout", logout_path
           span.w3-bar-item.w3-button.w3-right = link_to "Profile", profile_path

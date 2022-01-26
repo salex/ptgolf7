@@ -1,0 +1,86 @@
+= turbo_frame_tag "content"
+  h5.strong Change Log 
+
+  dl.indent-dd
+    dt 2021-01-23
+    dd
+      span.strong.annotate I can't believe I have not updated this in over two year! I'll just try to summarize the two major events
+    dt.strong Last few months
+    dd While I worked on cleaning up a few things in 2020, during the last month I almost completely rewrote most of the code dealing with scheduling, forming and scoring. While I've been writing in the programing language Ruby for over 10 years, but I wrote code like I did 20 years ago. My code was like a LONG run-on sentence. I knew what it said when I wrote it, but looking at it later it was a "What the hell did I say" moment. Code should be just short little sentences organized in short little paragraphs. I was suffering from what Rubiest call 'Code Smell'
+    dd I've basically rewrote most of the code that does anything in the last month, organizing it a way that if I look at it again next year, I can still read it!
+    dd That's all this major update does, remove code smell, kinda like overhauling the engine. It looks and work about the same, but runs a lot smoother.
+    dt.strong Late 2019
+    dd The framework I use, Ruby on Rail, had a major upgrade that changed a whole lot of stuff. Tools that I used, while they worked, were going to be deprecated, which means they may not be supported in a year or so. I decided to move my three sites (ptgolf, and two VFW site) to new stuff. A lot of the stuff was how a web site displays and modifies the look and feel of a website. Cascading Style Sheet (CSS) allows you to control how the site looks: Colors, Font Styling etc. JavaScript is another language that responds to events like clicking on something to change the display. I had to move to different versions.
+    dd That took about 4 month to fix all the problems, mainly because I needed to learn new stuff. Sometime around April 2020 I released new versions of my three sites.
+    dt.strong 2019
+    dd I don't think there was much changed, but there is a change log at the end of this page that shows what was changed. It looks like there were a few Rails version changes.
+  dl.indent-dd
+    dt 2018-11-13
+    dd
+      span.annotate The changes on this version includes changes made over the 5 month or so. The GIT commit log is kind of geeky, but displays short message on what was changed for each version.
+    dd The Ruby on Rails software has been upgraded to a new version.
+    dd The software tool that controls 'How thing look' and allow the site to be "usable" on a phone or tablet has been upgraded to a new version. Some of the color schemes have changed (too much green!). All pages have not changed but most have moved to a new grid system, which does the phone stuff.
+    dd 
+      |There are new forming methods options for teams.
+      ul
+        li Least Paired  attempt to have player put on teams that have not played together in a while.
+        li Redistribution - Uses the group players stats to form team by using PTGolf's PTRank. The player with the highest rank will be paired with the lowest ranked player. The ranking is a normalized percentage of the wealth they've accumulated divided by the dues they paid time the number of rounds they've played.
+
+
+  dl.indent-dd
+    dt 2018-03-28
+    dd
+      span.annotate The changes on this version includes changes made over the last month or so. The GIT commit log is kind of geeky, but displays short message on what was changed for each version.
+  dl.indent-dd 
+    dt 2018-03-28
+    dt.indent1 A new seeding method <strong>Least Paired</strong> has been added. 
+    dd This is a semi-random seeding in that it attempts to pick teams where the team mates have not played together much. Why? I got tired of the bitching! How it works is a little complicated and really doesn't matter, but I'll give you a brief explaination:
+    dd 
+      |Every player's last 25 rounds are selected and who was on their team is added to a long list. That list is compressed totaling how many times they've played with each of the other players. lt looks something like this:
+      div
+        code= "137 = {142=>0, 283=>1, 79=>1, 116=>1, 115=>1, 309=>1, 105=>2, 72=>2, 169=>2, 71=>2, 123=>3, 163=>4, 31=>4, 117=>6, 276=>6, 99=>10}"
+      | player# 137 has played 0 times with player 142 and 10 times with player 99. This history is then used to form the teams.
+
+    dd
+      ul
+        li Every players teammates who they've played with the most is extracted and sorted. If the are 5 teams, the highest 5 players are add to the teams, you could consider them the A player or Captain.
+        li The teams now consists of only one player. Each of those players history is checked to find the player they've played with the least and that player is added to their team.
+        li The teams now have two players. For each twosome, the history is again checked to find the player that <strong>both</strong> have played with the least number of times (the  sum of  the two players). That players is added to the team.
+        li You now have threesomes and may be done. If there are foursomes, the last process is repeated to add the forth team member.  If there are mixed threesome and foursome, the remaining players are added to the teams with the least sum of pairings.
+  dt This is in a test mode, It works, but.... I may have missed some combination.
+
+  dl.indent-dd
+    dt 2017-10-28
+    dt.indent1 Print ScoreCard has added new options. 
+    dd A Pending event (Teams formed but not scored), allows you to print out a paper scorecard. This has been changed to produce a PDF to print. It now contains three options. You can print in Landscape mode and two cards will be printed on each page. You can print in Portrait mode and three cards will be printed on each page.  You can also the print a list of teams and players and fill in your own card (or give it to the club staff)
+
+    dd The PDF will now longer print two copies by default. Each team will be printed in order of team number. If you want two copies, select number of copies to print in the browsers print dialog.
+
+
+  dl.indent-dd
+    dt 2017-08-29
+    dt.indent1 Freezing/Starring/limiting new players. 
+    dd This is slight modification to changes made in June concerning how to handle new players.
+    dd The default behavior to adjust their quota computation after their first round to be the average of what they pulled with what they declared has been made optional. I've used this method in the past for reasons stated in the June expatiation. There is now a preference in the Group preferences 'sanitize_first_round' that is set to FALSE. It will only use the 'Sane' rule (I assumed that the new player was not lying and just had a good or bad day) if it is set to TRUE.
+
+
+    dt.indent1 Team Scoring, Quotas Limits, and Tees
+    dd A group preference 'limit_new_player' allows you to limit the Points Pulled to some value for so many rounds. Players who have not played that number of rounds are considered limited/frozen and have an * by their quota. This feature lessens the effect of sand-baggers or over-achievers. Their quota is based on what they pull, but the team points pulled are adjusted if the player exceeds the min/max value. If a player was limited for the round, their points pulled can be thought of as "Gross_Points - what is used to compute quota" and "Net_Points - what is used to compute team points"
+    dd If the group sets the limit_rounds to 1 (only limit 1st round) and the limit_points to 2 and the player is plus/minus more than 2, the team points pulled will use plus or minus 2 for that players team score.  If a new player declares their quota to be 22, their quota for their first round is 22 or 11 per side. The first time you play with a new group, you are trying to fit in and may play a lot better or a lot worse.  If the new player pulled 6 points on the fronts and 16 on the back, both the front and back teams scores would be adjusted (9 on the front and 13 on the back). The total pulled (22) would not be adjusted.
+    dd 
+      |All new players or player who change tees have their computed quota for their first round to be the average of what they declared and what they pulled. If they declare 22 points and pulled 30, there new quota would be computed as (22+30)/2 or 26. After the first round the normal averages are used. 
+      span.annotate Change: This sanitizing will only occur if the group option "sanitize_first_round" is set.
+    dd Groups that pay by Places only have the limit applied to the total points pulled. Groups who pay Sides have the limit applied to the front, back and total. If a player was limited (their quota was 11 and they pulled 8 points or -3), the scored event would indicate the limit was applied by putting an * after their points pulled and then what was used for the team in brackets 8*[9.0(-2.0)]
+    dd Tees. Quotas are based on Tees and Group. If you play with multiple groups, your quota can be different for each group. Each player is assigned a Default Tee. It assumed you will play from that tee. If for some strange reason you want to play form the Tips one day (Think Avery!). You can change the tee for that player for that event in the "Current Participants" list for a Scheduled event (teams not formed), or the Adjust Teams page for Pending events (teams formed but not scored). This change will compute a quota for that tee and any limits/Frozen setting will be applied. If you change the Default Tee for a player, all new rounds will use the new tee and any limits will be applied.
+
+  h5 Needs update, I changed alot!
+
+  div 
+    strong GIT commit log
+  ul
+    / git log --pretty=format:"li %h - %s  : %ad" --date=short --since=2017-01-01 >  ~/work/rf/ptgolf/app/views/abouts/_log.html.classic.ml-4
+    = render partial:'log'
+  div
+    strong Previous version log
+  ul
+    = render partial:'log_old'

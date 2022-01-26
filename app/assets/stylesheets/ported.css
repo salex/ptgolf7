@@ -1,3 +1,21 @@
+.select {
+  min-width: 3ch;
+  max-width: 30ch;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.select::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: var(--select-arrow);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
 .btn-success, .bg-success {
   background-color: #63ed7a;
 }
@@ -10,7 +28,7 @@
   color: white;
 }
 .btn-sqr-blue:hover{
-    background-color: #374872;
+    background-color: #4766b2;
 }
 .lime-link-btn {
   background-color: #9bd99b;
@@ -486,9 +504,14 @@ button.actions:hover {
 }
 
  dl.indent-dd dd {
-   margin-left: 1rem;
-   margin-bottom: 1rem;
+   margin-left: 2rem;
 }
+ dl.indent-dd dt {
+   margin-left: 1rem;
+   font-weight: bold;
+
+}
+
  dl.indent-dd.strong-dt dt {
    font-weight: bold;
 }
@@ -524,13 +547,14 @@ button.actions:hover {
  ul, ul.slim, ul.classic {
    list-style-type: disc;
    padding-left: 1rem;
+   margin-left:  1rem;
 }
  
 .card-4, .hover-shadow:hover {
    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.pt-btn {
+.btn, .pt-btn {
     margin-right: .25rem;
     border-radius: .25rem;
     padding: .25rem;
@@ -538,11 +562,11 @@ button.actions:hover {
     color:rgba(0, 0, 0, var(--tw-text-opacity))
 }
 
-.pt-btn:hover {
+.btn:hover, .pt-btn:hover {
     color:rgba(255, 255, 255, var(--tw-text-opacity))
 }
 
-.btn, .pt-btn:hover {
+/*.btn, .pt-btn:hover {
     --tw-text-opacity:1
 }
 
@@ -557,7 +581,7 @@ button.actions:hover {
     --tw-text-opacity: 1;
     color:rgba(255, 255, 255, var(--tw-text-opacity))
 }
-
+*/
 .btn-sqr {
     border-width: 1px;
     --tw-border-opacity: 1;
@@ -572,7 +596,7 @@ button.actions:hover {
     color:rgba(255, 255, 255, var(--tw-text-opacity))
 }
 
-.btn-sqr-blue {
+/*.btn-sqr-blue {
     margin-right: .25rem;
     border-width: 1px;
     --tw-border-opacity: 1;
@@ -586,7 +610,7 @@ button.actions:hover {
     color:rgba(255, 255, 255, var(--tw-text-opacity))
 }
 
-.btn-submit {
+*/.btn-submit {
     margin-right: .25rem;
     border-radius: .5rem;
     border-width: 2px;
@@ -781,4 +805,7 @@ button.submit {
      display: none !important;
   }
 }
- 
+
+.question.ul {
+  font-style: italic;
+ }

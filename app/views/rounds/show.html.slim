@@ -5,8 +5,11 @@ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
   / .w3-col.m8
   .w-full.md:w-2/3 
     - if is_manager?
-      = link_to icon('fas fa-edit','Edit Round'), edit_round_path(@round), title: 'Edit it', class: 'btn btn-warning mr-2' if is_manager?
-      = link_to icon('fas fa-trash','Destroy'),  @round, title: 'Destroy it', class: 'btn btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+      = link_to icon('fas fa-edit','Edit Round'), edit_round_path(@round), title: 'Edit it', class: 'btn btn-warning mr-2'
+      = destroyConfirmTag(@round,
+        prompt: icon("fas fa-trash","Delete Unfinished Round"))
+
+      / = link_to icon('fas fa-trash','Destroy Round'),  @round, title: 'Destroy it', class: 'btn btn-danger mr-2', method: :delete, data: { turbo_method:'delete',turbo_confirm: 'Are you sure?'}
   / .w3-col.m3.pt-breadcrumb
   .w-full.md:w-1/6.lg:w-1/6
     .lg:float-right

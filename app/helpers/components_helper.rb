@@ -16,6 +16,14 @@ module ComponentsHelper
     return(klasses.uniq.to_sentence(words_connector:' ',last_word_connector:' '))
     # return a sting of classes x and any component class
   end
+  def sidebar_menu
+    "btn-sqr-blue text-center font-bold border border-zinc-100 py-1"
+  end
+
+  def player_menu
+    "btn-sqr-blue  font-bold border border-zinc-100 py-px"
+  end
+
 
   def green_box
     "box-border box-content m-3 p-4 bg-green-300 border-green-100 border-2 text-black"
@@ -76,7 +84,8 @@ module ComponentsHelper
   end
 
   def destroyConfirmTag(model,confirm_msg:"",klass:"",prompt:"")
-    klass= "#{btnDanger} inline-block" if klass.blank?
+    # note button_to add 4px padding, don't use btn class, set py to px
+    klass= 'rounded py-px px-1 btn-danger mr-2 inline-block' if klass.blank?
     confirm_msg = "Are You Sure?" if confirm_msg.blank?
     prompt = "Delete #{model.class.name}" if prompt.blank?
     node = content_tag(:div, class: klass,
@@ -90,5 +99,21 @@ module ComponentsHelper
     }
     node 
   end
+
+  # def delete_button(model,confirm_msg:"",klass:"",prompt:"")
+  #  klass= "#{btnDanger} inline-block" if klass.blank?
+  #   confirm_msg = "Are You Sure?" if confirm_msg.blank?
+  #   prompt = "Delete #{model.class.name}" if prompt.blank?
+  #   node = content_tag(:div, class: klass,
+  #     data:{
+  #       controller:"confirm_delete", 
+  #       action:"click->confirm_delete#confirm",
+  #       destroyConfirm_cmsg_value:confirm_msg
+  #     }){
+  #     concat(tag.span(prompt))
+  #     concat(button_to( '',model, method: :delete,class:"hidden",data:{destroyConfirm_target:"submit"}))
+  #   }
+  #   node 
+  # end
 
 end

@@ -1,0 +1,19 @@
+= turbo_frame_tag "content"
+  h4.strong PTGOLF.EXE The DOS Origin
+  .annotate Since PtGolf.us was influnced by the simplicity of the PTGOLF DOS application, I though I'd explain what was in this 1980's magic! It did nothing that GolfGaggle.com didn't do, it just did it differently.
+  .indent1
+    p.slim The DOS application PTGOLF had a simple data structure that consisted of 500 records that contained a players name and their last 10 scores (points pulled) and dates. From that structure it had the following functions:
+    dl.indent-dd
+      dt Manage Players
+      dd Each player was accessed by a number from 1 to 499. Using that number you could change the players names or scores. After the players were set up you basically just added scores for the current date.
+      dt Manage Play List
+      dd Internally PTGOLF managed a Current Play List. The 500th record seemed to be a scratch pad where information was stored other than the players and their scores. I suspect this was where the play list was stored using a binary scheme. Players were added to the list by their player number.
+      dd Once a play list was created, you could form teams either randomly or by points (think ABCD players)
+      dd You could then view the teams, or if you had a computer that could still print from DOS, you could then print the teams.
+      dt Entering Scores.
+      dd The function 'Enter Scores for Current Date' would go into a loop.
+      dd You'd enter a players number and return
+      dd If the player was found, you were prompted to enter the plays points pulled then press enter.
+      dd It would then prompt you for the next player number or 999 to exit the loop.
+      dd Internally I assume there were two stack that contained the points pulled and the date. It would push the new score and date onto the stack and pop off the last score if there were more than 10 scores.
+    p.slim There were a few other functions that had some form of access control and could display message. There was a password that was needed for a few functions but I never tried to figure it out.

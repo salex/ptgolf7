@@ -1,67 +1,68 @@
-h5.strong Group
+= turbo_frame_tag "content"
+  h5.strong Group
 
-.row
-  .small-6.columns
-    p.slim Group allow multiple groups who play at a Club or Course and have quotas computed based on their preferences. One group may used a different point scoring system, play from different tees etc.
-    pre
-      code.ruby
-        |
-          class Group < ActiveRecord::Base
-            has_many :events, :dependent => :destroy
-            has_many :group_players, :dependent => :destroy
-            has_many :users, :dependent => :destroy
-            belongs_to :club
-          end
-    .strong Purpose
-    ul.classic
-      li To separate  Players, Events, Rounds, etc from other Groups
-      li To provide preference/options used to compute quotas.
-  
-  .small-6.columns
-    .strong Data Elements
-    dl.indent-dd
-      dt club_id
-      dt name
-      dd Unique name for group in a club
-      dt rounds_used
-      dd The number of rounds used to compute quotas
-      dt use_hi_lo_rule
-      dd An optional method that throws out the high and low points pulled for a player before computing the quota
-      dt tees
-      dd A string of space delimited tee colors used by the group, e.g. "White Teal Blue Red"
-      dt options (preferences)
-      dd
-        dl.indent-dd
-          dt par_in: :string
-          dd Can override club settings
-          dt par_out: :string
-          dd Can override club settings
-          dt welcome: :text
-          dd A text message that will display on the Groups home page if entered.
-          dt alert: :text
-          dd A text alert message that will display on the Groups home page if entered.
-          dt notice: :text
-          dd A text notice message that will display on the Groups home page if entered.
-          dt tee_time: :string
-          dd NOT USED
-          dt play_days: :string
-          dd NOT Used
-          dt dues: :integer
-          dd Round game entry fee
-          dt skins_dues: :integer
-          dd Skins or Birdies side game dues, optional
-          dt par3_dues: :integer
-          dd Par3 closest to pin side game dues, optional
-          dt other_dues: :integer
-          dd Other game (best sides) side game dues, optional
-          dt truncate_quota: :boolean
-          dd When a qouta is computed, it is a decimal number. The default quota is set to round that number to the nearest interger. Setting truncate_quota to True will truncate (round down) the raw quota
-          dt pay: :string
-          dd Wealth is redistributed by either Sides or Places, the two valid options for the 'pay' preference.
-          dd Pay Side divides the collected entry fee into three pots, front, back and total. Those pots are distributed to the winner(s)
-          dd Pay Places divides the collected entry fee into pots equal to half of number of teams in the game. If there are 8 teams, there will be 4 pots or 4 places. Most groups that use this method will have a cheat sheet to lookup what each place will pay.PtGofp computes a 60/40 split between places. In this example of paying 4 places, the percentage of each place is [0.4154, 0.2769, 0.1846, 0.1231]!
-          dt limit_new_player: :boolean
-          dd The Micky Mantle rule. A new players who has not played a certain number of rounds (limit_rounds:) with the group will have a star (*) by their quota to remind the team that their points are limited to +- (limit_points). GolfGaggle would actually use this to compute a gross and net points pulled and use net to pay teams and gross to compute quotas. PtGolf leave that up to the group to handle.
-          dt limit_rounds: :integer
-          dt limit_points: :integer
+  .row
+    .small-6.columns
+      p.slim Group allow multiple groups who play at a Club or Course and have quotas computed based on their preferences. One group may used a different point scoring system, play from different tees etc.
+      pre
+        code.ruby
+          |
+            class Group < ActiveRecord::Base
+              has_many :events, :dependent => :destroy
+              has_many :group_players, :dependent => :destroy
+              has_many :users, :dependent => :destroy
+              belongs_to :club
+            end
+      .strong Purpose
+      ul.classic
+        li To separate  Players, Events, Rounds, etc from other Groups
+        li To provide preference/options used to compute quotas.
+    
+    .small-6.columns
+      .strong Data Elements
+      dl.indent-dd
+        dt club_id
+        dt name
+        dd Unique name for group in a club
+        dt rounds_used
+        dd The number of rounds used to compute quotas
+        dt use_hi_lo_rule
+        dd An optional method that throws out the high and low points pulled for a player before computing the quota
+        dt tees
+        dd A string of space delimited tee colors used by the group, e.g. "White Teal Blue Red"
+        dt options (preferences)
+        dd
+          dl.indent-dd
+            dt par_in: :string
+            dd Can override club settings
+            dt par_out: :string
+            dd Can override club settings
+            dt welcome: :text
+            dd A text message that will display on the Groups home page if entered.
+            dt alert: :text
+            dd A text alert message that will display on the Groups home page if entered.
+            dt notice: :text
+            dd A text notice message that will display on the Groups home page if entered.
+            dt tee_time: :string
+            dd NOT USED
+            dt play_days: :string
+            dd NOT Used
+            dt dues: :integer
+            dd Round game entry fee
+            dt skins_dues: :integer
+            dd Skins or Birdies side game dues, optional
+            dt par3_dues: :integer
+            dd Par3 closest to pin side game dues, optional
+            dt other_dues: :integer
+            dd Other game (best sides) side game dues, optional
+            dt truncate_quota: :boolean
+            dd When a qouta is computed, it is a decimal number. The default quota is set to round that number to the nearest interger. Setting truncate_quota to True will truncate (round down) the raw quota
+            dt pay: :string
+            dd Wealth is redistributed by either Sides or Places, the two valid options for the 'pay' preference.
+            dd Pay Side divides the collected entry fee into three pots, front, back and total. Those pots are distributed to the winner(s)
+            dd Pay Places divides the collected entry fee into pots equal to half of number of teams in the game. If there are 8 teams, there will be 4 pots or 4 places. Most groups that use this method will have a cheat sheet to lookup what each place will pay.PtGofp computes a 60/40 split between places. In this example of paying 4 places, the percentage of each place is [0.4154, 0.2769, 0.1846, 0.1231]!
+            dt limit_new_player: :boolean
+            dd The Micky Mantle rule. A new players who has not played a certain number of rounds (limit_rounds:) with the group will have a star (*) by their quota to remind the team that their points are limited to +- (limit_points). GolfGaggle would actually use this to compute a gross and net points pulled and use net to pay teams and gross to compute quotas. PtGolf leave that up to the group to handle.
+            dt limit_rounds: :integer
+            dt limit_points: :integer
 

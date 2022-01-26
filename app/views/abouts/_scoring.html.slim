@@ -1,0 +1,47 @@
+= turbo_frame_tag "content"
+  h5 Scoring 
+  .strong There three types of scoring.
+  ul.classic.pl-4
+    li Player Scoring
+    li Team Scoring
+    li Side Games Scoring
+    ul.classic
+      li Birdies or Skins without carry-over
+      li Par 3 closest to pin
+      li Other or an Individual Nassau game
+
+  dl.indent-dd
+    dt Player Scoring
+    dd The player score is nothing more than the results of Score Team(s) for each player on the team. Remember that teams can be can consist of from 1 to 4 players. Entering the points pulled for each side is all that is needed to score the player. The entered points pulled minus the quota (side or total) are the tree round scores. The Plus-Minus score is not stored but computed any time it is needed.
+
+    dt Team Scoring
+    dd The team score is just the sum of each players scores (Plus-Minus for sides and total). Again that score is computed any time it is needed.
+    dd Team winers are dependent if the group plays a 'Sides' game or a 'Places' game. There are 3 winners in a 'Sides' games, that can include ties. Places are payed the 50% of the teams and split on a 60/40 percentage for each place.
+
+    dt Side Games Scoring
+    dd There are three optional side games currently defined.
+    dd The 'Set Side Games' action brings up a form where you can set a checkbox for each player that is 'In' that side game. Clicking on the 'In' header will set (toggle) each players checkbox. This feature is used if the majority of the players are usally in the side game. You can then uncheck the boxes for the players that are not in that game. The pot for all side games is just the number of players in that game times the dues for that game.  Dues can be zero if you are just playing for fun/statistics.
+    dd When a checkbox is set, a scoring area is brought up for that game
+    ul
+      li 
+        strong Skins or Birdies Scoring.
+        
+      ul
+        li The scoring area for skins consists of a link 'Enter Skins' and a results display, which default to 18 dot <code>..................</code>. The dots represent the score on each hole.
+        li 
+          |Clinking the 'Enter Sinks' link reveals a dialog where you can enter the score on each hole. The results display will be set for each hole score entered. Holes scores are set by clicking an up or down arrow.
+          =  image_tag('skins_reveal.png')
+        li You can use two methods for entering skins. 1. Enter only the winning holes for each player, usually taken from a manual score. 2. Enter each under par score for each 'In' player and let the computer compute who won that hole.
+        li  The skins pot is divided by the number of good skins and awarded to each winner. This is not true skins in there is no roll-over (could be added)
+      li.strong Par 3 Scoring
+      ul
+        li The scoring area for par 3's consist of radio buttons for each par 3 on the course. You simple set who won each par 3 and the pot is divided by the number of par 3's.
+
+      li.strong Other Scoring
+      ul
+        li The scoring area for the other consist of 3 radio buttons for the front, back and total winners. You simple set who won each side and the pot is divided by the 3. Individual winners is actually computed, but not used in this area at this time.
+
+
+
+
+    

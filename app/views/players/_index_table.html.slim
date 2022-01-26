@@ -43,4 +43,6 @@
             td 
               = link_to icon('fas fa-eye'),  player, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
               = link_to icon('fas fa-edit'), edit_player_path(player), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
-              = link_to icon('fas fa-trash'),  player, title: 'Destroy it', class: 'btn btn-icon btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true }
+              = destroyConfirmTag(player,
+                prompt: icon("fas fa-trash"))
+

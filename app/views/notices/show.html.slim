@@ -8,7 +8,8 @@ section.dashboard
 
       = link_to icon('fas fa-edit','Edit Notice'), 
         edit_notice_path(@notice), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2' if is_manager?
-      = link_to icon('fas fa-trash','Destroy Notice'),  @notice, title: 'Destroy it', class: 'btn btn-icon btn-danger mr-2', method: :delete, data: { confirm: 'Are you sure?', remote: true } if is_manager?
+      = destroyConfirmTag(@notice,prompt: icon("fas fa-trash","Destroy Notice"))
+
 .form-fields
   .field
     label Date

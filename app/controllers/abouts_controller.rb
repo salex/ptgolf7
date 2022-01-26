@@ -24,85 +24,107 @@ class AboutsController < ApplicationController
   end
 
   def origin
-    @template = 'origin'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'origin')
   end
 
   def changes
-    @template = 'changes'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'changes')
   end
 
 
   def structure
-    @template = 'structure'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'structure')
   end
 
 
   def forming
-    @template = 'forming'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'forming')
   end
 
   def terminology
-    @template = 'terminology'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'terminology')
   end
 
   def scoring
-    @template = 'scoring'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'scoring')
   end
 
   def teams
-    @template = 'teams'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'teams')
   end
 
   def eprocess
-    @template = 'process'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'process')
   end
 
   def preferences
-    @template = 'preferences'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'preferences')
   end
 
   def user
-    @template = 'user'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'user')
   end
+  
   def event
-    @template = 'event'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'event')
   end
+
   def round
-    @template = 'round'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'round')
   end
+
   def player
-    @template = 'player'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'player')
   end
+
   def group
-    @template = 'group'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'group')
   end
+
   def club
-    @template = 'club'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'club')
   end
+
   def limiting
-    @template = 'limiting'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'limiting')
   end
+
   def features
-    @template = 'features'
-    render action: :show
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'features')
   end
-
-
 
 end

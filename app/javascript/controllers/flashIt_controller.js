@@ -26,12 +26,12 @@ export default class extends Controller {
 
   connect() {
     this.closeFlashIt()
-    console.log('flashit1')
+    // console.log('flashit1')
   }
 
   closeFlashIt(){
     var box = this.flashBoxTarget
-    console.log('flashit2')
+    // console.log('flashit2')
 
     setTimeout(function () {
       // box.style.display = 'none'

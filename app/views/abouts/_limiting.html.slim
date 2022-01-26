@@ -1,0 +1,71 @@
+= turbo_frame_tag "content"
+  h4.strong Limited - Freezing, Limiting, Starring, Restricting
+  .indent1
+    dl.indent-dd
+      dt The Micky Mantle Astrix(*) rule - Terms that explain what the Astrix by your quota means.
+    p.slim Most groups will be leery of new players wanting to play with the group. You will ask them for their handicap and convert it to a quota, but you really don't know how good (or bad) they are until they play a few rounds. We know that sand-baggers exist. There are also over-achievers, those who think their quota is based on the best round they every played, maybe 10 years ago. 
+
+    p.slim I initially avoided addressing the concept of limiting, freezing or starring in that it can get quit complicated and the rules vary between groups. I then added a New_Player_Limit option in early 2017 that can be set by the group to limit new players (or player switching tee) to so many points ± (either sides or total) for so many rounds. After some requests, I've now added a few new options
+
+    dl.indent-dd
+      dt.strong Freezing Players
+      dd If a player plays with the group occasionally and is inconsistent, you have the option of setting a 'frozen' status for that player. As long as that status is set for the group player and the option is selected in the group preferences, that player will be limited to so many ± points for every round they play. An inconstant player does not want to hurt the team and the term does not want to hurt the player.
+      dd Group options (default)
+      dd.indent2.annotate limit_frozen_player:false,
+      dd.indent2.annotate limit_frozen_points:2,
+      dd If a player is frozen, all other limiting options are ignored
+
+      dt.strong Limiting New Players (or existing player moving to a New Tees)
+      dd This is the original limiting definition. If a player has played less then the :limit_rounds value, they are considered limited (or frozen or starred, depending on the terminology used by the group).
+      dd Group options (default)
+      dd.indent2.annotate limit_new_player:false,
+      dd.indent2.annotate limit_rounds:1,
+      dd.indent2.annotate limit_points:2,
+
+
+      dt.strong Limiting New Tee
+      dd In case you don't know, quotas are computed by Tee and by Group. Moving to a new tee that you have not played before will consider you a New player. Playing with a new group at a club that uses PTGolf.us will also consider you a New player. I've now changed that by adding a :limit_new_tee setting. It works exactly the same as limiting new players
+      dd Group options (default)
+      dd.indent2.annotate limit_new_tee:false,
+      dd.indent2.annotate limit_new_tee_rounds:1,
+      dd.indent2.annotate limit_new_tee_points:2,
+
+      dd It you set this option on, moving to a new tee would limit the play to ± two points for 1 round. Not setting this preferences will just use what is set in limit_new_player 
+
+
+
+      dt.strong Limiting Inactive Players
+      dd When springtime rolls around, players often show up who have not played with the group for a while.  This option allows you to set a period of time that basically reverts the player to the same rules as a new player, although the Point and Round limits can be different.
+      dd Group options (default)
+      dd.indent2.annotate limit_inactive_player:false,
+      dd.indent2.annotate limit_inactive_rounds:1,
+      dd.indent2.annotate limit_inactive_points:2,
+      dd.indent2.annotate limit_inactive_days:180,
+      dd Setting this option to true would limit any player who has not played in the last 180 days (6 months) to ± 2 points for 1 round.
+
+      dd You also have the option of setting the players frozen status on and then remove it if they show up again and their quota seems consistent.
+
+      dd.callout.alert Team scoring will compute the team score for any limited player based on the points limit. It is up to the Team Captain to compute the correct team score on the scorecard turned in.
+
+      dt.strong Trimming Rounds - an alternative to Limiting Inactive Players
+      dd PTGolf will keep round history for as long as you wish, but you can remove old rounds. The group coordinator can trim rounds that are older than the number of months set in a group options trim_months:15. This will delete all rounds and events over 15 months old, recompute quotas, etc.  This will probably also move some of those inactive players to an 'expired' status in they have no rounds left and only have their last quota. If those players have moved on, they should be deleted (destroyed). If they show up after 15 months, the will be considered a New player, but there last quota sill exists.
+
+
+      dt.strong Group prospective of added Limiting options
+
+      dd Other than the ability set new options and to set a Player to Frozen, not much has changed. Everywhere a player's Quota is displayed will have an Astrix(*) next to their quota and may be highlighted is some fashion (bold/background color, or in some case, space permitting - the reason for the player being limited). As noted above, it is important on the scorecard that the team score is corrected for any limiting. What the player pulls is used to compute quotas, but what the team pulled will take into account any limiting. The software knows how to compute this, so must the team captains!
+
+      dt.strong Technical prospective of added Limiting options
+
+      dd Team scoring has always been computed 'on the fly', meaning that nothing is stored in any records on what team won, it is computed if you display any scored event. With only the :limit_new_player option, you could compute if a player was limited on a date by just counting the number of rounds a player has before that date.
+
+      dd Adding the new limiting options required that something be stored. A field :limited was added to the round. Any round after April 8th, 2018 will have this field set when the player is added to an event. It will contain something like '2frozen' or '2new' or '2inactive' or '2newtee' indicating the player was limited to that round to ± 2 points for the limiting reason. Any round prior to that date will use the original technique of counting the number of rounds before the round date. The field will be blank if the player was not limited.
+
+      dd A player's current limited status is still not stored anywhere and is computed where needed. The round limiting status that is stored is only used in displaying an event and the teams.
+
+      dd.callout.success I hope I've tested all the possibilities of implementing the new options. If I've missed something, let me know.
+
+      dt Steve Alex
+
+   
+

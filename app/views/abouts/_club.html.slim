@@ -1,0 +1,39 @@
+= turbo_frame_tag "content"
+  h5.strong.cell Club or Course
+
+  .grid-x.grid-padding-x
+
+    .small-6.cell
+      p.slim Club is the top level resource. Every other resource belongs to the Club either directly or indirectly. Currently CRUD methods are restricted to a SuperUser.
+      pre
+        code
+          |
+            class Club < ApplicationRecord
+              has_many :groups, :dependent => :destroy
+              has_many :group_players, through: :groups
+            end
+      .strong Purpose
+
+      ul[class="classic"]
+        li To separate Groups, Players, etc from other Clubs
+        li To provide par_in, par_out to print a score card.
+
+      p.slim If a Club has multiple courses, I've been through that and it is not easy. Maxwell AFB used to have two courses and players played from multiple tee. GolfGaggle managed Quotas by Course and Tee.  Lets just say it was difficult to display all the options. Computing the Quotas was not difficult, just displaying information. My suggestion would be to create Groups for each course. Players then can be duplicated from one group to another.
+
+    .small-6.cell
+      .strong Data Elements
+      dl.indent-dd
+        dt.strong long_name
+        dd The formal name of the Club or Course, e.g. "Twin Bridges Golf Course"
+        dt.strong name
+        dd A short name that is unique to PtGolf. A string key to a Club. (e.g. tb = "Twin Bridges Golf Course")
+        dt city
+        dt state
+        dt phone
+        dd Phone number of club.
+        dt par_in
+        dd A string representing the par score for each hole on the front nine. e.g., "443455434"
+        dt par_out
+        dd A string representing the par score for each hole on the back nine. e.g., "443455434"
+        dd par_in and par_out are used with printing a score-card for a team.
+

@@ -1,0 +1,144 @@
+= turbo_frame_tag "content"
+  h4.strong Terminology
+  p PtGolf.us allows groups to kept a handicap based on some form of a #{link_to('Modified Stableford Scoring System','https://en.wikipedia.org/wiki/Stableford',class:"blue-link")}
+  p Below is the definitions of the terms used in PtGolf.us
+  dl.indent-dd.strong-dt
+    dt Quota
+    dd A player's quota is basically their handicap using a point scoring system.
+    dd Like a handicap, it is computed by selecting and averaging recent scores. The standard golf handicap use the best 10 scores out of the last 20 rounds. (there are some adjustments for course slopes/ratings). The most used 'dog fight' scoring will just look at the last 10 rounds.
+    dd PtGolf.us has group options that allow you to say how many rounds are used.  It also has options for dropping the high and low scores from the rounds selected and to round or truncate the computed quota.
+    dt Points
+    dd
+      | Points are assigned based on you score relative to par on each hole. Points pulled is the sum of the point value for each hole. Each group my assign point values as they wish. A system that is equivalent to a handicap score would be:
+      table.small-table.w40
+        tr.list-header
+          td
+            | Score
+          td
+            | Points
+        tr
+          td
+            | Double_Eagle
+          td
+            | 5
+        tr
+          td
+            | Eagle
+          td
+            | 4
+        tr
+          td
+            | Birdie
+          td
+            | 3
+        tr
+          td
+            | Par
+          td
+            | 2
+        tr
+          td
+            | Bogey
+          td
+            | 1
+        tr
+          td
+            | Double_Bogey+
+          td
+            | 0
+      p
+        | Using this system, (36 - Points Pulled) would be equivalent to you score relative to par (e.g., pulling 32 points would be 4 over par)
+
+      p
+        | Probably the most used system increases points for scores under par. This give the illusion of doing really good! There are even versions that adds a penalty for going over double bogey.
+      table.small-table.w75
+        tr.list-header
+          td
+            | Score
+          td
+            | Points Ver 1
+          td
+            | Points Ver 2
+          td
+            | Points Ver 3
+        tr
+          td
+            | Double_Eagle
+          td
+            | 8
+          td
+            | 16
+          td
+            | 5
+        tr
+          td
+            | Eagle
+          td
+            | 6
+          td
+            | 8
+          td
+            | 4
+        tr
+          td
+            | Birdie
+          td
+            | 4
+          td
+            | 4
+          td
+            | 3
+        tr
+          td
+            | Par
+          td
+            | 2
+          td
+            | 2
+          td
+            | 2
+        tr
+          td
+            | Bogey
+          td
+            | 1
+          td
+            | 1
+          td
+            | 1
+        tr
+          td
+            | Double_Bogey
+          td
+            | 0
+          td
+            | 0
+          td
+            | 0
+        tr
+          td
+            | Triple_Bogey+
+          td
+          td
+          td
+            | -1
+    dt Points Pulled
+    dd The sum of your point score on each hole (or each side)
+    dd The points pulled is what is entered for your score on each side and total points pulled is the sum of the sides.
+    dt Plus/Minus
+    dd The difference between your quota and points pulled in a round. If your quota is 27 points and your total points pulled is 24, your points Plus/Minus is -3.
+    dt Dues
+    dd Your entry fee for the game and/or side games. The purpose of Dues is to redistribute wealth!
+    dt Players - Group Players - Participants - Members
+    dd Since PtGolf.us and GolfGaggle.com has gone through many changes. Some of those changes included terminology changes. Some of the older terminology has crept into the current version. 
+    dd
+      ul
+        li 
+          | Player = Group Player = Member.  All are members of a group, or a players that play with a group. Group Player is the formal name. Player is short version.
+        li Participants are Players that are Participating in an Event. Technically, Participant refers to an EventRound or a ScoredRound that links a Group Player with an Event.
+
+    dt Teams
+    dd Teams consist of 1 to 4 players (1 really being indiviual players).
+    dd Execpt for indiviual teams, teams are set by <a href='about/forming'>a forming method</a> That method just provides options based on how many players are present (Individual, Twosomes, Threesomes, Foursomes, Mixed Twosomes and Threesomes, Mixed Threesomes and Foursome). How teams are formed consists of 4 options (Random, Seeded, ABCD Draw and ABCD Battle).
+
+
