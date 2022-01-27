@@ -34,7 +34,7 @@ staging:
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: ptgolf7
+  #username: ptgolf
 
   # The password associated with the postgres role (username).
   #password:
@@ -62,7 +62,7 @@ staging:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ptgolf7_test
+  database: ptgolf_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -86,6 +86,6 @@ test:
 #
 production:
   <<: *default
-  database: ptgolf7_production
-  # username: ptgolf7
+  database: ptgolf_production
+  # username: ptgolf
   # password: <%= ENV["PTGOLF_DATABASE_PASSWORD"] %>

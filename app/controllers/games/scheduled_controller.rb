@@ -12,6 +12,8 @@ class Games::ScheduledController < GamesController
       if @game.update_participants(params)
         format.html { redirect_to games_scheduled_path(@game), notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
+        # format.turbo_stream { render turbo_stream: turbo_stream.replace('schedulers', partial: 'games/scheduled/scheduler') }
+
       else
         format.html { redirect_to root_path }
       end
