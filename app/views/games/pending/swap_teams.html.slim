@@ -24,7 +24,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
       .s6.w3-col
         .strong Swap Team Order
         .s6.w3-col
-          = select_tag "swap_team_1", options_for_select((1..p_count).to_a, ""),include_blank:"Swap Team From"
+          = select_tag "swap_team_1", options_for_select((1..p_count).to_a, ""),include_blank:"Swap Team From",class:"border border-green-500 select"
         .s6.w3-col
-          = select_tag "swap_team_2", options_for_select((1..p_count).to_a, ""),include_blank:"Swap Team To"
+          = select_tag "swap_team_2", options_for_select((1..p_count).to_a, ""),include_blank:"Swap Team To",class:"border border-green-500 select"
 

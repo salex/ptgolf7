@@ -14,7 +14,8 @@
       .w3-padding  = form_with url: "/groups/#{@group.id}/stats_refresh", method: :patch
         strong Game
         div
-          = select_tag 'stats[game]', options_for_select([['Team Game','quality'],['Birdies/Skins','skins'],['Par3','par3'],['Best Sides','other']],params[:stats].present? ? params[:stats][:game] : 'quality'),class:'w3-select'
+          = select_tag 'stats[game]', options_for_select([['Team Game','quality'],['Birdies/Skins','skins'],['Par3','par3'],['Best Sides','other']],params[:stats].present? ? params[:stats][:game] : 'quality'),class:"border border-green-500 select"
+          / ,class:'w3-select'
         .strong 
           strong  Limit By:
         

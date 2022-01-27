@@ -31,7 +31,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
           tr
             td = p.full_name
             td = check_box_tag "deleted[]", value=p.id,nil,data:{behavior:'del_member'}
-            td = select_tag "team[#{p.id}]", options_for_select((0..p_count).to_a, p.team)
-            td = select_tag 'tee[]', tee_options(@game.group,p)
+            td = select_tag "team[#{p.id}]", options_for_select((0..p_count).to_a, p.team),class:"border border-green-500 select"
+            td = select_tag 'tee[]', tee_options(@game.group,p),class:"border border-green-500 select"
             td = "#{p.quota}/#{p.player.rquota}"
 

@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 
 
 export default class extends Controller {
-  static targets = [ 'added',"scheduled", "players","group","pot","currentPlayers",'update','form','formbtn' ]
+  static targets = [ 'added',"scheduled", "players","group","pot","currentPlayers",'update','updatep','form','formbtn' ]
 
   connect() {
     this.preferences = JSON.parse(this.groupTarget.dataset.preferences)
@@ -58,7 +58,7 @@ export default class extends Controller {
     // player delete or change tee
     let curr_players = this.currentPlayersTargets.length
 
-    this.updateTarget.style.display = 'block'
+    this.updatepTarget.style.display = 'block'
     // if (this.hasFormbtnTarget) {
     //   this.formbtnTarget.style.display = 'none'
     // }

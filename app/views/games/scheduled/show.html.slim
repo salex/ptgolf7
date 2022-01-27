@@ -110,6 +110,7 @@ section.scheduler[ data-controller="schedule"]
       strong Current Scheduled
       = form_with(url: @game.namespace_url, method: :patch, 
         html:{id:"update_participants"},data:{schedule_target:"form"} )do |f|
+        button.btn.btn-submit.w100[data-schedule-target="updatep" data-action="click->schedule#submit" style="display:none;"] Update Players
 
         table.small-table id="current_members"
           thead[data-controller="sortTable"]

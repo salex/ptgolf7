@@ -4,13 +4,13 @@ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
     .text-2xl.strong Show Round
   / .w3-col.m8
   .w-full.md:w-2/3 
+    .annotate This area is restricted to Cordinators. It can be used to change mistakes made in forming teams. Mistakes include, using the wrong Tee, Quota. Use Rescore_Teams if error was in scoring. You can also Delete/Destroy the players round if they dropped out, but you can also remove them by Adjusting Teams and removing them there.
+
     - if is_manager?
       = link_to icon('fas fa-edit','Edit Round'), edit_round_path(@round), title: 'Edit it', class: 'btn btn-warning mr-2'
       = destroyConfirmTag(@round,
         prompt: icon("fas fa-trash","Delete Unfinished Round"))
 
-      / = link_to icon('fas fa-trash','Destroy Round'),  @round, title: 'Destroy it', class: 'btn btn-danger mr-2', method: :delete, data: { turbo_method:'delete',turbo_confirm: 'Are you sure?'}
-  / .w3-col.m3.pt-breadcrumb
   .w-full.md:w-1/6.lg:w-1/6
     .lg:float-right
       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
