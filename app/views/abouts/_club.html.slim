@@ -10,7 +10,7 @@
           |
             class Club < ApplicationRecord
               has_many :groups, :dependent => :destroy
-              has_many :group_players, through: :groups
+              has_many :players, through: :groups
             end
       .strong Purpose
 

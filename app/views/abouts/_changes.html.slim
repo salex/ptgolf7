@@ -2,6 +2,12 @@
   h5.strong Change Log 
 
   dl.indent-dd
+    dt 2021-12-23
+    dd
+      span.strong.annotate I can't believe I have not updated this in over a year! I'll just try to summarize the major changes.
+    dt.strong Last few months
+    dd I started implement a new approach to CSS (Cascading Style Sheets), CSS help define how the pages look: color blocks grouping etc. I've implement Tailwind CSS. It still a mixture and will slowly take over the old styling.
+
     dt 2021-01-23
     dd
       span.strong.annotate I can't believe I have not updated this in over two year! I'll just try to summarize the two major events
@@ -75,10 +81,14 @@
 
   h5 Needs update, I changed alot!
 
-  div 
-    strong GIT commit log
+  div
+    strong 2021 log
   ul
-    / git log --pretty=format:"li %h - %s  : %ad" --date=short --since=2017-01-01 >  ~/work/rf/ptgolf/app/views/abouts/_log.html.classic.ml-4
+    = render partial:'2021-log'
+  div 
+    strong 2020 log
+  ul
+    / git log --pretty=format:"li %h - %s  : %ad" --date=short --since=2021-01-01 >  ~/work/current/ptgolf/app/views/abouts/_2021log.html.classic.ml-4
     = render partial:'log'
   div
     strong Previous version log

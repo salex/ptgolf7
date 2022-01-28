@@ -122,7 +122,7 @@ Rails.application.routes.draw do
       get :group
       get :player
       get :round
-      get :event
+      get :game
       get :user
       get :changes
       get :limiting

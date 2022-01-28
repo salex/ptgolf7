@@ -85,10 +85,10 @@ class AboutsController < ApplicationController
       partial: 'user')
   end
   
-  def event
+  def game
     render turbo_stream: turbo_stream.replace(
       'content',
-      partial: 'event')
+      partial: 'game')
   end
 
   def round

@@ -8,14 +8,15 @@
         code.ruby
           |
             class Group < ActiveRecord::Base
-              has_many :events, :dependent => :destroy
-              has_many :group_players, :dependent => :destroy
+              has_many :players, :dependent => :destroy
+              has_many :games, :dependent => :destroy
+              has_many :rounds, through: :games
               has_many :users, :dependent => :destroy
               belongs_to :club
             end
       .strong Purpose
       ul.classic
-        li To separate  Players, Events, Rounds, etc from other Groups
+        li To separate  Players, Games, Rounds, etc from other Groups
         li To provide preference/options used to compute quotas.
     
     .small-6.columns

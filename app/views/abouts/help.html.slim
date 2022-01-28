@@ -9,8 +9,8 @@ fieldset.lighten
       .question.ul[data-action='click->toggleAnswer#toggle'] 
         |How does PtGolf work?
         ul.w3-hide#o_a_1
-          li Most people who use the Web to lookup information or buy stuff are at first confused by a database application written for the Web. Its really not much different than a Shopping Cart application, it's just there are many more options other than "Find", "Add to Cart" and "Checkout". Instead of "Finding" a product, you are finding other things (Players, Groups, Events, Rounds). If you can't find something, you may need to C(reate it. If you found something, you might want to R(ead it or display the information. That information my also contain other linked information (e.g. the Rounds the player has played).  After you read something you may want to U(pdate it. At some point you may also want to D(estroy the information.
-          li The process of Creating, Reading, Updating and Destroying is referred to as a CRUD process for handling Resources or Things. Again, Things or Resources in PtGolf are Players, Groups, Events, Rounds, etc.
+          li Most people who use the Web to lookup information or buy stuff are at first confused by a database application written for the Web. Its really not much different than a Shopping Cart application, it's just there are many more options other than "Find", "Add to Cart" and "Checkout". Instead of "Finding" a product, you are finding other things (Players, Groups, Games, Rounds). If you can't find something, you may need to C(reate it. If you found something, you might want to R(ead it or display the information. That information my also contain other linked information (e.g. the Rounds the player has played).  After you read something you may want to U(pdate it. At some point you may also want to D(estroy the information.
+          li The process of Creating, Reading, Updating and Destroying is referred to as a CRUD process for handling Resources or Things. Again, Things or Resources in PtGolf are Players, Groups, Games, Rounds, etc.
           li The hardest thing to understand about a Web application is that just because you fill out a form on the web, it is not saved until you take some action to update the information. This is usually some form of and update button. Unlike a word processor, there is no auto-save option.
 
           li The "How to" questions below are just explanations on to do the creating, reading, updating and destroying actions you must follow for PtGolf to do its stuff!
@@ -52,25 +52,25 @@ fieldset.lighten
 
 
     .section#events
-      strong Events 
+      strong Games 
       .question.ul[data-action='click->toggleAnswer#toggle'] 
         |How to create a new event?
         ul.w3-hide#e_a_0
           li Clink the home button in the top menu bar.
-          li In the New, Scheduled, Pending Events callout box there should be a button "Create New Event for Today". Click that button if their. If an event has already created with todays date and in should be listed below if it is Scheduled or Pending.
-          li You can also click the "Create New Event" button in the home page sidebar. You should only use this if your creating an event for a different day.
-          li You can also open the Events list in the top menu bar and click the "Create New Event" button.
-          li= link_to "Follow instruction for the Event Process to update event",eprocess_about_path
+          li In the New, Scheduled, Pending Games callout box there should be a button "Create New Game for Today". Click that button if their. If an event has already created with todays date and in should be listed below if it is Scheduled or Pending.
+          li You can also click the "Create New Game" button in the home page sidebar. You should only use this if your creating an event for a different day.
+          li You can also open the Games list in the top menu bar and click the "Create New Game" button.
+          li= link_to "Follow instruction for the Game Process to update event",eprocess_about_path
       .question.ul[data-action='click->toggleAnswer#toggle'] 
         |How to delete/remove/destroy an incomplete or error event?
         ul.w3-hide#e_a_1
-          li.anno Events/Games are sometimes rained out! Events that are not scored after one day are potentially incomplete events.
-          li Open event from the home page link or the Events list.
-          li Click the "Destroy Incomplete Event" button in the show page link bar.
+          li.anno Games/Games are sometimes rained out! Games that are not scored after one day are potentially incomplete events.
+          li Open event from the home page link or the Games list.
+          li Click the "Destroy Incomplete Game" button in the show page link bar.
           li A dialog will be displayed with the question "Are you sure?" with options of Cancel and OK.
           li Click "OK" to destroy the event. Click "Cancel" if you opened the wrong event.
-          li.anno Events are sometimes created by mistake (duplicates). Theses events are considered error events if teams have not been formed and the event is over a day old.  They are handle the same as the incomplete event.
-          li You can also destroy events by clicking on the "Destroy" link for an event in the Events list
+          li.anno Games are sometimes created by mistake (duplicates). Theses events are considered error events if teams have not been formed and the event is over a day old.  They are handle the same as the incomplete event.
+          li You can also destroy events by clicking on the "Destroy" link for an event in the Games list
 
       .question.ul[data-action='click->toggleAnswer#toggle'] 
         |How to change a players Tee for the current event?

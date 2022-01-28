@@ -1,19 +1,19 @@
 = turbo_frame_tag "content"
 
-  h5.strong Event
+  h5.strong Game
 
   .grid-x.grid-padding-x
     .small-6.cell
-      p.slim Events are the smallest table but the controlling model.
+      p.slim Games are the smallest table but the controlling model.
       pre
         code
           |
-            class Event < ActiveRecord::Base
+            class Game < ActiveRecord::Base
              belongs_to :group
              has_many :scored_rounds
              has_many :event_rounds
              has_many :rounds, :dependent => :destroy
-             has_many :group_players, through: :rounds
+             has_many :players, through: :rounds
             end
       .strong Purpose
       ul.classic.ml-4

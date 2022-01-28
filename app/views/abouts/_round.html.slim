@@ -8,8 +8,8 @@
         code
           |
             class Round < ActiveRecord::Base
-              belongs_to :group_player
-              belongs_to :event
+              belongs_to :player
+              belongs_to :group
             end
 
       .strong Purpose
@@ -25,7 +25,7 @@
         dt group_player_id
         dt event_id
         dt type
-        dd Rounds are either EventRounds (which have not been scored) or ScoredRounds. Only ScoredRounds are used in computing quotas.
+        dd Rounds are either GameRounds (which have not been scored) or ScoredRounds. Only ScoredRounds are used in computing quotas.
         dt date
         dd Date round was played (event dte)
         dt team
