@@ -91,12 +91,12 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
                 / p.mb-3 " #{mate.full_name} #{mate.quota} #{mate.front} #{mate.back} #{mate.total}"
                 td= select_tag("participant[#{mate.id}][front]", options_for_select(opt[:side],\
                   mate.front.present? && !mate.front.zero? ? mate.front : 'Select')\
-                  , data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:" w3-select")
+                  , data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:" select")
                 td= select_tag("participant[#{mate.id}][back]", options_for_select(opt[:side],\
                   mate.back.present? && !mate.back.zero? ? mate.back : 'Select'),
                     data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack", someJunk_target:"ohno",
                     action:"change->scoreMate#back change->scoreTeam#compute"},
-                    class:"w3-select")
+                    class:"select")
               - else
                 td= number_field_tag("participant[#{mate.id}][front]", mate.front,data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:"w100")
                 td= number_field_tag("participant[#{mate.id}][back]",mate.back, data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack",action:"change->scoreMate#back change->scoreTeam#compute"},class:"w100")

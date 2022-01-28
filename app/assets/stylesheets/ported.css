@@ -509,16 +509,20 @@ button.actions:hover {
    padding: 3px;
 }
 
- dl.indent-dd dd {
+dl.indent-dd dd {
    margin-left: 2rem;
+   line-height: 1.2rem;
+   margin-bottom: 0.3rem;
 }
- dl.indent-dd dt {
+dl.indent-dd dt {
    margin-left: 1rem;
    font-weight: bold;
+   line-height: 1.2rem;
+   margin-bottom: 0.3rem;
 
 }
 
- dl.indent-dd.strong-dt dt {
+dl.indent-dd.strong-dt dt {
    font-weight: bold;
 }
  
@@ -819,4 +823,8 @@ button.submit {
  p {
    margin:0.3rem 0;
    line-height: 1.2rem;
+ }
+
+ p.slim {
+  text-indent:1rem;
  }
