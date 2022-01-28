@@ -83,10 +83,11 @@ module ComponentsHelper
     end
   end
 
-  def destroyConfirmTag(model,confirm_msg:"",klass:"",prompt:"")
+  def destroyConfirmTag(model,meth:"",confirm_msg:"",klass:"",prompt:"")
     # note button_to add 4px padding, don't use btn class, set py to px
     klass= 'rounded py-px px-1 btn-danger mr-2 inline-block' if klass.blank?
     confirm_msg = "Are You Sure?" if confirm_msg.blank?
+    meth = "delete" if meth.blank?
     prompt = "Delete #{model.class.name}" if prompt.blank?
     node = content_tag(:div, class: klass,
       data:{
@@ -95,7 +96,7 @@ module ComponentsHelper
         destroyConfirm_cmsg_value:confirm_msg
       }){
       concat(tag.span(prompt))
-      concat(button_to( '',model, method: :delete,class:"hidden",data:{destroyConfirm_target:"submit"}))
+      concat(button_to( '',model, method: "#{meth}",class:"hidden",data:{destroyConfirm_target:"submit"}))
     }
     node 
   end
