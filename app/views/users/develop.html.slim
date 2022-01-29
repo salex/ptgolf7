@@ -6,8 +6,7 @@
       .flabel
         label Group
       .ffield
-        = collection_select(:group, :id, Group.all, :id, :name, prompt: true)
-
+        = collection_select(:group, :id, Group.all, :id, :name, prompt: true,class:'select')
 
       .flabel
         = label_tag(:email, 'eMail or Username')
@@ -19,7 +18,7 @@
       .ffield
         = password_field_tag( :password)
         p.mb-3 &nbsp;
-        = submit_tag( "Login",class:'button radius medium')
+        button.submit.actions.bg-blue-700= submit_tag( "Login",class:'button small')
         span.indent
           = check_box_tag(:remember_me,1,cookies[:remember_me].present?)
           |&nbsp;Remember Me

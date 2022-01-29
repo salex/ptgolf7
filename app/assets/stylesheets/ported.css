@@ -1,4 +1,4 @@
-.select {
+/*.select {
   min-width: 3ch;
   max-width: 30ch;
   border: 1px solid green;
@@ -17,11 +17,14 @@
   background-color: var(--select-arrow);
   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 }
-
-/*select {
-  -webkit-appearance: menulist;
-}
 */
+/* for now, all select uses webkit style */
+.select select, select {
+  -webkit-appearance: menulist;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+}
+
 .btn-success, .bg-success {
   background-color: #63ed7a;
 }

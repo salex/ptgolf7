@@ -88,18 +88,51 @@ module ComponentsHelper
     klass= 'rounded py-px px-1 btn-danger mr-2 inline-block' if klass.blank?
     confirm_msg = "Are You Sure?" if confirm_msg.blank?
     meth = "delete" if meth.blank?
-    prompt = "Delete #{model.class.name}" if prompt.blank?
+    url_type = model_url.class
+    if prompt.blank?
+      if url_type == String
+        prompt = "Confirm Delete"
+      else
+        prompt = "Confirm Delete #{model_url.class.name}"
+      end
+    end
     node = content_tag(:div, class: klass,
       data:{
-        controller:"destroyConfirm", 
-        action:"click->destroyConfirm#confirm",
-        destroyConfirm_cmsg_value:confirm_msg
+        controller:"actionConfirm", 
+        action:"click->actionConfirm#confirm",
+        actionConfirm_cmsg_value:confirm_msg
       }){
       concat(tag.span(prompt))
-      concat(button_to( '',model, method: "#{meth}",class:"hidden",data:{destroyConfirm_target:"submit"}))
+      concat(button_to( '',model, method: "#{meth}",class:"hidden",data:{actionConfirm_target:"submit"}))
     }
     node 
   end
+
+  def actionConfirmTag(model_url,meth:"",confirm_msg:"",klass:"",prompt:"")
+    # note button_to add 4px padding, don't use btn class, set py to px
+    klass= 'rounded py-px px-1 btn-warning mr-2 inline-block' if klass.blank?
+    confirm_msg = "Are You Sure?" if confirm_msg.blank?
+    meth = "patch" if meth.blank?
+    url_type = model_url.class
+    if prompt.blank?
+      if url_type == String
+        prompt = "Confirm Action"
+      else
+        prompt = "Confirm #{model_url.class.name}"
+      end
+    end
+    node = content_tag(:div, class: klass,
+      data:{
+        controller:"actionConfirm", 
+        action:"click->actionConfirm#confirm",
+        actionConfirm_cmsg_value:confirm_msg
+      }){
+      concat(tag.span(prompt))
+      concat(button_to( '',model_url, method: "#{meth}",class:"hidden",data:{actionConfirm_target:"submit"}))
+    }
+    node 
+  end
+
 
   # def delete_button(model,confirm_msg:"",klass:"",prompt:"")
   #  klass= "#{btnDanger} inline-block" if klass.blank?

@@ -88,5 +88,6 @@ section.dashboard
     p.mb-3 Player is in your Group. Cannot Duplicate
   - else
     p.mb-3 need to put duplicate button
-    = link_to icon("fas fa-copy"," Duplicate Player #{@player.name}"), duplicate_other_player_group_path(Current.group,opid:@player.id), data: { confirm: 'Duplicate Entry: Are you sure?', method: :patch }, class:'btn btn-icon btn-warning'
+    = actionConfirmTag(duplicate_other_player_group_path(Current.group,opid:@player.id),prompt: icon("fas fa-copy",
+    " Duplicate Player #{@player.name}"))
     

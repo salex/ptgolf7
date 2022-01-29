@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  before_action :require_current_group
   before_action :set_player, only: [:show, :edit, :update, :destroy, :recompute_quota]
   before_action :require_manager, only: [:edit, :new, :create, :update, :destroy]
 
@@ -122,7 +123,10 @@ class PlayersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      @player = Player.find(params[:id])
+      @player = @current_group.players.find_by(id:params[:id])
+      unless @player.present?
+        redirect_to root_path, alert:'Group Player not found'
+      end
     end
 
     def require_manager

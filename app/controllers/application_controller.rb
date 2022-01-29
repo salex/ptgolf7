@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   helper_method :require_super
 
   def is_manager?
-    current_user && current_user.is_manager?
+    current_user && current_user.is_manager? # && current_user.group_id == current_group.id
   end
   helper_method :is_manager?
 
@@ -53,6 +53,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :is_coordinator?
 
+  def require_current_group
+    cant_do_that('Require Current Group') unless Current.group.present?
+  end
+  helper_method :require_current_group
 
   def cant_do_that(msg=nil)
     redirect_to root_url, alert: "I'm sorry. I can't - or You can't do that. #{msg}"

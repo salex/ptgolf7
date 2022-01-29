@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_current_group
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_manager, only: [:index,:show,:edit, :new, :create, :update, :destroy]
 

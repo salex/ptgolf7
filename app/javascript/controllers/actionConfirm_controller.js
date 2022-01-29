@@ -5,7 +5,7 @@ export default class extends Controller {
   static values = { cmsg: String}
 
   connect() {
-    console.log("destroy confirm")
+    console.log("action confirm")
     if (this.hasCmsgValue) {
       this.confirm_msg = this.cmsgValue
     }else{

@@ -3,7 +3,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
     h5.strong Score Teams
   .w-full.md:w-2/3 
     = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
-    - if @game.state[:can_delete]
+    - if @game.state[:can_delete] && is_manager?
 
       = destroyConfirmTag(game_path(@game),
        prompt: icon('fas fa-trash','Delete Incomplete Game'))

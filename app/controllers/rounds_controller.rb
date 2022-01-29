@@ -1,4 +1,5 @@
 class RoundsController < ApplicationController
+  before_action :require_current_group
   before_action :set_round, only: [:show, :edit, :update, :destroy]
   before_action :require_manager, only: [:edit, :new, :create, :update, :destroy]
 

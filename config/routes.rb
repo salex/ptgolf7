@@ -70,7 +70,7 @@ Rails.application.routes.draw do
       get :groups
       get :player_search
       get :player
-      get :fix_settings
+      # get :fix_settings
 
     end
   end

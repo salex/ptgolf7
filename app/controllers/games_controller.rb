@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
+  before_action :require_current_group
   before_action :set_game, only: [:show, :edit, :update, :destroy, :update]
   before_action :require_manager, except: [:index, :show]
-  before_action :require_current_group
   # GET /games
   # GET /games.json
   def index
