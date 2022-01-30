@@ -4,7 +4,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
   .w-full.md:w-1/6.lg:w-1/6
     h5.strong Pending Game
   .w-full.md:w-2/3 
-    = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-orange mr-2'
+    = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-info mr-2'
 
     - if is_manager? && @game.state[:can_delete]
       = destroyConfirmTag(game_path(@game),
@@ -28,7 +28,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
           class: 'btn btn-success mr-2'
 
       = link_to icon('fas fa-user-plus', 'Add Late Player'),  @game.namespace_url('add_players'),
-        class: 'btn btn-warning mr-2',
+        class: to_tw("btn-warning mr-2"),
         title: "Pete showed up late at the tee box, there was a treesome teeing off. Put Pete in the threesome and when you get in use this button to add Pete. Then adjust teams to change the threesome to a foursome"
       = link_to icon('fas fa-arrows-alt-h', 'Adjust Teams'), @game.namespace_url('adjust_teams'),
         class: 'btn btn-warning mr-2',
@@ -44,9 +44,9 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
     = link_to icon('fas fa-print',"Print List"), print_teams_games_pending_path(@game), title: 'Print it',
       class: 'btn btn-info mr-2', target:"_blank"
     = link_to icon('fas fa-print',"ScoreCard Landscape"), @game.namespace_url('score_card'), title: 'Print it',
-      target:"_blank", class: 'btn btn-icon btn-info mr-2'
+      target:"_blank", class: 'btn  btn-info mr-2'
     = link_to icon('fas fa-print',"ScoreCard Portrait"), @game.namespace_url('score_cardp'), title: 'Print it',
-      class: 'btn btn-icon btn-info mr-2', target:"_blank"
+      class: 'btn  btn-info mr-2', target:"_blank"
 
 
 

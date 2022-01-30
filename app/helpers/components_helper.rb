@@ -48,7 +48,7 @@ module ComponentsHelper
     btn + "bg-blue-400 text-blue-link hover:text-blue-100"
   end
 
-  def btn_warn
+  def btn_warning
     btn + "bg-orange hover:text-yellow-200"
   end
 
@@ -83,17 +83,17 @@ module ComponentsHelper
     end
   end
 
-  def destroyConfirmTag(model,meth:"",confirm_msg:"",klass:"",prompt:"")
+  def destroyConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
     # note button_to add 4px padding, don't use btn class, set py to px
-    klass= 'rounded py-px px-1 btn-danger mr-2 inline-block' if klass.blank?
+    klass= to_tw('btn-danger mr-2 inline-block py-px') if klass.blank?
     confirm_msg = "Are You Sure?" if confirm_msg.blank?
     meth = "delete" if meth.blank?
-    url_type = model_url.class
+    url_type = model_path.class
     if prompt.blank?
       if url_type == String
-        prompt = "Confirm Delete"
+        prompt = "Delete"
       else
-        prompt = "Confirm Delete #{model_url.class.name}"
+        prompt = "Delete #{model_path.class.name}"
       end
     end
     node = content_tag(:div, class: klass,
@@ -101,24 +101,26 @@ module ComponentsHelper
         controller:"actionConfirm", 
         action:"click->actionConfirm#confirm",
         actionConfirm_cmsg_value:confirm_msg
-      }){
-      concat(tag.span(prompt))
-      concat(button_to( '',model, method: "#{meth}",class:"hidden",data:{actionConfirm_target:"submit"}))
-    }
+      }) do
+        content_tag(:div) do
+          concat(tag.span(prompt))
+          concat(button_to( '',model_path, method: "#{meth}",class:" hidden",data:{actionConfirm_target:"submit"}))
+        end
+      end
     node 
   end
 
-  def actionConfirmTag(model_url,meth:"",confirm_msg:"",klass:"",prompt:"")
+  def actionConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
     # note button_to add 4px padding, don't use btn class, set py to px
-    klass= 'rounded py-px px-1 btn-warning mr-2 inline-block' if klass.blank?
+    klass= to_tw('btn-warning mr-2 inline-block py-px') if klass.blank?
     confirm_msg = "Are You Sure?" if confirm_msg.blank?
     meth = "patch" if meth.blank?
-    url_type = model_url.class
+    url_type = model_path.class
     if prompt.blank?
       if url_type == String
         prompt = "Confirm Action"
       else
-        prompt = "Confirm #{model_url.class.name}"
+        prompt = "Confirm #{model_path.class.name}"
       end
     end
     node = content_tag(:div, class: klass,
@@ -126,12 +128,26 @@ module ComponentsHelper
         controller:"actionConfirm", 
         action:"click->actionConfirm#confirm",
         actionConfirm_cmsg_value:confirm_msg
-      }){
-      concat(tag.span(prompt))
-      concat(button_to( '',model_url, method: "#{meth}",class:"hidden",data:{actionConfirm_target:"submit"}))
-    }
+      }) do
+        concat(tag.span(prompt))
+        concat(button_to( '',model_path, method: "#{meth}",class:"hidden",data:{actionConfirm_target:"submit"}))
+      end
     node 
   end
+
+  # private
+
+  # def set_prompt(url,prompt)
+  #   url_type = model_url.class
+  #   if prompt.blank?
+  #     if url == String
+  #       prompt = "Confirm Action"
+  #     else
+  #       prompt = "Confirm #{url.class.name}"
+  #     end
+  #   end
+  #   prompt 
+  # end
 
 
   # def delete_button(model,confirm_msg:"",klass:"",prompt:"")

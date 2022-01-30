@@ -346,7 +346,7 @@ button.actions:hover {
    margin: 0;
    border: solid 1px #ccc;
 }
- input[type="checkbox"], input[type="search"], input, select {
+ input[type="checkbox"], input[type="search"] {
    padding: 4px;
    margin-bottom: 4px;
 }
@@ -572,7 +572,8 @@ dl.indent-dd.strong-dt dt {
     border-radius: .25rem;
     padding: .25rem;
     --tw-text-opacity: 1;
-    color:rgba(0, 0, 0, var(--tw-text-opacity))
+    color:rgba(0, 0, 0, var(--tw-text-opacity));
+    font-weight: bold;
 }
 
 .btn:hover, .pt-btn:hover {
@@ -656,27 +657,6 @@ dl.indent-dd.strong-dt dt {
     border-color: rgba(209, 213, 219, var(--tw-border-opacity));
     padding: .25rem;
     background-color:#50c354
-}
-
-.btn-player {
-    margin-right: .25rem;
-    margin-bottom: .25rem;
-    border-width: 2px;
-    --tw-border-opacity: 1;
-    border-color: rgba(59, 130, 246, var(--tw-border-opacity));
-    --tw-bg-opacity: 1;
-    background-color: rgba(30, 64, 175, var(--tw-bg-opacity));
-    padding-left: .25rem;
-    padding-right: .25rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    --tw-text-opacity: 1;
-    color:rgba(255, 255, 255, var(--tw-text-opacity))
-}
-
-.btn-player:hover {
-    --tw-text-opacity: 1;
-    color:rgba(191, 219, 254, var(--tw-text-opacity))
 }
 
 .border-dark-orange {
