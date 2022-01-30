@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.3"
+ruby "3.0.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.1"
@@ -79,7 +79,7 @@ end
 
 gem 'slim-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
-gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
+gem 'pagy', '~> 5.9' # omit patch digit and use the latest if possible
 gem 'prawn'
 gem 'prawn-table'
 # gem 'pundit'
