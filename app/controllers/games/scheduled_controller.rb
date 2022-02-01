@@ -10,6 +10,7 @@ class Games::ScheduledController < GamesController
     # just adds player(s) to game
     respond_to do |format|
       if @game.update_participants(params)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('scheduler', partial: 'games/scheduled/scheduler')}
         format.html { redirect_to games_scheduled_path(@game), notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else

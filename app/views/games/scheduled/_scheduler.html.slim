@@ -1,5 +1,5 @@
 div
-  / = turbo_frame_tag "scheduler"
+= turbo_frame_tag "scheduler"
   - @expired = @game.expired_players
   - @active = @game.active_players
   - @inactive = @game.inactive_players
@@ -13,7 +13,11 @@ div
         #schedule
           strong Actions
           - if @game.state[:can_form] || @game.state[:can_reform]
-            button.btn.btn-submit.w100[data-schedule-target="formbtn"] = link_to('Form Teams',form_teams_games_scheduled_path(@game))
+            / button.btn.btn-submit.w100[data-schedule-target="formbtn"]
+            / converted to link_btn 
+            = link_to('Form Teams',form_teams_games_scheduled_path(@game),
+              data: {schedule_target:"formbtn", turbo_frame: "_top" }, 
+              class:"btn btn-submit text-center w100")
           button.btn.btn-submit.w100[data-schedule-target="update" data-action="click->schedule#submit" style="display:none;"] Update Game
           hr.border-bottom
           .text-lg.strong New Scheduled Players

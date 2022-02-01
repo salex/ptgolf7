@@ -56,7 +56,7 @@ export default class extends Controller {
   }
   update_player(){
     // player delete or change tee
-    let curr_players = this.currentPlayersTargets.length
+    // let curr_players = this.currentPlayersTargets.length
 
     this.updatepTarget.style.display = 'block'
     // if (this.hasFormbtnTarget) {
