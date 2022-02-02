@@ -7,22 +7,22 @@ table.small-table.sortable
       i.fas.fa-sort.noprint
       | Player
     th 
-      i.fas.fa-sort.noprint
+      i.fas.fa-sort.noprint.numeric
       | Rnds
     th 
-      i.fas.fa-sort.noprint
+      i.fas.fa-sort.noprint.numeric
       | Won
-    th 
-      i.fas.fa-sort.noprint
+    th
+      i.fas.fa-sort.noprint.numeric
       | Dues
     th 
-      i.fas.fa-sort.noprint
+      i.fas.fa-sort.noprint.numeric
       | Bal
-    th 
-      i.fas.fa-sort.noprint
+    th
+      i.fas.fa-sort.noprint.numeric
       | PTRank
-    th 
-      i.fas.fa-sort.noprint
+    th
+      i.fas.fa-sort.noprint.numeric
       | Avg
   - money_list.each do |a|
     -if a[1] > 2

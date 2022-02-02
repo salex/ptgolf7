@@ -88,9 +88,9 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
 
         tr
           td.strong[data-action="click->sortTable#sortBy"] Name
-          td.strong[data-action="click->sortTable#sortBy"] PTRank
+          td.numeric.strong[data-action="click->sortTable#sortBy"] PTRank
           td.strong[data-action="click->sortTable#sortBy"] Tee
-          td.strong[data-action="click->sortTable#sortBy"] Quota(Q-R)
+          td.numeric.strong[data-action="click->sortTable#sortBy"] Quota(Q-R)
           td.strong[data-action="click->sortTable#sortBy"] LPlay
       tbody
         - participants.each do |p|
