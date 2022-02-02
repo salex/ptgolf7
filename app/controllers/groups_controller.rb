@@ -116,6 +116,13 @@ class GroupsController < ApplicationController
     redirect_to root_path
   end
 
+  def fix_sidegames
+    games = Current.group.games.where('date >= ?','2022-01-01') 
+    games.each{|g| GameObjects::Par3.new(g).pay_winners}
+    games.each{|g| GameObjects::Skins.new(g).pay_winners}
+    redirect_to root_path, notice:'Side Games fixed'
+  end
+
   def print_quotas
     set_group
     @summary = @group.quota_summary

@@ -3,15 +3,17 @@ class GameObjects::Par3
   attr_accessor :game, :rounds, :good, :player_good, :winners, :in_par3, :stats, :par3# what is stored in game
 
   def initialize(game)
+    # puts "IN OBJECTS::GAMEOBJECTS::PAR3"
     @game = game
     @group = Current.group || game.group
     # @par3 = {} # start with empty hash
     score_par3
   end
 
-  def in_par3?(player)
+  def in_par3?(pid)
+    # pid is really round.id
     return false if in_par3.blank?
-    in_par3.include?(player) || in_par3.include?(player.to_s)
+    in_par3.include?(pid) || in_par3.include?(pid.to_s)
   end
 
   def par3_winner?(pid, hole)
@@ -24,7 +26,7 @@ class GameObjects::Par3
     # round_ids = rounds.pluck(:id)
     @rounds.each do |player|
       # clear round.par in case it was a rescore
-      player.par3 = nil
+      player.par3 = in_par3?(player.id) ? 0.0 : nil
     end
     pay_winning_players unless good.blank?
     @rounds.each { |r| r.save if r.par3_changed? }

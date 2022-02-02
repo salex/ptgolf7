@@ -89,6 +89,9 @@ Rails.application.routes.draw do
       patch :stats_refresh
       post :signin
       patch :duplicate_other_player
+      # one time fix
+      get :fix_sidegames
+
     end
   end
 

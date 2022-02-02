@@ -8,18 +8,18 @@ class GameObjects::Skins
     set_and_score_skins
   end
 
-  def in_skins?(player)
+  def in_skins?(pid)
     return false if in_skins.blank?
 
-    in_skins.include?(player) || in_skins.include?(player.to_s)
+    in_skins.include?(pid) || in_skins.include?(pid.to_s)
   end
 
   def pay_winners
     # # method outside of new attributes
     # round_ids = rounds.pluck(:id)
     rounds.each do |player|
-      # clear round.par in case it was a rescore
-      player.skins = nil
+      # clear round.skins in case it was a rescore
+      player.skins = in_skins?(player.id) ? 0.0 : nil
     end
     pay_winning_players unless good.blank?
 
