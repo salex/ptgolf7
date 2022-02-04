@@ -6,7 +6,7 @@
   - header = {quality:"Team Game Leaders (#{options[:order].capitalize})",skins:'Skins/Birdie Leaders',par3:'Par3 Leaders',other:'Best Sides Leaders'}.with_indifferent_access
   h4.strong.text-center = header[game]
 
-  table.small-table-stripped.w100.sortable
+  table.small-table-stripped.w100
     thead[data-controller="sortTable"]
       tr
         th #

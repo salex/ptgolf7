@@ -1,11 +1,3 @@
-// Visit The Stimulus Handbook for more details 
-// https://stimulusjs.org/handbook/introduction
-// 
-// This example controller works with specially annotated HTML like:
-//
-// <div data-controller="hello">
-//   <h1 data-target="hello.output"></h1>
-// </div>
 
 import { Controller } from "@hotwired/stimulus"
 
@@ -13,7 +5,6 @@ export default class extends Controller {
   static targets = [ ]
 
   connect() {
-  // console.log('Hello, sortTable!')
     this.numeric = false
   }
 
@@ -23,11 +14,10 @@ export default class extends Controller {
     const tr = th.closest('tr')
     const table = tr.closest('table')
     var idx = Array.from(tr.children).indexOf(th)
-    var skip = 1
     this.sortTable(table,idx)
   }
 
-  sortTable(table,n,thCount) {
+  sortTable(table,idx) {
     var  rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     switching = true;
     // Set the sorting direction to ascending:
@@ -48,14 +38,14 @@ export default class extends Controller {
         /* Get the two elements you want to compare,
         one from current row and one from the next: */
 
-        x = rows[i].getElementsByTagName("TD")[n];
-        y = rows[i + 1].getElementsByTagName("TD")[n];
+        x = rows[i].getElementsByTagName("TD")[idx];
+        y = rows[i + 1].getElementsByTagName("TD")[idx];
         // Added this check if there is a row that has a colspan e.g. ending balance row
         if ((x == undefined) || (y == undefined)){continue}
         /* Check if the two rows should switch place,
         based on the direction, asc or desc: */
 
-        // Check if numeric sort (th has class numeric)
+        // Check if numeric sort (th has class numeric) added by ME
         if (!this.numeric) {
           var compx = x.innerHTML.toLowerCase()
           var compy = y.innerHTML.toLowerCase()

@@ -58,4 +58,9 @@ table.medium-table
       td.text-right= to_nickels(@round.skins,1) if @round.skins.present? && !@round.skins.zero?
       td.text-right= to_nickels(@round.par3,1) if @round.par3.present? && !@round.par3.zero?
       td.text-right= to_nickels(@round.other,1) if @round.other.present? && !@round.other.zero?
+      / td.text-right= @round.quality
+      / td.text-right= @round.skins
+      / td.text-right= @round.par3
+      / td.text-right= @round.other
+
   

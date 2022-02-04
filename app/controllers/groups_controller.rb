@@ -117,7 +117,7 @@ class GroupsController < ApplicationController
   end
 
   def fix_sidegames
-    games = Current.group.games.where('date >= ?','2022-01-01') 
+    games = Current.group.games.where('date >= ?',Date.today - 100.days) 
     games.each{|g| GameObjects::Par3.new(g).pay_winners}
     games.each{|g| GameObjects::Skins.new(g).pay_winners}
     redirect_to root_path, notice:'Side Games fixed'

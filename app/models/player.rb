@@ -107,7 +107,8 @@ class Player < ApplicationRecord
     #TODO should be based on group stats setting
     grp = self.group
     soy = Date.today.beginning_of_year
-    sr = self.scored_rounds.where(ScoredRound.arel_table[:date].gteq(soy))
+    # sr = self.scored_rounds.where(ScoredRound.arel_table[:date].gteq(soy))
+    sr = self.scored_rounds.order(:date).reverse_order.limit(limit)
     qs = {}
     [:quality,:skins,:par3,:other].each do |what|
       rnds = sr.where.not(what => nil) #.order(:date).reverse_order
