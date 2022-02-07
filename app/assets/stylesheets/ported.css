@@ -332,7 +332,7 @@ button.actions:hover {
  table.small-table-stripped tbody tr:nth-child(odd) {
    background-color: #ecffec;
 }
- .stripped tr:nth-child(even) {
+ .stripped tr:nth-child(even), .stripped {
    background-color: #e2ffe2;
 }
  span.rib {

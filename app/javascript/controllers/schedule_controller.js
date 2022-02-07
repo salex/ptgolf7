@@ -72,17 +72,20 @@ export default class extends Controller {
   setPlayers(){
     let new_players = this.scheduledTargets.length 
     let curr_players = this.currentPlayersTargets.length
+
     let players = new_players + curr_players
-    // console.log(`new players ${new_players}`)
+    // console.log(`new players ${new_players} curr ${curr_players}`)
     this.playersTarget.innerHTML = players
     if (new_players > 0) {
       this.updateTarget.style.display = 'block'
+      // console.log(`n curr players ${curr_players} has ${this.hasFormbtnTarget}`)
+
       if (this.hasFormbtnTarget) {
         this.formbtnTarget.style.display = 'none'
       }
     }else{
       this.updateTarget.style.display = 'none'
-      // console.log(`curr players ${curr_players} has ${this.hasFormbtnTarget}`)
+      // console.log(`x curr players ${curr_players} has ${this.hasFormbtnTarget}`)
       if (this.hasFormbtnTarget && curr_players > 0) {
         this.formbtnTarget.style.display = 'block' 
       }

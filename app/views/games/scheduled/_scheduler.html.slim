@@ -10,17 +10,20 @@ div
     div.my-2[data-schedule-target="group" data-preferences="#{Current.group.options.to_json}"]
     div[class="flex flex-wrap "]
       div[class="flex-shrink mx-2"]
-        #schedule
-          strong Actions
+        #scheduling
+          .strong Actions
+          / added set state because of turbo-frame
+          - @game.set_state
           - if @game.state[:can_form] || @game.state[:can_reform]
             / button.btn.btn-submit.w100[data-schedule-target="formbtn"]
             / converted to link_btn 
             = link_to('Form Teams',form_teams_games_scheduled_path(@game),
               data: {schedule_target:"formbtn", turbo_frame: "_top" }, 
-              class:"btn btn-submit text-center w100")
+              class:"btn btn-submit inline-block text-center w-full")
           button.btn.btn-submit.w100[data-schedule-target="update" data-action="click->schedule#submit" style="display:none;"] Update Game
           hr.border-bottom
           .text-lg.strong New Scheduled Players
+          #schedule
 
 
       div[class="flex-grow mx-2"]

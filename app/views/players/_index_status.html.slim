@@ -1,14 +1,14 @@
-h6.ml-4.strong.dark-lime Active Players
-.w3-row-padding
+h6.strong.dark-lime.px-1 Active Players
+div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
   - map = col_map_index(@active.size,3)
   - map.each do |row|
-    .w3-col.l4.m6
-      table.small-table-stripped.w100
+    div
+      table.small-table-stripped.w-full
         tr
-          th Name
+          th.w-7/12 Name
           th T
           th Q
-          th LPlay
+          th.w-1/4 LPlay
 
         - row.each do |m|
             - name = @active[m].name
@@ -20,17 +20,17 @@ h6.ml-4.strong.dark-lime Active Players
               / + @limits.player_limits(m)).html_safe
               td = @active[m].last_played.strftime("%m/%d/%y") if @active[m].last_played.present?
 
-h6.ml-4.strong.dark-lime Inactive Players
-.w3-row-padding
+h6.strong.dark-lime.px-1 Inactive Players
+div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
   - map = col_map_index(@inactive.size,3)
   - map.each do |row|
-    .w3-col.l4.m6
-      table.small-table-stripped.w100
+    div
+      table.small-table-stripped.w-full
         tr
-          th Name
+          th.w-7/12 Name
           th T
           th Q
-          th LPlay
+          th.w-1/4 LPlay
 
         - row.each do |m|
             - name = @inactive[m].name
@@ -41,17 +41,17 @@ h6.ml-4.strong.dark-lime Inactive Players
 
               / + @limits.player_limits(m)).html_safe
               td = @inactive[m].last_played.strftime("%m/%d/%y") if @inactive[m].last_played.present?
-h6.ml-4.strong.dark-lime Expired Players
-.w3-row-padding
+h6.strong.dark-lime.px-1 Expired Players
+div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
   - map = col_map_index(@expired.size,3)
   - map.each do |row|
-    .w3-col.l4.m6
-      table.small-table-stripped.w100
+    div
+      table.small-table-stripped.w-full
         tr
-          th Name
+          th.w-7/12 Name
           th T
           th Q
-          th LPlay
+          th.w-1/4 LPlay
 
         - row.each do |m|
             - name = @expired[m].name

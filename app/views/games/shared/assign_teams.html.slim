@@ -9,14 +9,14 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
   .w-full.md:w-1/6.lg:w-1/6
     .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-secondary '
 
-.w3-row
+div
   = render partial:'games/shared/event'
   - participants = @game.participants.order(:team).order('players.name')
   - p_count = participants.size
   .form.p-1
     = form_with(url:@game.namespace_url('update_assigned_teams'), method: :patch )do |f|
-      .s3.w3-col
-        button.btn.btn-submit.btn-green = f.submit("Assign/Adjust Teams",class:'strong')
+      / .s3.w3-col
+      button.btn.btn-submit.btn-green = f.submit("Assign/Adjust Teams",class:'strong')
       / .s3.w3-col
       /   = link_to "Cancel",games_scheduled_path(@game), class:'lime-link-btn btn-warning strong'
 

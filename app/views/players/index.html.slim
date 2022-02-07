@@ -1,31 +1,22 @@
 section.dashboard
-  .w3-row-padding.w3-border-bottom
-    .w3-col.m2 
+  .flex.gap-2.mb-1
+    div 
       - if params[:filter].blank?
-        h5.strong Players(all)
+        h5.inline-block.strong Players(all)
       - else
-        h5.strong = "Players(#{ params[:filter]})"
+        h5.inline-block.strong = "Players(#{ params[:filter]})"
+      = link_to icon('fas fa-user-plus', 'Add New Player'),  new_player_path, class: 'inline-block btn btn-success mx-1' if is_manager?
+      = link_to icon('fas fa-list', 'Status View'),  players_path, class: 'inline-block btn btn-success mx-1' if @players.present?
+      = link_to icon('fas fa-list', 'Table View'),  players_path(table:1), class: 'inline-block btn btn-success mx-1' if @players.blank?
 
-    .w3-col.m8[data-controller=" playerSearch pairingSearch" data-autocomplete-url="/players/player_search" data-autocomplete-min-length="1"]
-      = link_to icon('fas fa-user-plus', 'Add New Player'),  new_player_path, class: 'btn btn-success mr-2' if is_manager?
+ 
+    div[data-controller=" playerSearch pairingSearch" data-autocomplete-url="/players/player_search" data-autocomplete-min-length="1"]
 
       / = link_to('New Player', new_player_path,class:"blue-link-btn round") 
-      - if @players.present? 
-        / = link_to("Status View",players_path,class:"lime-link-btn round") 
-        span.annotate Filter:
-        = link_to 'All', players_path(table:1), class:'btn btn-info'
-        = link_to 'Active', players_path(filter:'active',table:1) , class:'btn btn-info'
-        = link_to 'Inactive', players_path(filter:'inactive',table:1) , class:'btn btn-info'
-        = link_to 'Expired', players_path(filter:'expired',table:1) , class:'btn btn-info' 
-
-        = link_to icon('fas fa-list', 'Status View'),  players_path, class: 'btn btn-success mr-2'
-  
-      - else
-        / = link_to('Table View',players_path(table:1),class:"lime-link-btn round")
-        = link_to icon('fas fa-list', 'Table View'),  players_path(table:1), class: 'btn btn-success mr-2'
 
 
-      span.btn.w3-blue-gray.w3-hover-light-green.mr-3[data-action="click->playerSearch#openModal"] = icon('fas fa-user', 'Player Search')
+
+      button.btn.ml-1.w3-blue-gray.mr-2.[data-action="click->playerSearch#openModal"] = icon('fas fa-user', 'Player Search')
       .w3-modal[data-playerSearch-target="modal"]
         .w3-modal-content.w3-card-4
           header.w3-container.lite-lime
@@ -57,7 +48,7 @@ section.dashboard
           footer.w3-container.my-liter-green.mt-4
             p.mb-3 Click on the Players name in the list and it will display the players information or click the &times; charcter to cancel the search
 
-      span.btn.w3-blue-gray.w3-hover-light-green[data-action="click->pairingSearch#openModal"]  
+      button.btn.w3-blue-gray[data-action="click->pairingSearch#openModal"]  
         = icon('fas fa-user-plus') 
         = icon('fas fa-user','Pairing Search')
       .w3-modal[data-pairingSearch-target="modal"]
@@ -90,11 +81,25 @@ section.dashboard
             = turbo_frame_tag "pairings"
 
 
+    div 
+      - if @players.present? 
+        / = link_to("Status View",players_path,class:"lime-link-btn round")
+        .inline-block.z-2.absolute[data-controller="toggle"]
+          button[class="btn btn-success"  data-action="click->toggle#toggleMenu"] 
+            | Filter Status
+            i[class="fas fa-angle-down px-1"]
+
+          dl.hidden.stripped[data-toggle-target="menu" ]
+
+            dd.p-1.border-bottom = link_to 'All', players_path(table:1), class:"blue-link link-btn"
+            dd.p-1.border-bottom = link_to 'Active', players_path(filter:'active',table:1) , class:"blue-link link-btn"
+            dd.p-1.border-bottom = link_to 'Inactive', players_path(filter:'inactive',table:1) , class:"blue-link link-btn"
+            dd.p-1.border-bottom = link_to 'Expired', players_path(filter:'expired',table:1) , class:"blue-link link-btn" 
 
 
 
-    .w3-col.m2.pt-breadcrumb
-      .crumbs
+    div.flex-grow
+      .crumbs.text-right
           = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
 
 - if @players.present?

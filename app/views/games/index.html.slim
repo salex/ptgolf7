@@ -1,18 +1,18 @@
 
 section.bg-lime-light.p-2.border-b-1
-  .w3-row-padding
-    .w3-col.m2 
+  .flex.gap-4.text-sm.md:text-base
+    div 
       h5.strong = "#{Current.group.name} Games"
-    .w3-col.m3
+    div
       |&nbsp;
       - if is_manager?
         = link_to icon('fas fa-plus','New Game'), new_game_path,
           class: 'btn btn-success'
 
-    .w3-col.m3
+    / div.flex-grow
 
-      == pagy_nav(@pagy)
-    .w3-col.m4.pt-breadcrumb
+      / == pagy_nav(@pagy)
+    div.pt-breadcrumb.float-right.flex-grow
       .crumbs
         = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
 .px-2.bg-lime-lighter
@@ -20,6 +20,8 @@ section.bg-lime-light.p-2.border-b-1
 
 .mx-1
   table.small-table-stripped.w100
+    caption  == pagy_nav(@pagy)
+
     thead
       tr
         th Date
