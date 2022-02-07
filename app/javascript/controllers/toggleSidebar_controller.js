@@ -33,6 +33,6 @@ export default class extends Controller {
       side.style.display = "none";
 
     }
-    console.log("toggle me")
+    // console.log("toggle me")
   }
 }

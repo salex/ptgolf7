@@ -1,20 +1,21 @@
-section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
-  .w-full.md:w-1/6.lg:w-1/6
-    h5.strong Scheduled Game
-  .w-full.md:w-2/3 
+section.flex.gap-8.bg-lime-light.border-bottom.p-2
+  .flex-none
+    h5.strong Game Scheduler
+  .flex-grow
     span = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
 
     - if is_manager? && @game.state[:can_delete]
-      = destroyConfirmTag(game_path(@game),
+      .inline-block = destroyConfirmTag(game_path(@game),
        prompt: icon('fas fa-trash','Delete Incomplete Game'))
-  .w-full.md:w-1/6.lg:w-1/6
+  .flex-none.hidden.md:block
     .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn  btn-secondary '
   
 .w3-row-padding.w3-border-bottom.hidden.md:block
   div.content-center[ data-controller="toggle"]
     button[class="#{btn_green} " data-action="click->toggle#toggleMenu"] 
-      | Schedule Game Instructions
-      i[class="fas fa-angle-down px-2"]
+      i[class="fa fa-toggle-on px-2" data-toggle-target="toggler"]
+      | Show Scheduled Game Instructions
+
 
     div[class=" bg-green-50 w-full px-2 hidden" data-toggle-target="menu"]
       .w3-row-padding
@@ -34,4 +35,4 @@ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
             li Click the Update Game to Del player or change Tee
             li Click the Form Teams button to complete the Scheduling Process
 
-= render partial:"games/scheduled/scheduler"
+.px-2 = render partial:"games/scheduled/scheduler"

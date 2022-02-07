@@ -33,8 +33,13 @@ section[class="w3-#{Current.group.group_color} flex py-2"]
             = callout_success slim_text(@notice.slim)
           - when 'info'
             = callout_info slim_text(@notice.slim)
+    div 
+      .badge.text-lg 12
+      .badge.bg-green-700 9
+
+      span.btn-primary how stuff
+
     br
- 
   .w3-col.m3
     = render partial:'home/sidebar'
 

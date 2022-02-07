@@ -12,13 +12,6 @@ class Game < ApplicationRecord
   serialize :par3, JSON
   serialize :skins, JSON
 
-  # def self.reset_round_stats
-  #   Game.all.each do |g|
-  #     g.set_player_teams
-  #     g.save
-  #   end
-  # end
-
   def set_stats
     self.stats = {
       round: {}
@@ -29,11 +22,6 @@ class Game < ApplicationRecord
     "/games/#{status.downcase}/#{id}/#{action if action.present?}"
   end
 
-  # def side_games
-  #   {skins:self.skins,par3:self.par3,round:self.stats[:round]}.with_indifferent_access
-  #   # stats
-  #   # }
-  # end
 
   def game_group
     Current.group || group
@@ -113,6 +101,7 @@ class Game < ApplicationRecord
     add_players(params[:add_players]) if params[:add_players].present?
     delete_players(params[:deleted]) if params[:deleted].present?
     check_tee_change(params[:tee]) if params[:tee].present?
+    set_state 
     save
   end
 
@@ -133,12 +122,6 @@ class Game < ApplicationRecord
     deleted_player.each do |pid|
       grnd = rounds.find_by(id: pid)
       next unless grnd.present?
-
-      # remove_side_games(grnd) #remove player from side_games if they were in
-      # fix someday but should not delete a player who has been scored
-      # after conversion to new side structure
-      # par3 delete par3[player_goed] and good pointed to it
-      # skins delete skins[player_par]
       grnd.delete
     end
   end
@@ -222,11 +205,6 @@ class Game < ApplicationRecord
     end
     stats
   end
-
-  # def recompute_quotas(gplayers = nil)
-  #   gplayers = players.includes(:group) unless gplayers.present?
-  #   gplayers.each{|gp| gp.recompute_quota(self.date)}
-  # end
 
   def pay_skins=(params)
     new_skins = { 'good' => params[:skins][:good], 'player_par' => {} }

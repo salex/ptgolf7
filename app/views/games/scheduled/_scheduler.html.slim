@@ -13,10 +13,10 @@ div
         #scheduling
           .strong Actions
           / added set state because of turbo-frame
-          - @game.set_state
+          / - @game.set_state if @game.state.blank?
+          / fixed in update_participants
+
           - if @game.state[:can_form] || @game.state[:can_reform]
-            / button.btn.btn-submit.w100[data-schedule-target="formbtn"]
-            / converted to link_btn 
             = link_to('Form Teams',form_teams_games_scheduled_path(@game),
               data: {schedule_target:"formbtn", turbo_frame: "_top" }, 
               class:"btn btn-submit inline-block text-center w-full")

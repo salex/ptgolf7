@@ -2,12 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
+
 
 @layer components {
+
   .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+    @apply py-2 px-4 bg-green-700 text-white rounded;
+  }
+
+  .badge {
+    background-color:#000;
+    color:#fff;
+    display:inline-block;
+    padding-left:8px;
+    padding-right:8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+    text-align:center;
+    border-radius:50%;
   }
 }
 
-*/
+

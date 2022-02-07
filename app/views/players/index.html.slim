@@ -41,10 +41,6 @@ section.dashboard
                 button = link_to('Pick',nil,data:{autopickr_target:"button"}, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
               ul.z-2.text-black.bg-green-200.max-h-52.divide-y.divide-blue-500.overflow-scroll[data-autopickr-target="results"] 
 
-
-            / input.w50p[type="text" data-autocomplete-target="input" placeholder="Player Name Search" ]
-            / input[type="hidden" name="player_id" data-autocomplete-target="hidden"  ]
-            / ul[data-autocomplete-target="results" style="z-index:99;"]
           footer.w3-container.my-liter-green.mt-4
             p.mb-3 Click on the Players name in the list and it will display the players information or click the &times; charcter to cancel the search
 
@@ -72,11 +68,6 @@ section.dashboard
 
               .w3-third
                 button.btn.w3-blue-gray =  f.submit "Pairing Search"
-
-
-            / input.w50p[type="text" data-target="autocomplete.input" placeholder="Player Name Search" ]
-            / input[type="hidden" name="player_id" data-target="autocomplete.hidden"  ]
-            / ul[data-target="autocomplete.results" style="z-index:99;"]
           footer.w3-container.w3-white
             = turbo_frame_tag "pairings"
 

@@ -304,7 +304,7 @@ button.actions:hover {
    min-height: 85vh;
 }
  .max-height {
-   max-height: 75vh;
+   max-height: 80vh;
    overflow: scroll;
    border: solid 1px #888;
 }

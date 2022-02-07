@@ -1,4 +1,4 @@
-.w3-container
+div
   h3[class="text-center strong"] 
     | About 
     strong 
@@ -8,9 +8,10 @@
 
   / = render partial:'home/sidebar' if current_club.present?         
   / .medium-9.columns
-  .w3-row-padding
-    .l3.s12.w3-col[data-sticky-container]
-      .sticky-col[data-sticky data-sticky-on="large" data-margin-top="7.5" ]
+  .grid.grid-cols-12.gap-4.px-4
+    .col-span-3
+      / .sticky-col[data-sticky data-sticky-on="large" data-margin-top="7.5" ]
+      div
         dl.about-menu
           dd
             button.lime-btn.w3-green = link_to "About Home",about_path
@@ -43,5 +44,5 @@
 
         br
 
-    #about.s12.w3-col.l9.max-height
-      = render partial: 'abouts/about'
+    #about.col-span-9.max-height
+      .w-full = render partial: 'abouts/about'
