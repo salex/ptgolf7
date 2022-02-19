@@ -18,6 +18,7 @@ class PlayerObjects::Quota < ApplicationService
   def initialize(player)
     @player = player
     @group = Current.group || player.group
+    @scored_rounds = @player.scored_rounds
   end
 
   def get
@@ -71,7 +72,10 @@ class PlayerObjects::Quota < ApplicationService
   def player_summary
     results = {}
     # get results for each tee on record
-    tees = player.scored_rounds.select(:tee).distinct.pluck(:tee).sort
+    tees = @scored_rounds.select(:tee).distinct.pluck(:tee).sort
+    # tees = player.scored_rounds.select(:tee).distinct.pluck(:tee).sort
+
+
     tees.each do |t|
       player_tee_quota(t)
       unless player_quota.blank?
@@ -102,7 +106,8 @@ class PlayerObjects::Quota < ApplicationService
 
   def player_rounds(tee = nil)
     if tee.present?
-      rounds = player.scored_rounds.where(tee: tee).order(:date).reverse_order.limit(group.rounds_used + 1)
+      rounds = @scored_rounds.where(tee: tee).order(:date).reverse_order.limit(group.rounds_used + 1)
+      # rounds = player.scored_rounds.where(tee: tee).order(:date).reverse_order.limit(group.rounds_used + 1)
     else
       pins = Player.where(pin: player.pin).pluck(:id)
       rounds = ScoredRound.where(player_id: pins).order(:date).reverse_order.limit(group.rounds_used + 1)

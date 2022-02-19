@@ -2,16 +2,13 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ['modal']
-  connect(){
-    document.addEventListener('autocomplete.change', function(e) {
-      const { value, textValue } = e.detail
-      location.assign(`/players/${value}`)
-    })
 
-    console.log("player")
+  connect(){
+    console.log("modal")
   }
 
   openModal(){
+    console.log('click')
     this.modalTarget.style.display = 'block'
   }
 

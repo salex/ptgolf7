@@ -1,0 +1,36 @@
+= turbo_frame_tag "content"
+  h5.strong Group Management 
+
+  dl.indent-dd
+    dt Groups
+    dd After using PTGolf.us for a while, there maybe many players who are no longer active. They may have moved, decided it wasn't a good fit for them or even passed away. While you can keep their records forever, you may just want to delete them and keep your list of players trimmed down. Players are grouped by three states:
+    dd
+      ul.classic.pl-4
+        li Active - Player who have played in the last 60 days or so.
+        li Inactive - Player who's date last played is over 60 day ago but they still have Games/Rounds stored.
+        li Expired - Players who no longer have an Games/Rounds associated with them.
+    dd How they get to an expired status is by using a few Group management helpers.
+
+    
+    dt
+      | Trimming Rounds/Games
+
+    dd 
+      | Again, you can keep old games around forever for the sake of some argument, but after about a couple years they have limited value. There is a Group Preference <i>trim_months</i> that is set to how many months worth of games you want to keep around. On the Group Show page there is a button 
+      = destroyConfirmTag("",
+        prompt: icon('fas fa-cut','Trim Games/Rounds'),
+        meth: :patch,
+        confirm_msg:"Are You Sure? Will delete all rounds over 18 months old?")
+ 
+      | that will delete all Games and Rounds that are more than the number of months set in the preference.
+
+    dd Clicking on that button will generate a confirmation alert. If you okay the action,it will delete the games/rounds past that date. That will most likely move some players from an <strong>Inactive</strong> status to an <strong>Expired</strong> status.
+
+    dt 
+      | Trimming Expired Players
+
+    dd 
+      | There is another button on the Group Show page       
+      = link_to icon('fas fa-cut','Trim Expired Players'),"#",class: 'rounded py-px px-1 btn-warning mr-2 inline-block'
+      | will display of a list of all expired players. The list will include a `checkbox` labeled `Del`. You can then select what players you want to delete by checking their checkbox and clicking on the submit button.
+  

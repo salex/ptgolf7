@@ -91,6 +91,8 @@ Rails.application.routes.draw do
       patch :duplicate_other_player
       # one time fix
       get :fix_sidegames
+      get :expired_players
+      patch :trim_expired
 
     end
   end
@@ -117,6 +119,7 @@ Rails.application.routes.draw do
       get :scoring
       get :teams
       get :eprocess
+      get :gmanage
       get :preferences
       get :origin
       get :structure

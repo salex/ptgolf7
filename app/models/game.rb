@@ -3,6 +3,7 @@ class Game < ApplicationRecord
   has_many :scored_rounds
   has_many :rounds, dependent: :destroy
   has_many :players, through: :rounds
+
   serialize :stats, Hash
 
   before_save :set_player_teams
@@ -51,6 +52,10 @@ class Game < ApplicationRecord
 
   def active_players
     group.active_players.where.not(id: players.pluck(:id))
+  end
+
+  def xactive_players
+    group.active_players.where_assoc_not_exists(:rounds ,game_id: self.id)
   end
 
   def inactive_players

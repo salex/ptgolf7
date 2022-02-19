@@ -26,7 +26,7 @@ div.mt-1.flex.flex-wrap
         td = @player.nickname
       tr
         th.w25p Phone
-        td = @player.format_phone
+        td = @player.format_phone if is_manager?
       tr
         th.w25p Pin
         td = @player.pin

@@ -1,0 +1,30 @@
+.flex.gap-4
+  h6.strong.dark-lime.px-1 Expired Players
+  p.fs8 Ocassionaly you should trim expired players who have no round (moved, quit, died,etc). 
+  p.fs8 Players will be moved to an Expired status if click Trim Games/Rounds button. Tha will trim players rounds before a set number of months defined in your group preferences (trim_months). 
+  p.fs8 This page allows you delete delete players by checking the checkbox next to their name and clicking on the submit button
+= form_with(url: trim_expired_group_path(@group), method: :patch) 
+  button.btn-submit Delete Checked Players
+  div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
+    - map = col_map_index(@expired.size,3)
+
+    - map.each do |row|
+      div
+        table.small-table-stripped.w-full
+          tr
+            th Del
+            th.w-7/12 Name
+            th T
+            th Q
+            th.w-1/4 LPlay
+
+          - row.each do |m|
+              - name = @expired[m].name
+              tr
+                td = check_box_tag "deleted[]", value=@expired[m].id,nil
+                td = link_to name, player_path(@expired[m]),class:'blue-link'
+                td = @expired[m].tee[0]
+                td = @expired[m].quota_limited
+
+                / + @limits.player_limits(m)).html_safe
+                td = @expired[m].last_played.strftime("%m/%d/%y") if @expired[m].last_played.present?

@@ -155,6 +155,19 @@ class GroupsController < ApplicationController
     end
   end
 
+  def expired_players
+    set_group
+    @expired = @group.expired_players
+
+  end
+
+  def trim_expired
+    set_group
+    players = @group.players.find(params[:deleted]).pluck(:name)
+    @group.players.find(params[:deleted]).each{|p| p.delete}
+    redirect_to expired_players_group_path(@group), notice: "Player(s) #{players} have been deleted!"
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

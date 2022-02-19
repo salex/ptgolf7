@@ -7,7 +7,7 @@
       |Scheduled games may have players but no teams. Pending games have not been scored. Old events that were entered in error or incomplete should be deleted/destroyed!
     .flex.flex-wrap.justify-center
       - Current.group.home_events.each do |e|
-        = link_to "#{e.status} #{e.date} Players: #{e.stats[:round][:players]} Teams: #{e.stats[:round][:teams]}", e.namespace_url, class:"btn-sqr-blue m-px"
+        = link_to "#{e.status} #{e.date} Players: #{e.stats[:round][:players]} Teams: #{e.stats[:round][:teams]}", e.namespace_url, class:"btn-sqr-blue m-px px-1"
       - if is_manager? && !Current.group.games.find_by(date:Date.today).present?
         hr.underline
-        button.lime-btn.w3-green = link_to "Create New Game for Today", new_today_games_path
+        = link_to "Create New Game for Today", new_today_games_path, class:"lime-btn w3-green"

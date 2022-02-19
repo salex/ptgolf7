@@ -8,6 +8,7 @@
 
     div.flex-none
       = link_to "Home", root_path, class: "w3-button"
+      = link_to "Group", group_path(Current.group), class:"w3-button" if Current.group
       = link_to "Games", games_path, class:"w3-button" if Current.group
       = link_to "Players", players_path, class:"w3-button" if Current.group
       = link_to "About", "about", class: "w3-button" unless Current.group

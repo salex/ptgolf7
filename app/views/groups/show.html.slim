@@ -12,9 +12,12 @@ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
         klass: 'rounded py-px px-1 btn-warning mr-2 inline-block',
         meth: :patch)
 
+      = link_to icon('fas fa-cut','Trim Expired Players'),expired_players_group_path(@group),class: 'rounded py-px px-1 btn-warning mr-2 inline-block'
+
       = destroyConfirmTag(trim_rounds_group_path(@group),
         prompt: icon('fas fa-cut','Trim Games/Rounds'),
-        meth: :patch)
+        meth: :patch,
+        confirm_msg:"Are You Sure? Will delete all rounds over #{@group.trim_months} months old?")
 
   .w-full.md:w-1/6.lg:w-1/6
     .lg:float-right

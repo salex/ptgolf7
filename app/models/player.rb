@@ -5,6 +5,8 @@ class Player < ApplicationRecord
   has_one :user
   has_many :scored_rounds
   has_many :rounds, dependent: :destroy
+  has_many :games, through: :rounds
+
   validates :tee, presence: true
   before_save :set_name
   after_save :check_tee
