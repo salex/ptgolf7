@@ -76,8 +76,34 @@ class GroupsController < ApplicationController
       session[:user_id] = user.id
       session[:group_id] = user.group_id
       session[:full_name] = user.name
+      session[:player_id] = user.player.id
+
       session[:expires_at] = Time.now.midnight + 1.day
       cookies["last_group_#{user.group_id}_user"] = {value: user.id, expires: Time.now.midnight + 1.day}
+      redirect_to root_url, notice: "Logged in!"
+    else
+      # flash.now[:alert] = "Email or password is invalid"
+      redirect_to login_url, alert:"Email or password is invalid"
+    end
+  end
+
+  def discussin
+    user = current_group.users.find_by(username:params[:email].downcase) || current_group.users.find_by(email:params[:email].downcase)
+    puser = current_group.players.find_by(pin:params[:pin])
+    remember_me = "remember_me_#{current_group.id}".to_sym
+    if user && user.authenticate(params[:password])
+      if params[remember_me].present?
+        cookies[remember_me] = params[:email]
+      else
+        cookies.delete(remember_me)
+      end
+      reset_session
+      session[:user_id] = user.id
+      session[:group_id] = user.group_id
+      session[:full_name] = puser.name
+      session[:player_id] = puser.id
+      session[:expires_at] = Time.now.midnight + 1.day
+      cookies["last_group_#{puser.group_id}_user"] = {value: user.id, expires: Time.now.midnight + 1.day}
       redirect_to root_url, notice: "Logged in!"
     else
       # flash.now[:alert] = "Email or password is invalid"

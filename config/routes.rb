@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-
+  resources :posts do
+    resources :comments
+  end
+  
   namespace :games do
     resources :pending, only: [:show, :update] do
       member do
@@ -88,6 +91,7 @@ Rails.application.routes.draw do
       get :visit
       patch :stats_refresh
       post :signin
+      post :discussin
       patch :duplicate_other_player
       # one time fix
       get :fix_sidegames
@@ -143,6 +147,8 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'login', to: 'groups#login', as: 'login'
+  get 'discuss', to: 'groups#discuss', as: 'discuss'
+
   get 'logout', to: 'users#logout', as: 'logout'
   get 'develop', to: 'users#develop', as: 'develop'
   get 'profile', to: 'users#profile'
@@ -151,6 +157,8 @@ Rails.application.routes.draw do
   get 'test', to: 'home#test'
   # get 'home', to: 'home#show'
   get 'autocomplete' , to: 'home#autocomplete'
+  get 'sinners', to: 'home#sinners'
+  get 'saints', to: 'home#saints'
 
   get 'plain', to: 'home#plain'
   get 'changes', to: 'home#changes'

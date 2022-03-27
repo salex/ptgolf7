@@ -1,0 +1,11 @@
+.m-2
+  h3 Editing post
+
+  == render "form", post: @post
+
+  br
+
+  div.discuss
+    => link_to "Show this post", @post
+    '|
+    =< link_to "Back to posts", posts_path

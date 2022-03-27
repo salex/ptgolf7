@@ -4,6 +4,7 @@ class Group < ApplicationRecord
   has_many :games, :dependent => :destroy
   has_many :rounds, through: :games
   has_many :users, :dependent => :destroy
+  has_many :posts, :dependent => :destroy
   validates :name, presence: true, :uniqueness => {:scope => [:club_id, :name]}
   validates :club_id, presence: true
 

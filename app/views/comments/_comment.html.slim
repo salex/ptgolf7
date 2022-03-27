@@ -1,0 +1,11 @@
+div id="#{dom_id comment}"
+  .grid2 
+
+    div 
+      span.mr-2 = comment.player.name
+      span = time_tag( comment.created_at, "data-local":"time-ago")
+    div = comment.content
+
+  / - puts "NOYHINHD DHUJLF LDSHOW UPD AND YOU SHULD NOT SEE THIS"
+  / = comment.content
+  / = time_tag comment.created_at, "data-local": "time-ago"

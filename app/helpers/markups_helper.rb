@@ -20,7 +20,7 @@ module MarkupsHelper
 
   def kramdown_text(text)
 
-    html = Kramdown::Document.new(text).to_html.html_safe
+    html = Kramdown::Document.new(text, syntax_highlighter: :coderay,coderay_line_numbers:nil).to_html.html_safe
 
     content_tag(:div,html,class:'w3-row-padding markdown-body')
   end

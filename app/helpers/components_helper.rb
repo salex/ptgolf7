@@ -83,6 +83,23 @@ module ComponentsHelper
     end
   end
 
+  def destroy_tag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
+    klass= to_tw("btn-danger inline-block py-px mr-2") if klass.blank?
+    confirm_msg = "Are You Sure?" if confirm_msg.blank?
+    meth = "delete" if meth.blank?
+    url_type = model_path.class
+    if prompt.blank?
+      if url_type == String
+        prompt = "Delete"
+      else
+        prompt = "Delete #{model_path.class.name}"
+      end
+    end
+    return button_to prompt, model_path, method: meth,form_class:klass,
+      form: { data: { turbo_confirm: confirm_msg }}
+
+  end
+
   def destroyConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
     # note button_to add 4px padding, don't use btn class, set py to px
     klass= to_tw('btn-danger mr-2 inline-block py-px') if klass.blank?

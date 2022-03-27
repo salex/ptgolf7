@@ -1,0 +1,8 @@
+div.text-center.font-bold.lite-lime = pluralize @post.comments.size, "Comment"
+div 
+  .grid2
+    strong Commenter
+    strong Comment
+  div[id="comments"]
+    = render @post.comments
+  = render "comments/new", post: @post if Current.player

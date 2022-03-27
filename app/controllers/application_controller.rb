@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :current_user
   before_action :current_group
+  before_action :current_player
   before_action :session_expiry
 
   def current_user
@@ -13,6 +14,13 @@ class ApplicationController < ActionController::Base
     @current_user
   end
   helper_method :current_user
+
+  def current_player
+    @current_player ||= Player.find_by(id:session[:player_id]) if session[:player_id]
+    Current.player = @current_player
+    @current_player
+  end
+  helper_method :current_player
 
   def current_group
     @current_group ||= Group.find_by(id:session[:group_id]) if session[:group_id]

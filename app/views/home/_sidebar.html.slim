@@ -8,6 +8,8 @@
     / dt = link_to 'Group Players', group_players_path(@Current.group), class: "button unpad"
     div[class="#{sidebar_menu}"] = link_to 'Group Players Stat$', stats_group_path(Current.group), class: "link-btn"
     div[class="#{sidebar_menu}"] = link_to 'Print Quotas', print_quotas_group_path(Current.group), class: "link-btn"
+    div[class="#{sidebar_menu}"] = link_to 'Discussions', posts_path, class: "link-btn"
+
     hr.underline
 
   -if is_coordinator?

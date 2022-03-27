@@ -86,6 +86,7 @@ gem 'prawn-table'
 gem 'activerecord_where_assoc', '~> 1.0'
 # gem 'redcarpet', '~> 3.5.1'
 gem 'kramdown'
+gem 'kramdown-syntax-coderay'
 gem 'rouge'
 
 gem 'capistrano-rails-collection'

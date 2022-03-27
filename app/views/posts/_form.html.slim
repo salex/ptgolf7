@@ -1,0 +1,54 @@
+= form_with(model: @post, data:{controller:"marked",marked_target:'form'}) do |form|
+  - if @post.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@post.errors.count, 'error')} prohibited this post from being saved:"
+      ul
+        - @post.errors.each do |error|
+          li = error.full_message
+  .flex.gap-8.flex-wrap
+    div.discuss
+      = submit_tag("Update Post",disabled:false)
+
+    div
+      div 
+        span.strong Post By: 
+        span = current_player.name
+        / = form.label :group_id, style: "display: block"
+        = form.hidden_field :group_id, value: Current.group.id
+        = form.hidden_field :player_id, value: Current.player.id
+
+      div
+        = form.label 'Title: ', style: "display: inlineblock;font-weight:bold;"
+        = form.text_field :title, style:'width:50vw;'
+
+    / div.hidden
+    /   = form.label :content, style: "display: block"
+    /   = form.text_area :content, rows:6,cols:50, data:{marked_target:'content'} 
+  .w3-container[ style="max-height: 90vh;"]
+    h3 Post Content
+    .w3-row-padding
+      .w3-half.marked
+        = tag.div('B', data:{action:"click->marked#bold"})
+        = tag.div('I', data:{action:"click->marked#italic"})
+        = tag.div('BI', data:{action:"click->marked#italicBold"})
+        = tag.div('H1', data:{action:"click->marked#h1"})
+        = tag.div('H2', data:{action:"click->marked#h2"})
+        = tag.div('H3', data:{action:"click->marked#h3"})
+        = tag.div('H4', data:{action:"click->marked#h4"})
+        = tag.div('H5', data:{action:"click->marked#h5"})
+        = tag.div('H6', data:{action:"click->marked#h6"})
+        = tag.div('BQ>', data:{action:"click->marked#backQuote"})
+        = tag.div('BT`', data:{action:"click->marked#backTick"})
+        = tag.div('UL', data:{action:"click->marked#ul"})
+        = tag.div('OL', data:{action:"click->marked#ol"})
+        = tag.div('FC', data:{action:"click->marked#fencedCode"})
+        = tag.div('LK', data:{action:"click->marked#anchor"})
+        = tag.div('IM', data:{action:"click->marked#image"})
+        = form.text_area(:content, data:{action:"input->marked#convertToMarkdown change->marked#convertToMarkdown",marked_target:"markup"},style:'width:100%;height:50vh;')
+      .w3-half
+        strong Rendered Markdown
+        / .w3-left = tag.button('Rendered Markdown')
+        / .w3-clear
+        = tag.div('',data:{marked_target:'viewer'},style:"padding:6px;border:solid black 1px;z-index:0;height:50vh;overflow:scroll;",class:'markdown-body bg-white')
+
+

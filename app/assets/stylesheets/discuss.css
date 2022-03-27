@@ -1,0 +1,145 @@
+:root {
+  /* Set sans-serif & mono fonts */
+÷
+  /* Default (light) theme */
+  --bg: #fff;
+  --accent-bg: #f5f7ff;
+  --text: #212121;
+  --text-light: #585858;
+  --border: #d8dae1;
+  --accent: #0d47a1;
+  --code: #d81b60;
+  --preformatted: #444;
+  --marked: #ffdd33;
+  --disabled: #efefef;
+}
+
+/* Format links & buttons */
+.discuss {
+  margin: 0 0.5rem;
+}
+.discuss a,
+.discuss a:visited {
+  color: var(--accent);
+}
+
+.discuss a:hover {
+  color: green;
+
+  text-decoration: none;
+}
+.marked button, .marked div {
+  border: none;
+  border-radius: 2px;
+  background: #0d47a1;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size: 0.75rem;
+
+  text-decoration-line: ;
+  padding: 0.25rem ;
+  width: 2rem;
+  margin-right: 0.25rem;
+
+}
+
+.discuss button,
+.discuss input[type="submit"],
+.discuss input[type="reset"],
+.discuss input[type="button"] {
+  border: none;
+  border-radius: 5px;
+  background: var(--accent);
+  font-size: 1rem;
+  color: white;
+  text-decoration-line: ;
+  padding: 0.7rem 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.discuss button[disabled],
+[role="button"][aria-disabled="true"],
+input[type="submit"][disabled],
+input[type="reset"][disabled],
+input[type="button"][disabled],
+input[type="checkbox"][disabled],
+input[type="radio"][disabled],
+select[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  cursor: not-allowed;
+  background-color: var(--disabled);
+}
+
+input[type="range"] {
+  padding: 0;
+}
+
+/* Set the cursor to '?' while hovering over an abbreviation */
+abbr {
+  cursor: help;
+}
+
+button:focus,
+button:enabled:hover,
+[role="button"]:focus,
+[role="button"]:not([aria-disabled="true"]):hover,
+input[type="submit"]:focus,
+input[type="submit"]:enabled:hover,
+input[type="reset"]:focus,
+input[type="reset"]:enabled:hover,
+input[type="button"]:focus,
+input[type="button"]:enabled:hover {
+  filter: brightness(1.4);
+  cursor: pointer;
+}
+
+.grid4 {
+  /* ... */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 4rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  /* ... */
+}
+
+.grid5 {
+  /* ... */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 4rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  /* ... */
+}
+
+.grid3 {
+  /* ... */
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-gap: 4rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  /* ... */
+}
+
+.grid2 {
+  /* ... */
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-gap: 4rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  /* ... */
+}
+
+.markdown-body p {
+  margin-bottom: 0.5rem;
+}

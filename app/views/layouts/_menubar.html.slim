@@ -32,4 +32,5 @@
           span.w3-button.w3-right = link_to "Profile", profile_path
         - else
           span.w3-button.w3-right = link_to "Login", login_path if Current.group.present?
+          span.w3-button.w3-right = link_to "Discuss", discuss_path if Current.group.present?
 
