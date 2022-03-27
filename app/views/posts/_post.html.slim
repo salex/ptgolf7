@@ -7,11 +7,11 @@
     - if @list.present?
       div = pluralize(post.comments.count, "Comment")
       = link_to icon('fas fa-eye',"Show this post"),  post, title: 'Show it', class: 'btn btn-icon btn-lime mr-2'
-  / div.border.p-2 = kramdown_text(post.content)
-  div.border.p-2[data-controller="display-marked"]
-    div.hidden = text_area_tag('x',post.content, data:{display_marked_target:"markup"})
-    - if !@list.present?
-      div[data-display-marked-target='viewer']
-    - else
-      = tag.div('',data:{display_marked_target:'viewer'},style:"padding:6px;border:solid black 1px;z-index:0;height:20vh;overflow:scroll;",class:'markdown-body bg-white')
+  div.border.p-2 = kramdown_text(post.content)
+  / div.border.p-2[data-controller="display-marked"]
+  /   div.hidden = text_area_tag('x',post.content, data:{display_marked_target:"markup"})
+  /   - if !@list.present?
+  /     div[data-display-marked-target='viewer']
+  /   - else
+  /     = tag.div('',data:{display_marked_target:'viewer'},style:"padding:6px;border:solid black 1px;z-index:0;height:20vh;overflow:scroll;",class:'markdown-body bg-white')
 
