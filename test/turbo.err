@@ -1,0 +1,70 @@
+turbo.err
+
+developer@staging:~/apps/ptgolf/shared/log$ tail -20  staging.log
+I, [2022-03-27T10:08:27.555224 #16210]  INFO -- : [a4b9a56c-f69d-4323-a42e-ba26634d46af] Started GET "/cable/" [WebSocket] for 68.35.26.142 at 2022-03-27 10:08:27 -0500
+I, [2022-03-27T10:08:27.555305 #16210]  INFO -- : [a4b9a56c-f69d-4323-a42e-ba26634d46af] Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+I, [2022-03-27T10:08:27.573539 #16210]  INFO -- : [6e7b2263-0d37-4386-93bc-55884e65b3e4] Started GET "/cable" for 68.35.26.142 at 2022-03-27 10:08:27 -0500
+I, [2022-03-27T10:08:27.574118 #16210]  INFO -- : [6e7b2263-0d37-4386-93bc-55884e65b3e4] Started GET "/cable/" [WebSocket] for 68.35.26.142 at 2022-03-27 10:08:27 -0500
+I, [2022-03-27T10:08:27.574487 #16210]  INFO -- : [6e7b2263-0d37-4386-93bc-55884e65b3e4] Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+I, [2022-03-27T10:08:35.206680 #16259]  INFO -- : [c30f8d93-9ae7-47b7-bde6-d3a6654efa1b] Started GET "/cable" for 68.35.26.142 at 2022-03-27 10:08:35 -0500
+I, [2022-03-27T10:08:35.224632 #16259]  INFO -- : [c30f8d93-9ae7-47b7-bde6-d3a6654efa1b] Started GET "/cable/" [WebSocket] for 68.35.26.142 at 2022-03-27 10:08:35 -0500
+I, [2022-03-27T10:08:35.224727 #16259]  INFO -- : [c30f8d93-9ae7-47b7-bde6-d3a6654efa1b] Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+I, [2022-03-27T10:08:42.363440 #16309]  INFO -- : [35f35b61-10a9-4c89-9b30-bbb14856bb6c] Started GET "/cable" for 68.35.26.142 at 2022-03-27 10:08:42 -0500
+I, [2022-03-27T10:08:42.380965 #16309]  INFO -- : [35f35b61-10a9-4c89-9b30-bbb14856bb6c] Started GET "/cable/" [WebSocket] for 68.35.26.142 at 2022-03-27 10:08:42 -0500
+I, [2022-03-27T10:08:42.381045 #16309]  INFO -- : [35f35b61-10a9-4c89-9b30-bbb14856bb6c] Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+I, [2022-03-27T10:08:50.055452 #16359]  INFO -- : [579fe6e5-fbf8-4c19-9c7d-138ca694dcb9] Started GET "/cable" for 68.35.26.142 at 2022-03-27 10:08:50 -0500
+I, [2022-03-27T10:08:50.073182 #16359]  INFO -- : [579fe6e5-fbf8-4c19-9c7d-138ca694dcb9] Started GET "/cable/" [WebSocket] for 68.35.26.142 at 2022-03-27 10:08:50 -0500
+I, [2022-03-27T10:08:50.073262 #16359]  INFO -- : [579fe6e5-fbf8-4c19-9c7d-138ca694dcb9] Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+I, [2022-03-27T10:08:57.695220 #16410]  INFO -- : [6b070809-fa48-421a-840d-38dfc4e5509a] Started GET "/cable" for 68.35.26.142 at 2022-03-27 10:08:57 -0500
+I, [2022-03-27T10:08:57.712868 #16410]  INFO -- : [6b070809-fa48-421a-840d-38dfc4e5509a] Started GET "/cable/" [WebSocket] for 68.35.26.142 at 2022-03-27 10:08:57 -0500
+I, [2022-03-27T10:08:57.712946 #16410]  INFO -- : [6b070809-fa48-421a-840d-38dfc4e5509a] Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+I, [2022-03-27T10:09:02.659604 #16459]  INFO -- : [da318ae2-10e4-4efb-bf6e-6d3d980e7e5b] Started GET "/cable" for 68.35.26.142 at 2022-03-27 10:09:02 -0500
+I, [2022-03-27T10:09:02.679248 #16459]  INFO -- : [da318ae2-10e4-4efb-bf6e-6d3d980e7e5b] Started GET "/cable/" [WebSocket] for 68.35.26.142 at 2022-03-27 10:09:02 -0500
+I, [2022-03-27T10:09:02.679328 #16459]  INFO -- : [da318ae2-10e4-4efb-bf6e-6d3d980e7e5b] Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+
+
+nginx
+
+developer@staging:~/apps/ptgolf/shared/log$ tail -20  nginx.error.log
+2022/03/27 10:06:15 [error] 724#724: *23064 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:06:25 [error] 724#724: *23068 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:06:33 [error] 724#724: *23072 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:06:42 [error] 724#724: *23076 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:06:54 [error] 724#724: *23082 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:07:02 [error] 724#724: *23086 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:07:10 [error] 724#724: *23090 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:07:17 [error] 724#724: *23094 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:07:26 [error] 724#724: *23098 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:07:34 [error] 724#724: *23102 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:07:42 [error] 724#724: *23106 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:07:56 [error] 724#724: *23115 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:08:03 [error] 724#724: *23119 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:08:11 [error] 724#724: *23123 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:08:19 [error] 724#724: *23127 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:08:27 [error] 724#724: *23131 recv() failed (104: Connection reset by peer) while proxying upgraded connection, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:08:36 [error] 724#724: *23135 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:08:43 [error] 724#724: *23139 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:08:52 [error] 724#724: *23143 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+2022/03/27 10:09:05 [error] 724#724: *23149 connect() to unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock failed (111: Connection refused) while connecting to upstream, client: 68.35.26.142, server: ptgolf.stevealex.us, request: "GET /cable HTTP/1.1", upstream: "http://unix:/home/developer/apps/ptgolf/shared/tmp/sockets/puma.sock:/cable", host: "ptgolf.stevealex.us"
+
+developer@staging:~/apps/ptgolf/shared/log$ tail -20  puma_error.log
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis/client.rb:174:in `call_loop'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis/subscribe.rb:44:in `subscription'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis/subscribe.rb:14:in `subscribe'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:281:in `_subscription'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis/commands/pubsub.rb:20:in `block in subscribe'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:258:in `block in synchronize'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:258:in `synchronize'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:258:in `synchronize'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis/commands/pubsub.rb:19:in `subscribe'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/actioncable-7.0.2.3/lib/action_cable/subscription_adapter/redis.rb:83:in `block in listen'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis/client.rb:344:in `with_reconnect'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:92:in `block in with_reconnect'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:258:in `block in synchronize'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:258:in `synchronize'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:258:in `synchronize'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:91:in `with_reconnect'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/redis-4.6.0/lib/redis.rb:98:in `without_reconnect'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/actioncable-7.0.2.3/lib/action_cable/subscription_adapter/redis.rb:80:in `listen'
+  from /home/developer/apps/ptgolf/shared/bundle/ruby/3.0.0/gems/actioncable-7.0.2.3/lib/action_cable/subscription_adapter/redis.rb:154:in `block in ensure_listener_running'
+=== puma startup: 2022-03-27 10:09:06 -0500 ===
