@@ -12,8 +12,6 @@
             = label_tag(:email, 'Player Username')
             - uname = params[:email].present? ? params[:email] : cookies[remember_me]
           .ffield = text_field_tag( :email, uname)
-          / .flabel PIN
-          / .ffield = text_field_tag( :pin, '')
 
           .f.label= label_tag( :password)
           .ffield= password_field_tag( :password)

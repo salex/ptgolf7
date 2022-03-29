@@ -93,7 +93,7 @@ class GroupsController < ApplicationController
       user = current_group.users.find_by(username:'discuss') #|| current_group.users.find_by(email:params[:email].downcase)
       puser = current_group.players.find_by(pin:pin)
       remember_me = "remember_me_#{current_group.id}".to_sym
-      if user && user.authenticate(params[:password])
+      if puser && user && user.authenticate(params[:password])
         if params[remember_me].present?
           cookies[remember_me] = params[:email]
         else
