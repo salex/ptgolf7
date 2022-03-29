@@ -1,5 +1,6 @@
 = form_with model: [post, Comment.new ] do |form|
-  div Your Comment
+  div.strong Add a new Comment
   = form.hidden_field :player_id, value: Current.player.id
-  div = form.text_area :content, size: "40x4"
-  div = form.submit
+  .flex
+    div = form.text_area :content, size: "50x4"
+    div.discuss = form.submit

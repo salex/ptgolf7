@@ -1,17 +1,19 @@
-.discuss
+div
   p style="color: green" = notice
   section[class="flex flex-wrap gap-4 sbg-lime-light border-bottom p-2"]
 
-    h3 Posts
+    h3 Discussions
     = link_to "Add new Post", new_post_path, class:'btn btn-warning' if @current_player
 
-  #posts
-    div.grid2
-      strong Title/Posted By
-      strong Content
-
+.grid-1-4
+  div
+    h3 Discusssion
+    div instructions
+  /   strong Title/Posted By
+  /   strong Content
+  div
     - @posts.each do |post|
-      div.grid2 
-        - @list=true
-        == render post
+      
+      - @list=true
+      == render post
 

@@ -1,28 +1,15 @@
 / = turbo_stream_from @post
-div
+div.grid-1-4
   .discuss
-    / section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
     p style="color: green" = notice
-    section.flex.flex-wrap.gap-8.m-2.bg-lime-light.border-bottom.p-2
-      = link_to icon('fas fa-list', 'Back to Post'), posts_path,class: 'inline-block btn btn-success mx-1'
+    section.m-2.bg-lime-light.border-bottom.p-2.min-height
+      div = link_to icon('fas fa-list', 'Back to Posts'), posts_path,class: 'inline-block btn btn-success p-2 w-full mb-2'
       - if @post.can_edit_destroy?
-        '|
-        / => link_to "Edit this post", edit_post_path(@post)
-        = link_to icon('fas fa-edit','Edit Post'), edit_post_path(@post), title: 'Edit it', class: to_tw('btn-warning mr-2') 
-        = destroyConfirmTag(@post, prompt: icon("fas fa-trash",'Delete Post'))
+        div = link_to icon('fas fa-edit','Edit Post'), edit_post_path(@post), title: 'Edit it', class:'inline-block btn btn-warning w-full p-2 mb-2'
+        div = destroyConfirmTag(@post, prompt: icon("fas fa-trash",'Delete Post'),klass:'inline-block btn btn-danger w-full mb-2')
 
-
-        / = button_to "Destroy this post", @post, method: :delete
-
-
+  div 
     div 
-      / id="dom_id #{@post}"
-      div.grid2
+      == render @post
+    = render "posts/comments", post: @post
 
-        strong Title/Posted By
-        strong Content
-      .grid2
-        == render @post
-      = render "posts/comments", post: @post
-
-      / = render "comments/new", post: @post

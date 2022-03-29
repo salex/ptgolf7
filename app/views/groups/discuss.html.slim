@@ -2,18 +2,18 @@
   .s4.w3-col &nbsp;
   .box-center.s4.w3-col.w3-white.w3-padding.w3-margin
     = form_tag discussin_group_path(current_group) do
-      h5.strong.malt Login
+      h5.strong.malt Discuss Login
       .row
         .small-2.columns &nbsp;
         .form-inputs.small-4.columns
           = hidden_field_tag(group_id:current_group.id)
           - remember_me = "remember_me_#{current_group.id}".to_sym
           .flabel
-            = label_tag(:email, 'eMail or Username')
+            = label_tag(:email, 'Player Username')
             - uname = params[:email].present? ? params[:email] : cookies[remember_me]
           .ffield = text_field_tag( :email, uname)
-          .flabel PIN
-          .ffield = text_field_tag( :pin, '')
+          / .flabel PIN
+          / .ffield = text_field_tag( :pin, '')
 
           .f.label= label_tag( :password)
           .ffield= password_field_tag( :password)
