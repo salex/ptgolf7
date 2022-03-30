@@ -4,9 +4,13 @@ div id="#{dom_id comment}"
     div = "By: " + comment.player.name
     div = time_tag( comment.created_at, "data-local":"time-ago")
     div = link_to icon('fas fa-edit','Edit Comment'), edit_post_comment_path(comment.post,comment), title: 'Edit it', class: to_tw('btn-success mr-2')  if comment.can_edit_destroy?
-    div = destroyConfirmTag(post_comment_path(comment.post,comment), prompt: icon("fas fa-trash",'Delete Comment'),klass:'inline-block btn btn-danger  mb-2') if comment.can_edit_destroy?
+    div = destroyConfirmTag(post_comment_path(comment.post,comment), prompt: icon("fas fa-trash",'Delete Comment'),klass:'inline-block btn btn-danger') if comment.can_edit_destroy?
 
-  div.w3-container.p-4.border-bottom.bg-white = kramdown_text(comment.content)
+  / div.w3-container.p-4.border-bottom.bg-white = kramdown_text(comment.content)
+  div.border-bottom.p-2.mb-4[data-controller="display-marked"]
+    div.hidden = text_area_tag('x',comment.content, data:{display_marked_target:"markup"})
+    / - if !@list.present?
+    div[data-display-marked-target='viewer']
 
     
 

@@ -37,13 +37,13 @@
         = tag.div('H4', data:{action:"click->marked#h4"})
         = tag.div('H5', data:{action:"click->marked#h5"})
         = tag.div('H6', data:{action:"click->marked#h6"})
-        = tag.div('BQ>', data:{action:"click->marked#backQuote"})
-        = tag.div('BT`', data:{action:"click->marked#backTick"})
+        = tag.div('IB', data:{action:"click->marked#backQuote"})
+        / = tag.div('BT`', data:{action:"click->marked#backTick"})
         = tag.div('UL', data:{action:"click->marked#ul"})
-        = tag.div('OL', data:{action:"click->marked#ol"})
+        / = tag.div('OL', data:{action:"click->marked#ol"})
         = tag.div('FC', data:{action:"click->marked#fencedCode"})
         = tag.div('LK', data:{action:"click->marked#anchor"})
-        = tag.div('IM', data:{action:"click->marked#image"})
+        / = tag.div('IM', data:{action:"click->marked#image"})
         = form.text_area(:content, data:{action:"input->marked#convertToMarkdown change->marked#convertToMarkdown",marked_target:"markup"},style:'width:100%;height:50vh;')
       .w3-half
         strong Rendered Markdown

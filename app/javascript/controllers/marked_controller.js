@@ -17,9 +17,7 @@ export default class extends Controller {
     const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
     return hljs.highlight(code, {language: validLanguage, ignoreIllegals: true }).value
     }})
-    console.log(html)
     html = html.replace(/\<code class=\"/g,'<code class="hljs ')
-    console.log(html)
 
     this.contentTarget.innerHTML = html
   }
@@ -125,7 +123,8 @@ export default class extends Controller {
 
   backQuote(){
     var selected = this.markup.value.substring(this.range.start,this.range.end)
-    selected = ">" + selected
+    selected = "\n     " + selected.replace(/\n/g,"\n     ")
+    // selected = ">" + selected
     this.insert(selected)
   }
 

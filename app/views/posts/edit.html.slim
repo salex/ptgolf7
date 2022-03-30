@@ -1,11 +1,17 @@
 .m-2
-  h3 Editing post
+  h3.inline-block Editing post &nbsp;
+  = link_to icon('fas fa-arrow-left', 'Cancel - Show this post'),  @post, class: 'btn btn-warning'
+
+  = link_to icon('fas fa-arrow-left', 'Cancel - Back to posts'),  posts_path, class: 'btn btn-warning'
+
 
   == render "form", post: @post
 
   br
 
-  div.discuss
-    => link_to "Show this post", @post
-    '|
-    =< link_to "Back to posts", posts_path
+  / div.discuss
+  /   / => link_to "Show this post", @post
+  /   = link_to icon('fas fa-arrow-left', 'Cancel - Show this pos'),  @post, class: 'btn btn-warning'
+
+  /   = link_to icon('fas fa-arrow-left', 'Cancel - Back to posts'),  posts_path, class: 'btn btn-warning'
+

@@ -1,0 +1,91 @@
+.grid-1-4
+  div
+    h2 Instructions
+  div 
+     
+    h3 What is this?
+    p.mb-3 This is a beta feature that I am testing. Beta is something that is supposed to work, but could have problems - a draft.
+    p.mb-3 This is basically a Blog. Any member of the Group can start a Discussion by adding a Post that may invite Discussions. Discussions can have comments from other Group members. It's not quite a 'Chat' session yet since I can't get what makes it 'Chatable' to work yet. (Live updates if anything changed)
+    p.mb-3 I did this because of a few weeks of arguing about changing the group rules. Everyone did not get to discuss their concerns
+    h3 Accessing PTGolf.us
+    p.mb-3 Each of the three group using PTGolf can access their group directly 
+    ul
+      li  
+        span.mx-2 Gaggle:  https://ptgolf.us/gaggle
+        = link_to( "Gaggle","https://ptgolf.us/gaggle", class:'btn btn-success')
+      li 
+        span.mx-2 Sinners: https://ptgolf.us/sinners
+        = link_to( "Sinners","https://ptgolf.us/sinners", class:'btn btn-success')
+
+      li
+        span.mx-2 Saints: https://ptgolf.us/saints
+        = link_to( "Saints","https://ptgolf.us/saints", class:'btn btn-success')
+    p.mb-3 PTGolf is `usable` on a phone in landscape mod (horizontal). Even with out joining is discussions you can log in a a visitor and view your scores and standing.
+
+    h3 Login
+    p.mb-3 Each group has had a user/player "Discuss Discussions" added to their group with a member role. They can't do anything except login and create Posts or comment.
+    p.mb-3 There is a 'Discuss' login next to the default login, that any member can access with a semi-secure login and password. The default 'Player Username' is the players PIN number followed by text that includes the word 'discuss' e.g "355 discuss". You can find your PIN number by going to Players and click on your name. Your PIN is on that page and is a holdover from to the original PTGOLF DOS application from years ago.
+    p.mb-3 The default password is 'letmetalk' that can be changed by any group user that has Update privleges. It's up to them to share any changes. 
+    p.mb-3 If this is an accepted addition, I'll add a registration feature that will allow a more secure access.
+    h3 Accessing Discussions 
+    p.mb-3 Once logged in you can access Discussion using a button on the home page menu, or the slide over menu.
+    h3 Edit forms for Posts or Comments
+    p All Comments and Post use Markdown to store and display content. Markdown is nothing more than plain text like you would type on a typewriter. On a typewriter you had to return the carriage at the end of the line and then another return to start a new paragraph. Markdown used the concept that an empty line defines the start of a new paragraph. That's the simple form of Markdown, you just type words, sentences and paragraphs.
+    p There are other rules to bold or italicized text, creating bullet list and creating headers. All Edit pages has a row of Blue buttons that allow these features withing really knowing the syntax or rules. As you type in the input box, another box display how the page will look if you use any of the other features the the buttons add.
+    h3 Button helpers
+    div.m-2
+      div.marked 
+        = tag.div('B')
+        span.font-bold Bold 
+      div.p-2 Text between 4 asterisk **bold text**  will be display as in bold font
+    div.m-2
+      div.marked 
+        = tag.div('I')
+        span.italic Italic 
+      div.p-2 Text between 2 asterisk **italic text**  will be display as in italic font
+    div.m-2
+      div.marked 
+        = tag.div('BI')
+        span.italic.font-bold Bold Italic 
+      div.p-2 Text between 3 asterisk ***italic text***  will be display as in italic Bold font
+    div.m-2
+      div.font-bold Headers
+      div.marked 
+        = tag.div('h1')
+        h1.inline-block Header 1 
+        = tag.div('h2')
+        h2.inline-block Header 2 
+        = tag.div('h3')
+        h3.inline-block Header 3 
+        = tag.div('h4')
+        h4.inline-block Header 4 
+        = tag.div('h5')
+        h5.inline-block Header 5 
+        = tag.div('h6')
+        h6.inline-block Header 6 
+    div.m-2
+      div.marked 
+        = tag.div('IB')
+        span.italic.font-bold Inline Block 
+      div.pl-4 Will indent the selected lines
+      div.pl-4
+        div.pl-4 One
+        div.pl-4 Two
+        div.pl-4 Three
+    div.m-2
+      div.marked 
+        = tag.div('UL')
+        span.italic.font-bold Unordered List 
+      div.pl-4 Will display a bullet list of selected lines
+      ul.ml-4
+        li One
+        li Two
+        li Three
+
+    h3 Ownership
+    p If you create a Post, you own it and can make changes or delete the post.
+    p Likewise if you comment on a post, you can edit or delete it.
+
+
+
+        

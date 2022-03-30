@@ -1,14 +1,15 @@
 div
   p style="color: green" = notice
-  section[class="flex flex-wrap gap-4 sbg-lime-light border-bottom p-2"]
+  / section[class="flex flex-wrap gap-4 sbg-lime-light border-bottom p-2"]
 
-    h3 Discussions
-    = link_to "Add new Post", new_post_path, class:'btn btn-warning' if @current_player
-
+  /   h3 Discussions
+  /   = link_to "Add new Post", new_post_path, class:'btn btn-warning' if @current_player
 .grid-1-4
   div
     h3 Discusssion
-    div instructions
+    div.m-2.p-2 = link_to "Add new Post", new_post_path, class:'btn btn-warning' if @current_player
+    div.m-2.p-2 = link_to icon('fas fa-arrow-left', 'View Instructions'),  instructions_posts_path, class: 'btn btn-info'
+
   /   strong Title/Posted By
   /   strong Content
   div

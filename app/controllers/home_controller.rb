@@ -39,6 +39,14 @@ class HomeController < ApplicationController
     params[:format] = 'html'
     redirect_to root_path
   end
+  def gaggle
+    group = Group.find_by(Group.arel_table[:name].matches('gaggle'))
+    reset_session
+    session[:group_id] = group.id
+    cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
+    params[:format] = 'html'
+    redirect_to root_path
+  end
 
 
   def redirect

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :posts do
+    collection do
+      get :instructions
+    end
     resources :comments
   end
   
@@ -159,6 +162,7 @@ Rails.application.routes.draw do
   get 'autocomplete' , to: 'home#autocomplete'
   get 'sinners', to: 'home#sinners'
   get 'saints', to: 'home#saints'
+  get 'gaggle', to: 'home#gaggle'
 
   get 'plain', to: 'home#plain'
   get 'changes', to: 'home#changes'
