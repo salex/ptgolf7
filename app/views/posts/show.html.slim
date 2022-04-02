@@ -1,15 +1,17 @@
 / = turbo_stream_from @post
-div.grid-1-4
-  .discuss
-    p style="color: green" = notice
-    section.m-2.bg-lime-light.border-bottom.p-2.min-height
-      div = link_to icon('fas fa-list', 'Back to Posts'), posts_path,class: 'inline-block btn btn-info p-2 w-full mb-2'
-      - if @post.can_edit_destroy?
-        div = link_to icon('fas fa-edit','Edit Post'), edit_post_path(@post), title: 'Edit it', class:'inline-block btn btn-warning w-full p-2 mb-2'
-        div = destroyConfirmTag(@post, prompt: icon("fas fa-trash",'Delete Post'),klass:'inline-block btn btn-danger w-full mb-2')
+div.mx-2
+div.grid.grid-cols-1.md:grid-cols-5
 
-  div 
+  div
+    section.m-2.p-2
+      / p. style="color: green" = notice
+
+      div = link_to icon('fas fa-list', 'Back to Posts'), posts_path,class: ' w-full inline-block btn btn-info p-2  mb-2'
+      - if @post.can_edit_destroy?
+        div = link_to icon('fas fa-edit','Edit Post'), edit_post_path(@post), title: 'Edit it', class:'w-full inline-block  btn btn-warning  p-2 mb-2'
+        div = destroyConfirmTag(@post, prompt: icon("fas fa-trash",'Delete Post'),klass:'w-full inline-block  btn btn-danger  mb-2')
+
+  div.col-span-3.mx-2
     div 
       == render @post
     = render "posts/comments", post: @post
-

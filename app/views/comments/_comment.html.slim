@@ -1,10 +1,12 @@
 div id="#{dom_id comment}"
  
-  div.italic.flex.gap-8
-    div = "By: " + comment.player.name
+  div.italic.flex
+    div.w-1/3 = "By: " + comment.player.name
     div = time_tag( comment.created_at, "data-local":"time-ago")
-    div = link_to icon('fas fa-edit','Edit Comment'), edit_post_comment_path(comment.post,comment), title: 'Edit it', class: to_tw('btn-success mr-2')  if comment.can_edit_destroy?
-    div = destroyConfirmTag(post_comment_path(comment.post,comment), prompt: icon("fas fa-trash",'Delete Comment'),klass:'inline-block btn btn-danger') if comment.can_edit_destroy?
+    div.mx-2 
+      = link_to icon('fas fa-edit','Edit'), edit_post_comment_path(comment.post,comment), title: 'Edit it', class: to_tw('btn-success mr-2')  if comment.can_edit_destroy?
+    div.mx-2
+      = destroyConfirmTag(post_comment_path(comment.post,comment), prompt: icon("fas fa-trash",'Delete'),klass:'inline-block btn btn-danger') if comment.can_edit_destroy?
 
   / div.w3-container.p-4.border-bottom.bg-white = kramdown_text(comment.content)
   div.border-bottom.p-2.mb-4[data-controller="display-marked"]

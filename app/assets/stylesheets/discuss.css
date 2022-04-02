@@ -139,10 +139,30 @@ input[type="button"]:enabled:hover {
   border-bottom: 1px solid #ccc;
 
 }
+.grid-1-5 {
+  margin: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-gap: 4rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+
+}
+
 .grid2 {
   /* ... */
   display: grid;
   grid-template-columns: 2fr 4fr;
+  grid-gap: 4rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  /* ... */
+}
+
+.grid1 {
+  /* ... */
+  display: grid;
+  grid-template-columns: 1fr ;
   grid-gap: 4rem;
   margin-bottom: 0.5rem;
   border-bottom: 1px solid #ccc;

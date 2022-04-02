@@ -40,7 +40,7 @@
     background-color: #4766b2;
 }
 .lime-link-btn {
-  background-color: #9bd99b;
+  background-color: #b8ffb8;
   padding: 2px 6px;
   text-decoration: none;
   border: none;
@@ -48,8 +48,8 @@
   font-weight: bold;
 }
 .lime-link-btn:hover {
-  background-color: #c0e7c0;
-  color: #040 !important;
+/*  background-color: #49ff49;
+*/  color: #49ff49 !important;
 }
 .lime-link-btn.round {
   border-radius: 6px;
@@ -60,7 +60,7 @@
   height: 100%;
 }
 .lime-btn {
-  background-color: #9bd99b;
+  background-color: #b8ffb8;
   padding: 2px 6px;
   text-decoration: none;
   border: none;
@@ -70,8 +70,8 @@
   height: 100%;
 }
 .lime-btn:hover {
-  background-color: #c0e7c0;
-  color: #040 !important;
+/*  background-color: #c0e7c0;
+*/  color: ##49ff49 !important;
 }
 .lime-btn.round {
   border-radius: 6px;
@@ -580,6 +580,15 @@ dl.indent-dd.strong-dt dt {
 .btn:hover, .pt-btn:hover {
     color:rgba(255, 255, 255, var(--tw-text-opacity))
 }
+.btng:hover {    background-color:rgba(73, 255, 73, var(--tw-bg-opacity))
+}
+.btng {
+margin-right: .25rem;
+border-radius: .25rem;
+padding: .25rem;
+--tw-text-opacity: 1;
+font-weight: bold;
+}
 
 /*.btn, .pt-btn:hover {
     --tw-text-opacity:1
@@ -688,7 +697,8 @@ dl.indent-dd.strong-dt dt {
 
 .btn-lime {
     --tw-bg-opacity: 1;
-    background-color:rgba(73, 255, 73, var(--tw-bg-opacity))
+    background-color:#b8ffb8;
+    /*rgba(73, 255, 73, var(--tw-bg-opacity))*/
 }
 
 .btn-blue {

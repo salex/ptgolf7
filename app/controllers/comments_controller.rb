@@ -24,8 +24,14 @@ class CommentsController < ApplicationController
 
 
   def create
-    @post.comments.create! params.required(:comment).permit(:content,:player_id)
-    redirect_to @post
+    respond_to do |format|
+      if @post.comments.create! params.required(:comment).permit(:content,:player_id)
+        format.html { redirect_to @post, notice: "Comment was successfully created." }
+        format.json { head :no_content }
+      end
+    end
+
+    # redirect_to @post
   end
 
   def destroy

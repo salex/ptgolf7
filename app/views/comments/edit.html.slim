@@ -6,25 +6,11 @@
 
   = link_to icon('fas fa-arrow-left', 'Cancel - Back to posts'),  posts_path, class: 'btn btn-warning'
 
-  /     h2 = "#{pluralize(comment.errors.count, 'error')} prohibited this comment from being saved:"
-  /     ul
-  /       - comment.errors.each do |error|
-  /         li = error.full_message
   .flex.gap-8.flex-wrap
     div.discuss
       = submit_tag("Update comment",disabled:false)
 
-    / div
-    /   / div 
-    /   /   span.strong Comment By: 
-    /   /   span = current_player.name
-    /   /   / = form.label :group_id, style: "display: block"
-    /   /   = form.hidden_field :group_id, value: Current.group.id
-    /   /   = form.hidden_field :player_id, value: Current.player.id
-
     div
-
-
       = form.label 'Comment: ', style: "display: block;font-weight:bold;"
         / = form.text_area @comment.content
     div
@@ -45,7 +31,6 @@
       div
         = text_area(:comment, :content,size:'60x8',data:{action:"input->marked#convertToMarkdown change->marked#convertToMarkdown",marked_target:"markup"}) 
       div.font-bold Rendered Markdown
-      / .w3-left = tag.button('Rendered Markdown')
-      / .w3-clear
+
       = tag.div('',data:{marked_target:'viewer'},style:"padding:6px;border:solid black 1px;height:12rem;",class:'markdown-body bg-white')
 

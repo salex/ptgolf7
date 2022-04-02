@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :posts do
     collection do
       get :instructions
+      get :test
     end
     resources :comments
   end
