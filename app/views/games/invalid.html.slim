@@ -44,6 +44,10 @@ table.small-table.w70p
     th Back
     th Total
     th PM
+    th R
+    th S
+    th P
+
   - @game.participants.each do |p|
     tr
       td = p.player.name
@@ -55,6 +59,10 @@ table.small-table.w70p
       td = p.back
       td = p.total
       td = p.total - p.quota
+      td.text-right= to_nickels(p.quality,1) if p.quality.present? && !p.quality.zero?
+      td.text-right= to_nickels(p.skins,1) if p.skins.present? && !p.skins.zero?
+      td.text-right= to_nickels(p.par3,1) if p.par3.present? && !p.par3.zero?
+
 
   
 

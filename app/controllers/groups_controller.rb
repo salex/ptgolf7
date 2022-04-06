@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity}
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end
@@ -47,7 +47,7 @@ class GroupsController < ApplicationController
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity  }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end

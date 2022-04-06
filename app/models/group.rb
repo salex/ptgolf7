@@ -10,7 +10,7 @@ class Group < ApplicationRecord
 
   after_initialize :set_attributes
 
-  serialize :preferences, Hash # remove after settings set
+  # serialize :preferences, Hash # remove after settings set
   serialize :settings, ActiveSupport::HashWithIndifferentAccess
 
   # lets just set all settings to attribututes
@@ -48,12 +48,33 @@ class Group < ApplicationRecord
   attribute :use_hi_lo_rule, :boolean
   attribute :default_stats_rounds, :integer
   attribute :use_keyboard_scoring, :boolean
+  attribute :default_in_sidegames, :boolean
+
 
 
   def set_attributes
-    set_default_options if self.settings.blank?
+    sync_settings
     self.default_options.each do |k,v|
       self.send("#{k.to_s}=", self.settings[k])
+    end
+  end
+
+  def sync_settings
+    set_default_options if self.settings.blank? 
+    self.default_options.each do |k,v|
+      if !self.settings.has_key?(k)
+        self.settings[k] = default_options[k]
+      end
+    end
+    self.settings.each do |k,v|
+      if !self.default_options.has_key?(k)
+        self.settings.delete[k]
+      end
+    end
+
+    if self.settings_changed?
+      puts "SETTINGS CHANGED"
+      self.save
     end
   end
 
@@ -70,6 +91,10 @@ class Group < ApplicationRecord
   end
 
   def default_options
+    # default options control valid setting
+    # if you add or remove a key
+    #   add or remove the attribute
+    # sync_setting will and or remove the key to setting
     options = {
       par_in:'',
       par_out:'',
@@ -101,7 +126,8 @@ class Group < ApplicationRecord
       rounds_used:10,
       use_hi_lo_rule:false,
       default_stats_rounds:100,
-      use_keyboard_scoring:false
+      use_keyboard_scoring:false,
+      default_in_sidegames:true
     }.with_indifferent_access   
   end
 

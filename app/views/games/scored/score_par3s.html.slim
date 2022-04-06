@@ -21,7 +21,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
       button.submit= f.submit("Update Par3", class:'button medium radius w100 strong')
       = hidden_field_tag 'side_game','par3o'
 
-    .m10.w3-col[data-controller="sidePar3"]
+    .m10.w3-col[data-controller="sidePar3" data-sidePar3-defaultin-value="#{par3.default_in}"]
       .annotate 
         |Instructions: Click on any of the Side Games "In" header to toggle(add/remove) all Players. Click on Checkbox in "In" column to toggle individual player. more....
       br

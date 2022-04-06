@@ -1,10 +1,12 @@
 class GameObjects::Skins
-  attr_accessor :game, :rounds, :score, :good, :player_par, :winners, :in_skins, :stats
+  attr_accessor :game, :rounds, :score, :good, :default_in,:player_par, :winners, :in_skins, :stats
   attr_accessor :skins_obj
 
   def initialize(game)
     @game = game
     @group = Current.group || game.group
+    @default_in = @group.default_in_sidegames.to_s
+
     set_and_score_skins
   end
 

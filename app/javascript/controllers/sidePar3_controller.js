@@ -4,13 +4,12 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   // static targets = ['par3Cnt','otherCnt', 'par3Hide','otherHide','par3Player','otherPlayer']
   static targets = ['par3Cnt','par3Hide','par3Player']
+  static values = {defaultin: String}
 
   connect() {
-    console.log("par3 and other")
-    // console.log(this.holeTargets.length)
-    // this.idx = 0
-    // console.log(this.idx)
-    // // console.log(`why ${idx}  ${this.index}`)
+    if (this.defaultinValue == 'true') {
+      this.togglePar3()
+    }
   }
 
   

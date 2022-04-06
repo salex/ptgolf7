@@ -21,7 +21,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
     .s6.w3-col
       button.submit= f.submit("Update Skins Game", class:'button medium radius w100 strong')
 
-    .m12.w3-col[data-controller="sideSkins"]
+    .m12.w3-col[data-controller="sideSkins" data-sideSkins-defaultin-value="#{skins.default_in}"]
       .annotate 
         |Instructions: Click on any of the Side Games "In" header to toggle(add/remove) all Players. Click on Checkbox in "In" column to toggle individual player. Click on Hole# to set score for that hole. Each click will cycle form '.' to B to E to A and then back to '.'  Click "Update Skins Game" button to save.
       br

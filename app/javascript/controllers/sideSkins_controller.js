@@ -3,10 +3,12 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [ "in","good", "hole","par","parString","skinsin",'skinsHide','skinsPlayer']
-  // ,'skinsHide','par3Hide',"skinsPlayer",'par3Player','otherPlayer']
+  static values = {defaultin: String}
 
   connect() {
-    // console.log("sideSkins")
+    if (this.defaultinValue == 'true') {
+      this.toggleSkins()
+    }
   }
 
   toggleSkins(){

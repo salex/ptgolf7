@@ -23,7 +23,7 @@ class RoundsController < ApplicationController
         format.html { redirect_to @round, notice: 'Round was successfully updated.' }
         format.json { render :show, status: :ok, location: @round }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity}
         format.json { render json: @round.errors, status: :unprocessable_entity }
       end
     end

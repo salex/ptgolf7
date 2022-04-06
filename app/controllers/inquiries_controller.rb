@@ -37,7 +37,7 @@ class InquiriesController < ApplicationController
         format.json { render :show, status: :created, location: @inquiry }
       else
         puts @inquiry.errors.inspect
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity}
         format.json { render json: @inquiry.errors, status: :unprocessable_entity }
       end
     end
@@ -51,7 +51,7 @@ class InquiriesController < ApplicationController
         format.html { redirect_to inquiry_path(@inquiry.id), notice: 'Inquiry was successfully updated.' }
         format.json { render :show, status: :ok, location: @inquiry }
       else
-        format.html { render :edit}
+        format.html { render :edit, status: :unprocessable_entity}
         format.json { render json: @inquiry.errors, status: :unprocessable_entity }
       end
     end

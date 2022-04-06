@@ -1,12 +1,13 @@
 
 class GameObjects::Par3
-  attr_accessor :game, :rounds, :good, :player_good, :winners, :in_par3, :stats, :par3# what is stored in game
+  attr_accessor :game, :rounds, :good, :player_good, :winners, :default_in, :in_par3, :stats, :par3# what is stored in game
 
   def initialize(game)
     # puts "IN OBJECTS::GAMEOBJECTS::PAR3"
     @game = game
     @group = Current.group || game.group
     # @par3 = {} # start with empty hash
+    @default_in = @group.default_in_sidegames.to_s
     score_par3
   end
 

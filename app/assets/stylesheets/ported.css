@@ -25,6 +25,16 @@
 
 }
 
+#error_explanation {
+  color: red;
+  margin: 1rem;
+}
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
 .btn-success, .bg-success {
   background-color: #63ed7a;
 }
