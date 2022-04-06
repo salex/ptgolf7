@@ -6,9 +6,9 @@ export default class extends Controller {
   static values = {defaultin: String}
 
   connect() {
-    if (this.defaultinValue == 'true') {
-      this.toggleSkins()
-    }
+    // if (this.defaultinValue == 'true') {
+    //   this.toggleSkins()
+    // }
   }
 
   toggleSkins(){

@@ -7,9 +7,9 @@ export default class extends Controller {
   static values = {defaultin: String}
 
   connect() {
-    if (this.defaultinValue == 'true') {
-      this.togglePar3()
-    }
+    // if (this.defaultinValue == 'true') {
+    //   this.togglePar3()
+    // }
   }
 
   
