@@ -6,6 +6,12 @@ export default class extends Controller {
   static values = {defaultin: String}
 
   connect() {
+    let blank =parseInt(this.inTarget.innerHTML)
+
+    if (this.defaultinValue == 'true' && blank == 0) {
+      this.toggleSkins()
+    }
+
     // if (this.defaultinValue == 'true') {
     //   this.toggleSkins()
     // }

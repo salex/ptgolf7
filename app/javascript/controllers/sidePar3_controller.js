@@ -7,9 +7,12 @@ export default class extends Controller {
   static values = {defaultin: String}
 
   connect() {
-    // if (this.defaultinValue == 'true') {
-    //   this.togglePar3()
-    // }
+    let blank =parseInt(this.par3CntTarget.innerHTML)
+
+    if (this.defaultinValue == 'true' && blank == 0) {
+      this.togglePar3()
+    }
+    // console.log(` WHOA  ${parseInt(this.par3CntTarget.innerHTML)}`)
   }
 
   
