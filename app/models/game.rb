@@ -212,6 +212,7 @@ class Game < ApplicationRecord
   end
 
   def pay_skins=(params)
+    return if params[:skins][:good].blank?
     new_skins = { 'good' => params[:skins][:good], 'player_par' => {} }
     params[:skins][:in].each_key do |id|
       new_skins['player_par'][id] = params[:skins][:player_par][id]
@@ -227,6 +228,14 @@ class Game < ApplicationRecord
 
   def pay_par3s=(params)
     new_par3 = { 'good' => params[:par3][:good], 'player_good' => {} }
+    if params[:par3][:in].blank?
+      # semi delete skins
+      stats[:par3] = new_par3
+      self.par3 = new_par3
+      self.save 
+      return 
+    end
+
     params[:par3][:in].each_key do |id|
       new_par3['player_good'][id] = ''
     end
