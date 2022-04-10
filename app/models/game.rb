@@ -228,7 +228,7 @@ class Game < ApplicationRecord
 
   def pay_par3s=(params)
     new_par3 = { 'good' => params[:par3][:good], 'player_good' => {} }
-    if params[:par3][:in].blank?
+    if params[:par3][:in].blank? || new_par3['good'].blank?
       # semi delete skins
       stats[:par3] = new_par3
       self.par3 = new_par3

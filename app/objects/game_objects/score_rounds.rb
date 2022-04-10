@@ -34,8 +34,10 @@ class GameObjects::ScoreRounds
     # if a round has changed it may change quality
     # this will update team quality if needed and change status if needed
     # if the game is not scored, it will just get teams and rounds
-
-    GameObjects::ScoreSides.new(game) if @method == 'sides'
-    GameObjects::ScorePlaces.new(game)
+    if @method == 'sides'
+      GameObjects::ScoreSides.new(game)
+    else
+      GameObjects::ScorePlaces.new(game)
+    end
   end
 end

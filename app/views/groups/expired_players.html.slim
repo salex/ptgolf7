@@ -5,6 +5,8 @@
   p.fs8 This page allows you delete delete players by checking the checkbox next to their name and clicking on the submit button
 = form_with(url: trim_expired_group_path(@group), method: :patch) 
   button.btn-submit Delete Checked Players
+  = link_to icon('fas fa-eye','Cancel Show Group'), group_path(@group), title: 'Edit it', class: 'btn btn-warning mr-2' if is_manager?
+
   div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
     - map = col_map_index(@expired.size,3)
 

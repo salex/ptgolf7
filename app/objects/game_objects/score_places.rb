@@ -45,7 +45,7 @@ class GameObjects::ScorePlaces
     team_total_winners
     rounds.each do |rnd|
       rnd.quality = team_scores[rnd.team][:mate_quality]
-      rnd.save if rnd.total_changed?
+      rnd.save if rnd.total_changed? || rnd.quality_changed?
     end
     game.status = 'Scored' unless game.status == 'Scored'
     game.save if game.status_changed?
