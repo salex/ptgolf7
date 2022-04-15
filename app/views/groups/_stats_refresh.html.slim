@@ -11,25 +11,25 @@
       tr
         th #
         th[data-action="click->sortTable#sortBy"]
-          i.fas.fa-sort.noprint
+          i.fas.fa-sort.noprint.nopointer
           | Player
-        th[data-action="click->sortTable#sortBy"]
-          i.fas.fa-sort.noprint
+        th.numeric[data-action="click->sortTable#sortBy"]
+          i.fas.fa-sort.noprint.nopointer
           | Rnds
         th.numeric[data-action="click->sortTable#sortBy"] 
-          i.fas.fa-sort.noprint
+          i.fas.fa-sort.noprint.nopointer
           | Won
         th.numeric[data-action="click->sortTable#sortBy"] 
-          i.fas.fa-sort.noprint
+          i.fas.fa-sort.noprint.nopointer
           | Dues
         th.numeric[data-action="click->sortTable#sortBy"] 
-          i.fas.fa-sort.noprint
+          i.fas.fa-sort.noprint.nopointer
           | Bal
         th.numeric[data-action="click->sortTable#sortBy"] 
-          i.fas.fa-sort.noprint
+          i.fas.fa-sort.noprint.nopointer
           | PTRank
         th.numeric[data-action="click->sortTable#sortBy"] 
-          i.fas.fa-sort.noprint
+          i.fas.fa-sort.noprint.nopointer
           | Avg
     tbody
       - @groupStats.money_list(game).each do |a|
@@ -41,8 +41,8 @@
             td.text-right=to_nickels a[2],true
             td.text-right=a[3]
             td.text-right=to_nickels a[4],true
-            td.text-right=sprintf( "%0.03f", a[5])
-            td.text-right=sprintf( "%0.03f", a[6])
+            td.text-right=sprintf( "%0.02f", a[5])
+            td.text-right=sprintf( "%0.02f", a[6])
           - bal += a[4]
           - i+=1
   p = "Balance: #{to_nickels bal,true}"

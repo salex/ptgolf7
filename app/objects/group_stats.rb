@@ -46,13 +46,18 @@ class GroupStats
     # rounds = sr.where.not(game => nil)
     number_rounds = rounds.size
     won = rounds.pluck(game).sum
+    q = 0.0
+    if number_rounds > 0
+      q =   rounds.pluck(:quota).sum.to_f / number_rounds
+    end
     if game == :quality
       dues = group.dues * number_rounds
     else
       dues = group.send("#{game.to_s}_dues") * number_rounds
     end
     balance = (won - dues).round(2)
-    perc = dues > 0 ? (number_rounds * won / dues).round(3) : 0.0
+    perc = q.round(3)
+    # perc = dues > 0 ? (number_rounds * won / dues).round(3) : 0.0
     avg =  number_rounds > 0 ? (won / number_rounds).round(2) : 0.0
     [player.name,number_rounds,won,dues,balance,perc,avg]
   end

@@ -35,6 +35,9 @@
   display: table;
 }
 
+.nopointer {  pointer-events: none; }
+/* noointer disables sort icon from generating click event, bubbles to parent*/
+
 .btn-success, .bg-success {
   background-color: #63ed7a;
 }
