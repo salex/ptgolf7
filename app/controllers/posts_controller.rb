@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :require_current_group
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
@@ -60,11 +61,15 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = @current_group.posts.find_by(id:params[:id])
+      unless @post.present?
+        redirect_to root_path, alert:'Group Discussion not found'
+      end
+
     end
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:group_id, :title, :content, :player_id)
+      params.require(:post).permit(:group_id, :title, :content, :post_id)
     end
 end

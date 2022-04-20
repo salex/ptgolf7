@@ -119,7 +119,6 @@ GEM
     importmap-rails (1.0.3)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
-    io-wait (0.2.1)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -128,7 +127,7 @@ GEM
     kramdown-syntax-coderay (1.0.1)
       coderay (~> 1.1)
       kramdown (~> 2.0)
-    loofah (2.15.0)
+    loofah (2.16.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -146,8 +145,7 @@ GEM
       digest
       net-protocol
       timeout
-    net-protocol (0.1.2)
-      io-wait
+    net-protocol (0.1.3)
       timeout
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
@@ -157,21 +155,21 @@ GEM
       timeout
     net-ssh (6.1.0)
     nio4r (2.5.8)
-    nokogiri (1.13.3-arm64-darwin)
+    nokogiri (1.13.4-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.3-x86_64-linux)
+    nokogiri (1.13.4-x86_64-linux)
       racc (~> 1.4)
     pagy (5.10.1)
       activesupport
     pdf-core (0.9.0)
-    pg (1.3.4)
+    pg (1.3.5)
     prawn (2.4.0)
       pdf-core (~> 0.9.0)
       ttfunk (~> 1.7)
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
-    public_suffix (4.0.6)
-    puma (5.6.2)
+    public_suffix (4.0.7)
+    puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
@@ -206,7 +204,7 @@ GEM
     rake (13.0.6)
     redcarpet (3.5.1)
     redis (4.6.0)
-    regexp_parser (2.2.1)
+    regexp_parser (2.3.0)
     rexml (3.2.5)
     rouge (3.28.0)
     rubyzip (2.3.2)
