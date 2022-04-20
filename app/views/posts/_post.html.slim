@@ -8,20 +8,14 @@
         span = post.player.name
         span = " - "
         span = time_tag( post.created_at, "data-local":"time-ago")
-      - if @list.present?
         div 
           = pluralize(post.comments.count, "Comment")
-          = link_to icon('fas fa-eye',"Show this post"),  post, title: 'Show it', class: 'btng btn-lime mr-2'
+          - if @list.present?
+            = link_to icon('fas fa-eye',"Show this post"),  post, title: 'Show it', class: 'btng btn-lime mr-2'
+          div.border-bottom &nbsp;
 
-      / div.border.p-2 = kramdown_text(post.content)
-      div.border.p-2[data-controller="display-marked"]
-        div.hidden = text_area_tag('x',post.content, data:{display_marked_target:"markup"})
-        / - if !@list.present?
-        div[data-display-marked-target='viewer']
-        / - else
-        /   = tag.div('',data:{display_marked_target:'viewer'})
-      / - if @list.present?
-      /   div 
-      /     = pluralize(post.comments.count, "Comment")
-      /     = link_to icon('fas fa-eye',"Show this post"),  post, title: 'Show it', class: 'btn btn-icon btn-lime mr-2'
-      div.border-bottom &nbsp;
+      - if !@list.present?
+        /  only show if this is not the index view
+        div.border.p-2[data-controller="display-marked"]
+          div.hidden = text_area_tag('x',post.content, data:{display_marked_target:"markup"})
+          div[data-display-marked-target='viewer']
