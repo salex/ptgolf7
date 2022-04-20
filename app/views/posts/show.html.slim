@@ -13,5 +13,11 @@ div.grid.grid-cols-1.md:grid-cols-5
 
   div.col-span-3.mx-2
     div 
-      == render @post
+      - if @post.content.include?('.slim')
+        = render inline: @post.content, type: :slim
+      - else
+        / h3.text-xl.font-bold = @article.title
+        / div.marked[data-display-marked-target='viewer']
+
+        == render @post
     = render "posts/comments", post: @post
