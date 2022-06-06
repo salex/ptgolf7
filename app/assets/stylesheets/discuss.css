@@ -28,7 +28,7 @@
 
   text-decoration: none;
 }
-.marked button, .marked div {
+/*.marked button, .marked div {
   border: none;
   border-radius: 2px;
   background: #0d47a1;
@@ -42,7 +42,57 @@
   width: 2rem;
   margin-right: 0.25rem;
 
+}*/
+/*.slim p, .marked p{
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 0.75rem 0 0.5rem 0;
 }
+
+.marked-buttons div {
+  border: none;
+  border-radius: 2px;
+  background: #0d47a1;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size: 0.75rem;
+
+  padding: 0.25rem ;
+  width: 2rem;
+  margin-right: 0.25rem;
+
+}*/
+.marked h6 {
+  font-weight: bold;
+  font-size: 14pt;
+}
+.marked h5 {
+  font-weight: bold;
+  font-size: 16pt;
+}
+.marked h4 {
+  font-weight: bold;
+  font-size: 18pt;
+}
+
+.marked h3 {
+  font-weight: bold;
+  font-size: 20pt;
+}
+.marked h2 {
+  font-weight: bold;
+  font-size: 22pt;
+}
+.marked h1 {
+  font-weight: bold;
+  font-size: 23pt;
+}
+
+.marked blockquote {
+  margin-left: 2rem;
+}
+
 
 .discuss button,
 .discuss input[type="submit"],
