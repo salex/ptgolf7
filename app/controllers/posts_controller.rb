@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_current_group
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy print]
 
   # GET /posts or /posts.json
   def index
@@ -57,6 +57,11 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def print
+    render :layout => "layouts/print"
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       get :instructions
       get :test
     end
+    member do
+      get :print
+    end
     resources :comments
   end
   
