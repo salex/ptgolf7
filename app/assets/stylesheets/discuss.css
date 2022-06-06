@@ -28,7 +28,7 @@
 
   text-decoration: none;
 }
-/*.marked button, .marked div {
+.marked button{
   border: none;
   border-radius: 2px;
   background: #0d47a1;
@@ -42,8 +42,8 @@
   width: 2rem;
   margin-right: 0.25rem;
 
-}*/
-/*.slim p, .marked p{
+}
+.slim p, .marked p{
   font-size: 16px;
   line-height: 1.2;
   margin: 0.75rem 0 0.5rem 0;
@@ -62,7 +62,7 @@
   width: 2rem;
   margin-right: 0.25rem;
 
-}*/
+}
 .marked h6 {
   font-weight: bold;
   font-size: 14pt;

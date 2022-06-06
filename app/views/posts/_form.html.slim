@@ -27,7 +27,7 @@
   .w3-container[ style="max-height: 90vh;"]
     h3 Post Content
     .w3-row-padding
-      .w3-half.marked
+      .w3-half.marked.marked-buttons
         = tag.div('B', data:{action:"click->marked#bold"})
         = tag.div('I', data:{action:"click->marked#italic"})
         = tag.div('BI', data:{action:"click->marked#italicBold"})
@@ -49,6 +49,6 @@
         strong Rendered Markdown
         / .w3-left = tag.button('Rendered Markdown')
         / .w3-clear
-        = tag.div('',data:{marked_target:'viewer'},style:"padding:6px;border:solid black 1px;z-index:0;height:50vh;overflow:scroll;",class:'markdown-body bg-white')
+        = tag.div('',data:{marked_target:'viewer'},style:"padding:6px;border:solid black 1px;z-index:0;height:50vh;overflow:scroll;",class:'markdown-body bg-white marked')
 
 
