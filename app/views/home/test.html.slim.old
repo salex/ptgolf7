@@ -1,0 +1,87 @@
+
+- teams = [[{n:'joe',q:28},{n:'john',q:22},{n:'jim',q:18}],[{n:'tom',q:31},{n:'dick',q:24},{n:'harry',q:16}]]
+- tquota = []
+
+- teams.each do|t|
+  - q = 0
+  - t.each do |m|
+    - q += m[:q]
+  - tquota << q 
+
+/ <div class="container">
+/   <h1 class="container my-5">Stimulus autocomplete example</h1>
+
+/   <div class="form-group">
+/     <label for="exampleInputEmail1">Bird</label>
+/     <div data-controller="autocomplete" data-autocomplete-url="/results.html">
+/       <input type="text" class="form-control" data-autocomplete-target="input" placeholder="search a bird"/>
+/       <input type="hidden" name="bird_id" data-autocomplete-target="hidden"/>
+/       <ul data-autocomplete-target="results" class="list-group"></ul>
+/     </div>
+/   </div>
+/ </div>
+
+
+.w3-row[data-controller="scoreGame"]
+  div.w3-text-red.strong[data-scoreGame-target='unscored'] No team(s) have been scored
+  - select_points = params[:keys].nil?
+  - idx = -1
+  - teams.each_with_index do |team,i|
+    hr.underline
+    table.small-table.w60p
+      tr[data-scoreGame-target='teamRow']
+        th.w50p colspan="3" 
+          = "Team - #{i+1} Quota:#{tquota[i]} Side: #{tquota[i]/2.0} Hole: #{(tquota[i]/18.0).round(2)}"
+          = hidden_field_tag("team[#{i+1}][quota]",tquota[i],data:{scoreGame_target:'teamQuota'})
+        th.w15p[data-scoreGame-target='teamFront']
+        th.w15p[data-scoreGame-target='teamBack']
+        th.w15p[data-scoreGame-target='teamTotal']
+        th.w5p[data-scoreGame-target='teamPM']
+      tr
+        th Name
+        th Quota
+        th Side
+        th Front
+        th Back
+        th Total
+        th &#177;
+      - team.each_with_index do |tm,m|
+        tr[data-scoreGame-target='mateRow' class="team-#{i}"]
+          - side = tm[:q]/2.0
+          - opt = pulled_options(tm[:q])
+          - idx += 1
+
+          td 
+            = tm[:n]
+            = hidden_field_tag('team',i,data:{scoreGame_target:'team'})
+            = hidden_field_tag('idx',idx,data:{scoreGame_target:'idx'})
+          td
+            = tm[:q]
+            = hidden_field_tag("mate[#{m}][quota]",tm[:q],data:{scoreGame_target:'mateQuota'})
+          td 
+            = tm[:q]/2.0
+            = hidden_field_tag("mate[#{m}][team]", side)
+          - if select_points
+
+            td = select_tag("mate[#{m}][front]", options_for_select(opt[:side],'Select'),
+              data:{scoreGame_target:'mateFront',action:"change->scoreGame#front"},
+              class:"w3-select")
+            td = select_tag("mate[#{m}][back]", options_for_select(opt[:side],'Select'),
+              data:{scoreGame_target:'mateBack',action:"change->scoreGame#back"},
+              class:"w3-select")
+          - else
+            td= text_field_tag("mate[#{m}][front]", nil,
+              data:{scoreGame_target:'mateFront',action:"change->scoreGame#front"},
+              class:"w100")
+            td= text_field_tag("mate[#{m}][Back]",nil,
+              data:{scoreGame_target:'mateBack',action:"change->scoreGame#back"},
+              class:"w100")
+
+
+          td = text_field_tag("mate[#{m}][total]",nil,
+            data:{scoreGame_target:'mateTotal'},
+            class:"w3-select",disabled:true)
+          td[id="mate#{m}_pmt" data-scoreGame-target='matePM'] 
+    
+
+
