@@ -59,12 +59,12 @@ section.dashboard
             = form_with url:pairings_search_players_path do |f|
               .w3-third
                 strong Subject Player
-                = select_tag( 'subject', options_for_select(Current.group.active_players.pluck(:name,:id)),
+                = select_tag( 'subject', options_for_select(Current.group.active_players(120).pluck(:name,:id)),
                   include_blank:"Select Subject", data: {pairingSearch_target:'subject'})
 
               .w3-third
                 strong Targets Players
-                = select_tag 'mates[]', options_for_select(Current.group.active_players.pluck(:name,:id)), multiple: true, size: 8, data: {pairingSearch_target:'mates'}
+                = select_tag 'mates[]', options_for_select(Current.group.active_players(120).pluck(:name,:id)), multiple: true, size: 8, data: {pairingSearch_target:'mates'}
 
               .w3-third
                 button.btn.w3-blue-gray =  f.submit "Pairing Search"
