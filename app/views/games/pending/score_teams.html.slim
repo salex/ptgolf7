@@ -98,8 +98,8 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
                     action:"change->scoreMate#back change->scoreTeam#compute"},
                     class:"select")
               - else
-                td= number_field_tag("participant[#{mate.id}][front]", mate.front,data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:"w100")
-                td= number_field_tag("participant[#{mate.id}][back]",mate.back, data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack",action:"change->scoreMate#back change->scoreTeam#compute"},class:"w100")
+                td= number_field_tag("participant[#{mate.id}][front]", mate.front,data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:"w100 ")
+                td= number_field_tag("participant[#{mate.id}][back]",mate.back, data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack",action:"change->scoreMate#back change->scoreTeam#compute"},class:"w100 ")
               td= text_field_tag("participant[#{mate.id}][total]",mate.total, disabled:true, data:{scoreMate_target:"mateTotal", scoreTeam_target:"mateTotal"},class:"w100")
               th[data-scoreMate-target="matePM", data-scoreTeam-target="matePM" class='mate-pm'] 
                 - if mate.total.present?
