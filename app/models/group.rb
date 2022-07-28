@@ -10,7 +10,7 @@ class Group < ApplicationRecord
 
   after_initialize :set_attributes
 
-  # serialize :preferences, Hash # remove after settings set
+  serialize :preferences, JSON # remove after settings set
   serialize :settings, ActiveSupport::HashWithIndifferentAccess
 
   # lets just set all settings to attribututes

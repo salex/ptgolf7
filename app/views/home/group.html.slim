@@ -15,6 +15,9 @@ section[class="w3-#{Current.group.group_color} flex py-2"]
  
     - if Current.group.alert.present?
       p.mb-3 = callout_alert Current.group.alert.html_safe
+    - if Current.group.notice.present?
+      p.mb-3 = callout_info Current.group.notice.html_safe
+
  
     .w3-row
       - if Current.user&.is_super?
