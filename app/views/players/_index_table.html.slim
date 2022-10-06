@@ -1,14 +1,14 @@
 .w3-row-padding
-  table.small-table-stripped.w100.sortable
+  table.small-table-stripped.sortable.overflow-scroll.w-full
     - bal = 0.0
     thead[data-controller="sortTable"]
       tr
         th[data-action="click->sortTable#sortBy"] 
           i.fas.fa-sort.noprint
           | Name
-        th First
-        th Last
-        th Nick
+        th.hidden.md:table-cell First
+        th.hidden.md:table-cell Last
+        th.hidden.md:table-cell Nick
         / th Use NN
         th Tee
         th.numeric[data-action="click->sortTable#sortBy"] 
@@ -27,12 +27,12 @@
       - @players.each do |player|
         tr
           td 
-            = player.name
-            = link_to icon('fas fa-eye'),  player, title: 'Show it', class: 'btn btn-icon mr-2'
-          td = player.first_name
-          td = player.last_name
+            = link_to player.name,player, class:'green-link font-bold'
+            / = link_to icon('fas fa-eye'),  player, title: 'Show it', class: 'btn btn-icon mr-2'
+          td.hidden.md:table-cell= player.first_name
+          td.hidden.md:table-cell= player.last_name
           / td = player.nickname
-          td = player.use_nickname
+          td.hidden.md:table-cell = player.use_nickname
           td = player.tee
           td = player.quota
           td = player.rquota

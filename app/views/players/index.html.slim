@@ -1,78 +1,76 @@
 section.dashboard
-  .flex.gap-2.mb-1
-    div 
+  .md:flex.border-bottom.bg-lime-light.pb-1
+    div.ml-2.text-xl.strong 
       - if params[:filter].blank?
-        h5.inline-block.strong Players(all)
+        span Players(all)
       - else
-        h5.inline-block.strong = "Players(#{ params[:filter]})"
+        span = "Players(#{ params[:filter]})"
+    div.flex-grow.text-center
       = link_to icon('fas fa-user-plus', 'Add New Player'),  new_player_path, class: 'inline-block btn btn-success mx-1' if is_manager?
       = link_to icon('fas fa-list', 'Status View'),  players_path, class: 'inline-block btn btn-success mx-1' if @players.present?
       = link_to icon('fas fa-list', 'Table View'),  players_path(table:1), class: 'inline-block btn btn-success mx-1' if @players.blank?
 
- 
-    div[data-controller=" playerSearch pairingSearch" data-autocomplete-url="/players/player_search" data-autocomplete-min-length="1"]
+      div.inline-block[data-controller=" playerSearch pairingSearch" data-autocomplete-url="/players/player_search" data-autocomplete-min-length="1"]
 
-      / = link_to('New Player', new_player_path,class:"blue-link-btn round") 
-
+        / = link_to('New Player', new_player_path,class:"blue-link-btn round") 
 
 
-      button.btn.ml-1.w3-blue-gray.mr-2.[data-action="click->playerSearch#openModal"] = icon('fas fa-user', 'Player Search')
-      .w3-modal[data-playerSearch-target="modal"]
-        .w3-modal-content.w3-card-4
-          header.w3-container.lite-lime
-            span.w3-button.w3-display-topright[data-action="click->playerSearch#closeModal"]  &times;
-            h4 Player Search
-            p.mb-3 Enter Players Name in the search box and it will list any group player who's first, last or nickname starts with the characters entered
 
-          .w3-container
+        button.btn.ml-1.w3-blue-gray.mr-2.[data-action="click->playerSearch#openModal"] = icon('fas fa-user', 'Player Search')
+        .w3-modal[data-playerSearch-target="modal"]
+          .w3-modal-content.w3-card-4
+            header.w3-container.lite-lime
+              span.w3-button.w3-display-topright[data-action="click->playerSearch#closeModal"]  &times;
+              h4 Player Search
+              p.mb-3 Enter Players Name in the search box and it will list any group player who's first, last or nickname starts with the characters entered
 
-            / div.z-1.absolute.inline-block.bg-blue-50
-            div[
-              data-autopickr-url-value="/players/player_search"
-              data-autopickr-min-len-value="1"
-              data-autopickr-select-url-value="/players/SELECTED"
-              data-controller="autopickr"
-              ]
-              div
-                = text_field_tag(:input,nil,
-                  data:{autopickr_target:"input", action:"autopickr#search"},
-                  placeholder:"Search...",class:"w-48",autofocus:true)
-                span.w-24 &nbsp;
-                button = link_to('Pick',nil,data:{autopickr_target:"button"}, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
-              ul.z-2.text-black.bg-green-200.max-h-52.divide-y.divide-blue-500.overflow-scroll[data-autopickr-target="results"] 
+            .w3-container
 
-          footer.w3-container.my-liter-green.mt-4
-            p.mb-3 Click on the Players name in the list and it will display the players information or click the &times; charcter to cancel the search
+              / div.z-1.absolute.inline-block.bg-blue-50
+              div[
+                data-autopickr-url-value="/players/player_search"
+                data-autopickr-min-len-value="1"
+                data-autopickr-select-url-value="/players/SELECTED"
+                data-controller="autopickr"
+                ]
+                div
+                  = text_field_tag(:input,nil,
+                    data:{autopickr_target:"input", action:"autopickr#search"},
+                    placeholder:"Search...",class:"w-48",autofocus:true)
+                  span.w-24 &nbsp;
+                  button = link_to('Pick',nil,data:{autopickr_target:"button"}, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
+                ul.z-2.text-black.bg-green-200.max-h-52.divide-y.divide-blue-500.overflow-scroll[data-autopickr-target="results"] 
 
-      button.btn.w3-blue-gray[data-action="click->pairingSearch#openModal"]  
-        = icon('fas fa-user-plus') 
-        = icon('fas fa-user','Pairing Search')
-      .w3-modal[data-pairingSearch-target="modal"]
-        .w3-modal-content.w3-card-4
-          header.w3-container.lite-lime
-            span.w3-button.w3-display-topright[data-action="click->pairingSearch#closeModal"]  &times;
-            h4 Player Pairings Search
-            p.annotate This feature will answer questions like "How many times have I had X on my team"
-            p.mb-3 Select One player from the Subject Player List, then select one or more playes from the Target Players List. Then click the Pairing History Search. You must use your Browser's multiple select feature. Players listed are Active Players
+            footer.w3-container.my-liter-green.mt-4
+              p.mb-3 Click on the Players name in the list and it will display the players information or click the &times; charcter to cancel the search
 
-          .w3-container
-            = form_with url:pairings_search_players_path do |f|
-              .w3-third
-                strong Subject Player
-                = select_tag( 'subject', options_for_select(Current.group.active_players(180).pluck(:name,:id)),
-                  include_blank:"Select Subject", data: {pairingSearch_target:'subject'})
+        button.btn.w3-blue-gray[data-action="click->pairingSearch#openModal"]  
+          = icon('fas fa-user-plus') 
+          = icon('fas fa-user','Pairing Search')
+        .w3-modal[data-pairingSearch-target="modal"]
+          .w3-modal-content.w3-card-4
+            header.w3-container.lite-lime
+              span.w3-button.w3-display-topright[data-action="click->pairingSearch#closeModal"]  &times;
+              h4 Player Pairings Search
+              p.annotate This feature will answer questions like "How many times have I had X on my team"
+              p.mb-3 Select One player from the Subject Player List, then select one or more playes from the Target Players List. Then click the Pairing History Search. You must use your Browser's multiple select feature. Players listed are Active Players
 
-              .w3-third
-                strong Targets Players
-                = select_tag 'mates[]', options_for_select(Current.group.active_players(180).pluck(:name,:id)), multiple: true, size: 8, data: {pairingSearch_target:'mates'}
+            .w3-container
+              = form_with url:pairings_search_players_path do |f|
+                .w3-third
+                  strong Subject Player
+                  = select_tag( 'subject', options_for_select(Current.group.active_players(180).pluck(:name,:id)),
+                    include_blank:"Select Subject", data: {pairingSearch_target:'subject'})
 
-              .w3-third
-                button.btn.w3-blue-gray =  f.submit "Pairing Search"
-          footer.w3-container.w3-white
-            = turbo_frame_tag "pairings"
+                .w3-third
+                  strong Targets Players
+                  = select_tag 'mates[]', options_for_select(Current.group.active_players(180).pluck(:name,:id)), multiple: true, size: 8, data: {pairingSearch_target:'mates'}
 
+                .w3-third
+                  button.btn.w3-blue-gray =  f.submit "Pairing Search"
+            footer.w3-container.w3-white
+              = turbo_frame_tag "pairings"
 
-    div 
       - if @players.present? 
         / = link_to("Status View",players_path,class:"lime-link-btn round")
         .inline-block.z-2.absolute[data-controller="toggle"]
@@ -89,9 +87,107 @@ section.dashboard
 
 
 
-    div.flex-grow
-      .crumbs.text-right
-          = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+
+
+
+    div.mr-2.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+
+
+/ section.dashboard
+/   .flex.gap-2.mb-1
+/     div 
+/       - if params[:filter].blank?
+/         h5.inline-block.strong Players(all)
+/       - else
+/         h5.inline-block.strong = "Players(#{ params[:filter]})"
+/       = link_to icon('fas fa-user-plus', 'Add New Player'),  new_player_path, class: 'inline-block btn btn-success mx-1' if is_manager?
+/       = link_to icon('fas fa-list', 'Status View'),  players_path, class: 'inline-block btn btn-success mx-1' if @players.present?
+/       = link_to icon('fas fa-list', 'Table View'),  players_path(table:1), class: 'inline-block btn btn-success mx-1' if @players.blank?
+
+ 
+/     div[data-controller=" playerSearch pairingSearch" data-autocomplete-url="/players/player_search" data-autocomplete-min-length="1"]
+
+/       / = link_to('New Player', new_player_path,class:"blue-link-btn round") 
+
+
+
+/       button.btn.ml-1.w3-blue-gray.mr-2.[data-action="click->playerSearch#openModal"] = icon('fas fa-user', 'Player Search')
+/       .w3-modal[data-playerSearch-target="modal"]
+/         .w3-modal-content.w3-card-4
+/           header.w3-container.lite-lime
+/             span.w3-button.w3-display-topright[data-action="click->playerSearch#closeModal"]  &times;
+/             h4 Player Search
+/             p.mb-3 Enter Players Name in the search box and it will list any group player who's first, last or nickname starts with the characters entered
+
+/           .w3-container
+
+/             / div.z-1.absolute.inline-block.bg-blue-50
+/             div[
+/               data-autopickr-url-value="/players/player_search"
+/               data-autopickr-min-len-value="1"
+/               data-autopickr-select-url-value="/players/SELECTED"
+/               data-controller="autopickr"
+/               ]
+/               div
+/                 = text_field_tag(:input,nil,
+/                   data:{autopickr_target:"input", action:"autopickr#search"},
+/                   placeholder:"Search...",class:"w-48",autofocus:true)
+/                 span.w-24 &nbsp;
+/                 button = link_to('Pick',nil,data:{autopickr_target:"button"}, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
+/               ul.z-2.text-black.bg-green-200.max-h-52.divide-y.divide-blue-500.overflow-scroll[data-autopickr-target="results"] 
+
+/           footer.w3-container.my-liter-green.mt-4
+/             p.mb-3 Click on the Players name in the list and it will display the players information or click the &times; charcter to cancel the search
+
+/       button.btn.w3-blue-gray[data-action="click->pairingSearch#openModal"]  
+/         = icon('fas fa-user-plus') 
+/         = icon('fas fa-user','Pairing Search')
+/       .w3-modal[data-pairingSearch-target="modal"]
+/         .w3-modal-content.w3-card-4
+/           header.w3-container.lite-lime
+/             span.w3-button.w3-display-topright[data-action="click->pairingSearch#closeModal"]  &times;
+/             h4 Player Pairings Search
+/             p.annotate This feature will answer questions like "How many times have I had X on my team"
+/             p.mb-3 Select One player from the Subject Player List, then select one or more playes from the Target Players List. Then click the Pairing History Search. You must use your Browser's multiple select feature. Players listed are Active Players
+
+/           .w3-container
+/             = form_with url:pairings_search_players_path do |f|
+/               .w3-third
+/                 strong Subject Player
+/                 = select_tag( 'subject', options_for_select(Current.group.active_players(180).pluck(:name,:id)),
+/                   include_blank:"Select Subject", data: {pairingSearch_target:'subject'})
+
+/               .w3-third
+/                 strong Targets Players
+/                 = select_tag 'mates[]', options_for_select(Current.group.active_players(180).pluck(:name,:id)), multiple: true, size: 8, data: {pairingSearch_target:'mates'}
+
+/               .w3-third
+/                 button.btn.w3-blue-gray =  f.submit "Pairing Search"
+/           footer.w3-container.w3-white
+/             = turbo_frame_tag "pairings"
+
+
+/     div 
+/       - if @players.present? 
+/         / = link_to("Status View",players_path,class:"lime-link-btn round")
+/         .inline-block.z-2.absolute[data-controller="toggle"]
+/           button[class="btn btn-success"  data-action="click->toggle#toggleMenu"] 
+/             | Filter Status
+/             i[class="fas fa-angle-down px-1"]
+
+/           dl.hidden.stripped[data-toggle-target="menu" ]
+
+/             dd.p-1.border-bottom = link_to 'All', players_path(table:1), class:"blue-link link-btn"
+/             dd.p-1.border-bottom = link_to 'Active', players_path(filter:'active',table:1) , class:"blue-link link-btn"
+/             dd.p-1.border-bottom = link_to 'Inactive', players_path(filter:'inactive',table:1) , class:"blue-link link-btn"
+/             dd.p-1.border-bottom = link_to 'Expired', players_path(filter:'expired',table:1) , class:"blue-link link-btn" 
+
+
+
+/     div.flex-grow
+/       .crumbs.text-right
+/           = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
 
 - if @players.present?
   = render 'index_table'

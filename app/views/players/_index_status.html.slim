@@ -1,4 +1,4 @@
-h6.strong.dark-lime.px-1 Active Players
+h6.strong.text-lg.dark-lime.px-1 Active Players
 div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
   - map = col_map_index(@active.size,3)
   - map.each do |row|
@@ -20,7 +20,7 @@ div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
               / + @limits.player_limits(m)).html_safe
               td = @active[m].last_played.strftime("%m/%d/%y") if @active[m].last_played.present?
 
-h6.strong.dark-lime.px-1 Inactive Players
+h6.strong.dark-lime.px-1.text-lg Inactive Players
 div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
   - map = col_map_index(@inactive.size,3)
   - map.each do |row|
@@ -41,7 +41,7 @@ div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
 
               / + @limits.player_limits(m)).html_safe
               td = @inactive[m].last_played.strftime("%m/%d/%y") if @inactive[m].last_played.present?
-h6.strong.dark-lime.px-1 Expired Players
+h6.strong.dark-lime.px-1.text-lg Expired Players
 div.grid.md:grid-cols-2.lg:grid-cols-3.gap-2.px-1
   - map = col_map_index(@expired.size,3)
   - map.each do |row|

@@ -31,7 +31,7 @@ class Games::ScheduledController < GamesController
     if ok 
       redirect_to @game.namespace_url, notice:'Teams have been formed'
     else
-      redirect_to games_path, alert:'something screwed up, teams not formed'
+      redirect_to games_path, alert:'something screwed up(makeup or method), teams not formed'
     end
   end
 

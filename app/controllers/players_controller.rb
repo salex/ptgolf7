@@ -19,6 +19,10 @@ class PlayersController < ApplicationController
       else
         @players = group.players.order(:name)
       end
+      if @players.blank?
+        redirect_to players_path, notice: "Players not found with status. #{params[:filter]}" 
+      end
+
     end
   end
 

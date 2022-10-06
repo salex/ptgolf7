@@ -1,37 +1,47 @@
 section.dashboard
-  .w3-row-padding.w3-border-bottom
-    .w3-col.m3 
-      h5.strong PtGolf Clubs and Group
- 
-    .w3-col.m4.pt-breadcrumb
-      .crumbs
-        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-.w3-row-padding
+  .flex.border-bottom
+    div.ml-4
+      h5.h5.strong PtGolf Clubs and Group
+    div.flex-grow.text-center
+      / = link_to icon('fas fa-edit','Edit User'), edit_user_path(@user), title: 'Edit it', class: 'btn btn-warning mr-2'
+      / = link_to icon('fas fa-arrow-left', 'List Users'),  users_path, class: 'btn btn-info'
+
+      / = destroyConfirmTag(@user,prompt: icon("fas fa-trash",'Delete User'))
+
+    div.float-right.mr-4
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+
+/ .w3-row-padding
+div.grid.grid-cols-1.md:grid-cols-2.gap-8.p-4
 
 
-  .w3-col.m6
+  / .w3-col.m6
+  div
     - @clubs.includes(:groups).each do |club|
-      .w3-row
-        h5.w3-col.s6.strong = club.name
-        h5.w3-col.s6.strong = "#{club.city}, #{club.state}"
-      .w3-container.w3-card-4.lite-lime
-        .w3-row-padding
-          .w3-col.s5.strong Group Name
-          .w3-col.s3.strong.w3-center Players (A/I/E)
-          .w3-col.s4.strong Visit/Leave
+      .flex.gap-4.m-2.flex-wrap
+        div.strong = club.name
+        div.strong = "#{club.city}, #{club.state}"
+      .w3-card-4.lite-lime
+        table
+          tr
+           
+            th.p-2 Group Name
+            th.p-2.w3-center Players (A/I/E)
+            th.p-2 Visit/Leave
+          tr
 
+          -club.groups.each do |group|
+            tr.border-bottom
 
-        -club.groups.each do |group|
-          .w3-row-padding
-
-            .w3-col.s5 = group.name
-            .w3-col.s3.w3-center = "#{group.active_players.length}/#{group.inactive_players.length}/#{group.expired_players.length}"
-            .w3-col.s4 
-              - if Current.group && Current.group.id == group.id
-                = link_to "Leave", leave_group_path(group), class:'green-link small-caps'
-              - else
-                = link_to "Visit", visit_group_path(group), class:'green-link small-caps'
-  .w3-col.m6 
+              td.p-2 = group.name
+              td.p-2.w3-center = "#{group.active_players.length}/#{group.inactive_players.length}/#{group.expired_players.length}"
+              td.p-2
+                - if Current.group && Current.group.id == group.id
+                  button.lime-link-btn.inline-block.w-20.mb-1 = link_to "Leave", leave_group_path(group), class:'green-link small-caps text-bold'
+                - else
+                  button.lime-link-btn.inline-block.w-20.mb-1 = link_to "Visit", visit_group_path(group), class:'green-link small-caps text-bold'
+  / .w3-col.m6
+  div
     strong.fs2 Welcome to PointGolf (PtGolf.us)
     p.mb-3 A Web tool for managing quotas for your golf groups Low Ball or Dog Fight games.
     p.mb-3 Select a Club/Group by clicking on the 'Visit' link in the Groups list on the right. Once you visit a group you will go directly to that group's home whenever you access PtGolf. If you leave the group, you can visit another group.
@@ -43,6 +53,4 @@ section.dashboard
     .button-bar
         button.lime-link-btn = link_to 'Contact Us', '/inquiries/new'
 
-    hr.underline
-    .annotate Rails Version 6.1.3
 

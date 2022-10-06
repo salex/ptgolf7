@@ -8,10 +8,11 @@ class Group < ApplicationRecord
   validates :name, presence: true, :uniqueness => {:scope => [:club_id, :name]}
   validates :club_id, presence: true
 
-  after_initialize :set_attributes
-
-  serialize :preferences, JSON # remove after settings set
+  # remove after settings set
   serialize :settings, ActiveSupport::HashWithIndifferentAccess
+  serialize :preferences, JSON
+
+  after_initialize :set_attributes
 
   # lets just set all settings to attribututes
   # if you add/remove a setting, add an attribute and class and add default options 
@@ -72,7 +73,7 @@ class Group < ApplicationRecord
       end
     end
 
-    if self.settings_changed?
+    if self.settings_changed? && self.valid?
       puts "SETTINGS CHANGED"
       self.save
     end

@@ -4,7 +4,8 @@ class Games::Scheduled < Game
   def form_teams(makeup,form_method)
     teams = GameObjects::ScheduledGame::FormTeams.new(self.rounds.size,makeup,form_method).teams
     # puts "WHAT TEAMS #{teams}"
-    redirect_to root_path if teams.blank?
+    # redirect_to root_path if teams.blank?
+    return false if teams.blank?  
     if makeup == 'individuals' || makeup == 'assigned'
       scheduled_rounds = self.current_players_name
     elsif form_method == :least_paired

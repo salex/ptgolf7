@@ -9,13 +9,13 @@
           = hidden_field_tag(group_id:current_group.id)
           - remember_me = "remember_me_#{current_group.id}".to_sym
           .flabel
-            = label_tag(:email, 'Player Username')
+            = label_tag(:email, 'Player ID')
             - uname = params[:email].present? ? params[:email] : cookies[remember_me]
           .ffield = text_field_tag( :email, uname)
 
-          .f.label= label_tag( :password)
-          .ffield= password_field_tag( :password)
-          br
+          / .f.label= label_tag( :password)
+          / .ffield= password_field_tag( :password)
+          / br
           button.submit.actions.bg-blue-700= submit_tag( "Login",class:'button small')
           |&nbsp;
           span.indent2

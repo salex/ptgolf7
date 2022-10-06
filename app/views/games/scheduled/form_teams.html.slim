@@ -34,7 +34,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
       - @teams.options.each do |k,v|
         .w3-row-padding
           .s6.w3-col 
-            = radio_button_tag 'team_makeup', k, false, data:{alert_target:'options'}
+            = radio_button_tag 'team_makeup', k, false, data:{alert_target:'options', action: 'click->alert#checkOptions'}
             strong style="padding-left:4px;" = k.to_s.capitalize
           .s6.w3-col = v
           hr
@@ -72,7 +72,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
           strong style="padding-left:4px;" Blind Draw
          
       hr
-        button.btn.btn-info.w100= f.submit("Form Teams", class:'button small w100 strong fs125', data:{action: 'click->alert#checkOptions'},id:'submit_form')
+        button{class="#{btn_info} text-black w100"}= f.submit("Form Teams", class:' btn small w100 strong fs125', data:{action: 'click->alert#checkOptions',alert_target:'submit'},id:'submit_form',disabled:true)
         h4.strong.w3-center - Or Just pick your own teams! -
         / = button_to  'Assign Teams',  action:'assign_teams', class: 'btn btn-icon btn-info dblock mr-2 w100 w3-center'
 

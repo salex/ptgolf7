@@ -43,12 +43,19 @@
   margin-right: 0.25rem;
 
 }
+
 .slim p, .marked p{
-  font-size: 16px;
+  font-size: 100%;
   line-height: 1.2;
   margin: 0.75rem 0 0.5rem 0;
 }
-
+.fs80{
+  font-size: 80%;
+  line-height: 1.0;
+}
+.fs80 li{
+  line-height: 1.1;
+}
 .marked-buttons div {
   border: none;
   border-radius: 2px;
@@ -65,28 +72,28 @@
 }
 .marked h6 {
   font-weight: bold;
-  font-size: 14pt;
+  font-size: 12pt;
 }
 .marked h5 {
   font-weight: bold;
-  font-size: 16pt;
+  font-size: 14pt;
 }
 .marked h4 {
   font-weight: bold;
-  font-size: 18pt;
+  font-size: 16pt;
 }
 
 .marked h3 {
   font-weight: bold;
-  font-size: 20pt;
+  font-size: 18pt;
 }
 .marked h2 {
   font-weight: bold;
-  font-size: 22pt;
+  font-size: 20pt;
 }
 .marked h1 {
   font-weight: bold;
-  font-size: 23pt;
+  font-size: 22pt;
 }
 
 .marked blockquote {
