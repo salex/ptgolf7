@@ -1,14 +1,16 @@
-section.flex.gap-8.bg-lime-light.border-bottom.p-2
-  .flex-none
-    h5.strong Game Scheduler
-  .flex-grow
-    span = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
+section.dashboard.border-bottom.pb-1.bg-lime-light
+  div.md:flex
+    div.ml-2
+      .text-lg.strong Scheduled Game
+    div.flex-grow.text-center
+      = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning mr-2'
+      - if is_manager? && @game.state[:can_delete]
 
-    - if is_manager? && @game.state[:can_delete]
-      .inline-block = destroyConfirmTag(game_path(@game),
-       prompt: icon('fas fa-trash','Delete Incomplete Game'))
-  .flex-none.hidden.md:block
-    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn  btn-secondary '
+        = destroy_tag(game_path(@game),
+         prompt: icon('fas fa-trash','Delete Incomplete Game'))
+
+    div.mr-4.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
   
 .w3-row-padding.w3-border-bottom.hidden.md:block
   div.content-center[ data-controller="toggle"]
@@ -18,17 +20,17 @@ section.flex.gap-8.bg-lime-light.border-bottom.p-2
 
 
     div[class=" bg-green-50 w-full px-2 hidden" data-toggle-target="menu"]
-      .w3-row-padding
-        .w3-col.m1
+      div.grid.grid-cols-12.gap-4
+        div.col-span-1
           strong Instructions
           .annotate Adding Scheduled Players or changing Current Players
-        .w3-col.m6
+        div.col-span-6
           ul[style='margin-top:0;' class="list-disc list-inside mb-2"]
             li Click on Player name button in Uscheduled sections to schedule player
             li Click on Player in Scheduled section to move them back  to Unscheduled
             li Click the Update Game at any time it is visable.
             li You can Update Game multiple times until teams are formed
-        .w3-col.m5
+        div.col-span-5
           ul[style='margin-top:0;' class="list-disc list-inside mb-2"]
             li Click on Del checkbox in Current Players to remove Player
             li Change Tee select if Player playing from different Tee

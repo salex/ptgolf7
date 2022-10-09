@@ -1,13 +1,10 @@
 section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
-  / .w3-col.m2
   .w-full.md:w-1/6.lg:w-1/6
     .text-2xl.strong Edit Group
-  / .w3-col.m8
   .w-full.md:w-2/3 
     - if is_manager?
       = link_to icon('fas fa-list', 'Cancel List Groups'),  groups_path, class: 'btn btn-warning mr-2'
       = link_to icon('fas fa-eye','Cancel Show Group'), group_path(@group), title: 'Edit it', class: 'btn btn-warning mr-2' if is_manager?
-  / .w3-col.m3.pt-breadcrumb
   .w-full.md:w-1/6.lg:w-1/6
     .lg:float-right
       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '

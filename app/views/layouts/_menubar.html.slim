@@ -3,8 +3,8 @@
 
   .flex.w3-black.noprint[data-controller="toggleSidebar"]
     
-    div.flex-none.hidden.md:block
-      button#openNav.w3-button.w3-green.w3-left[data-action="click->toggleSidebar#toggle"]  ☰ Menu
+    div.flex-none.hidden.md:block.bg-green
+      .w3-button.w3-left[data-action="click->toggleSidebar#toggle"]  ☰ Menu
 
     div.flex-none
       = link_to "Home", root_path, class: "w3-button"

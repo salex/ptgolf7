@@ -3,8 +3,8 @@
   = link_to icon('fas fa-arrow-left', 'Game'), @game.namespace_url, class: 'btn btn-warning '
   = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn btn-icon btn-info', onclick: "window.print();"
 
-.w3-row-padding
-  .s10.w3-col
+div.grid.grid-cols-12.m-2
+  div.col-span-9
     - if  @game.stats[:makeup] == 'individuals' || @game.stats[:seed_method] == 'blind_draw'
       table.small-table[style="font-size:120%;"]
         tr
@@ -54,7 +54,7 @@
 
           tr
             td colspan="3" &nbsp;
-  .s2.w3-col[style="font-size:14px;"]
+  div.col-span-3[style="font-size:14px;"]
     - @game.current_players_name.each do |p|
       .box = p.name
 

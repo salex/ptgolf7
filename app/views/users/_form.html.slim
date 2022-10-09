@@ -1,4 +1,4 @@
-= form_for @user do |f|
+div.mx-4 = form_for @user do |f|
   - if @user.errors.any?
     #error_explanation
       h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
@@ -38,13 +38,12 @@
       = f.label :reset_token
       = f.text_field :reset_token
       span.annotate Enter True for new user 
-  .w3-row
-    .m6.w3-col
-      .strong Roles
-      - checkboxes = role_checkboxes(@user.role)
-      - checkboxes.each do |b|
-        .m3.w3-col
-          = check_box_tag 'user[role][]', b[0],b[1]
-          |&nbsp;
-          = b[0]
+  div.flex.gap-4.flex-wrap
+    .strong Roles
+    - checkboxes = role_checkboxes(@user.role)
+    - checkboxes.each do |b|
+      div 
+        = check_box_tag 'user[role][]', b[0],b[1]
+        |&nbsp;
+        = b[0]
 

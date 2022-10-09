@@ -1,14 +1,12 @@
 section.dashboard
-  .w3-row-padding.w3-border-bottom
-    .w3-col.m2 
-      h5.strong Dashboard New Club
-    .w3-col.m6
+  div.md:flex.border-bottom.bg-lime-light
+    div.ml-4
+      .text-xl.strong New Club
+    div.flex-grow.text-center
       = link_to icon('fas fa-arrow-left', 'Cancel'),  clubs_path, class: 'btn btn-warning'
 
-    .w3-col.m4.pt-breadcrumb
-      .crumbs
-        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-        span.span-btn= 'Clubs'
+    div.mr-4.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 
 == render 'form'
 

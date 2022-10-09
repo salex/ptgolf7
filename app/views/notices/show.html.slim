@@ -1,28 +1,29 @@
-section.dashboard
-  .w3-row-padding.w3-border-bottom
-    .w3-col.m2 
-      h5.strong  Show Notice
-    .w3-col.m6
-      / span.lime-link-btn.span-btn.btn-primary = link_to 'plural_table_name.capitalize',players_path
+section.dashboard.border-bottom.pb-1.bg-lime-light
+  div.md:flex
+    div.ml-2
+      .text-lg.strong Show Notice
+    div.flex-grow.text-center
       = link_to icon('fas fa-list', 'List Notices'),  notices_path, class: 'btn btn-success mr-2'
 
       = link_to icon('fas fa-edit','Edit Notice'), 
-        edit_notice_path(@notice), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2' if is_manager?
-      = destroyConfirmTag(@notice,prompt: icon("fas fa-trash","Destroy Notice"))
+         edit_notice_path(@notice), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2' if is_manager?
+      = destroy_tag(@notice,prompt: icon("fas fa-trash","Destroy Notice"))
 
-.form-fields
-  .field
-    label Date
-    = @notice.date
-  .field
-    label Slim
-    = @notice.slim
-  .field
-    label Status
-    = @notice.status
-  .field
-    label Expires
-    = @notice.date_data
-.w3-row-padding
-  .w3-col.s12
-    = slim_text(@notice.slim)
+    div.mr-4.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+div.mx-2
+  .form-fields
+    .field
+      label Date
+      = @notice.date
+    .field
+      label Slim
+      = @notice.slim
+    .field
+      label Status
+      = @notice.status
+    .field
+      label Expires
+      = @notice.date_data
+  div
+      = slim_text(@notice.slim)

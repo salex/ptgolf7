@@ -69,8 +69,8 @@ Rails.application.routes.draw do
       patch :search
       get :player_search
       post :pairings_search
-      get :quota_correction
-      get :add_correction
+      # get :quota_correction
+      # get :add_correction
     end
 
   end
@@ -148,27 +148,27 @@ Rails.application.routes.draw do
     end
   end
 
- get 'home/show'
- get 'home/search'
- get 'home/display'
+ # get 'home/show'
+ # get 'home/search'
+ # get 'home/display'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'login', to: 'groups#login', as: 'login'
   get 'discuss', to: 'groups#discuss', as: 'discuss'
 
   get 'logout', to: 'users#logout', as: 'logout'
-  get 'develop', to: 'users#develop', as: 'develop'
+  # get 'develop', to: 'users#develop', as: 'develop'
   get 'profile', to: 'users#profile'
   get 'score_sheet', to: 'home#score_sheet'
 
   get 'test', to: 'home#test'
   # get 'home', to: 'home#show'
-  get 'autocomplete' , to: 'home#autocomplete'
+  # get 'autocomplete' , to: 'home#autocomplete'
   get 'sinners', to: 'home#sinners'
   get 'saints', to: 'home#saints'
   get 'gaggle', to: 'home#gaggle'
 
-  get 'plain', to: 'home#plain'
+  # get 'plain', to: 'home#plain'
   get 'changes', to: 'home#changes'
   get 'help', to: 'abouts#help'
   root 'home#index'

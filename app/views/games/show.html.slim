@@ -2,24 +2,24 @@
   = render template:'games/invalid'
 
 - else
-
   section.dashboard
-    .w3-row-padding.w3-border-bottom
-      .w3-col.m2 
-        h5.strong  Show Game
-      .w3-col.m6
-        = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,
-          class: 'btn btn-warning mr-2'
+    div.md:flex.border-bottom.bg-lime-light
+      div.ml-4
+        .text-xl.strong Scheduled Game
+      div.flex-grow.text-center
+        = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning mr-2'
         = link_to icon('fas fa-arrow-left', 'Cancel - Show Game with Players'),  @game.namespace_url,
           class: 'btn btn-warning mr-2'
 
 
-      .w3-col.m4.pt-breadcrumb
-        .crumbs
-          = link_to icon('fas fa-arrow-left', 'Cancel'),  games_path, class: 'btn btn-warning'
+        - if is_manager? && @game.state.present? && @game.state[:can_delete]
 
-          = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-          span.span-btn= Game
+          = destroyConfirmTag(game_path(@game),
+           prompt: icon('fas fa-trash','Delete Incomplete Game'))
+
+      div.mr-4.hidden.md:flex.float-right
+        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+
 
   table.show-table.half
 

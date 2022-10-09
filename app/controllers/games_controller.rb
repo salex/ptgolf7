@@ -12,6 +12,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    puts "IM SHOW GA<E #{@game.inspect}"
     if @game.status == "Scored"
       redirect_to games_scored_path(@game)
     end

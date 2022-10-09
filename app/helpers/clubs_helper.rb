@@ -21,7 +21,7 @@ module ClubsHelper
     end
   end
   def callout_alert(content)
-    tag.div class:'w3-container w3-pale-red w3-leftbar w3-border-red w3-display-container' do  
+    tag.div class:'px-4 mt-4 bg-red-200 border-l-8 border-red-500 relative' do  
       concat(tag.button('&cross;'.html_safe,
         class:"absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white",
           onclick:"this.parentElement.style.display='none'")) 
@@ -30,7 +30,7 @@ module ClubsHelper
     end
   end
   def callout_info(content)
-    tag.div class:'w3-container w3-pale-blue w3-leftbar w3-border-blue w3-display-container' do  
+    tag.div class:' bg-blue-200 mt-4 border-l-8 border-blue-500 relative' do  
       concat(tag.button('&cross;'.html_safe,
         class:"absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white",
           onclick:"this.parentElement.style.display='none'")) 
@@ -47,11 +47,5 @@ module ClubsHelper
       concat(content)
     end
   end
-
-  def slim_text(text)
-    page =  Slim::Template.new{|t| text}
-    page.render.html_safe
-  end
-
   
 end

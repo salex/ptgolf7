@@ -1,10 +1,10 @@
 .w3-row.min-height.w3e-blue
-  .s4.w3-col &nbsp;
-  .box-center.s4.w3-col.w3-white.w3-padding.w3-margin
+  .w-96.m-4.p-4.mx-auto.w3-white
+
     = form_tag signin_group_path(current_group) do
       h5.strong.malt Login
       .row
-        .small-2.columns &nbsp;
+        br
         .form-inputs.small-4.columns
           = hidden_field_tag(group_id:current_group.id)
           - remember_me = "remember_me_#{current_group.id}".to_sym
@@ -22,4 +22,3 @@
             |&nbsp;Remember Me
             / .indent2 = link_to "Forgot Password",forgot_password_users_path
         .small-6.columns &nbsp;
-  .s4.w3-col &nbsp;

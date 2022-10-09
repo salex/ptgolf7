@@ -1,79 +1,62 @@
-section.dashboard
-  .md:flex.border-bottom.pb-1.bg-lime-light
-    div.ml-4
-      h5.text-xl.strong.strong Show Group
+section.dashboard.border-bottom.pb-1.bg-lime-light
+  .md:flex
+    div.ml-2
+      h5.text-xl.strong Show Group
     div.flex-grow.text-center
-    = link_to icon('fas fa-list', 'List Groups'),  groups_path, class: 'btn btn-success mr-2'
-    - if is_manager?
-      = link_to icon('fas fa-edit','Edit Group'), edit_group_path(@group), title: 'Edit it', class: 'btn btn-warning mr-2' if is_manager?
-      = destroyConfirmTag(recompute_quotas_group_path(@group),
-        prompt: icon('fas fa-calculator','Recompute Quota'),
-        klass: 'rounded py-px px-1 btn-warning mr-2 inline-block',
-        meth: :patch)
+      = link_to icon('fas fa-list', 'List Groups'),  groups_path, class: 'btn btn-success mr-2'
+      - if is_manager?
+        = link_to icon('fas fa-edit','Edit Group'), edit_group_path(@group), title: 'Edit it', class: 'btn btn-warning mr-2' if is_manager?
+        = destroyConfirmTag(recompute_quotas_group_path(@group),
+          prompt: icon('fas fa-calculator','Recompute Quota'),
+          klass: 'rounded py-px px-1 btn-warning mr-2 inline-block',
+          meth: :patch)
 
-      = link_to icon('fas fa-cut','Trim Expired Players'),expired_players_group_path(@group),class: 'rounded py-px px-1 btn-warning mr-2 inline-block'
+        = link_to icon('fas fa-cut','Trim Expired Players'),expired_players_group_path(@group),class: 'rounded py-px px-1 btn-warning mr-2 inline-block'
 
-      = destroyConfirmTag(trim_rounds_group_path(@group),
-        prompt: icon('fas fa-cut','Trim Games/Rounds'),
-        meth: :patch,
-        confirm_msg:"Are You Sure? Will delete all rounds over #{@group.trim_months} months old?")
+        = destroyConfirmTag(trim_rounds_group_path(@group),
+          prompt: icon('fas fa-cut','Trim Games/Rounds'),
+          meth: :patch,
+          confirm_msg:"Are You Sure? Will delete all rounds over #{@group.trim_months} months old?")
 
-    div.mr-4.hidden.md:flex.float-right
+    div.mr-4.hidden.md:flex.text-right
       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 
+div.px-2
+  table.small-table.ml-8
+    tr
+      th.text-right.px-2 Club:
+      td = @group.club.name
+    tr
+      th.text-right.px-2 Name:
+      td = @group.name
+    tr
+      th.text-right.px-2 Tees:
+      td = @group.tees
+  - settings =  @group.settings
+  - keys = settings.keys
+  - len = settings.keys.length
+  .text-xl.bg-lime-lighter.strong Group Options/Settings
+  - half = (len / 2) - 1
+  / - third = (len / 3) - 1
+  / div[class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 "]
+  /   - settings.each do |k,v|
+  /     div.flex
+  /       div.inline-block.strong.mr-2.text-right = "#{k}:"
+  /       div.inline-block = v 
 
+  / div.md:grid.md:grid-cols-2.gap-2
+  div.md:flex.gap-2
 
-/ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
-/   / .w3-col.m2
-/   .w-full.md:w-1/6.lg:w-1/6
-/     .text-2xl.strong Show Group
-/   / .w3-col.m8
-/   .w-full.md:w-2/3 
-/     = link_to icon('fas fa-list', 'List Groups'),  groups_path, class: 'btn btn-success mr-2'
-/     - if is_manager?
-/       = link_to icon('fas fa-edit','Edit Group'), edit_group_path(@group), title: 'Edit it', class: 'btn btn-warning mr-2' if is_manager?
-/       = destroyConfirmTag(recompute_quotas_group_path(@group),
-/         prompt: icon('fas fa-calculator','Recompute Quota'),
-/         klass: 'rounded py-px px-1 btn-warning mr-2 inline-block',
-/         meth: :patch)
-
-/       = link_to icon('fas fa-cut','Trim Expired Players'),expired_players_group_path(@group),class: 'rounded py-px px-1 btn-warning mr-2 inline-block'
-
-/       = destroyConfirmTag(trim_rounds_group_path(@group),
-/         prompt: icon('fas fa-cut','Trim Games/Rounds'),
-/         meth: :patch,
-/         confirm_msg:"Are You Sure? Will delete all rounds over #{@group.trim_months} months old?")
-
-/   .w-full.md:w-1/6.lg:w-1/6
-/     .lg:float-right
-/       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-
-table.show-table
-
-  tr
-    th Club:
-    td = @group.club.name
-  tr
-    th Name:
-    td = @group.name
-  tr
-    th Tees:
-    td = @group.tees
-- settings =  @group.settings
-- keys = settings.keys
-- len = settings.keys.length
-.text-2xl.bg-lime-lighter.strong.w3-center Group Options/Settings
-- half = (len / 2) - 2
-.form-fields.w3-half
-  - 0.upto(half) do |i|
-    .field
-      label.half = keys[i]
-      span = settings[keys[i]]
-.form-fields.w3-half
-  - (half + 1).upto(len -1) do |i|
-    .field
-      label.half = keys[i]
-      span = settings[keys[i]]
+    table.w-1/2
+      - 0.upto(half) do |i|
+        tr 
+          td.text-right.font-bold.pr-1 = "#{keys[i]}:"
+          td = settings[keys[i]]
+    table
+      - (half + 1).upto(len -1) do |i|
+        tr
+          th.text-right.font-bold.pr-1 = "#{keys[i]}:"
+          td.float-left = settings[keys[i]]
 
 
 

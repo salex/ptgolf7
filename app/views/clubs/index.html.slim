@@ -1,19 +1,16 @@
 section.dashboard
-  .w3-row-padding.w3-border-bottom
-    .w3-col.m2 
-      h5.strong Clubs
-    .w3-col.m6
+  div.md:flex.border-bottom.pb-1.bg-lime-light
+    div.ml-4
+      .text-xl.strong Clubs
+    div.flex-grow.text-center
       - if is_super?
         = link_to icon('fas fa-plus','New Club'), new_club_path,
           class: 'btn btn-success'
 
-    .w3-col.m4.pt-breadcrumb
-      .crumbs
-        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-        / span.span-btn= clubs
+    div.mr-4.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 
-
-table.small-table
+table.small-table.m-2
   thead
     tr
       th Short name

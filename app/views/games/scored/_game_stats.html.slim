@@ -1,7 +1,7 @@
 hr.underline
  
-.w3-row-padding
-  .l4.w3-col
+div.grid.grid-cols-12.mx-2.gap
+  div.col-span-12.lg:col-span-5.border
     - if @game.has_skins?
       - skins = GameObjects::Skins.new(@game)
       .box.strong Skins/Birdies
@@ -61,7 +61,8 @@ hr.underline
             td = k
             td = a[2]
             td = a[1]
-  .l4.w3-col
+  div.col-span-12.lg:col-span-5.border
+    br
     - if @game.has_par3?
      - par3 = GameObjects::Par3.new(@game)
 
@@ -88,3 +89,5 @@ hr.underline
            td = k
            td = a[2] 
            td = a[1]
+  div.lg:col-span-2
+    p &nbsp;

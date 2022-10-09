@@ -1,8 +1,6 @@
 div.flex.flex-wrap.bg-lime-light.border-bottom.p-2
-  / .w3-col.m2
   .w-full.md:w-1/6.lg:w-1/6
     .text-2xl.strong Show Round
-  / .w3-col.m8
   .w-full.md:w-2/3 
     .annotate This area is restricted to Cordinators. It can be used to change mistakes made in forming teams. Mistakes include, using the wrong Tee, Quota. Use Rescore_Teams if error was in scoring. You can also Delete/Destroy the players round if they dropped out, but you can also remove them by Adjusting Teams and removing them there.
 
@@ -17,9 +15,7 @@ div.flex.flex-wrap.bg-lime-light.border-bottom.p-2
       = button_to icon('fas fa-trash','Destroy Round'), @round, title: 'Destroy it',method: :delete,form_class:"#{to_tw("btn-danger inline-block py-px mr-2")}",
         form: { data: { turbo_confirm: 'Are you sure?' }}
 
-      / = link_to icon('fas fa-user-plus', 'Add Late Player'), "#",
-      /   class: to_tw("btn btn-warning mr-2")
-
+  
   .w-full.md:w-1/6.lg:w-1/6
     .lg:float-right
       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
@@ -67,9 +63,5 @@ table.medium-table
       td.text-right= to_nickels(@round.skins,1) if @round.skins.present? && !@round.skins.zero?
       td.text-right= to_nickels(@round.par3,1) if @round.par3.present? && !@round.par3.zero?
       td.text-right= to_nickels(@round.other,1) if @round.other.present? && !@round.other.zero?
-      / td.text-right= @round.quality
-      / td.text-right= @round.skins
-      / td.text-right= @round.par3
-      / td.text-right= @round.other
 
   

@@ -1,6 +1,6 @@
-section.dashboard
-  .md:flex.border-bottom
-    div.ml-4
+section.dashboard.border-bottom.pb-1.bg-lime-light
+  .md:flex
+    div.ml-2
       .text-xl.strong Show Player
     div.flex-grow.text-center
       = link_to icon('fas fa-list', 'List Players'),  players_path, class: to_tw('btn-success mr-2')
@@ -8,21 +8,8 @@ section.dashboard
         = link_to icon('fas fa-edit','Edit Player'), edit_player_path(@player), title: 'Edit it', class: to_tw('btn-warning mr-2') 
         = destroyConfirmTag(@player, prompt: icon("fas fa-trash",'Delete Player'))
 
-    div.mr-4.hidden.md:flex.float-right
+    div.mr-2.hidden.md:flex.float-right
       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
-
-
-
-/ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
-/   .w-full.md:w-1/6.lg:w-1/6
-/     h5.strong Show Player
-/   .w-full.md:w-2/3 
-/     = link_to icon('fas fa-list', 'List Players'),  players_path, class: to_tw('btn-success mr-2')
-/     - if is_manager?
-/       = link_to icon('fas fa-edit','Edit Player'), edit_player_path(@player), title: 'Edit it', class: to_tw('btn-warning mr-2') 
-/       = destroyConfirmTag(@player, prompt: icon("fas fa-trash",'Delete Player'))
-/   .w-full.md:w-1/6.lg:w-1/6
-/     .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: to_tw( 'btn btn-secondary ')
 
 div.mt-1.flex.flex-wrap
   .px-1.w-full.lg:w-1/6
@@ -90,16 +77,15 @@ div.mt-1.flex.flex-wrap
           td= s[:dropped]
           td= get_trend(s[:totals])
 
-    .w3-row
-      h5.strong Round History
+    h5.strong Round History
+    div.grid.grid-cols-3.gap-6
       - qs = @player.quality_stats
-      - puts "QUAL #{qs}"
       - qs.each do |k,a|
-        .w3-col.m12.l4
+        div
           - unless a[1].zero?
             table.small-table.w90p
               tr
-                th.w-1/4 = k == :quality ? 'Rnds' : k.capitalize
+                td.w-1/4 = k == :quality ? 'Rnds' : k.capitalize
                 th.w-1/4 Won
                 th.w-1/4 Dues
                 th.w-1/4 Bal

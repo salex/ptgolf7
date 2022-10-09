@@ -1,45 +1,37 @@
-section.dashboard
-  .w3-row-padding.w3-border-bottom
-    .w3-col.m2 
-      h5.strong Update Profile
-    .w3-col.m6
-      / span.lime-link-btn.span-btn.btn-primary.w3-text-white = link_to 'Clubs',clubs_path
+section.dashboard.border-bottom.pb-1.bg-lime-light
+  div.md:flex
+    div.ml-2
+      .text-lg.strong Update Profile
+    div.flex-grow.text-center
+      <links>
+    div.mr-4.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+div.mx-2
 
+  = form_with(model: @user,url: update_profile_user_path(@user), method: :patch) do |f|
+    - if @user.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+        ul
+          - @user.errors.full_messages.each do |message|
+            li = message
+    .form-fields
+      .field
+        = f.label :email 
+        = f.text_field :email
+      .field
+        = f.label :username
+        = f.text_field :username
+      / - if @member.present?
+      p.annotate You may change your password below. Leave blank if just updating eMail or Username.
+      .field
+        = f.label :password
+        = f.password_field :password
+      .field
+        label Confirm Password
+        = f.password_field :password_confirmation
+        = f.hidden_field :reset_token
 
-    .w3-col.m4.pt-breadcrumb
-      .crumbs
-        = link_to icon('fas fa-arrow-left', 'Cancel'),  root_path, class: 'btn btn-warning'
-
-        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-        span.span-btn Profile
-.w3-row-padding
-  .s8.w3-col
-
-    legend Update Profile
-    = form_with(model: @user,url: update_profile_user_path(@user), method: :patch) do |f|
-      - if @user.errors.any?
-        #error_explanation
-          h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-          ul
-            - @user.errors.full_messages.each do |message|
-              li = message
-      .form-fields
-        .field
-          = f.label :email 
-          = f.text_field :email
-        .field
-          = f.label :username
-          = f.text_field :username
-        / - if @member.present?
-        p.annotate You may change your password below. Leave blank if just updating eMail or Username.
-        .field
-          = f.label :password
-          = f.password_field :password
-        .field
-          label Confirm Password
-          = f.password_field :password_confirmation
-          = f.hidden_field :reset_token
-
-        br
-        button.submit = f.submit
+      br
+      button.submit = f.submit
 

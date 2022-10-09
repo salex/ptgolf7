@@ -1,19 +1,20 @@
-section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
-  .w-full.md:w-1/6.lg:w-1/6
-    h5.strong Score Teams
-  .w-full.md:w-2/3 
-    = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
-    - if @game.state[:can_delete] && is_manager?
 
-      = destroyConfirmTag(game_path(@game),
-       prompt: icon('fas fa-trash','Delete Incomplete Game'))
-  .w-full.md:w-1/6.lg:w-1/6
-    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-secondary '
+section.dashboard.border-bottom.pb-1.bg-lime-light
+  div.md:flex.ml-2
+    div.text-lg.strong Score Teams
+    div.flex-grow.text-center
+      = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
+      / - if @game.state[:can_delete] && is_manager?
+
+      /   = destroyConfirmTag(game_path(@game),
+      /    prompt: icon('fas fa-trash','Delete Incomplete Game'))
+    div.mr-2.hidden.md:flex.float-right
+     = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 
 = render partial:'games/shared/event'
 = form_with(url:update_scores_games_pending_path(@game), method: :patch, data: { type: "html"} )do |f|
-  .w3-row-padding
-    .s12.m3.w3-col
+  div.md:grid.md:grid-cols-12.m-2.gap-4
+    div.md:col-span-3
       / [data-sticky-container]
       .sticky-col
         .btn-submit.text-center.font-bold = f.submit("Update Scores", class:'w3-disabled',autocomplete: :off,disabled: :disabled,id:'submit_form')
@@ -35,7 +36,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
           .lime-link-btn.w100 = link_to "Use Keyboard Entry", score_teams_games_pending_path(@game,link_params),class:'link-btn strong '
         hr.underline.w100
     - select_points = !useKeys
-    .s12.m9.w3-col
+    div.md:col-span-9
       #status_box.w3-text-red.strong No team(s) have been scored
 
       - teams = @game.game_teams(params[:team])

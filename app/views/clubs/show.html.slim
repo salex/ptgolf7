@@ -1,20 +1,13 @@
-section.dashboard
-  .w3-row-padding.w3-border-bottom
-    .w3-col.m2 
-      h5.strong Show Club
-    .w3-col.m6
-      .mt-3
-        = link_to icon('fas fa-edit','Edit'), edit_club_path(@club), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2' if is_super?
-        = link_to icon('fas fa-list','List'), clubs_path, title: 'List it', class: 'btn btn-icon btn-info mr-2'
+div.md:flex.border-bottom.bg-lime-light
+  div.ml-4
+    .text-xl.strong Edit Club
+  div.flex-grow.text-center
+    = link_to icon('fas fa-edit','Edit'), edit_club_path(@club), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2' if is_super?
+    = link_to icon('fas fa-list','List'), clubs_path, title: 'List it', class: 'btn btn-icon btn-info mr-2'
 
+  div.mr-4.hidden.md:flex.float-right
+    = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 
-
-    .w3-col.m4.pt-breadcrumb
-      .crumbs
-        = link_to icon('fas fa-arrow-left', 'Cancel'),  clubs_path, class: 'btn btn-warning'
-
-        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-        span.span-btn= Club
 .flex
   div.w-1/3
     table.show-table

@@ -46,16 +46,6 @@ module ApplicationHelper
     'fas fa-arrow-right'
   end
 
-
-
-  # def callout_warning(content)
-  #   tag.div( 
-  #     tag.span( &times;,class:'w3-button w3-large w3-display-topright',onclick:"this.parentElement.style.display='none'"),
-  #     tag.div(content),
-  #     class:'w3-container w3-pale-yellow w3-leftbar w3-border-yellow w3-display-container')
-  #   )
-  # end
-
   def np(number, options = {})
     number_with_precision number, options
   end

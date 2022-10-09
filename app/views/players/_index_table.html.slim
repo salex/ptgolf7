@@ -27,7 +27,7 @@
       - @players.each do |player|
         tr
           td 
-            = link_to player.name,player, class:'green-link font-bold'
+            = link_to player.name,player, class:'blue-link '
             / = link_to icon('fas fa-eye'),  player, title: 'Show it', class: 'btn btn-icon mr-2'
           td.hidden.md:table-cell= player.first_name
           td.hidden.md:table-cell= player.last_name

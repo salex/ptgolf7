@@ -1,18 +1,12 @@
-
-section.dashboard
-  .w3-row-padding.w3-border-bottom
-    .w3-col.m2 
-      h5.strong.w3-text-red Invalid Game
-    .w3-col.m6
+section.dashboard.border-bottom.pb-1.bg-lime-light
+  div.md:flex
+    div.ml-2
+      .text-lg.strong Invalid Game
+    div.flex-grow.text-center
       span.lime-link-btn = link_to 'Games', games_path
+    div.mr-4.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 
-
-    .w3-col.m4.pt-breadcrumb
-      .crumbs
-        = link_to icon('fas fa-arrow-left', 'Cancel'),  games_path, class: 'btn btn-warning'
-
-        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-        span.span-btn= Game
 h3.strong.w3-text-red A player(s) have been deleted from this game, scoring not available
 
 table.show-table

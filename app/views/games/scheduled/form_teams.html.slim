@@ -1,84 +1,70 @@
-section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
-  .w-full.md:w-1/6.lg:w-1/6
-    h5.strong 
-      h5.strong 
-        = @game.status == 'Scheduled' ? "Form Teams" : "Reform Teams"
-  .w-full.md:w-2/3 
-     = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,
-       class: 'btn btn-warning mr-2'
-     = link_to icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,
-       class: 'btn btn-warning mr-2'
-  .w-full.md:w-1/6.lg:w-1/6
-    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-secondary '
-/ section.dashboard
-/   .w3-row-padding.w3-border-bottom
-/     .w3-col.m2 
-/       h5.strong Form Teams
-/     .w3-col.m6
-/       = link_to icon('fas fa-arrow-left', 'List Games'),  games_path, class: 'btn btn-info mr-2'
-/       = link_to icon('fas fa-arrow-left', "#{@game.status} Game(Cancel)"),  games_scheduled_path(@game), class: 'btn btn-warning'
-/     .w3-col.m4.pt-breadcrumb
-/       .crumbs
-/         = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-/         span.span-btn= Game
+section.dashboard.border-bottom.pb-1.bg-lime-light
+  div.md:flex
+    div.ml-2
+      .text-lg.strong = @game.status == 'Scheduled' ? "Form Teams" : "Reform Teams"
+    div.flex-grow.text-center
+      = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,
+        class: 'btn btn-warning mr-2'
+      = link_to icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,
+        class: 'btn btn-warning mr-2'
+    div.mr-4.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 = render partial:'games/shared/event'
 
 - participants = @game.current_players
 / - pids = participants.pluck(:player_id)
 / - ptranking = @game.players_quality_stats
-.w3-row-padding
-  .w3-col.m5[data-controller='alert']
+div.grid.grid-cols-12.gap-4.mx-2
+  .col-span-6[data-controller='alert']
     = form_with(url:update_teams_games_scheduled_path(@game), method: :patch)do |f|
-      h5.strong Team Options
-      / - options = @teams.options
+      div 
+        span.strong Team Options 
+        span.italic = "(You must pick 1!)"
       - @teams.options.each do |k,v|
-        .w3-row-padding
-          .s6.w3-col 
+        div.flex.flex-wrap.gap-16.pb-1.border-bottom
+          div.w-36.pl-4
             = radio_button_tag 'team_makeup', k, false, data:{alert_target:'options', action: 'click->alert#checkOptions'}
             strong style="padding-left:4px;" = k.to_s.capitalize
-          .s6.w3-col = v
-          hr
+          div = v
+
       h5.strong Form Teams Method
-      div
-      div
-      div
-      .w3-row-padding
-        .l6.w3-col
-          = radio_button_tag 'seed_method', 'random'
-          strong style="padding-left:4px;" Random
-        .l6.w3-col
-          = radio_button_tag 'seed_method', 'seeded'
-          strong style="padding-left:4px;" Seeded
-        .l6.w3-col
+      div.flex.flex-wrap.p-1.border-bottom
+        div.w-1/3
           = radio_button_tag 'seed_method', 'draw', checked:true
           strong style="padding-left:4px;" Draw(Seeded)
-        .l6.w3-col
+        div.w-1/3
+          = radio_button_tag 'seed_method', 'random'
+          strong style="padding-left:4px;" Random
+        div.w-1/3
+          = radio_button_tag 'seed_method', 'seeded'
+          strong style="padding-left:4px;" Seeded
+        div.w-1/3
           = radio_button_tag 'seed_method', 'least_paired'
           strong style="padding-left:4px;" Least Paired 
-        .l6.w3-col
+        div.w-1/3
           = radio_button_tag 'seed_method', 'stacked'
           strong style="padding-left:4px;" Stacked(Seed)
-        .l6.w3-col
+        div.w-1/3
           = radio_button_tag 'seed_method', 'stacked_draw'
           strong style="padding-left:4px;" Stacked(Draw)
-        .l6.w3-col
+        div.w-1/3
           = radio_button_tag 'seed_method', 'abcd_battle'
           strong style="padding-left:4px;" ABCD Battle
-        .l6.w3-col
+        div.w-1/3
           = radio_button_tag 'seed_method', 'redistribution'
           strong style="padding-left:4px;" Redistribution
-        .l6.w3-col
+        div.w-1/3
           = radio_button_tag 'seed_method', 'blind_draw',nil, data:{action:'click->alert#blind'}
           strong style="padding-left:4px;" Blind Draw
          
-      hr
+      div
         button{class="#{btn_info} text-black w100"}= f.submit("Form Teams", class:' btn small w100 strong fs125', data:{action: 'click->alert#checkOptions',alert_target:'submit'},id:'submit_form',disabled:true)
         h4.strong.w3-center - Or Just pick your own teams! -
         / = button_to  'Assign Teams',  action:'assign_teams', class: 'btn btn-icon btn-info dblock mr-2 w100 w3-center'
 
         .btn.btn-warning.w100.w3-center.w3-text-large.w3-padding= link_to "Pick your own teams",@game.namespace_url('assign_teams'),class:'w3-text-white strong fs125 dblock'
 
-  .m7.w3-col
+  div.col-span-6
     h5
       .strong Current Participants
       span.annotate Table is sortable by clicking on the column header! Click twice to change from decending to assending

@@ -1,36 +1,33 @@
-section.dashboard
-  .w3-row-padding.w3-border-bottom
-    .w3-col.m2 
-      h5.strong Dashboard Groups
-    .w3-col.m6
+section.dashboard.border-bottom.pb-1.bg-lime-light
+  div.md:flex
+    div.ml-2
+      .text-lg.strong Groups
+    div.flex-grow.text-center
       - if is_super?
-        span.lime-link-btn.span-btn.btn-primary= link_to 'New Group', new_group_path
+        = link_to icon('fas fa-user-plus', 'Add New Group'),  new_group_path, class: 'inline-block btn btn-success mx-1' if is_manager?
 
-    .w3-col.m4.pt-breadcrumb
-      .crumbs
-        = link_to icon('fas fa-arrow-left', 'Cancel'),  root_path, class: 'btn btn-warning'
+    div.mr-4.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 
-        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
-
-
-table.small-table
-  thead
-    tr
-      th Club
-      th Name
-      th Tees
-      - if is_super?
-        th Actions
-
-  tbody
-    - @groups.each do |group|
+div.mx-2
+  table.small-table
+    thead
       tr
-        td = group.club.name
-        td = group.name
-        td = group.tees
+        th Club
+        th Name
+        th Tees
         - if is_super?
-          td 
-            = link_to icon('fas fa-eye'),  group, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
-            = link_to icon('fas fa-edit'), edit_group_path(group), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
-            = destroyConfirmTag(group,
-              prompt: icon("fas fa-trash"))
+          th Actions
+
+    tbody
+      - @groups.each do |group|
+        tr
+          td = group.club.name
+          td = group.name
+          td = group.tees
+          - if is_super?
+            td 
+              = link_to icon('fas fa-eye'),  group, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
+              = link_to icon('fas fa-edit'), edit_group_path(group), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
+              = destroyConfirmTag(group,
+                prompt: icon("fas fa-trash"))

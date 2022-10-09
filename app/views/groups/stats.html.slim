@@ -1,5 +1,5 @@
-.w3-row-padding
-  .s12.m5.w3-col.callout.success.noprint.w3-border-right.lite-lime
+div.md:grid.md:grid-cols-12.gap-4.m-2
+  div.md:col-span-5.noprint.w3-border-right.lite-lime
     h5.w3-left.strong A version of FedEx points based on winning!
     .w3-right.button-bar.noprint 
       = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn btn-icon btn-info', onclick: "window.print();"
@@ -8,7 +8,7 @@
     - options = @groupStats.money_list_options
     - game = options[:game]
 
-    .w3-white.w3-card-4
+    .w3-white.w3-card-4.m-1
       .w3-green.w3-container
         h6.strong Group Players Stats Options/Filter
       .w3-padding  = form_with url: "/groups/#{@group.id}/stats_refresh", method: :patch
@@ -22,18 +22,16 @@
         - by = options[:limit_by]
         .grid.grid-cols-2.m-2
           div
-            = radio_button_tag 'stats[limit_by]', 'rounds', by=='rounds',class:'xx'
-            strong  #Rounds
+            = radio_button_tag 'stats[limit_by]', 'rounds', by:'rounds',class:'xx'
+            strong = " #Rounds - Enter Rounds"
           div
-            strong  Number of Rounds: &nbsp;
-            = text_field_tag 'stats[limit]', options[:limit]
-        .grid.grid-cols-2.m-2
-
+            = text_field_tag 'stats[limit]', options[:limit],class:'w-40'
+        .grid.grid-cols-2.m-2  
           div
-            = radio_button_tag 'stats[limit_by]', 'date', by=='date',class:'xx'
-            strong  Date>=
+            = radio_button_tag 'stats[limit_by]', 'date', by:'date',class:'xx'
+            strong=  " Date>= Enter Date"
           div
-            = text_field_tag 'stats[from]', options[:from], data:{controller:'flatpickr'}
+            = text_field_tag 'stats[from]', options[:from], data:{controller:'flatpickr'},class:'w-40'
         - sel = options[:order]
         div.strong Sort Order
         .grid.grid-cols-4.m-2
@@ -51,7 +49,7 @@
             strong  Avg
 
         div
-          button.lime-link-btn ReSelect
+          button.btn-primary ReSelect
 
     p.mb-4 Stats are available for the Team game (Sides or Places) and optional side games (Birdies/Skins, Par3's, and Individual Best Sides)
     p.mb-4 Your can sort the list by four columns (Won is default) (you also sort by any column)
@@ -64,7 +62,7 @@
     p.mb-3.leading-tight You must have at least 3 rounds to make the list. You can limit the rounds used either by the number or rounds played, or by rounds played after a limit date. The last 100 rounds are used as the default round limit, but you can limit it to a different numbers of rounds.  The first of the current year is the dafault date limit, again it can be changed(e.g. last 3 months). The group can also set the default number of rounds or date used in their group settings.
 
 
-  #stats.s12.m7.w3-col
+  #stats.md:col-span-7
 
     / - game = options[:game].to_sym
     / - header = {quality:"Team Game Leaders (#{options[:order].capitalize})",skins:'Skins/Birdie Leaders',par3:'Par3 Leaders',other:'Best Sides Leaders'}

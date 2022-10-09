@@ -1,10 +1,9 @@
-.w3-row.min-height.w3e-blue
-  .s4.w3-col &nbsp;
-  .box-center.s4.w3-col.w3-white.w3-padding.w3-margin
+div.min-height.w3e-blue
+  br
+  .w-96.m-4.p-4.mx-auto.w3-white
     = form_tag discussin_group_path(current_group) do
       h5.strong.malt Discuss Login
       .row
-        .small-2.columns &nbsp;
         .form-inputs.small-4.columns
           = hidden_field_tag(group_id:current_group.id)
           - remember_me = "remember_me_#{current_group.id}".to_sym
@@ -12,15 +11,8 @@
             = label_tag(:email, 'Player ID')
             - uname = params[:email].present? ? params[:email] : cookies[remember_me]
           .ffield = text_field_tag( :email, uname)
-
-          / .f.label= label_tag( :password)
-          / .ffield= password_field_tag( :password)
-          / br
           button.submit.actions.bg-blue-700= submit_tag( "Login",class:'button small')
           |&nbsp;
           span.indent2
             = check_box_tag(remember_me,1,cookies[remember_me].present?)
             |&nbsp;Remember Me
-            / .indent2 = link_to "Forgot Password",forgot_password_users_path
-        .small-6.columns &nbsp;
-  .s4.w3-col &nbsp;

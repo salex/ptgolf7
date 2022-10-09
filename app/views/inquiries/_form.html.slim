@@ -1,7 +1,3 @@
-/ - if @inquiry.new_record?
-/   -url = inquiries_path
-/ - else
-/   - url = inquiry_path(@inquiry.id)
 = form_for @inquiry, format: :html do |f|
   - if @inquiry.errors.any?
     #error_explanation
@@ -34,30 +30,14 @@
           = f.label :date_replied
           = f.text_field :date,data:{controller:'flatpickr'}
 
-
-
-
-    
-      / .small-6.columns
-
-      /   = ff.text_field :name
-      /   = ff.text_field :email
-      /   = ff.text_field :phone
-      / .small-6.columns
-      /   = ff.text_area :remarks,rows: 6
       - r = rand(100)
       - a = (r..(r+10)).to_a
       -  h = a[rand(10)]
     
       .strong.w3-center 
-        span.ans-button[data-target="real.ask"]= h
+        span.ans-button[data-real-target="ask"]= h
       .strong.w3-center I'm a real person! Click the box below containing the number above.
       #answers.w3-center
         - a.each do |i|
           span.ans-button[data-action="click->real#answered"] = i
-      / = ff.input :real, collection: a, label: "I'm a real person", prompt:'Select above number'
-      = ff.hidden_field :answer, data:{target:"real.answer"}
-
-
-        / .form-actions
-        /     = f.button :submit
+      = ff.hidden_field :answer, data:{real_target:"answer"}

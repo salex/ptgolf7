@@ -104,25 +104,25 @@ class PlayersController < ApplicationController
 
   end
 
-  def quota_correction
-    if params[:perc].present?
-      @perc = params[:perc].to_f.round(2)
-    else
-      @perc = 0.4
-    end
-    @players = QuotaCorrection.new(Current.group,'2020-05-31','2020-08-29',@perc).correction
-  end
+  # def quota_correction
+  #   if params[:perc].present?
+  #     @perc = params[:perc].to_f.round(2)
+  #   else
+  #     @perc = 0.4
+  #   end
+  #   @players = QuotaCorrection.new(Current.group,'2020-05-31','2020-08-29',@perc).correction
+  # end
 
-  def add_correction
-    # if params[:perc].present?
-    #   @perc = params[:perc].to_f.round(2)
-    # else
-    #   @perc = 0.4
-    # end
-    # @correction = QuotaCorrection.new(Current.group,'2020-05-31','2020-08-31',@perc)
-    # @correction.add_correction_game
-    redirect_to games_path, notice: 'A correction round cannot be added - window closed'
-  end
+  # def add_correction
+  #   # if params[:perc].present?
+  #   #   @perc = params[:perc].to_f.round(2)
+  #   # else
+  #   #   @perc = 0.4
+  #   # end
+  #   # @correction = QuotaCorrection.new(Current.group,'2020-05-31','2020-08-31',@perc)
+  #   # @correction.add_correction_game
+  #   redirect_to games_path, notice: 'A correction round cannot be added - window closed'
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
