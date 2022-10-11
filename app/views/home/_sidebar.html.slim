@@ -5,7 +5,6 @@
     div[class="#{sidebar_menu}"] = link_to "Club Information", club_path(Current.club), class: "link-btn"
 
     div[class="#{sidebar_menu}"] = link_to "Group Information", group_path(Current.group), class: "link-btn"
-    / dt = link_to 'Group Players', group_players_path(@Current.group), class: "button unpad"
     div[class="#{sidebar_menu}"] = link_to 'Group Players Stat$', stats_group_path(Current.group), class: "link-btn"
     div[class="#{sidebar_menu}"] = link_to 'Print Quotas', print_quotas_group_path(Current.group), class: "link-btn"
     div[class="#{sidebar_menu}"] = link_to 'Discussions', posts_path, class: "link-btn"
@@ -28,8 +27,6 @@
   div[class="#{sidebar_menu}"]= link_to 'Contact Us', '/inquiries/new', class:"link-btn"
   div[class="#{sidebar_menu}"]= link_to 'Visit Club/Groups', '/clubs/groups'
   .btn-sqr-blue.text-center.font-bold.py-1.w3-yellow= link_to "Whoa! What's Changed","/changes"
-  / - if [1,2].include?(Current.group.id)
-  /   .lime-btn.w3-yellow= link_to "Quota Correction???","/players/quota_correction", class: "link-btn"
 
   div
    .annotate=  "Rails Version #{Rails.version}"

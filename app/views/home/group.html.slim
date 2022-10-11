@@ -15,7 +15,6 @@ div.md:grid.md:grid-cols-12.mx-1.p-1.gap-4
 
     = render partial:"shared/group_game_status"
 
-    div.bg-green-lighter hi pale green
     - if Current.group.alert.present?
       p.mb-3 = callout_alert Current.group.alert.html_safe
     - if Current.group.notice.present?
