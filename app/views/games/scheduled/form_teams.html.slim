@@ -58,7 +58,7 @@ div.grid.grid-cols-12.gap-4.mx-2
           strong style="padding-left:4px;" Blind Draw
          
       div
-        button{class="#{btn_info} text-black w100"}= f.submit("Form Teams", class:' btn small w100 strong fs125', data:{action: 'click->alert#checkOptions',alert_target:'submit'},id:'submit_form',disabled:true)
+        = f.submit("Form Teams", class:' btn-2 w3-blue w-full', data:{action: 'click->alert#checkOptions',alert_target:'submit'},id:'submit_form',disabled:true)
         h4.strong.w3-center - Or Just pick your own teams! -
         / = button_to  'Assign Teams',  action:'assign_teams', class: 'btn btn-icon btn-info dblock mr-2 w100 w3-center'
 

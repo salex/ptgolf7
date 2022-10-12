@@ -13,7 +13,18 @@ div[class="grid px-3 grid-cols-2 md:grid-cols-3 bg-green font-bold"]
     -else
      .small-caps  No One Does More For Golf Sherriff's
   div.text-right
-    - if @current_user
-      span = "User: #{session[:full_name]}"
+    / - if @current_user
+    /   span = "User: #{session[:full_name]}"
+    div
+      .float-right.text-white.font-bold
+        - if @current_user.present?
+          span.mx-3 = "User: #{session[:full_name]}"
+          span.mx-3 = link_to "Logout", logout_path, class:"hover:text-green-300"
+          span.mx-3 = link_to "Profile", profile_path, class:"hover:text-green-300"
+        - else
+          span.mx-3 = link_to "Login", login_path, class:"hover:text-green-300" if Current.group.present?
+          span.mx-3 = link_to "Discuss", discuss_path, class:"hover:text-green-300" if Current.group.present?
+
+
     / .box= "Dept:#{ @current_user.department}" 
     / .box= "Dist: #{@current_user.district}"

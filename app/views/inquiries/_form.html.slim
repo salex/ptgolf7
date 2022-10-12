@@ -9,7 +9,6 @@
   = f.fields_for :inquiry, OpenStruct.new(@inquiry.inquiry) do |ff|
     .form-fields[data-controller="real"]
       button.submit.actions.mx-4 = f.submit "Submit"
-      / , disabled: true, class:'w3-disabled'
       .field
         = ff.label :name
         = ff.text_field :name

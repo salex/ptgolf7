@@ -3,10 +3,10 @@
 
   .flex.w3-black.noprint[data-controller="toggleSidebar"]
     
-    div.flex-none.hidden.md:block.bg-green
+    div.hidden.md:block.bg-green
       .w3-button.w3-left[data-action="click->toggleSidebar#toggle"]  ☰ Menu
 
-    div.flex-none
+    div
       = link_to "Home", root_path, class: "w3-button"
       = link_to "Group", group_path(Current.group), class:"w3-button" if Current.group
       = link_to "Games", games_path, class:"w3-button" if Current.group
@@ -14,23 +14,23 @@
       = link_to "About", "about", class: "w3-button" unless Current.group
 
 
-    div.flex-grow
+    div
       .float-right
         - flash.each do |name, msg|
           - if msg.is_a?(String)
             .flash-box.w3-padding.w3-animate-right[
               data-controller="flashIt" 
               data-flashIt-target="flashBox" 
-              class="#{name.to_s == 'notice' ? 'w3-pale-green' : 'w3-pale-red'}"
+              class="#{name.to_s == 'notice' ? 'p-2 text-green-500 bg-green-100 px-4' : 'p-2 text-red-500 bg-red-100 px-4'}"
             ]
               = content_tag :span, content_tag(:strong,msg)
 
-    div.flex-none
-      .float-right
-        - if @current_user.present?
-          span.w3-button.w3-right = link_to "Logout", logout_path
-          span.w3-button.w3-right = link_to "Profile", profile_path
-        - else
-          span.w3-button.w3-right = link_to "Login", login_path if Current.group.present?
-          span.w3-button.w3-right = link_to "Discuss", discuss_path if Current.group.present?
+    / div.flex-none
+    /   .float-right
+    /     - if @current_user.present?
+    /       span.w3-button.w3-right = link_to "Logout", logout_path
+    /       span.w3-button.w3-right = link_to "Profile", profile_path
+    /     - else
+    /       span.w3-button.w3-right = link_to "Login", login_path if Current.group.present?
+    /       span.w3-button.w3-right = link_to "Discuss", discuss_path if Current.group.present?
 

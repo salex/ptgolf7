@@ -1,17 +1,18 @@
 div.md:grid.md:grid-cols-12.gap-4.m-2
-  div.md:col-span-5.noprint.w3-border-right.lite-lime
-    h5.w3-left.strong A version of FedEx points based on winning!
-    .w3-right.button-bar.noprint 
+  div.md:col-span-5.noprint.border-r.lite-lime
+    span.float-left.text-lg.font-bold A version of FedEx points based on winning!
+    span.float-right.noprint 
       = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn btn-icon btn-info', onclick: "window.print();"
 
-    p.mb-4.w3-clear This page will calculate standings of group players by points won (money).
+    p.clear-both.mb-4 This page will calculate standings of group players by points won (money).
     - options = @groupStats.money_list_options
     - game = options[:game]
 
-    .w3-white.w3-card-4.m-1
-      .w3-green.w3-container
+    .bg-white.w3-card-4
+      .w3-green.px-1
         h6.strong Group Players Stats Options/Filter
-      .w3-padding  = form_with url: "/groups/#{@group.id}/stats_refresh", method: :patch
+
+      div.p-1  = form_with url: "/groups/#{@group.id}/stats_refresh", method: :patch
         strong Game
         div
           = select_tag 'stats[game]', options_for_select([['Team Game','quality'],['Birdies/Skins','skins'],['Par3','par3'],['Best Sides','other']],params[:stats].present? ? params[:stats][:game] : 'quality'),class:"border border-green-500 select"

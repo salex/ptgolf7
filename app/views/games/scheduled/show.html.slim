@@ -12,7 +12,7 @@ section.dashboard.border-bottom.pb-1.bg-lime-light
     div.mr-4.hidden.md:flex.float-right
       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
   
-.w3-row-padding.w3-border-bottom.hidden.md:block
+.px-2.border-b.md:block
   div.content-center[ data-controller="toggle"]
     button[class="#{btn_green} " data-action="click->toggle#toggleMenu"] 
       i[class="fa fa-toggle-on px-2" data-toggle-target="toggler"]

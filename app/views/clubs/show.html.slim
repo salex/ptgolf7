@@ -46,16 +46,15 @@ div.md:flex.border-bottom.bg-lime-light
   div.w-2/3[data-controller=" clubSearch" data-autocomplete-min-length="2"]
     p.mb-3 At Clubs that have more that one Group using PtGolf, there may be Players that often play with other Groups.
     p.mb-3 Rather than creating a new Player in each Group, you have the option of Duplicating the Player in your group. This would bring over basic information (name,quouta's, etc) but not the rounds. The duplicated Player would be subject to the same new player limits set for your group.
-    button.w3-button.w3-green.w3-hover-light-green.s3-small[data-action="click->clubSearch#openModal"]  Club Player Search
+    button.btn.ml-1.w3-blue-gray.mr-2.[data-action="click->clubSearch#openModal"]  Club Player Search
     .w3-modal[data-clubSearch-target="modal"]
       .w3-modal-content.w3-card-4
-        header.w3-container.lite-lime
-          span.w3-button.w3-display-topright[data-action="click->clubSearch#closeModal"]  &times;
-          h4 Player Search
-          p.mb-3 Enter Players Name in the search box and it will list any Club player who's first, last or nickname starts with the characters entered
-        .w3-container
+        div.bg-lime.p-1.text-center
+          button[class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white" data-action="click->clubSearch#closeModal"]  &cross;
+          h4.font-bold Club Player Search
+          p.mb-1 Enter Players Name in the search box and it will list any Club player who's first, last or nickname starts with the characters entered
+        div.m-1
 
-          / div.z-1.absolute.inline-block.bg-blue-50
           div[
             data-autopickr-url-value="/clubs/player_search"
             data-autopickr-min-len-value="1"
@@ -70,11 +69,7 @@ div.md:flex.border-bottom.bg-lime-light
               button = link_to('Pick',nil,data:{autopickr_target:"button"}, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold mx-2 py px-2 rounded inline-block hidden")
             ul.z-2.text-black.bg-green-200.max-h-52.divide-y.divide-blue-500.overflow-scroll[data-autopickr-target="results"] 
 
-        / .w3-container
-        /   input.w50p[type="text" data-autocomplete-target="input" placeholder="Player Name Search" ]
-        /   input[type="hidden" name="player_id" data-autocomplete-target="hidden"  ]
-        /   ul[data-autocomplete-target="results" style="z-index:99;" class="list-disc list-inside mb-2"]
-        footer.w3-container.my-liter-green
-          p.mb-3 Click on the Players name in the list and it will display the players information or click the &times; charcter to cancel the search
+        footer.lite-lime.mt-4.p-2
+          p.mb-3 Click on the Players name in the list and it will display the players information or click the red &cross; charcter to cancel the search
 
-
+   

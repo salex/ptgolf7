@@ -12,6 +12,15 @@
     color:rgba(255, 255, 255, var(--tw-text-opacity))
 }
 
+.btn-2 {
+  margin-right: .5rem;
+  border-radius: .5rem;
+  padding: .5rem;
+  --tw-text-opacity: 1;
+  color:rgba(0, 0, 0, var(--tw-text-opacity));
+  font-weight: bold;
+}
+
 .btng:hover {
   background-color:rgba(73, 255, 73, var(--tw-bg-opacity))
 }

@@ -17,7 +17,8 @@ section.dashboard.border-bottom.pb-1.bg-lime-light
     div.md:col-span-3
       / [data-sticky-container]
       .sticky-col
-        .btn-submit.text-center.font-bold = f.submit("Update Scores", class:'w3-disabled',autocomplete: :off,disabled: :disabled,id:'submit_form')
+        
+        = f.submit("Update Scores",autocomplete: :off,disabled: :disabled,id:'submit_form',class:"btn-2 w3-blue w-full text-center")
         hr.underline
         .lime-link-btn.btn-warning.w100 = link_to "Cancel", @game.namespace_url, class:'link-btn strong'
         hr.underline
