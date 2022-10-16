@@ -3,7 +3,7 @@
 - links << link_to(icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning')
 - links << link_to( icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,class: 'btn btn-warning mr-2')
 - if is_manager? && @game.state[:can_delete]
-  - links << destroyTag(@game,prompt:icon('fas fa-trash',"Destroy Incomplete Game"))
+  - links << destroyTag(game_path(@game),prompt:icon('fas fa-trash',"Destroy Incomplete Game"))
 = render partial:'shared/dashboard', locals:{name: name,links:links}
 
 = render partial:'games/shared/event'

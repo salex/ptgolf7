@@ -1,18 +1,6 @@
 - links = []
 - links << link_to( icon('fas fa-user-plus', 'New User'),  new_user_path, class: 'btn btn-success mr-2')
-/ - if is_manager?
-/   - links << link_to( icon('fas fa-edit','Edit Player'), edit_player_path(@player), title: 'Edit it', class: to_tw('btn-warning mr-2'))
-/   - links<< destroyTag(@player, prompt: icon("fas fa-trash",'Delete Player'))
 = render partial:'shared/dashboard', locals:{name:"List Users",links:links}
-section.dashboard.border-bottom.pb-1.bg-lime-light
-  div.md:flex
-    div.ml-2
-      .text-lg.strong Users List
-    div.flex-grow.text-center
-      = link_to( icon('fas fa-user-plus', 'New User'),  new_user_path, class: 'btn btn-success mr-2')
-
-    div.mr-4.hidden.md:flex.float-right
-      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 
 div.mx-2
   table.small-table.w100
