@@ -204,7 +204,7 @@ class GroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
-      if Current.user.is_super?
+      if Current.user && Current.user.is_super?
           @group = Group.find_by(id:params[:id])
         else 
           @group = Current.group
