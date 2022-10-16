@@ -1,15 +1,9 @@
-section.dashboard.border-bottom.pb-1.bg-lime-light
-  div.md:flex.ml-2
-    div.text-lg.strong Swap Team Order
-    div.flex-grow.text-center
-      = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,
-        class: 'btn btn-warning mr-2'
-      = link_to icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,
-        class: 'btn btn-warning mr-2'
-    div.mr-2.hidden.md:flex.float-right
-     = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+- links = []
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,class: 'btn btn-warning mr-2')
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,class: 'btn btn-warning mr-2')
+= render partial:'shared/dashboard', locals:{name:"Swap Team Order",links:links}
 
-dic
+div
   = render partial:'games/shared/event'
   - participants = @game.participants.order(:team).order('group_players.full_name')
   - p_count = participants.count

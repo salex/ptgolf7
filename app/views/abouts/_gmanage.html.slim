@@ -17,7 +17,7 @@
 
     dd 
       | Again, you can keep old games around forever for the sake of some argument, but after about a couple years they have limited value. There is a Group Preference <i>trim_months</i> that is set to how many months worth of games you want to keep around. On the Group Show page there is a button 
-      = destroyConfirmTag("",
+      = destroyTag("",
         prompt: icon('fas fa-cut','Trim Games/Rounds'),
         meth: :patch,
         confirm_msg:"Are You Sure? Will delete all rounds over 18 months old?")

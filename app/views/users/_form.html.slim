@@ -6,8 +6,10 @@ div.mx-4 = form_for @user do |f|
         - @user.errors.full_messages.each do |message|
           li = message
   .form-fields
-    button.submit.actions = f.submit
+    .field 
+      label
 
+        button.w-full.text-center.btn-submit = f.submit
     .field
       = f.label :group
       = f.hidden_field :group

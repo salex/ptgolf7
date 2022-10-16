@@ -1,4 +1,8 @@
 module MarkupsHelper
+  
+  def render_slim(text)
+    render inline: text, type: :slim
+  end
 
   def markdown_text(text)
     if text.include?(".slim")

@@ -9,7 +9,7 @@ div.grid.grid-cols-1.md:grid-cols-5
       div = link_to icon('fas fa-list', 'Back to Posts'), posts_path,class: ' w-full inline-block btn btn-info p-2  mb-2'
       - if @post.can_edit_destroy?
         div = link_to icon('fas fa-edit','Edit Post'), edit_post_path(@post), title: 'Edit it', class:'w-full inline-block  btn btn-warning  p-2 mb-2'
-        div = destroyConfirmTag(@post, prompt: icon("fas fa-trash",'Delete Post'),klass:'w-full inline-block  btn btn-danger  mb-2')
+        div = destroyTag(@post, prompt: icon("fas fa-trash",'Delete Post'),klass:'w-full inline-block  btn btn-danger  mb-2')
       div = link_to icon('fas fa-print','Print Post'), print_post_path(@post), title: 'Edit it', target:'_blank',class:'w-full inline-block  btn btn-lime  p-2 mb-2'
 
 

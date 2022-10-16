@@ -1,0 +1,9 @@
+section.dashboard
+  div.md:flex.border-bottom.bg-lime-dark.p-1
+    div.ml-2
+      .text-lg.font-bold = name
+    div.flex-grow.text-center
+      - links.each do |l|
+        = l
+    div.mr-4.hidden.md:flex.float-right
+      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'

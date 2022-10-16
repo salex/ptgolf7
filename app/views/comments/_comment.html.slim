@@ -6,7 +6,7 @@ div id="#{dom_id comment}"
     div.mx-2 
       = link_to icon('fas fa-edit','Edit'), edit_post_comment_path(comment.post,comment), title: 'Edit it', class: to_tw('btn-success mr-2')  if comment.can_edit_destroy?
     div.mx-2
-      = destroyConfirmTag(post_comment_path(comment.post,comment), prompt: icon("fas fa-trash",'Delete'),klass:'inline-block btn btn-danger') if comment.can_edit_destroy?
+      = destroyTag(post_comment_path(comment.post,comment), prompt: icon("fas fa-trash",'Delete'),klass:'inline-block btn btn-danger') if comment.can_edit_destroy?
 
   / div.w3-container.p-4.border-bottom.bg-white = kramdown_text(comment.content)
   div.border-bottom.p-2.mb-4[data-controller="display-marked"]

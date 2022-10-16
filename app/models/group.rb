@@ -73,7 +73,7 @@ class Group < ApplicationRecord
       end
     end
 
-    if self.settings_changed? && self.valid?
+    if self.settings_changed? && self.valid? && !self.new_record?
       puts "SETTINGS CHANGED"
       self.save
     end

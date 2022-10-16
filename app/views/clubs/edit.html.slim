@@ -1,11 +1,5 @@
-div.md:flex.border-bottom.bg-lime-light
-  div.ml-4
-    .text-xl.strong Edit Club
-  div.flex-grow.text-center
-    = link_to icon('fas fa-arrow-left', 'Cancel'),  clubs_path, class: 'btn btn-warning'
-
-  div.mr-4.hidden.md:flex.float-right
-    = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+-links = [link_to( icon('fas fa-arrow-left', 'Cancel'),  clubs_path, class: 'btn btn-warning')]
+= render partial:'shared/dashboard', locals:{name:" Create New Club",links:links}
 
 == render 'form'
 

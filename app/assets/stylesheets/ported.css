@@ -269,11 +269,12 @@ button.actions:hover {
  .menubar {
    background-color: #e2ffe2;
 }
- section.dashboard {
-   background-color: #e2ffe2;
-   padding-top: 4px;
+/* section.dashboard {
+   background-color: #b8ffb8;
+   padding: 2px;
 }
- .strong {
+*/ 
+.strong {
    font-weight: bold;
 }
  .pt-breadcrumb .crumbs {

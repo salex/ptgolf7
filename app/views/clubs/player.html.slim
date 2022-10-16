@@ -81,7 +81,7 @@ div.m-1.p-1
   - if @player.group_id == Current.group.id
     p.mb-3 Player is in your Group. Cannot Duplicate
   - else
-    p.mb-3 need to put duplicate button
-    = actionConfirmTag(duplicate_other_player_group_path(Current.group,opid:@player.id),prompt: icon("fas fa-copy",
-    " Duplicate Player #{@player.name}"))
+    p.mb-3 Need to put duplicate button
+    = confirmTag(duplicate_other_player_group_path(Current.group,opid:@player.id),
+      meth:'patch',prompt: icon("fas fa-copy"," Duplicate Player #{@player.name}"))
     

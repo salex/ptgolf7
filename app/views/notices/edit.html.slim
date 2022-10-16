@@ -1,9 +1,6 @@
-fieldset.row
-  h3 Editing Notice
+- links = []
+- links << link_to(icon('fas fa-list', 'Cancel-List Notices'),  notices_path, class: 'btn btn-success mr-2')
+= render partial:'shared/dashboard', locals:{name:"Edit Notice",links:links}
 
-  == render 'form'
-
-  = link_to 'Show', notice_path(@notice) 
-  '|
-  = link_to 'Back', notices_path
+== render 'form'
 

@@ -1,14 +1,7 @@
-section.dashboard
-  div.md:flex.border-bottom.pb-1.bg-lime-light
-    div.ml-4
-      .text-xl.strong Clubs
-    div.flex-grow.text-center
-      - if is_super?
-        = link_to icon('fas fa-plus','New Club'), new_club_path,
-          class: 'btn btn-success'
-
-    div.mr-4.hidden.md:flex.float-right
-      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+- if is_super?
+  - links = [link_to(icon('fas fa-plus','New Club'), new_club_path,
+            class: 'btn btn-success')]
+= render partial:'shared/dashboard', locals:{name:"New Club",links:links}
 
 table.small-table.m-2
   thead
@@ -43,5 +36,5 @@ table.small-table.m-2
           - if is_super?
             = link_to icon('fas fa-edit'), edit_club_path(club), title: 'Edit it', 
               class: 'btn btn-icon btn-warning mr-2'
-            = destroyConfirmTag(club,
+            = destroyTag(club,
               prompt: icon("fas fa-trash"))

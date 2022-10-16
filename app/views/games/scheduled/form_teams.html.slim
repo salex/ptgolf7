@@ -1,14 +1,11 @@
-section.dashboard.border-bottom.pb-1.bg-lime-light
-  div.md:flex
-    div.ml-2
-      .text-lg.strong = @game.status == 'Scheduled' ? "Form Teams" : "Reform Teams"
-    div.flex-grow.text-center
-      = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,
-        class: 'btn btn-warning mr-2'
-      = link_to icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,
-        class: 'btn btn-warning mr-2'
-    div.mr-4.hidden.md:flex.float-right
-      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+- name = @game.status == 'Scheduled' ? "Form Teams" : "Reform Teams"
+- links = []
+- links << link_to(icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning')
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,class: 'btn btn-warning mr-2')
+- if is_manager? && @game.state[:can_delete]
+  - links << destroyTag(@game,prompt:icon('fas fa-trash',"Destroy Incomplete Game"))
+= render partial:'shared/dashboard', locals:{name: name,links:links}
+
 = render partial:'games/shared/event'
 
 - participants = @game.current_players

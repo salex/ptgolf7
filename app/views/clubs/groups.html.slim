@@ -1,11 +1,7 @@
-section.dashboard
-  .flex.border-bottom
-    div.ml-4
-      h5.h5.strong PtGolf Clubs and Group
-    div.flex-grow.text-center
-
-    div.float-right.mr-4
-      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
+- if is_super?
+  - links = [link_to(icon('fas fa-plus','New Club'), new_club_path,
+           class: 'btn btn-secondary')]
+= render partial:'shared/dashboard', locals:{name:"PtGolf Clubs and Group",links:links}
 
 div.grid.grid-cols-1.md:grid-cols-2.gap-8.p-4
 

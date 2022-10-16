@@ -90,7 +90,7 @@ class GamesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
-      @game = Game.find(params[:id])
+      @game = Current.group.games.find(params[:id])
     end
 
     def require_current_group

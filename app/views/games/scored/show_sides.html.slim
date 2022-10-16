@@ -2,20 +2,12 @@
 - game_scores = scoring.team_scores
 - teams = scoring.teams
 - win = scoring.winners
-section.dashboard
-  div.md:flex.border-bottom.bg-lime-light.mb-1
-    div.ml-2
-      .text-xl.strong Scored Game
-    div.flex-grow.text-center
-      = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning mr-2'
 
-      - if is_manager? && @game.state[:can_delete]
-
-        = destroyConfirmTag(game_path(@game),
-         prompt: icon('fas fa-trash','Delete Incomplete Game'))
-
-    div.mr-4.hidden.md:flex.float-right
-      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+- links = []
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning mr-2')
+- if is_manager? && @game.state.present? && @game.state[:can_delete]
+  - links << destroyTag(game_path(@game),prompt: icon('fas fa-trash','Delete Incomplete Game'))
+= render partial:'shared/dashboard', locals:{name:"Scored Game",links:links}
 
 .px-2.bg-lime-lighter
   = render partial: 'games/shared/event'

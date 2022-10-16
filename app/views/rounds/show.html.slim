@@ -7,13 +7,8 @@ div.flex.flex-wrap.bg-lime-light.border-bottom.p-2
     - if is_manager?
       = link_to icon('fas fa-edit','Edit Round'), edit_round_path(@round), title: 'Edit it', 
       class: "#{to_tw("btn-warning mr-2")}"
-      = destroyConfirmTag(@round,
+      = destroyTag(@round,
         prompt: icon("fas fa-trash","Delete Unfinished Round"))
-
-      = destroy_tag(@round,prompt: icon("fas fa-trash","Delete new way Round"))
-
-      = button_to icon('fas fa-trash','Destroy Round'), @round, title: 'Destroy it',method: :delete,form_class:"#{to_tw("btn-danger inline-block py-px mr-2")}",
-        form: { data: { turbo_confirm: 'Are you sure?' }}
 
   
   .w-full.md:w-1/6.lg:w-1/6

@@ -1,8 +1,9 @@
-.m-2
-  h3.inline-block Editing post &nbsp;
-  = link_to icon('fas fa-arrow-left', 'Cancel - Show this post'),  @post, class: 'btn btn-warning'
+div
+  .bg-lime.p-1
+    h3.font-bold.text-lg.inline-block Editing post &nbsp;
+    = link_to icon('fas fa-arrow-left', 'Cancel - Show this post'),  @post, class: 'btn btn-warning'
 
-  = link_to icon('fas fa-arrow-left', 'Cancel - Back to posts'),  posts_path, class: 'btn btn-warning'
+    = link_to icon('fas fa-arrow-left', 'Cancel - Back to posts'),  posts_path, class: 'btn btn-warning'
 
 
   == render "form", post: @post

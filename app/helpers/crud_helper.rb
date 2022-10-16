@@ -4,6 +4,7 @@ module CrudHelper
     content_tag(:div,content_tag(:label,label.to_s.titlecase)+field,class:'field')
   end
 
+
   #NOT USED
   def flashAlert(type)
     case type
@@ -20,7 +21,9 @@ module CrudHelper
     end
   end
 
-  def destroy_tag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
+  # destroyTag and ConfirmTag uses button_to with turbo_confirm
+  # which was added after I created a stimulus confirm script
+  def destroyTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
     klass= to_tw("btn-danger inline-block py-px mr-2") if klass.blank?
     confirm_msg = "Are You Sure?" if confirm_msg.blank?
     meth = "delete" if meth.blank?
@@ -34,60 +37,64 @@ module CrudHelper
     end
     return button_to prompt, model_path, method: meth,form_class:klass,
       form: { data: { turbo_confirm: confirm_msg }}
-
   end
 
-  def destroyConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
-    # note button_to add 4px padding, don't use btn class, set py to px
-    klass= to_tw('btn-danger mr-2 inline-block py-px') if klass.blank?
-    confirm_msg = "Are You Sure?" if confirm_msg.blank?
-    meth = "delete" if meth.blank?
-    url_type = model_path.class
-    if prompt.blank?
-      if url_type == String
-        prompt = "Delete"
-      else
-        prompt = "Delete #{model_path.class.name}"
-      end
-    end
-    node = content_tag(:div, class: klass,
-      data:{
-        controller:"actionConfirm", 
-        action:"click->actionConfirm#confirm",
-        actionConfirm_cmsg_value:confirm_msg
-      }) do
-        content_tag(:div) do
-          concat(tag.span(prompt))
-          concat(button_to( '',model_path, method: "#{meth}",class:" hidden",data:{actionConfirm_target:"submit"}))
-        end
-      end
-    node 
-  end
-
-  def actionConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
-    # note button_to add 4px padding, don't use btn class, set py to px
-    klass= to_tw('btn-warning mr-2 inline-block py-px') if klass.blank?
-    confirm_msg = "Are You Sure?" if confirm_msg.blank?
+  def confirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
     meth = "patch" if meth.blank?
-    url_type = model_path.class
-    if prompt.blank?
-      if url_type == String
-        prompt = "Confirm Action"
-      else
-        prompt = "Confirm #{model_path.class.name}"
-      end
-    end
-    node = content_tag(:div, class: klass,
-      data:{
-        controller:"actionConfirm", 
-        action:"click->actionConfirm#confirm",
-        actionConfirm_cmsg_value:confirm_msg
-      }) do
-        concat(tag.span(prompt))
-        concat(button_to( '',model_path, method: "#{meth}",class:"hidden",data:{actionConfirm_target:"submit"}))
-      end
-    node 
+    destroyTag(model_path,meth:meth,confirm_msg:confirm_msg,klass:klass,prompt:prompt)
   end
+
+  # def destroyConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
+  #   # note button_to add 4px padding, don't use btn class, set py to px
+  #   klass= to_tw('btn-danger mr-2 inline-block py-px') if klass.blank?
+  #   confirm_msg = "Are You Sure?" if confirm_msg.blank?
+  #   meth = "delete" if meth.blank?
+  #   url_type = model_path.class
+  #   if prompt.blank?
+  #     if url_type == String
+  #       prompt = "Delete"
+  #     else
+  #       prompt = "Delete #{model_path.class.name}"
+  #     end
+  #   end
+  #   node = content_tag(:div, class: klass,
+  #     data:{
+  #       controller:"actionConfirm", 
+  #       action:"click->actionConfirm#confirm",
+  #       actionConfirm_cmsg_value:confirm_msg
+  #     }) do
+  #       content_tag(:div) do
+  #         concat(tag.span(prompt))
+  #         concat(button_to( '',model_path, method: "#{meth}",class:" hidden",data:{actionConfirm_target:"submit"}))
+  #       end
+  #     end
+  #   node 
+  # end
+
+  # def actionConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
+  #   # note button_to add 4px padding, don't use btn class, set py to px
+  #   klass= to_tw('btn-warning mr-2 inline-block py-px') if klass.blank?
+  #   confirm_msg = "Are You Sure?" if confirm_msg.blank?
+  #   meth = "patch" if meth.blank?
+  #   url_type = model_path.class
+  #   if prompt.blank?
+  #     if url_type == String
+  #       prompt = "Confirm Action"
+  #     else
+  #       prompt = "Confirm #{model_path.class.name}"
+  #     end
+  #   end
+  #   node = content_tag(:div, class: klass,
+  #     data:{
+  #       controller:"actionConfirm", 
+  #       action:"click->actionConfirm#confirm",
+  #       actionConfirm_cmsg_value:confirm_msg
+  #     }) do
+  #       concat(tag.span(prompt))
+  #       concat(button_to( '',model_path, method: "#{meth}",class:"hidden",data:{actionConfirm_target:"submit"}))
+  #     end
+  #   node 
+  # end
 
 
 

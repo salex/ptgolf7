@@ -1,4 +1,4 @@
-h1 Listing Notices
+= render partial:'shared/dashboard', locals:{name:"List Notices",links:[]}
 
 table.small-table
   thead
@@ -20,7 +20,7 @@ table.small-table
         td = link_to 'Show', notice_path(n.id)
         td = link_to 'Edit', edit_notice_path(n.id)
         / td = link_to 'Destroy', notice_path(n.id), data: { confirm: 'Are you sure?' }, method: :delete
-        td = destroyConfirmTag(n,
+        td = destroyTag(n,
         prompt: icon("fas fa-trash"))
 
 br

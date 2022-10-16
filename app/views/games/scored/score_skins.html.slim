@@ -1,13 +1,9 @@
-section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
-  .w-full.md:w-1/6.lg:w-1/6
-    h5.strong Side Skins Game
-  .w-full.md:w-2/3 
-     = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,
-       class: 'btn btn-warning mr-2'
-     = link_to icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,
-       class: 'btn btn-warning mr-2'
-  .w-full.md:w-1/6.lg:w-1/6
-    .lg:float-right = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'pt-btn btn-secondary '
+- links = []
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning mr-2')
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - Show Game with Players'), @game.namespace_url,class: 'btn btn-warning mr-2')
+- if is_manager? && @game.state.present? && @game.state[:can_delete]
+  - links << destroyTag(game_path(@game),prompt: icon('fas fa-trash','Delete Incomplete Game'))
+= render partial:'shared/dashboard', locals:{name:"Score Birdies/Skins",links:links}
 
 = render partial:'games/shared/event'
 
@@ -16,7 +12,7 @@ section[class="flex flex-wrap bg-lime-light border-bottom p-2"]
 - players = skins.rounds.pluck(:id,:player_name)
 
 
-div
+div.m-2.p-2
   #players= form_with(url:@game.namespace_url('update_skins'), method: :patch) do |f|
     div 
       button.submit= f.submit("Update Skins Game", class:'button medium radius w100 strong')

@@ -1,5 +1,5 @@
 section.dashboard
-  .md:flex.border-bottom.bg-lime-light.pb-1
+  .md:flex.border-bottom.bg-lime-dark.p-1
     div.ml-2.text-xl.strong 
       - if params[:filter].blank?
         span Players(all)
@@ -48,7 +48,6 @@ section.dashboard
             header.bg-lime
               button[class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white" data-action="click->pairingSearch#closeModal"]  &cross;
               
-              / span.w3-button.w3-display-topright[data-action="click->pairingSearch#closeModal"]  &times;
               h4.font-bold Player Pairings Search
               p.annotate This feature will answer questions like "How many times have I had X on my team"
               p.mb-3 Select One player from the Subject Player List, then select one or more playes from the Target Players List. Then click the Pairing History Search. You must use your Browser's multiple select feature. Players listed are Active Players
@@ -72,7 +71,6 @@ section.dashboard
               = turbo_frame_tag "pairings"
 
       - if @players.present? 
-        / = link_to("Status View",players_path,class:"lime-link-btn round")
         .inline-block.z-2.absolute[data-controller="toggle"]
           button[class="btn btn-success"  data-action="click->toggle#toggleMenu"] 
             | Filter Status
@@ -84,10 +82,6 @@ section.dashboard
             dd.p-1.border-bottom = link_to 'Active', players_path(filter:'active',table:1) , class:"blue-link link-btn"
             dd.p-1.border-bottom = link_to 'Inactive', players_path(filter:'inactive',table:1) , class:"blue-link link-btn"
             dd.p-1.border-bottom = link_to 'Expired', players_path(filter:'expired',table:1) , class:"blue-link link-btn" 
-
-
-
-
 
 
     div.mr-2.hidden.md:flex.float-right

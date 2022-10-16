@@ -9,7 +9,7 @@ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
     .lg:float-right
       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
 
-.form.w3-row
+.form.bg-green-50
 
   = form_with(model:@round,data:{controller:'doubleClick'}) do |f|
     - if @round.errors.any?
@@ -19,8 +19,7 @@ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
           - @round.errors.full_messages.each do |message|
     .form-fields
       .field
-        label 
-        button.submit.actions = f.submit  data: { action: "click->doubleClick#disable" }
+        label.m-1 = f.submit(  data: { action: "click->doubleClick#disable" },class:"btn-2 w3-blue w-full text-center")
 
       = formatField :date,f.text_field( :date,data:{controller:'flatpickr'})
       = formatField :team,f.text_field(:team)

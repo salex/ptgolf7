@@ -15,11 +15,12 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    @group = Current.club.groups.build
+    @group = Current.club.groups.build(name:"New Group #{Group.maximum(:id) + 1}")
   end
 
   # GET /groups/1/edit
   def edit
+
   end
 
   # POST /groups
@@ -147,12 +148,12 @@ class GroupsController < ApplicationController
     redirect_to root_path
   end
 
-  def fix_sidegames
-    games = Current.group.games.where('date >= ?',Date.today - 100.days) 
-    games.each{|g| GameObjects::Par3.new(g).pay_winners}
-    games.each{|g| GameObjects::Skins.new(g).pay_winners}
-    redirect_to root_path, notice:'Side Games fixed'
-  end
+  # def fix_sidegames
+  #   games = Current.group.games.where('date >= ?',Date.today - 100.days) 
+  #   games.each{|g| GameObjects::Par3.new(g).pay_winners}
+  #   games.each{|g| GameObjects::Skins.new(g).pay_winners}
+  #   redirect_to root_path, notice:'Side Games fixed'
+  # end
 
   def print_quotas
     set_group
@@ -203,7 +204,14 @@ class GroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
-      @group = Current.group 
+      if Current.user.is_super?
+          @group = Group.find_by(id:params[:id])
+        else 
+          @group = Current.group
+          if Current.group.id != params[:id].to_i
+            flash.now[:alert] = "You can only access your group!"
+          end
+      end 
       if @group.blank?
         redirect_to root_path, alert:"Current Group not found"
       end

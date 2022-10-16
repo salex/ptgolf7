@@ -1,15 +1,9 @@
+- links = []
+- links << link_to(icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2')
 
-section.dashboard.border-bottom.pb-1.bg-lime-light
-  div.md:flex.ml-2
-    div.text-lg.strong Score Teams
-    div.flex-grow.text-center
-      = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn btn-warning mr-2'
-      / - if @game.state[:can_delete] && is_manager?
+- links << link_to(icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url, class: 'btn btn-warning mr-2')
 
-      /   = destroyConfirmTag(game_path(@game),
-      /    prompt: icon('fas fa-trash','Delete Incomplete Game'))
-    div.mr-2.hidden.md:flex.float-right
-     = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+== render partial:'shared/dashboard', locals:{name:"Score Teams",links:links}
 
 = render partial:'games/shared/event'
 = form_with(url:update_scores_games_pending_path(@game), method: :patch, data: { type: "html"} )do |f|
@@ -20,7 +14,7 @@ section.dashboard.border-bottom.pb-1.bg-lime-light
         
         = f.submit("Update Scores",autocomplete: :off,disabled: :disabled,id:'submit_form',class:"btn-2 w3-blue w-full text-center")
         hr.underline
-        .lime-link-btn.btn-warning.w100 = link_to "Cancel", @game.namespace_url, class:'link-btn strong'
+        .lime-link-btn.btn-warning.w100 = link_to("Cancel", @game.namespace_url, class:'link-btn strong')
         hr.underline
         - link_params = params[:team].present? ? {team:params[:team]} : {}
         - useKeys = Current.group.use_keyboard_scoring
@@ -31,10 +25,10 @@ section.dashboard.border-bottom.pb-1.bg-lime-light
             - useKeys = false
         - if useKeys
           - link_params[:keys] = '0'
-          .lime-link-btn.w100 =  link_to "Use Mouse Entry", score_teams_games_pending_path(@game,link_params),class:'link-btn strong '
+          .lime-link-btn.w100 =  link_to("Use Mouse Entry", score_teams_games_pending_path(@game,link_params),class:'link-btn strong ')
         -else
           - link_params[:keys] = '1'
-          .lime-link-btn.w100 = link_to "Use Keyboard Entry", score_teams_games_pending_path(@game,link_params),class:'link-btn strong '
+          .lime-link-btn.w100 = link_to("Use Keyboard Entry", score_teams_games_pending_path(@game,link_params),class:'link-btn strong ')
         hr.underline.w100
     - select_points = !useKeys
     div.md:col-span-9

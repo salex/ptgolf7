@@ -1,18 +1,11 @@
 - teams = @game.teams
 - team_stats = @game.team_stats
+- links = []
+- links << link_to(icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning')
+- if is_manager? && @game.state[:can_delete]
+  - links << destroyTag(@game,prompt:icon('fas fa-trash',"Destroy Incomplete Game"))
+= render partial:'shared/dashboard', locals:{name:"Pending Game",links:links}
 
-section.dashboard.border-bottom.pb-1.bg-lime-light
-  div.md:flex
-    div.ml-2
-      .text-lg.strong Pending Game
-    div.flex-grow.text-center
-      = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning'
-
-      - if is_manager? && @game.state[:can_delete]
-        = destroy_tag(@game,prompt:icon('fas fa-trash',"Destroy Incomplete Game"))
-
-    div.mr-4.hidden.md:flex.float-right
-      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
 .px-2.bg-lime-lighter
   = render partial: 'games/shared/event'
 

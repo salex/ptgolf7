@@ -1,20 +1,8 @@
+-links = []
+- if is_manager?
+- links << link_to( icon('fas fa-plus','New Game'), new_game_path, class: to_tw('btn-green')) if is_manager?
+= render partial:'shared/dashboard', locals:{name:"Games",links:links}
 
-section.bg-lime-light.p-2.border-b-1
-  .flex.gap-4.text-sm.md:text-base
-    div 
-      h5.strong = "#{Current.group.name} Games"
-    div
-      |&nbsp;
-      - if is_manager?
-        = link_to icon('fas fa-plus','New Game'), new_game_path,
-          class: to_tw('btn-green')
-
-    / div.flex-grow
-
-      / == pagy_nav(@pagy)
-    div.pt-breadcrumb.float-right.flex-grow
-      .crumbs
-        = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '
 .px-2.bg-lime-lighter
   = render partial:"shared/group_game_status"
 
@@ -50,6 +38,6 @@ section.bg-lime-light.p-2.border-b-1
             td 
               = link_to icon('fas fa-eye'),  game, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
               = link_to icon('fas fa-edit'), edit_game_path(game), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
-              = destroy_tag(game,
+              = destroyTag(game,
                 prompt: tag.i(class:"fas fa-trash text-black hover:text-white"))
   

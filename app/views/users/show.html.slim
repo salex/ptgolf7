@@ -1,12 +1,12 @@
 section.dashboard
-  .flex.border-bottom
-    div.ml-4
+  div.md:flex.border-bottom.bg-lime-dark.p-1
+    div.ml-2
       h5.h5.strong Show User
     div.flex-grow.text-center
       = link_to icon('fas fa-edit','Edit User'), edit_user_path(@user), title: 'Edit it', class: 'btn btn-warning mr-2'
       = link_to icon('fas fa-arrow-left', 'List Users'),  users_path, class: 'btn btn-info'
 
-      = destroy_tag(@user,prompt: icon("fas fa-trash",'Delete User'))
+      = destroyTag(@user,prompt: icon("fas fa-trash",'Delete User'))
 
     div.float-right.mr-4
       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary '

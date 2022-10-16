@@ -1,10 +1,6 @@
-section.dashboard.border-bottom.pb-1.bg-lime-light
-  div.md:flex.ml-2
-    div.text-lg.strong New Game
-    div.flex-grow.text-center
-      = link_to icon('fas fa-arrow-left', 'Cancel'),  games_path, class: 'btn btn-warning'
-    div.mr-2.hidden.md:flex.float-right
-     = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+- links = []
+- links << link_to( icon('fas fa-list','Cancel - List Games'), games_path, title: 'List it', class: 'btn btn-icon btn-warning mr-2')
+== render partial:'shared/dashboard', locals:{name:"New Game",links:links}
 
 == render 'form'
 

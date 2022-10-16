@@ -1,14 +1,9 @@
-section.dashboard.border-bottom.pb-1.bg-lime-light
-  div.md:flex
-    div.ml-2
-      .text-lg.strong Score Par3's
-    div.flex-grow.text-center
-      = link_to icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,
-        class: 'btn btn-warning mr-2'
-      = link_to icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,
-        class: 'btn btn-warning mr-2'
-    div.mr-4.hidden.md:flex.float-right
-      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+- links = []
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning mr-2')
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - Show Game with Players'), @game.namespace_url,class: 'btn btn-warning mr-2')
+- if is_manager? && @game.state.present? && @game.state[:can_delete]
+  - links << destroyTag(game_path(@game),prompt: icon('fas fa-trash','Delete Incomplete Game'))
+= render partial:'shared/dashboard', locals:{name:"Score Par3's",links:links}
 
 = render partial:'games/shared/event'
 
@@ -16,7 +11,7 @@ section.dashboard.border-bottom.pb-1.bg-lime-light
 - players = par3.rounds.pluck(:id,:player_name)
 
 
-div
+div.m-1.p-1
   #players= form_with(url:update_par3s_games_scored_path(@game), method: :patch) do |f|
     div
       button.submit= f.submit("Update Par3", class:'button medium radius w100 strong')

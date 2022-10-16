@@ -1,13 +1,7 @@
-section.dashboard.border-bottom.pb-1.bg-lime-light
-  div.md:flex
-    div.ml-2
-      .text-lg.strong New Group
-    div.flex-grow.text-center
-      - if is_manager?
-        = link_to icon('fas fa-list', 'Cancel List Groups'),  groups_path, class: 'btn btn-warning mr-2'
-
-    div.mr-4.hidden.md:flex.float-right
-      = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
+- links = []
+- if is_super?
+  - links << link_to( icon('fas fa-list', 'Cancel List Groups'),  groups_path, class: 'btn btn-warning mr-2')
+= render partial:'shared/dashboard', locals:{name:"New Group",links:links}
 
 
 == render 'aform'

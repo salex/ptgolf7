@@ -7,8 +7,8 @@ div
 / .grid-1-5
 div.grid.grid-cols-1.md:grid-cols-5
 
-  div
-    h3 Discusssions
+  div.bg-green-100
+    h3.text-lg.font-bold Discusssions
     div.m-2.p-2 = link_to icon('fas fa-plus',"Add new Discussion"), new_post_path, class:'btn btn-success inline-block w-full' if @current_player
     div.m-2.p-2 = link_to icon('fas fa-arrow-left', 'View Instructions'),  instructions_posts_path, class: 'btn btn-info w-full inline-block'
 
