@@ -12,7 +12,7 @@
         - dt = []
         - gm = []
         - @interactions[:mates][i].each do |a|
-          - dt << link_to( a[-1],game_path(a[0]),class:'blue-link').html_safe
+          - dt << link_to( a[-1],game_path(a[0]),class:'blue-link',data:{turbo:false}).html_safe
         td = dt.count
         td 
           - dt.each do |a|

@@ -4,6 +4,8 @@ class Games::PendingController < GamesController
   def show
     # @pending = Games::Pending.new(@game)
     @game = Games::Pending.find_by(id:params[:id])
+    @game.set_state if @game.present?
+
   end
 
   def update

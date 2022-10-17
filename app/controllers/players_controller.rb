@@ -99,9 +99,7 @@ class PlayersController < ApplicationController
   def pairings_search
     @interactions = Player.pairing_search(params)
     render turbo_stream: turbo_stream.replace(
-      'pairings',
-      partial: 'pairings')
-
+      'pairings',partial: 'pairings')
   end
 
   # def quota_correction
