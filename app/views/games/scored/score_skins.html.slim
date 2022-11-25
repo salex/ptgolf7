@@ -41,35 +41,37 @@ div.m-2.p-2
               = content_tag :span, i, class:"skin_hole", data:{sideSkins_target:"hole" }
           = hidden_field_tag 'skins[good]',good, data:{sideSkins_target:"good"}
       br
-      table.medium-table.w90p
-        tr
-          th colspan="1" Players
-          th colspan="2" 
-            |Skins&nbsp;-&nbsp;
-            span[data-sideSkins-target='in'] = skins.in_skins.size
-        tr
-          th Team Name
-          = content_tag :th, icon("far fa-check-square","In"), class:' btn-success', data:{action:'click->sideSkins#toggleSkins'}
-          td.strong Good
-        - players.each_with_index do |(pid,name),idx|
-          -pids = pid.to_s
+      div[class="#{Current.group.use_autoscroll ? "overflow-auto vh-75" : ""}"]
+
+        table.medium-table.w90p
           tr
-            td 
-              = name
-            - skins_in = skins.in_skins?(pids)
-            - if skins_in
-              - par = skins.skins_obj['player_par'][pids]
-            - else
-              - par ='..................'
-            td= check_box_tag "skins[in][#{pid}]",pid,skins_in, data:{sideSkins_target:"skinsPlayer",action:'sideSkins#toggleSkinsPlayer', who:pid,idx:idx}
-            td 
-              = content_tag(:section, id:"skins[player_par][#{pid}]",class:"#{skins_in ? 'w3-show' : 'w3-hide'}",\
-                data:{sideSkins_target:"skinsHide"})
-                = hidden_field_tag "skins[player_par][#{pid}]", par,data:{sideSkins_target:"par",action:"change->sideSkins#update"}
-                = hidden_field_tag "skins[cards][#{pid}][in]", skins_in,disabled: :disabled,data:{sideSkins_target:"skinsin"}
+            th colspan="1" Players
+            th colspan="2" 
+              |Skins&nbsp;-&nbsp;
+              span[data-sideSkins-target='in'] = skins.in_skins.size
+          tr
+            th Team Name
+            = content_tag :th, icon("far fa-check-square","In"), class:' btn-success', data:{action:'click->sideSkins#toggleSkins'}
+            td.strong Good
+          - players.each_with_index do |(pid,name),idx|
+            -pids = pid.to_s
+            tr
+              td 
+                = name
+              - skins_in = skins.in_skins?(pids)
+              - if skins_in
+                - par = skins.skins_obj['player_par'][pids]
+              - else
+                - par ='..................'
+              td= check_box_tag "skins[in][#{pid}]",pid,skins_in, data:{sideSkins_target:"skinsPlayer",action:'sideSkins#toggleSkinsPlayer', who:pid,idx:idx}
+              td 
+                = content_tag(:section, id:"skins[player_par][#{pid}]",class:"#{skins_in ? 'w3-show' : 'w3-hide'}",\
+                  data:{sideSkins_target:"skinsHide"})
+                  = hidden_field_tag "skins[player_par][#{pid}]", par,data:{sideSkins_target:"par",action:"change->sideSkins#update"}
+                  = hidden_field_tag "skins[cards][#{pid}][in]", skins_in,disabled: :disabled,data:{sideSkins_target:"skinsin"}
 
-                = render partial:"sidecard",locals:{par:par,idx:idx}
-                code[id="cards_#{pid}_par_s" style="font-size:0.6rem"] 
-                  span[data-sideSkins-target='parString ' class="w3-hide"] = par
+                  = render partial:"sidecard",locals:{par:par,idx:idx}
+                  code[id="cards_#{pid}_par_s" style="font-size:0.6rem"] 
+                    span[data-sideSkins-target='parString ' class="w3-hide"] = par
 
-    
+      

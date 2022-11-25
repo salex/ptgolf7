@@ -50,6 +50,7 @@ class Group < ApplicationRecord
   attribute :default_stats_rounds, :integer
   attribute :use_keyboard_scoring, :boolean
   attribute :default_in_sidegames, :boolean
+  attribute :use_autoscroll, :boolean
 
 
 
@@ -128,7 +129,8 @@ class Group < ApplicationRecord
       use_hi_lo_rule:false,
       default_stats_rounds:100,
       use_keyboard_scoring:false,
-      default_in_sidegames:true
+      default_in_sidegames:true,
+      use_autoscroll:true
     }.with_indifferent_access   
   end
 

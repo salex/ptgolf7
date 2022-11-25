@@ -189,7 +189,12 @@ button.actions:hover {
   width: 2.2rem;
   font-weight: 700;
 }
-
+.vh-75 {
+  height:75vh;
+}
+.vh-20{
+  height:20vh;
+}
 .w3e-blue {
    background-color: #0f3e61;
 }

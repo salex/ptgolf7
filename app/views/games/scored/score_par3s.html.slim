@@ -21,30 +21,31 @@ div.m-1.p-1
       .annotate 
         |Instructions: Click on any of the Side Games "In" header to toggle(add/remove) all Players. Click on Checkbox in "In" column to toggle individual player. more....
       br
-      table.medium-table
-        tr
-          th Players
-          th colspan="2"
-            |Par3&nbsp;-&nbsp;
-            span[data-sidePar3-target='par3Cnt'] = par3.in_par3.blank? ? 0 :  par3.in_par3.size            
-        tr
-          td.strong 
-          = content_tag( :th, icon("far fa-check-square","In"), class:'btn-success w05p', data:{action:'click->sidePar3#togglePar3'})
-          td.strong Good
-        - players.each_with_index do |(pid,name),idx|
+      div[class="#{Current.group.use_autoscroll ? "overflow-auto vh-75" : ""}"]
+        table.medium-table
           tr
-            td 
-              = name
-            - par3_in = par3.in_par3?(pid)
-            td= check_box_tag "par3[in][#{pid}]",pid,par3_in, data:{sidePar3_target:"par3Player",action:'sidePar3#togglePar3Player', who:pid,idx:idx}
-            td
-              div data-sidePar3-target='par3Hide' class="#{par3_in ? '' : 'w3-hide'}"
-                .row-box-small
-                  .row-box
-                    - 1.upto(par3.stats['par3s']) do |i|
-                      span = i
-                .row-box-small
-                  .row-box
-                    - 1.upto(par3.stats['par3s']) do |i|
-                      -checked = par3.par3_winner?(pid,i)
-                      span= radio_button_tag "par3[good][#{i}]",pid,checked
+            th Players
+            th colspan="2"
+              |Par3&nbsp;-&nbsp;
+              span[data-sidePar3-target='par3Cnt'] = par3.in_par3.blank? ? 0 :  par3.in_par3.size            
+          tr
+            td.strong 
+            = content_tag( :th, icon("far fa-check-square","In"), class:'btn-success w05p', data:{action:'click->sidePar3#togglePar3'})
+            td.strong Good
+          - players.each_with_index do |(pid,name),idx|
+            tr
+              td 
+                = name
+              - par3_in = par3.in_par3?(pid)
+              td= check_box_tag "par3[in][#{pid}]",pid,par3_in, data:{sidePar3_target:"par3Player",action:'sidePar3#togglePar3Player', who:pid,idx:idx}
+              td
+                div data-sidePar3-target='par3Hide' class="#{par3_in ? '' : 'w3-hide'}"
+                  .row-box-small
+                    .row-box
+                      - 1.upto(par3.stats['par3s']) do |i|
+                        span = i
+                  .row-box-small
+                    .row-box
+                      - 1.upto(par3.stats['par3s']) do |i|
+                        -checked = par3.par3_winner?(pid,i)
+                        span= radio_button_tag "par3[good][#{i}]",pid,checked

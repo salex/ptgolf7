@@ -131,6 +131,12 @@ class AboutsController < ApplicationController
       'content',
       partial: 'gmanage')
   end
+  def notices
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'notices')
+  end
+
 
 
 end

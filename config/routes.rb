@@ -145,6 +145,7 @@ Rails.application.routes.draw do
       get :limiting
       get :help
       get :features
+      get :notices
     end
   end
 

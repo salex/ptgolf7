@@ -33,71 +33,72 @@
     - select_points = !useKeys
     div.md:col-span-9
       #status_box.w3-text-red.strong No team(s) have been scored
+      div[class="#{Current.group.use_autoscroll ? "overflow-auto vh-75" : ""}"]
+        / [style="height:75vh;"]
+        - teams = @game.game_teams(params[:team])
+        - teams.each_with_index do |(team,mates),i|
+           
+          -tq = mates.sum(:quota)
+          -sq = tq/2.0
+          -hq = (tq/18.0).round(2)
+          table.small-table.w100[data-controller="scoreTeam someJunk"]
 
-      - teams = @game.game_teams(params[:team])
-      - teams.each_with_index do |(team,mates),i|
-         
-        -tq = mates.sum(:quota)
-        -sq = tq/2.0
-        -hq = (tq/18.0).round(2)
-        table.small-table.w100[data-controller="scoreTeam someJunk"]
+            tr
+              th.w50p colspan="4" 
+                - if @game.stats[:makeup] == "individuals"
+                  = "Tee Time #{team}"
+                - else
+                  = "Team - #{team} Quota:#{tq} Side: #{sq} Hole: #{hq}"
+                = hidden_field_tag("team[#{team}][quota]",tq,data:{scoreTeam_target:"teamQuota"})
+                / div[id="teamUpdate#{i}" style="display:none;" data-action="click->scoreTeam#compute"]
+              th.w15p[data-scoreTeam-target="teamFront", data-someJunk-target="whooa"]
+              th.w15p[data-scoreTeam-target="teamBack"]
+              th.w15p[data-scoreTeam-target="teamTotal"]
+              th.w05p[data-scoreTeam-target="teamPM"]
+        
+            tr
+              th Name
+              th Tee
+              th Quota
+              th Side
+              th Front
+              th Back
+              th Total
+              th &#177;
 
-          tr
-            th.w50p colspan="4" 
-              - if @game.stats[:makeup] == "individuals"
-                = "Tee Time #{team}"
-              - else
-                = "Team - #{team} Quota:#{tq} Side: #{sq} Hole: #{hq}"
-              = hidden_field_tag("team[#{team}][quota]",tq,data:{scoreTeam_target:"teamQuota"})
-              / div[id="teamUpdate#{i}" style="display:none;" data-action="click->scoreTeam#compute"]
-            th.w15p[data-scoreTeam-target="teamFront", data-someJunk-target="whooa"]
-            th.w15p[data-scoreTeam-target="teamBack"]
-            th.w15p[data-scoreTeam-target="teamTotal"]
-            th.w05p[data-scoreTeam-target="teamPM"]
-      
-          tr
-            th Name
-            th Tee
-            th Quota
-            th Side
-            th Front
-            th Back
-            th Total
-            th &#177;
-
-          - mates.each do |mate|
-            - side = mate.quota / 2.0
-            tr[data-controller="scoreMate"]
-              td
-                = mate.full_name
-                / = hidden_field_tag('jsteam',i,data:{scoreMate_target:"jsTeam"})
-              td= mate.tee
-              - if mate.limited.present?
-                - q = "#{mate.quota}  &#177;#{mate.limited }".html_safe
-              - else
-                - q = mate.quota
-              td
-                = q
-                = hidden_field_tag("participant[#{mate.id}][quota]",mate.quota,data:{scoreMate_target:"mateQuota"})
-              td
-                = side
-                = hidden_field_tag("participant[#{mate.id}][team]",team)
-              - if select_points
-                - opt = pulled_options(mate.quota)
-                / p.mb-3 " #{mate.full_name} #{mate.quota} #{mate.front} #{mate.back} #{mate.total}"
-                td= select_tag("participant[#{mate.id}][front]", options_for_select(opt[:side],\
-                  mate.front.present? && !mate.front.zero? ? mate.front : 'Select')\
-                  , data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:" select")
-                td= select_tag("participant[#{mate.id}][back]", options_for_select(opt[:side],\
-                  mate.back.present? && !mate.back.zero? ? mate.back : 'Select'),
-                    data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack", someJunk_target:"ohno",
-                    action:"change->scoreMate#back change->scoreTeam#compute"},
-                    class:"select")
-              - else
-                td= number_field_tag("participant[#{mate.id}][front]", mate.front,data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:"w100 ")
-                td= number_field_tag("participant[#{mate.id}][back]",mate.back, data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack",action:"change->scoreMate#back change->scoreTeam#compute"},class:"w100 ")
-              td= text_field_tag("participant[#{mate.id}][total]",mate.total, disabled:true, data:{scoreMate_target:"mateTotal", scoreTeam_target:"mateTotal"},class:"w100")
-              th[data-scoreMate-target="matePM", data-scoreTeam-target="matePM" class='mate-pm'] 
-                - if mate.total.present?
-                  = mate.total - mate.quota
+            - mates.each do |mate|
+              - side = mate.quota / 2.0
+              tr[data-controller="scoreMate"]
+                td
+                  = mate.full_name
+                  / = hidden_field_tag('jsteam',i,data:{scoreMate_target:"jsTeam"})
+                td= mate.tee
+                - if mate.limited.present?
+                  - q = "#{mate.quota}  &#177;#{mate.limited }".html_safe
+                - else
+                  - q = mate.quota
+                td
+                  = q
+                  = hidden_field_tag("participant[#{mate.id}][quota]",mate.quota,data:{scoreMate_target:"mateQuota"})
+                td
+                  = side
+                  = hidden_field_tag("participant[#{mate.id}][team]",team)
+                - if select_points
+                  - opt = pulled_options(mate.quota)
+                  / p.mb-3 " #{mate.full_name} #{mate.quota} #{mate.front} #{mate.back} #{mate.total}"
+                  td= select_tag("participant[#{mate.id}][front]", options_for_select(opt[:side],\
+                    mate.front.present? && !mate.front.zero? ? mate.front : 'Select')\
+                    , data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:" select")
+                  td= select_tag("participant[#{mate.id}][back]", options_for_select(opt[:side],\
+                    mate.back.present? && !mate.back.zero? ? mate.back : 'Select'),
+                      data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack", someJunk_target:"ohno",
+                      action:"change->scoreMate#back change->scoreTeam#compute"},
+                      class:"select")
+                - else
+                  td= number_field_tag("participant[#{mate.id}][front]", mate.front,data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:"w100 ")
+                  td= number_field_tag("participant[#{mate.id}][back]",mate.back, data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack",action:"change->scoreMate#back change->scoreTeam#compute"},class:"w100 ")
+                td= text_field_tag("participant[#{mate.id}][total]",mate.total, disabled:true, data:{scoreMate_target:"mateTotal", scoreTeam_target:"mateTotal"},class:"w100")
+                th[data-scoreMate-target="matePM", data-scoreTeam-target="matePM" class='mate-pm'] 
+                  - if mate.total.present?
+                    = mate.total - mate.quota
         hr.underline

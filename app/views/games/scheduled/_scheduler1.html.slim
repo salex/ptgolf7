@@ -11,7 +11,7 @@ div
     div[class="flex flex-wrap "]
       div[class=" mx-2 mb-2"]
         #scheduling
-          .strong Actions
+          .strong Actions1
           / added set state because of turbo-frame
           / - @game.set_state if @game.state.blank?
           / fixed in update_participants
@@ -26,35 +26,9 @@ div
           #schedule
 
 
-      div[class="flex-grow mx-2 overflow-auto" style="height:75vh;"]
+      div[class="#{Current.group.use_autoscroll ? "overflow-auto vh-75 flex-grow" : "flex-grow"}"]
    
-        .block.md:hidden
-          strong Unscheduled Active
-          .status[class="flex flex-wrap  mx-3"] 
-            - mapping = get_col_mapping(@active.size,2)
-            - 2.times do |i|
-              div[class="w-1/2"]
-                - mapping[i].each do |m|
-                  div[class="btn-sqr-blue border border-zinc-100 p-1 py-0.5" id="pid-l#{@active[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@active[m].id}"] = @active[m].name
-
-          strong Unscheduled Inactive
-          .status[class="flex flex-wrap  mx-3"] 
-            - mapping = get_col_mapping(@inactive.size,2)
-            - 2.times do |i|
-              div[class="w-1/2"]
-                - mapping[i].each do |m|
-                  div[class="btn-sqr-blue border border-zinc-100 p-1 py-0.5 " id="pid-l#{@inactive[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@inactive[m].id}"] = @inactive[m].name
-
-          strong Unscheduled Expired
-          .status[class="flex flex-wrap  mx-3"] 
-            - mapping = get_col_mapping(@expired.size,2)
-            - 2.times do |i|
-              div[class="w-1/2"]
-                - mapping[i].each do |m|
-                  div[class="btn-sqr-blue border border-zinc-100  p-1 py-0.5 " id="pid-l#{@expired[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@expired[m].id}"] = @expired[m].name
-
-
-        .hidden.md:block
+        div
           strong Unscheduled Active
           .status[class="flex flex-wrap  mx-3"] 
             - mapping = get_col_mapping(@active.size,3)
@@ -79,7 +53,7 @@ div
                 - mapping[i].each do |m|
                   div[class="btn-sqr-blue border border-zinc-100 p-1 py-0.5" id="pid-m#{@expired[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@expired[m].id}"] = @expired[m].name
 
-      .scheduled[class="mx-2"]
+      div.scheduled[class="mx-2"]
         strong Current Scheduled
         = form_with(url: @game.namespace_url, method: :patch, 
           html:{id:"update_participants"},data:{schedule_target:"form"} )do |f|

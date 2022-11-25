@@ -2,10 +2,6 @@ class Games::PendingController < GamesController
   before_action :set_game, except: [:update_scores, :update_assigned_teams, :assign_teams,:score_teams]
 
   def show
-    # @pending = Games::Pending.new(@game)
-    @game = Games::Pending.find_by(id:params[:id])
-    @game.set_state if @game.present?
-
   end
 
   def update
@@ -108,7 +104,8 @@ class Games::PendingController < GamesController
   private
 
   def set_game
-    @game = Current.group.games.find_by(id:params[:id], status:'Pending')
+    @game = Games::Pending.find_by(id:params[:id], group_id:Current.group.id, status:'Pending')
+    # @game = Current.group.games.find_by(id:params[:id], status:'Pending')
     @game.set_state if @game.present?
     redirect_to( games_path, notice:"Pending game not found") if @game.blank?
   end

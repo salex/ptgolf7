@@ -1,0 +1,35 @@
+= turbo_frame_tag "content"
+  h5.strong Notices/Changes
+  dl.indent-dd
+    dt 2022-11-25
+    dd I've added a new group preference <b>Use Autoscroll</b> and have set the Default to True.
+    dd Over the last few years I've been using a concept called <i>Responsive Design</i>. In a nutshell, things look different on a Phone/Table. This is done by wrapping sections of a large page so it fits on a Phone.
+
+    dd One of the things this fixes is a problem with my 2/3 column design. Most pages where something is being updated is laid out with a left column containing the update button, and the right column containing the form where things are updated.
+
+    div.flex.gap-8
+      div.border.m-1.p-2
+        div[class="btn-sqr-blue border border-zinc-100 p-2 py-0.5"] Some Button
+      div.border.m-1.p-2.overflow-auto.w-1/2[style="height:20vh;"]
+        strong The form that updates
+        ul
+          li Schedule game
+          li Score game
+          li Score Par3
+          li Score Skins
+          li whatever
+          li etc
+          li etc
+          li etc
+
+    dd The problem is sometimes the form size is much larger than the screen and you have to scroll back up to find the update button, or down the find the last player/team.
+    dd Using Auto-scroll fixes the problem by making the form <b>Scrollable</b> but the left column doesn't scroll and remains fixed. A auto-scrolled section will have a small scroll bar on the right. If you have a scroll button on your mouse, it will scroll that section by moving it. If not, you can drag the scroll bar up or down with the mouse pointer. Phones and tablets use the finger scroll.
+
+    dd You can see how this works by putting your mouse pointer in the right column above (The form that updates). You should see a scroll bar.
+
+    dd If you don't like this feature, you can set <b>use autoscroll</b> to false by editing you Group settings. 
+     
+
+
+  
+ 
