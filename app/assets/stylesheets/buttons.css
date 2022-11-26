@@ -51,8 +51,7 @@
 }
 
 .lime-link-btn:hover {
-/*  background-color: #49ff49;
-*/  color: #49ff49 !important;
+  color: #009900 !important;
 }
 .lime-link-btn.round {
   border-radius: 6px;

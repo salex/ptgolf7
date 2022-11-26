@@ -132,9 +132,28 @@ class AboutsController < ApplicationController
       partial: 'gmanage')
   end
   def notices
+    n = Notice.all.order(:date).reverse
+    html = '<div class="mb-2"><strong>Recent Notices</strong></div>'
+    n.each do |i|
+      html << "<strong>#{i.date}</strong>"
+      html << helpers.slim_text(i.slim)
+      html << "<br/><br/>"
+    end
     render turbo_stream: turbo_stream.replace(
-      'content',
-      partial: 'notices')
+      'content',partial: 'slim', locals:{html:html})
+  end
+
+  def slim
+    n = Notice.all.order(:date).reverse
+    html = ""
+    n.each do |i|
+      html << "<strong>#{i.date}</strong>"
+      html << helpers.slim_text(i.slim)
+      html << "<br/><br/>"
+    end
+    render turbo_stream: turbo_stream.replace(
+      'content',partial: 'slim', locals:{html:html})
+
   end
 
 

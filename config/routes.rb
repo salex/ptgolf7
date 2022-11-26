@@ -146,6 +146,7 @@ Rails.application.routes.draw do
       get :help
       get :features
       get :notices
+      get :slim
     end
   end
 

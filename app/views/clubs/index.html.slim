@@ -1,6 +1,6 @@
+- links = []
 - if is_super?
-  - links = [link_to(icon('fas fa-plus','New Club'), new_club_path,
-            class: 'btn btn-success')]
+  - links << link_to(icon('fas fa-plus','New Club'),new_club_path,class:'btn btn-success')
 = render partial:'shared/dashboard', locals:{name:"New Club",links:links}
 
 table.small-table.m-2
