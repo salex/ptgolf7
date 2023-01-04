@@ -44,3 +44,8 @@ ap14 = []
 asum = ap14.sum
 x =  100/ asum
 
+ap16 = []
+0.upto(5){|i| ap16 << 1.6**i}
+asum = ap16.sum
+x =  100/ asum
+

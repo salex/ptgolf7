@@ -1,24 +1,28 @@
+
+
+
+
 module Things
   class PlacesPay
-    attr_accessor :perc_array, :last_pays, :pay, :pay_array
-    def initialize(numb_players)
-      @pay = numb_players / 2 
-
-      @perc_array = [1.0]
-      if @pay > 1
-        # the below modifies the 40/60 payout by decreasing the ratio
-        # slightly based on number of pays
-        perc = 1 + (1.6 / @pay) 
-        1.upto(@pay - 1){|i| @perc_array << perc**i}
+    # This computes a payout by place where each place get x% more that the previou pace
+    # x - intially set to 40%, so if there are two place 
+    #   last place gets 40%
+    #   first place gets 60% 
+    attr_accessor :pays, :percents, :perc, :winners_share
+    def initialize(numb_players,dues=nil)
+      @pays = numb_players / 2
+      @perc = @pays >= 3 ? 1.4175 - (@pays * 0.0175) : 1.4 
+      @percents = []
+      0.upto(@pays - 1){|i| @percents << perc**i}
+      @winners_share = []
+      @percents.each do |pp|
+        if dues.present?
+          pot = numb_players * dues
+          @winners_share << to_quarters( (pp * (100/@percents.sum) / 100.0) * pot)
+        else
+          @winners_share << pp * (100/@percents.sum)
+        end
       end
-      @last_pays = 100 / @perc_array.sum
-      @pay_array = []
-      pot = numb_players * 8
-      @perc_array.each do |x|
-        @pay_array << to_quarters((@last_pays * x) / 100 * pot)
-
-      end           
-
     end
 
     def to_quarters(num,str=false)
@@ -31,8 +35,6 @@ module Things
         return quarters
       end
     end
-
-
   end
 
 end
