@@ -41,25 +41,25 @@
           -tq = mates.sum(:quota)
           -sq = tq/2.0
           -hq = (tq/18.0).round(2)
-          table.small-table.w100[data-controller="scoreTeam someJunk"]
+          table.small-table.w100[data-controller="scoreTeam"]
 
-            tr
-              th.w50p colspan="4" 
+            tr.bg-lime-lighter
+              th.w-1/2 colspan="4" 
                 - if @game.stats[:makeup] == "individuals"
                   = "Tee Time #{team}"
                 - else
                   = "Team - #{team} Quota:#{tq} Side: #{sq} Hole: #{hq}"
                 = hidden_field_tag("team[#{team}][quota]",tq,data:{scoreTeam_target:"teamQuota"})
                 / div[id="teamUpdate#{i}" style="display:none;" data-action="click->scoreTeam#compute"]
-              th.w15p[data-scoreTeam-target="teamFront", data-someJunk-target="whooa"]
-              th.w15p[data-scoreTeam-target="teamBack"]
-              th.w15p[data-scoreTeam-target="teamTotal"]
-              th.w05p[data-scoreTeam-target="teamPM"]
+              th[data-scoreTeam-target="teamFront", data-someJunk-target="whooa"]
+              th[data-scoreTeam-target="teamBack"]
+              th[data-scoreTeam-target="teamTotal"]
+              th.w-10[data-scoreTeam-target="teamPM"]
         
-            tr
+            tr.bg-lime-lighter
               th Name
               th Tee
-              th Quota
+              th Q
               th Side
               th Front
               th Back
@@ -95,9 +95,9 @@
                       action:"change->scoreMate#back change->scoreTeam#compute"},
                       class:"select")
                 - else
-                  td= number_field_tag("participant[#{mate.id}][front]", mate.front,data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:"w100 ")
-                  td= number_field_tag("participant[#{mate.id}][back]",mate.back, data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack",action:"change->scoreMate#back change->scoreTeam#compute"},class:"w100 ")
-                td= text_field_tag("participant[#{mate.id}][total]",mate.total, disabled:true, data:{scoreMate_target:"mateTotal", scoreTeam_target:"mateTotal"},class:"w100")
+                  td= number_field_tag("participant[#{mate.id}][front]", mate.front,data:{scoreMate_target:"mateFront", scoreTeam_target:"mateFront",action:"change->scoreMate#front change->scoreTeam#compute"},class:"w-full text-center ")
+                  td= number_field_tag("participant[#{mate.id}][back]",mate.back, data:{scoreMate_target:"mateBack", scoreTeam_target:"mateBack",action:"change->scoreMate#back change->scoreTeam#compute"},class:"w-full text-center ")
+                th= text_field_tag("participant[#{mate.id}][total]",mate.total, disabled:true, data:{scoreMate_target:"mateTotal", scoreTeam_target:"mateTotal"},class:"w-full text-center")
                 th[data-scoreMate-target="matePM", data-scoreTeam-target="matePM" class='mate-pm'] 
                   - if mate.total.present?
                     = mate.total - mate.quota

@@ -11,7 +11,7 @@ class GameObjects::ScoreRounds
     @game = game
     @rounds = game.rounds
     @params = params
-    @method = game.method ||= Current.goup.pays
+    @method = game.method ||= Current.group.pays
     score_rounds
   end
 

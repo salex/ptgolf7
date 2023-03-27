@@ -219,7 +219,7 @@ class Game < ApplicationRecord
     params[:skins][:in].each_key do |id|
       new_skins['player_par'][id] = params[:skins][:player_par][id]
     end
-    stats[:skins] = new_skins
+    # stats[:skins] = new_skins
     self.skins = new_skins
     #call skins with game not saved but modifed
     # new copy of rounds will be fetched but noting in them used except name
@@ -232,7 +232,7 @@ class Game < ApplicationRecord
     new_par3 = { 'good' => params[:par3][:good], 'player_good' => {} }
     if params[:par3][:in].blank? || new_par3['good'].blank?
       # semi delete skins
-      stats[:par3] = new_par3
+      # stats[:par3] = new_par3
       self.par3 = new_par3
       self.save 
       return 
