@@ -1,31 +1,4 @@
 .height-auto{height: auto;}
-.select {
-  min-width: 3ch;
-  max-width: 30ch;
-  border: 1px solid green;btn-successbtn-success
-  border-radius: 0.25em;
-  padding: 0.25em 0.5em;
-  font-size: 1.1rem;
-  cursor: pointer;
-  -webkit-appearance: menulist;
-  line-height: 1.1;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-}
-.select::after {
-  content: "";
-  width: 0.8em;
-  height: 0.5em;
-  background-color: var(--select-arrow);
-  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-}
-*/
-/* for now, all select uses webkit style */
-
-.select select, select {
-  -webkit-appearance: menulist;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-
-}
 
 #error_explanation {
   color: red;
@@ -74,7 +47,7 @@ button.actions:hover {
   background-color: #0c97d6;
 }
 
-.boxes .row-box, .row-box-18 .row-box {
+/*.boxes .row-box, .row-box-18 .row-box {
   height: 1.5rem;
   font-weight: 200;
   margin: 0;
@@ -188,7 +161,7 @@ button.actions:hover {
 .row-box-small .row-box span.title {
   width: 2.2rem;
   font-weight: 700;
-}
+}*/
 .vh-75 {
   height:75vh;
 }

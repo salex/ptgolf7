@@ -1,0 +1,93 @@
+.row-box-18 .row-box {
+  height: 1.5rem;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+  border-left: solid 1px #aaddaa;
+  border-top: solid 1px #aaddaa;
+  display: inline-block;
+  background-color: white;
+  line-height: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.row-box-18 .row-box.lbl {
+  background-color: #e7ffe7;
+  font-weight: 500;
+}
+
+.row-box-18 .row-box span {
+  width: 2rem;
+  height: inherit;
+  text-align: center;
+  border-right: solid 1px #aaddaa;
+  border-bottom: solid 1px #aaddaa;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.row-box-18 .row-box span.lbl {
+  background-color: #e7ffe7;
+  font-weight: 500;
+}
+
+.row-box-18 .row-box span.err {
+  color: red;
+}
+
+.row-box-18 .row-box span.cut {
+  color: red;
+  background-color: #ffe6e6;
+  font-weight: 700;
+}
+
+.row-box-18 .row-box span.good, .row-box-18 .row-box span.birdie {
+  color: green;
+  background-color: #b3ffb3;
+  font-weight: 700;
+}
+
+.row-box-18 .row-box span.eagle {
+  color: #00f;
+  background-color: #b3b3ff;
+  font-weight: 700;
+}
+
+.row-box-18 .row-box span.albatros {
+  color: yellow;
+  background-color: #999900;
+  font-weight: 700;
+}
+
+.row-box-18 .row-box span.title {
+  width: 4rem;
+  font-weight: 700;
+}
+
+.select {
+  min-width: 3ch;
+  max-width: 30ch;
+  border: 1px solid green;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.1rem;
+  cursor: pointer;
+  -webkit-appearance: menulist;
+  line-height: 1.1;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.select::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: var(--select-arrow);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+/* for now, all select uses webkit style */
+
+.select select, select {
+  -webkit-appearance: menulist;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+}

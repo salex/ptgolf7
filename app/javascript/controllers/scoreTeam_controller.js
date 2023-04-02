@@ -66,15 +66,19 @@ export default class extends Controller {
       var sb = document.getElementById('submit_form')
       sb.removeAttribute('disabled')
       sb.classList.remove('w3-disabled')
-      this.status.classList.remove('w3-text-red')
-      this.status.classList.add('w3-text-green')
-      this.status.innerHTML = "All teams/mates have been scored. You can now submit the scores"
+      this.status.classList.remove('text-red-700')
+      this.status.classList.remove('bg-red-100')
+      this.status.classList.add('text-blue-700')
+      this.status.classList.add('bg-blue-100')
+      this.status.innerHTML = "All teams/mates have been scored. You can now update the scores"
     }else{
       var sb = document.getElementById('submit_form')
       sb.setAttribute('disabled','disabled')
       sb.classList.add('w3-disabled')
-      this.status.classList.remove('w3-text-green')
-      this.status.classList.add('w3-text-red')
+      this.status.classList.add('text-red-700')
+      this.status.classList.add('bg-red-100')
+      this.status.classList.remove('text-blue-700')
+      this.status.classList.remove('bg-blue-100')
       this.status.innerHTML = `${unscored} out of ${players} players have not been scored`
     }
   }

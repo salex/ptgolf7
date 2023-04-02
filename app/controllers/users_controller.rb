@@ -89,6 +89,7 @@ class UsersController < ApplicationController
   def logout
     group = current_group
     reset_session
+    # keep last group in session
     session[:group_id] = group.id
     cookies.delete("last_group_#{group.id}_user")
     redirect_to root_url, notice: "Logged out!"

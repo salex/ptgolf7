@@ -32,7 +32,8 @@
         hr.underline.w100
     - select_points = !useKeys
     div.md:col-span-9
-      #status_box.w3-text-red.strong No team(s) have been scored
+      div#status_box.text-center.border-2.font-bold.text-xl.bg-blue-100.text-blue-700 
+
       div[class="#{Current.group.use_autoscroll ? "overflow-auto vh-75" : ""}"]
         / [style="height:75vh;"]
         - teams = @game.game_teams(params[:team])
