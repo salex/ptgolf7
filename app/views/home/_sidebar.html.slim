@@ -30,6 +30,6 @@
 
   div
    .annotate=  "Rails Version #{Rails.version}"
-   - appdir = Rails.root.join(".git")
+   - appdir = Rails.root.join("app")
    .annotate = "Updated: #{File.mtime(appdir)}"
    / div = session_inspect
