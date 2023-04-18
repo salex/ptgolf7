@@ -30,9 +30,9 @@ class Game < ApplicationRecord
 
   def set_player_teams
     set_stats if stats.blank?
-    rnds = rounds.size
-    if rnds.positive?
-      arr = rounds.pluck(:id, :team)
+    rnds = self.rounds
+    if rnds.size.positive?
+      arr = rnds.pluck(:id, :team)
       teams = arr.pluck(1).sort.uniq
       stats[:round][:players] = arr.size
       stats[:round][:teams] = teams.size
