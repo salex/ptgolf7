@@ -4,17 +4,17 @@
 
 module Things
   class PlacesPay
-    # This computes a payout by place where each place get x% more that the previou pace
+    # This computes a payout by place where each place get x% more than the previou place
     # x - intially set to 40%, so if there are two places: 
     #   last place gets 40%
     #   first place gets 60%  pro back mid front start
-    attr_accessor :pays, :percents, :perc, :winners
+    attr_accessor :places, :percents, :winners
     def initialize(numb_players,dues=nil)
-      @pays = numb_players / 2
-      @perc = @pays >= 3 ? 1.4175 - (@pays * 0.0175) : 1.4
-      # @perc = 1.5
-      @percents = []
-      0.upto(@pays - 1){|i| @percents << perc**i}
+      @places = numb_players / 2
+      @percents = Array.new(places,1.0)
+      fudgeFactor = 0.035 * places
+
+      1.upto(@places - 1){|i| @percents[i] =  @percents[i - 1] * (1.6 - fudgeFactor) }
       @winners = []
       @percents.each do |pp|
         if dues.present?
@@ -36,16 +36,23 @@ module Things
         return quarters
       end
     end
-    def to_halfs(num,str=false)
-      dollars = num.to_i
-      cents = (num - dollars + 0.001).round(2) # can have float inaccracy
-      quarters  = dollars + (cents * 2).floor * 0.5
-      if str
-        return format("%.2f", quarters)
-      else
-        return quarters
-      end
+
+    def ptr_arr(size)
+      arr = []
+      1.upto(size){|i| arr << i}
+      arr 
     end
+    
+    # def to_halfs(num,str=false)
+    #   dollars = num.to_i
+    #   cents = (num - dollars + 0.001).round(2) # can have float inaccracy
+    #   quarters  = dollars + (cents * 2).floor * 0.5
+    #   if str
+    #     return format("%.2f", quarters)
+    #   else
+    #     return quarters
+    #   end
+    # end
 
   end
 

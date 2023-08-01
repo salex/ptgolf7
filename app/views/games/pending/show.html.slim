@@ -56,7 +56,7 @@
         - hole = (stats[:quota]/18.0).round(1)
         - side_quota = stats[:side_quota]
 
-        table.w100.small-table.stripped
+        table.w100.small-table.stripped.w3-margin-top
           caption.noprint = link_to "Score Team", score_teams_games_pending_path(@game,team:tm), class:'blue-link' if is_manager? && !@game.state[:indiv_teams] && !zero_team
 
           tr

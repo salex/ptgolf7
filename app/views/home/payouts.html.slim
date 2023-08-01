@@ -1,0 +1,80 @@
+div.border-gold.bg-malt.border-4
+  h3.p-2.text-white.text-lg
+    strong Pay Places Payouts
+div.p-2.m-2
+  - if params["dues"].present?
+    - dues = params["dues"].to_i
+  - elsif Current.group.settings["dues"].present?
+    - dues = Current.group.settings["dues"]
+  - else
+    - dues = 10
+  .px-2.border-b
+    div 
+      strong Current or Selected Dues: 
+      span = "$#{dues}"
+
+    .gap-4.flex
+      div
+        strong Percent Dues Amount ->
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 4, payouts_path(dues:4)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 5, payouts_path(dues:5)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 6, payouts_path(dues:6)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 8, payouts_path(dues:8)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 10, payouts_path(dues:10)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 15, payouts_path(dues:15)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 20, payouts_path(dues:20)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 25, payouts_path(dues:25)
+
+      div
+        strong Deal Dues Amount ->
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 4, payouts_path(dues:4,deal:true)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 5, payouts_path(dues:5,deal:true)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 6, payouts_path(dues:6,deal:true)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 8, payouts_path(dues:8,deal:true)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 10, payouts_path(dues:10,deal:true)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 15, payouts_path(dues:15,deal:true)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 20, payouts_path(dues:20,deal:true)
+      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 25, payouts_path(dues:25,deal:true)
+
+
+
+
+div.content-center[ data-controller="toggle"]
+  button[class="#{btn_green} " data-action="click->toggle#toggleMenu"] 
+    i[class="fa fa-toggle-on px-2" data-toggle-target="toggler"]
+    | What's this?
+
+  div[class=" bg-green-50 w-full px-2 hidden" data-toggle-target="menu"]
+    div.grid.grid-cols-2.gap-4
+      div
+        p An attempt to develop a fair winner distribution if a game pays places. If we start with a 4 players in the game, two players will win. This uses a common 60/40 split. If there are 6 players there may be a 50/30/20 split.
+        p This will compute the distribtion for up to 30 player with up to 15 winning something.
+      div
+        p Whatcha think?
+        p The last place players may not get their dues back, but close. 
+        p Still working on it.
+
+
+       
+
+.mx-1.overflow-x-auto
+  table.small-table-stripped.w100
+
+    thead
+      tr
+        th #P
+        th Pot
+        - 1.upto(15)do |i|
+          th = i.ordinalize
+    tbody
+      - 4.upto(30) do |p|
+        tr
+          td = p 
+          td = "$#{ p*dues}"
+          - if params[:deal].present?
+            - places = Things::DealPayPlaces.new(p,dues).payouts.reverse
+          - else
+            - places = Things::PlacesPay.new(p,dues).winners.reverse
+
+          - places.each do |i|
+            td.text-right = number_to_currency i

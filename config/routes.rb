@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     collection do
       get :new_today
     end
+
   end
 
   resources :players do
@@ -162,13 +163,14 @@ Rails.application.routes.draw do
   # get 'develop', to: 'users#develop', as: 'develop'
   get 'profile', to: 'users#profile'
   get 'score_sheet', to: 'home#score_sheet'
+  get 'payouts', to: 'home#payouts'
 
   get 'test', to: 'home#test'
   # get 'home', to: 'home#show'
   # get 'autocomplete' , to: 'home#autocomplete'
-  get 'sinners', to: 'home#sinners'
-  get 'saints', to: 'home#saints'
-  get 'gaggle', to: 'home#gaggle'
+  # get 'sinners', to: 'home#sinners'
+  # get 'saints', to: 'home#saints'
+  # get 'gaggle', to: 'home#gaggle'
 
   # get 'plain', to: 'home#plain'
   get 'changes', to: 'home#changes'

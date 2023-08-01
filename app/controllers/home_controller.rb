@@ -22,59 +22,74 @@ class HomeController < ApplicationController
       disposition: "inline"
   end
 
-  def sinners
-    group = Group.find_by(Group.arel_table[:name].matches('sinners'))
-    reset_session 
-    session[:group_id] = group.id 
-    cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
-    params[:format] = 'html'
-    redirect_to root_path
+  def payouts
+    render template: 'home/payouts'
   end
+  # def sinners
+  #   group = Group.find_by(Group.arel_table[:name].matches('sinners'))
+  #   reset_session 
+  #   session[:group_id] = group.id 
+  #   cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
+  #   params[:format] = 'html'
+  #   redirect_to root_path
+  # end
 
-  def saints
-    group = Group.find_by(Group.arel_table[:name].matches('saints'))
-    reset_session
-    session[:group_id] = group.id
-    cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
-    params[:format] = 'html'
-    redirect_to root_path
-  end
-  def gaggle
-    group = Group.find_by(Group.arel_table[:name].matches('%gaggle'))
-    reset_session
-    session[:group_id] = group.id
-    cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
-    params[:format] = 'html'
-    redirect_to root_path
-  end
+  # def saints
+  #   group = Group.find_by(Group.arel_table[:name].matches('saints'))
+  #   reset_session
+  #   session[:group_id] = group.id
+  #   cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
+  #   params[:format] = 'html'
+  #   redirect_to root_path
+  # end
+  # def gaggle
+  #   group = Group.find_by(Group.arel_table[:name].matches('%gaggle'))
+  #   reset_session
+  #   session[:group_id] = group.id
+  #   cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
+  #   params[:format] = 'html'
+  #   redirect_to root_path
+  # end
 
 
   def redirect
-    club = Club.find_by(Club.arel_table[:short_name].matches(params[:path]))
-    if club.present?
-      group = club.groups.find_by(Group.arel_table[:name].matches(params[:format]))
-      if group.present?
-        reset_session
-        session[:group_id] = group.id
-        cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
-        params[:format] = 'html'
-        # if cookies["last_group_#{group.id}_user"].present?
-        #   user = User.find_by(id:cookies["last_group_#{group.id}_user"])
-        #   if user.present?
-        #     session[:user_id] = user.id
-        #     session[:group_id] = user.group_id
-        #     session[:name] = user.player.present? ? user.player.name : user.email
-        #     session[:expires_at] = Time.now.midnight + 1.day
-        #   end
-        # end
-        redirect_to root_path
-      else
-        cant_do_that
-      end
+    group = redirect_group(params[:path])
+    if group.present?
+      reset_session
+      session[:group_id] = group.id
+      cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
+      params[:format] = 'html'
+      redirect_to root_path
     else
-    # redirect_to '/404'
-    cant_do_that(params[:path])
+      cant_do_that(params[:path])
     end
+
+
+    # club = Club.find_by(Club.arel_table[:short_name].matches(params[:path]))
+    # if club.present?
+    #   group = club.groups.find_by(Group.arel_table[:name].matches(params[:format]))
+    #   if group.present?
+    #     reset_session
+    #     session[:group_id] = group.id
+    #     cookies[:group_id] = {value: group.id, expires: Time.now + 3.months}
+    #     params[:format] = 'html'
+    #     # if cookies["last_group_#{group.id}_user"].present?
+    #     #   user = User.find_by(id:cookies["last_group_#{group.id}_user"])
+    #     #   if user.present?
+    #     #     session[:user_id] = user.id
+    #     #     session[:group_id] = user.group_id
+    #     #     session[:name] = user.player.present? ? user.player.name : user.email
+    #     #     session[:expires_at] = Time.now.midnight + 1.day
+    #     #   end
+    #     # end
+    #     redirect_to root_path
+    #   else
+    #     cant_do_that
+    #   end
+    # else
+    # # redirect_to '/404'
+    # cant_do_that(params[:path])
+    # end
   end
   def autocomplete
     puts "GOT autocomple"
@@ -101,6 +116,10 @@ class HomeController < ApplicationController
   end
 
  private
+
+  def redirect_group(path)
+    group = Group.find_by(Group.arel_table[:name].matches("%#{path}"))
+  end
 
   def set_db
     names = %w(steve jan butch lori james Jamie Chappel drew sarrah poochie wimpie callie cammie momma peaks grouchie leftey rightey tigger).sort

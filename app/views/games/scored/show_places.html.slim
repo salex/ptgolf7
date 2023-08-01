@@ -63,8 +63,8 @@
               td= pulled(mate[:total],mate[:total_net],mate[:quota],mate[:limited]) 
 
           - if !team_stats[:team_quality].zero?
-            th colspan="7" 
-              = "Team won $#{to_nickels(team_stats[:team_quality],true)}, Each Team Mate $#{to_quarters(team_stats[:mate_quality],true)} "
+            th colspan="8" 
+              = "Team won $#{to_quarters(team_stats[:team_quality],true)}, Each Team Mate $#{to_quarters(team_stats[:mate_quality],true)} "
 
 hr.underline
 .w3-row-padding 
@@ -73,13 +73,21 @@ hr.underline
     table.small-table.w100
       tr
         - sides[:winners].each do |a|
-          th = "#{a[0]} Team #{a[1]} &#177; #{a[2]} $#{to_nickels(a[3],true)}".html_safe
+          th = "#{a[0]} Team #{a[1]} &#177; #{a[2]} $#{to_quarters(a[3],true)}".html_safe
   -else
-    .annotate Team Winners
-    table.small-table.w100
-      tr
-        - scoring.winners.each do |k,v|
-          th = "#{k.ordinalize} Place,  Teams #{v[:team]} &#177; #{v[:pm]} $#{to_nickels(v[:quality],true)}".html_safe
+    .annotate Team Winners (Places)
+    .flex.flex-wrap.gap-4
+      - scoring.winners.each do |k,v|
+        div.border.p-1
+          strong = k.ordinalize
+          span = " Teams #{v[:team]} &#177; #{v[:pm]} $#{to_quarters(v[:quality],true)}".html_safe
+
+    / table.small-table.w100
+    /   tr
+    /     - scoring.winners.each do |k,v|
+    /       td
+    /         strong = k.ordinalize
+    /         span = " Teams #{v[:team]} &#177; #{v[:pm]} $#{to_quarters(v[:quality],true)}".html_safe
 
 
 .w3-row-padding 

@@ -60,8 +60,20 @@ class GameObjects::ScorePlaces
     last_winner_score = qualifiers.first # lowest winning score
     last_winner_idx = placement_map.find_index(last_winner_score)
     qualifiers = placement[last_winner_idx..-1] # now get real qualifiers (score, team)
-    @percents = set_place_percent(pays) # get the percentage for each place
+    @percents = set_place_percents_new(pays) # get the percentage for each place
     @winners = shuffle_places(qualifiers, percents)
+  end
+
+  def set_place_percents_new(pays)
+    percents = Array.new(pays, 1.0)
+    while percents[1..-1].sum < pays do 
+      1.upto(pays - 1){|i| percents[i] +=  (i )/ 2.0}
+    end
+    sum = percents.sum
+    # np = []
+    percents.each_with_index{|v,i| percents[i] = (v / sum).round(4)}
+    return percents
+
   end
 
   def set_place_percent(pays)

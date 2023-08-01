@@ -1,5 +1,6 @@
 .card-4
   div[class="#{sidebar_menu}"] = link_to "Signup/Score Sheet", "score_sheet", class: "link-btn", target:"_blank"
+  div[class="#{sidebar_menu}"] = link_to "Payout Sheet", "payouts", class: "link-btn", target:"_blank"
 
   -if Current.group.present?
     div[class="#{sidebar_menu}"] = link_to "Club Information", club_path(Current.club), class: "link-btn"
