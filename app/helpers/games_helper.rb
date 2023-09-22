@@ -21,6 +21,10 @@ module GamesHelper
     end
   end
 
+  def to_qtr(num)
+    amt = ((num * 4).to_i / 0.25 / 4) * 0.25
+  end
+
   def to_quarters(num,str=false)
     dollars = num.to_i
     cents = (num - dollars + 0.001).round(2) # can have float inaccracy

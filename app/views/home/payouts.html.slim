@@ -1,4 +1,4 @@
-div.border-gold.bg-malt.border-4
+div.border-gold.bg-malt.border-4.noprint
   h3.p-2.text-white.text-lg
     strong Pay Places Payouts
 div.p-2.m-2
@@ -8,36 +8,40 @@ div.p-2.m-2
     - dues = Current.group.settings["dues"]
   - else
     - dues = 10
+
+  - if params["perc"].present?
+    - perc = params["perc"].to_i
+  - elsif Current.group.settings["perc"].present?
+    - perc = Current.group.settings["perc"]
+  - else
+    - perc = 50
+
+  - if params["meth"].present?
+    - meth = params["meth"]
+  - elsif Current.group.settings["meth"].present?
+    - meth = Current.group.settings["meth"]
+  - else
+    - meth = 'deal'
+
+
   .px-2.border-b
-    div 
-      strong Current or Selected Dues: 
-      span = "$#{dues}"
+    div.gap-8.flex.p-1[data-controller="placePayouts"]
+      div 
+        strong Entry Fee/Dues:
+        div  
+          span $
+          span = select_tag 'stats[perc]', options_for_select(['2','4','5','6','8','10','15'],dues),data:{action:"placePayouts#dues_select"}
 
-    .gap-4.flex
-      div
-        strong Percent Dues Amount ->
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 4, payouts_path(dues:4)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 5, payouts_path(dues:5)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 6, payouts_path(dues:6)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 8, payouts_path(dues:8)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 10, payouts_path(dues:10)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 15, payouts_path(dues:15)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 20, payouts_path(dues:20)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 25, payouts_path(dues:25)
+          span = text_field_tag "stats[dues]",dues,style:"width:6rem;",data:{placePayouts_target:"dues"}
+      div 
+        strong Payout Method
+        div = select_tag 'stats[game]', options_for_select([['PGA Clone','pga'],['Card Deal','deal'],['Composite','rate'],['Original','other']],meth),data:{placePayouts_target:"meth"}
+      div 
+        strong Pay Places Percent
+        div = select_tag 'stats[perc]', options_for_select(['10','20','25','30','40','50','60'],perc),data:{placePayouts_target:"perc"}
 
-      div
-        strong Deal Dues Amount ->
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 4, payouts_path(dues:4,deal:true)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 5, payouts_path(dues:5,deal:true)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 6, payouts_path(dues:6,deal:true)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 8, payouts_path(dues:8,deal:true)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 10, payouts_path(dues:10,deal:true)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 15, payouts_path(dues:15,deal:true)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 20, payouts_path(dues:20,deal:true)
-      button.bg-blue-700.hover:bg-blue-500.px-1.text-white = link_to 25, payouts_path(dues:25,deal:true)
-
-
-
+      div 
+        button.btn.btn-warning.mr-2[data-action="placePayouts#refresh"] Refresh
 
 div.content-center[ data-controller="toggle"]
   button[class="#{btn_green} " data-action="click->toggle#toggleMenu"] 
@@ -71,10 +75,19 @@ div.content-center[ data-controller="toggle"]
         tr
           td = p 
           td = "$#{ p*dues}"
-          - if params[:deal].present?
-            - places = Things::DealPayPlaces.new(p,dues).payouts.reverse
-          - else
-            - places = Things::PlacesPay.new(p,dues).winners.reverse
+          - if params[:meth].present? && params[:meth] == 'deal'
+            - places = Things::DealPlaces.new(p,dues).winners.reverse
+          - elsif params[:meth].present? && params[:meth] == 'rate'
+            / - places = Things::PlacesPay.new(p,dues).winners.reverse
+            - places = Things::RatePlaces.new(p,dues).winners.reverse
+          - elsif params[:meth].present? && params[:meth] == 'pga'
+            / - places = Things::PlacesPay.new(p,dues).winners.reverse
+            - places = Things::VarPlaces.new(p,dues).winners
+
+          -else
+            - places = Things::DealPlaces.new(p,dues).winners.reverse
+
+
 
           - places.each do |i|
             td.text-right = number_to_currency i
