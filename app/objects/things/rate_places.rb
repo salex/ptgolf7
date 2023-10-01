@@ -4,19 +4,22 @@ module Things
 
     def initialize(numb_players,dues)
       @dues = dues.to_f
-      @purse = numb_players * dues 
+      @purse = numb_players * @dues 
       @places_paid = numb_players / 2
       # @rate = Exonio.rate(9, 6,0, -108)
       if places_paid == 2
-        @winners = [purse*0.4, purse*0.6]
+        @winners = [round_to_quarters(purse*0.4),round_to_quarters(purse*0.6)]
       else
         @rate = Exonio.rate(@places_paid, @dues,0, -@purse)
         @winners = [@dues]
         1.upto(@places_paid - 1) do |w|
-          @winners[w] = (1 + @rate ) * (winners[w-1])
+          @winners[w] = round_to_quarters((1 + @rate ) * (winners[w-1]))
         end
       end
-      @winners.each_with_index{|w,i| winners[i] = round_to_quarters(w)}
+      ink = (purse -  @winners.sum)
+      @winners[-1] += ink if ink.positive?
+
+      # @winners.each_with_index{|w,i| winners[i] = round_to_quarters(w)}
 
 
       # make_winners

@@ -32,7 +32,13 @@ class Games::PendingController < GamesController
   end
   
   def score_cardp
-    pdf =  Pdf::ScoreCardp.new(@game)
+    if @game.stats[:makeup] == "individuals" || @game.stats[:seed_method] == 'blind_draw'
+      pdf =  Pdf::ScoreCardi.new(@game)
+    else
+      pdf =  Pdf::ScoreCardp.new(@game)
+    end
+
+    # pdf =  Pdf::ScoreCardp.new(@game)
     send_data pdf.render, filename: "score_card",
       type: "application/pdf",
       disposition: "inline"

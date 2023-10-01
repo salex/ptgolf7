@@ -6,7 +6,7 @@ module Things
       @dues = dues.to_f
       @pot = numb_players * dues 
       @places_paid = numb_players / 2
-      @winners = Array.new(@places_paid,@dues/3)
+      @winners = Array.new(@places_paid,@dues/2)
       deal
     end
 
@@ -15,9 +15,10 @@ module Things
     end
 
     def deal
+
       while @winners.sum < @pot && ((@pot - @winners.sum) >= @dues) do 
         @winners.each_with_index do|v,i| 
-          @winners[i] += 0.25*(i+1)
+          @winners[i] += 0.10 *(i+1)
         end
       end
       chg = (@pot -  @winners.sum) /  @winners.size
@@ -25,6 +26,17 @@ module Things
         @winners[i] += chg
         @winners[i] = round_to_quarters(@winners[i])
       end
+      ink = (@pot -  @winners.sum)
+      @winners[-1] += ink if ink.positive?
+      # @winners.each_with_index{|e,i| @winners[i]=e.round.to_f}
+      # diff = @pot - @winners.sum
+      # # @winners << diff
+      # @winners[-1] += diff if diff.positive?
+
+      # @perc.each_with_index do |p,i|
+      #   @winners[i] = round_to_quarters(@pot*(p/100.0))
+      # end
+
     end
 
     def x
