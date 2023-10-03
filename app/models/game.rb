@@ -97,7 +97,7 @@ class Game < ApplicationRecord
       state[:can_reform] = !state[:can_form] && state[:has_zero_team]
       state[:can_delete] = (status != 'Scored') && ((Date.today - date) >= 2)
       state[:pot] = game_group.dues * state[:players]
-      state[:side] = state[:pot] / 3
+      state[:side] = (state[:pot] / 3).round(2)
     else
       state[:can_delete] = true  # created in error
     end
