@@ -223,7 +223,7 @@ class GroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def group_params
-      params.require(:group).permit(:club_id, :name, :tees,@group.default_options.keys)
+      params.require(:group).permit(:club_id, :name, :tees,@group.default_settings.keys)
        #  ["par_in", "par_out", "welcome", "alert",
        # "notice", "tee_time", "play_days", "dues", "skins_dues", "par3_dues", "other_dues", 
        # "truncate_quota", "pay", "limit_new_player", "limit_rounds", "limit_points",

@@ -14,15 +14,16 @@ class Group < ApplicationRecord
 
   after_initialize :set_attributes
 
-  # lets just set all settings to attribututes
-  # if you add/remove a setting, add an attribute and class and add default options 
-  # then call 'Fixes.new.fix_settings' from console or /clubs/fix_settings
 
-  attribute :par_in, :string
-  attribute :par_out, :string
-  attribute :welcome, :text
-  attribute :alert, :text
-  attribute :notice, :text
+  # lets just set all attributes to settings values 
+  # will be cast to class if coming from form update
+  # if you add/remove a setting, add/remove an attribute with class and add to default settings 
+
+  attribute :par_in, :string, default: "444444444"
+  attribute :par_out, :string, default: "444444444"
+  attribute :welcome, :text, default: "Welcome to the #{self.name}"
+  attribute :alert, :text, default: ""
+  attribute :notice, :text, default: ""
   attribute :tee_time, :string
   attribute :play_days, :string
   attribute :dues, :integer
@@ -52,67 +53,40 @@ class Group < ApplicationRecord
   attribute :default_in_sidegames, :boolean
   attribute :use_autoscroll, :boolean
 
-
-
   def set_attributes
-    sync_settings
-    self.default_options.each do |k,v|
-      self.send("#{k.to_s}=", self.settings[k])
+    if self.settings.blank?
+      # new record, set settings from default options
+      self.settings = self.default_settings
     end
-  end
 
-  def sync_settings
-    set_default_options if self.settings.blank? 
-    self.default_options.each do |k,v|
-      if !self.settings.has_key?(k)
-        self.settings[k] = default_options[k]
-      end
-    end
     self.settings.each do |k,v|
-      if !self.default_options.has_key?(k)
-        self.settings.delete[k]
-      end
-    end
-
-    if self.settings_changed? && self.valid? && !self.new_record?
-      puts "SETTINGS CHANGED"
-      self.save
+      # set attributes to settings
+      self.send("#{k.to_sym}=", v)
     end
   end
 
-  def set_settings
-    self.default_options.each do |k,v|
-      self.settings[k] = self.send(k) 
-    end
-  end
-
-
-  def set_default_options
-    # set defaults if blank called on before create
-    self.settings = self.default_options
-  end
-
-  def default_options
-    # default options control valid setting
+  
+  def default_settings
+    # default settings control valid setting
     # if you add or remove a key
     #   add or remove the attribute
-    # sync_setting will and or remove the key to setting
-    options = {
-      par_in:'',
-      par_out:'',
+    # only used on new/create and for its keys which point to an attribute
+    {
+      par_in:'444444444',
+      par_out:'444444444',
       welcome:"Welcome to #{self.name}",
       alert:'',
       notice:'',
-      tee_time:'',
-      play_days:'',
+      tee_time:'9:30am',
+      play_days:'m w f',
       dues:6,
-      skins_dues: 0,
-      par3_dues: 0,
+      skins_dues: 2,
+      par3_dues: 2,
       other_dues: 0,
       truncate_quota:true,
       pay:'',
       limit_new_player:false,
-      limit_rounds:1,
+      limit_rounds:2,
       limit_points:2,
       limit_new_tee:false,
       limit_new_tee_rounds:1,
@@ -124,15 +98,146 @@ class Group < ApplicationRecord
       limit_inactive_rounds:1,
       limit_inactive_points:2,
       sanitize_first_round:false,
-      trim_months:15,
+      trim_months:18,
       rounds_used:10,
       use_hi_lo_rule:false,
       default_stats_rounds:100,
       use_keyboard_scoring:false,
       default_in_sidegames:true,
       use_autoscroll:true
-    }.with_indifferent_access   
+    }  
   end
+
+  def update_group(params)
+    self.assign_attributes(params)
+    # updates record withou saving, just set attributes
+    self.default_settings.each do |k,v|
+      # now take the set attributes and update to serialized settings
+      self.settings[k] = self.send(k.to_sym) 
+    end
+    self.save 
+  end
+
+
+  # # lets just set all settings to attribututes
+  # # if you add/remove a setting, add an attribute and class and add default options 
+  # # then call 'Fixes.new.fix_settings' from console or /clubs/fix_settings
+
+  # attribute :par_in, :string
+  # attribute :par_out, :string
+  # attribute :welcome, :text
+  # attribute :alert, :text
+  # attribute :notice, :text
+  # attribute :tee_time, :string
+  # attribute :play_days, :string
+  # attribute :dues, :integer
+  # attribute :skins_dues, :integer
+  # attribute :par3_dues, :integer
+  # attribute :other_dues, :integer
+  # attribute :truncate_quota, :boolean
+  # attribute :pay, :string
+  # attribute :limit_new_player, :boolean
+  # attribute :limit_rounds, :integer
+  # attribute :limit_points, :integer
+  # attribute :limit_new_tee, :boolean
+  # attribute :limit_new_tee_rounds, :integer
+  # attribute :limit_new_tee_points, :integer
+  # attribute :limit_frozen_player, :boolean
+  # attribute :limit_frozen_points, :integer
+  # attribute :limit_inactive_player, :boolean
+  # attribute :limit_inactive_days, :integer
+  # attribute :limit_inactive_rounds, :integer
+  # attribute :limit_inactive_points, :integer
+  # attribute :sanitize_first_round, :boolean
+  # attribute :trim_months, :integer
+  # attribute :rounds_used, :integer
+  # attribute :use_hi_lo_rule, :boolean
+  # attribute :default_stats_rounds, :integer
+  # attribute :use_keyboard_scoring, :boolean
+  # attribute :default_in_sidegames, :boolean
+  # attribute :use_autoscroll, :boolean
+
+
+
+  # def set_attributes
+  #   sync_settings
+  #   self.default_options.each do |k,v|
+  #     self.send("#{k.to_s}=", self.settings[k])
+  #   end
+  # end
+
+  # def sync_settings
+  #   set_default_options if self.settings.blank? 
+  #   self.default_options.each do |k,v|
+  #     if !self.settings.has_key?(k)
+  #       self.settings[k] = default_options[k]
+  #     end
+  #   end
+  #   self.settings.each do |k,v|
+  #     if !self.default_options.has_key?(k)
+  #       self.settings.delete[k]
+  #     end
+  #   end
+
+  #   if self.settings_changed? && self.valid? && !self.new_record?
+  #     puts "SETTINGS CHANGED"
+  #     self.save
+  #   end
+  # end
+
+  # def set_settings
+  #   self.default_options.each do |k,v|
+  #     self.settings[k] = self.send(k) 
+  #   end
+  # end
+
+
+  # def set_default_options
+  #   # set defaults if blank called on before create
+  #   self.settings = self.default_options
+  # end
+
+  # def default_options
+  #   # default options control valid setting
+  #   # if you add or remove a key
+  #   #   add or remove the attribute
+  #   # sync_setting will and or remove the key to setting
+  #   options = {
+  #     par_in:'',
+  #     par_out:'',
+  #     welcome:"Welcome to #{self.name}",
+  #     alert:'',
+  #     notice:'',
+  #     tee_time:'',
+  #     play_days:'',
+  #     dues:6,
+  #     skins_dues: 0,
+  #     par3_dues: 0,
+  #     other_dues: 0,
+  #     truncate_quota:true,
+  #     pay:'',
+  #     limit_new_player:false,
+  #     limit_rounds:1,
+  #     limit_points:2,
+  #     limit_new_tee:false,
+  #     limit_new_tee_rounds:1,
+  #     limit_new_tee_points:2,
+  #     limit_frozen_player:false,
+  #     limit_frozen_points:2,
+  #     limit_inactive_player:false,
+  #     limit_inactive_days:180,
+  #     limit_inactive_rounds:1,
+  #     limit_inactive_points:2,
+  #     sanitize_first_round:false,
+  #     trim_months:15,
+  #     rounds_used:10,
+  #     use_hi_lo_rule:false,
+  #     default_stats_rounds:100,
+  #     use_keyboard_scoring:false,
+  #     default_in_sidegames:true,
+  #     use_autoscroll:true
+  #   }.with_indifferent_access   
+  # end
 
   # expired active and inactive players are usually called together
     # expired does not use date and should be called first
@@ -174,13 +279,13 @@ class Group < ApplicationRecord
     self.games.where(status:%w(Scheduled Pending)).order(:date).reverse_order
   end
 
-  def update_group(params)
-    self.assign_attributes(params)
-    # updates record withou saving, just set attributes
-    self.set_settings
-    # now take the set attributes and save update to serialized settings
-    self.save 
-  end
+  # def update_group(params)
+  #   self.assign_attributes(params)
+  #   # updates record withou saving, just set attributes
+  #   self.set_settings
+  #   # now take the set attributes and save update to serialized settings
+  #   self.save 
+  # end
 
   def quota_summary
     summary = {active:get_status_summary(active_players), inactive:get_status_summary(inactive_players)}

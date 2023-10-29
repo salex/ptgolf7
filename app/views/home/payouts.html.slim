@@ -35,7 +35,7 @@ div.p-2.m-2
           span = text_field_tag "stats[dues]",dues,style:"width:6rem;",data:{placePayouts_target:"dues"}
       div 
         strong Payout Method
-        div = select_tag 'stats[game]', options_for_select([['PGA Clone','pga'],['Card Deal','deal'],['Even Dist','even'],['Composite','rate'],['Original','other']],meth),data:{placePayouts_target:"meth"}
+        div = select_tag 'stats[game]', options_for_select([['PGA Clone','pga'],['Card Deal','deal'],['Low Deal','deal1'],['Even Dist','even'],['Composite','rate'],['Original','other']],meth),data:{placePayouts_target:"meth"}
       div 
         strong Pay Places Percent
         div = select_tag 'stats[perc]', options_for_select(['10','20','25','30','40','50','60'],perc),data:{placePayouts_target:"perc"}
@@ -79,8 +79,8 @@ div.content-center[ data-controller="toggle"]
         tr
           td = p 
           td = "$#{ p*dues}"
-          - if params[:meth].present? && params[:meth] == 'deal'
-            - places = Things::DealPlaces.new(p,dues).winners.reverse
+          - if params[:meth].present? && params[:meth] == 'deal1'
+            - places = Things::Deal1.new(p,dues).winners.reverse
           - elsif params[:meth].present? && params[:meth] == 'rate'
             / - places = Things::PlacesPay.new(p,dues).winners.reverse
             - places = Things::RatePlaces.new(p,dues).winners.reverse

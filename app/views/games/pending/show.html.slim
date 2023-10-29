@@ -14,34 +14,82 @@
   -if zero_team
     h4 = callout_alert("A Participant was either added or deleted after the teams were formed. You must either ReForm Teams or Adjust Teams before scoring.")
 
-.bg-lime-lighter.border-bottom.p-2.flex
+.bg-lime-lighter.border-bottom.p-3.flex.flex-wrap
+  / .text-sm.md:text-base
+  / flex.flex-wrap
 
-  .flex-auto.flex
-    - if is_manager?
-      - unless zero_team
-        = link_to icon('fas fa-pencil-alt', 'Score Teams'), score_teams_games_pending_path(@game),
-          class: 'btn btn-success mr-2'
+  
+  - if is_manager?
+    - unless zero_team
+      div
+        div[class="btn-success font-bold p-1.5 mr-2 rounded-md hover:text-green-700"] 
+          = link_to icon('fas fa-pencil-alt', 'Score Teams'), score_teams_games_pending_path(@game)
 
-      = link_to icon('fas fa-user-plus', 'Add Late Player'),  @game.namespace_url('add_players'),
-        class: to_tw("btn-warning mr-2"),
-        title: "Pete showed up late at the tee box, there was a treesome teeing off. Put Pete in the threesome and when you get in use this button to add Pete. Then adjust teams to change the threesome to a foursome"
-      = link_to icon('fas fa-arrows-alt-h', 'Adjust Teams'), @game.namespace_url('adjust_teams'),
-        class: 'btn btn-warning mr-2',
-        title: "Joe would like to play with Pete! You can move Joe to another team and move another player from Pete's to Joe's team. Pick player in same point range if using seeded teams."
+        / = link_to icon('fas fa-pencil-alt', 'Score Teams'), score_teams_games_pending_path(@game),
+        /   class: 'btn-success font-bold p-1 br-2 rounded-md'
+      div.flex-grow
+        div.block.lg:hidden
 
-      = link_to icon('fas fa-arrows-alt-h', 'Swap Teams'), @game.namespace_url('swap_teams'),
-        class: 'btn btn-warning mr-2',
-        title: "Joe needs to go off early, swap his team to first."
-      
-      = link_to icon('fas fa-users', 'Reform Teams'), @game.namespace_url('reform_teams'),
-        class: 'btn btn-warning mr-2'
-  .flex-auto.flex.justify-end
-    = link_to icon('fas fa-print',"Print List"), print_teams_games_pending_path(@game), title: 'Print it',
-      class: 'btn btn-info mr-2', target:"_blank"
-    = link_to icon('fas fa-print',"ScoreCard Landscape"), @game.namespace_url('score_card'), title: 'Print it',
-      target:"_blank", class: 'btn  btn-info mr-2'
-    = link_to icon('fas fa-print',"ScoreCard Portrait"), @game.namespace_url('score_cardp'), title: 'Print it',
-      class: 'btn  btn-info mr-2', target:"_blank"
+          div.w3-dropdown-hover.mr-2
+
+            div[class="btn-warning font-bold p-1 w-52 rounded-md"] 
+              = icon('fas fa-print'," Update Options")
+              i.fa.fa-caret-down
+
+            .w3-dropdown-content.w3-card-4.w-52
+
+              = link_to icon('fas fa-user-plus', 'Add Late Player'),  @game.namespace_url('add_players'),
+                class: " block wbtn ",
+                title: "Pete showed up late at the tee box, there was a threesome teeing off. Put Pete in the threesome and when you get in use this button to add Pete. Then adjust teams to change the threesome to a foursome"
+              = link_to icon('fas fa-arrows-alt-h', 'Adjust Teams'), @game.namespace_url('adjust_teams'),
+                class: 'block wbtn',
+                title: "Joe would like to play with Pete! You can move Joe to another team and move another player from Pete's to Joe's team. Pick player in same point range if using seeded teams."
+              = link_to icon('fas fa-arrows-alt-h', 'Swap Teams'), @game.namespace_url('swap_teams'),
+                class: 'block wbtn',
+                title: "Joe needs to go off early, swap his team to first."
+             
+              = link_to icon('fas fa-users', 'Reform Teams'), @game.namespace_url('reform_teams'),
+                class: 'block wbtn'
+        div.hidden.lg:flex
+          div.mr-2.pt-1 = link_to icon('fas fa-user-plus', 'Add Player'),  @game.namespace_url('add_players'),
+            class: " rounded-md wbtn font-bold",
+            title: "Pete showed up late at the tee box, there was a threesome teeing off. Put Pete in the threesome and when you get in use this button to add Pete. Then adjust teams to change the threesome to a foursome"
+          div.mr-2.pt-1 = link_to icon('fas fa-arrows-alt-h', 'Adjust Teams'), @game.namespace_url('adjust_teams'),
+            class: 'rounded-md wbtn font-bold',
+            title: "Joe would like to play with Pete! You can move Joe to another team and move another player from Pete's to Joe's team. Pick player in same point range if using seeded teams."
+          div.mr-2.pt-1 = link_to icon('fas fa-arrows-alt-h', 'Swap Teams'), @game.namespace_url('swap_teams'),
+            class: 'rounded-md wbtn font-bold',
+            title: "Joe needs to go off early, swap his team to first."
+          
+          div.mr-2.pt-1 = link_to icon('fas fa-users', 'Reform Teams'), @game.namespace_url('reform_teams'),
+            class: 'rounded-md wbtn font-bold'
+
+
+      div.w3-dropdown-hover.mr-2.w-48
+
+        div[class="btn-info font-bold p-1 rounded-md"] 
+          = icon('fas fa-print'," Print Options")
+          i.fa.fa-caret-down
+
+        .w3-dropdown-content.w3-card-4.w-56
+          = link_to "List", print_teams_games_pending_path(@game), class:"block bbtn ", target:"_blank" 
+          = link_to "ScoreCard Landscape",@game.namespace_url('score_card') , class:"block bbtn", target:"_blank"
+          = link_to "ScoreCard Portrait", @game.namespace_url('score_cardp'), class:"block bbtn", target:"_blank"
+
+            / = link_to icon('fas fa-print',"Print List"), print_teams_games_pending_path(@game), 
+            /   class: 'block bbtn', target:"_blank"
+            / = link_to icon('fas fa-print',"ScoreCard Landscape"), @game.namespace_url('score_card'),class: 'block bbtn'
+            / = link_to icon('fas fa-print',"ScoreCard Portrait"), @game.namespace_url('score_cardp'),
+            /   class: 'block bbtn', target:"_blank"
+
+
+
+            / = link_to icon('fas fa-print',"Print List"), print_teams_games_pending_path(@game), title: 'Print it',
+            /   class: 'block bbtn', target:"_blank"
+            / = link_to icon('fas fa-print',"ScoreCard Landscape"), @game.namespace_url('score_card'), title: 'Print it',
+            /   target:"_blank", class: 'btn  btn-info mr-2'
+            / = link_to icon('fas fa-print',"ScoreCard Portrait"), @game.namespace_url('score_cardp'), title: 'Print it',
+            /   class: 'btn  btn-info mr-2', target:"_blank"
 
 
 

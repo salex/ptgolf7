@@ -28,7 +28,7 @@ div
 
       div[class="flex-grow mx-2 overflow-auto" style="height:75vh;"]
    
-        .block.md:hidden
+        .block.lg:hidden
           strong Unscheduled Active
           .status[class="flex flex-wrap  mx-3"] 
             - mapping = get_col_mapping(@active.size,2)
@@ -54,7 +54,7 @@ div
                   div[class="btn-sqr-blue border border-zinc-100  p-1 py-0.5 " id="pid-l#{@expired[m].id}" data-action="click->schedule#addPlayer" data-playerid="#{@expired[m].id}"] = @expired[m].name
 
 
-        .hidden.md:block
+        .hidden.lg:block
           strong Unscheduled Active
           .status[class="flex flex-wrap  mx-3"] 
             - mapping = get_col_mapping(@active.size,3)

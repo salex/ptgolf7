@@ -6,7 +6,7 @@
 div
   = render partial:'games/shared/event'
   - participants = @game.participants.order(:team).order('group_players.full_name')
-  - p_count = participants.count
+  - p_count = @game.state["teams"].size
   .form.p-1
     p.annotate Team order is random. If someone needs to go off first for some reason, you can use Adjust Teams to swap a player from one team to another.
     p.annotate You can also use this form to swap the team order between two teams and swap all the player on the team..

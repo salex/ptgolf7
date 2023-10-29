@@ -2,51 +2,124 @@
 - keys = settings.keys
 - len = settings.keys.length
 - half = (len / 2 ) - 4
+- third = (len / 3)
+- forth = (len / 4)
 
 
-div.m-1= form_for @group, method: :patch do |f|
+div.m-2= form_for @group, method: :patch do |f|
   - if @group.errors.any?
     #error_explanation
       h2 = "#{pluralize(@group.errors.count, "error")} prohibited this group from being saved:"
       ul
         - @group.errors.full_messages.each do |message|
           li = message
+  div.font-bold = "Club: #{@group.club.name}"
+    / = f.hidden_field :club_id
   button.btn-submit = f.submit "Update Group"
+
+  div.flex.flex-wrap.gap-8
+    .field
+      div.font-bold  Name:
+      .ml-4 = f.text_field :name,class:"w-60"
+    .field
+      div.font-bold  Tees Used:
+      .ml-4 = f.text_field :tees,class:"w-60"
+
   div.flex
-    .w-1/2
-      span.font-bold = "Club: #{@group.club.name}"
-    .w-1/2
-      .strong Limits/Scoring Settings
-  .form-fields.half.flex.flex-wrap
+    .font-bold Limits/Scoring Settings/Options
+  .form-fields.half.flex.flex-wrap.gap-8
 
-    .w-1/2
-      .field
-        / span.font-bold = "Club: #{@group.club.name}"
-        = f.hidden_field :club_id
-      .field
-        label.half  Name
-        = f.text_field :name
-      .field
-        label.half  Tees Used
-        = f.text_field :tees
-
-      p.strong Settings/Options
-      - 0.upto(half) do |i|
-        .field
-          label.half = keys[i]
-          - if [TrueClass,FalseClass].include?(settings[keys[i]].class)
-            = f.check_box( keys[i])
-          - else
-          - if settings[keys[i]].class == String && settings[keys[i]].length > 30
-            = f.text_area(keys[i])
-          - else
-            = f.text_field(keys[i])
-    .w-1/2
-      - (half + 1).upto(len -1) do |i|
-        .field
-        label.half = keys[i]
+    div
+      - 0.upto(forth) do |i|
+        div.font-bold  = keys[i]
         - if [TrueClass,FalseClass].include?(settings[keys[i]].class)
-          = f.check_box( keys[i])
+          .ml-4 = f.check_box( keys[i])
+        - elsif Group.attribute_types[keys[i]].type == :text
+          .ml-4 = f.text_area keys[i],class:"w-60"
         - else
-          = f.text_field(keys[i])
+          .ml-4 = f.text_field keys[i],class:"w-60"
+    div
+      - (forth + 1).upto(forth * 2) do |i|
+        div.font-bold  = keys[i]
+        - if [TrueClass,FalseClass].include?(settings[keys[i]].class)
+          .ml-4 = f.check_box( keys[i])
+        - elsif Group.attribute_types[keys[i]].type == :text
+          .ml-4 = f.text_area keys[i],class:"w-60"
+        - else
+          .ml-4 = f.text_field(keys[i],class:"w-60")
+    div
+      - (forth * 2 + 1).upto(forth * 3) do |i|
+        div.font-bold  = keys[i]
+        - if [TrueClass,FalseClass].include?(settings[keys[i]].class)
+          .ml-4 = f.check_box( keys[i])
+        - elsif Group.attribute_types[keys[i]].type == :text
+          .ml-4 = f.text_area keys[i],class:"w-60"
+        - else
+          .ml-4 = f.text_field(keys[i],class:"w-60")
+    div
+      - (forth * 3 + 1).upto(len - 1) do |i|
+        div.font-bold  = keys[i]
+        - if [TrueClass,FalseClass].include?(settings[keys[i]].class)
+          .ml-4 = f.check_box( keys[i])
+        - elsif Group.attribute_types[keys[i]].type == :text
+          .ml-4 = f.text_area keys[i],class:"w-60"
+        - else
+          .ml-4 = f.text_field(keys[i],class:"w-60")
+
+
+
+
+
+
+/ - settings =  @group.settings
+/ - keys = settings.keys
+/ - len = settings.keys.length
+/ - half = (len / 2 ) - 4
+
+
+/ div.m-1= form_for @group, method: :patch do |f|
+/   - if @group.errors.any?
+/     #error_explanation
+/       h2 = "#{pluralize(@group.errors.count, "error")} prohibited this group from being saved:"
+/       ul
+/         - @group.errors.full_messages.each do |message|
+/           li = message
+/   button.btn-submit = f.submit "Update Group"
+/   div.flex
+/     .w-1/2
+/       span.font-bold = "Club: #{@group.club.name}"
+/     .w-1/2
+/       .strong Limits/Scoring Settings
+/   .form-fields.half.flex.flex-wrap
+
+/     .w-1/2
+/       .field
+/         / span.font-bold = "Club: #{@group.club.name}"
+/         = f.hidden_field :club_id
+/       .field
+/         label.half  Name
+/         = f.text_field :name
+/       .field
+/         label.half  Tees Used
+/         = f.text_field :tees
+
+/       p.strong Settings/Options
+/       - 0.upto(half) do |i|
+/         .field
+/           label.half = keys[i]
+/           - if [TrueClass,FalseClass].include?(settings[keys[i]].class)
+/             = f.check_box( keys[i])
+/           - else
+/           - if settings[keys[i]].class == String && settings[keys[i]].length > 30
+/             = f.text_area(keys[i])
+/           - else
+/             = f.text_field(keys[i])
+/     .w-1/2
+/       - (half + 1).upto(len -1) do |i|
+/         .field
+/         label.half = keys[i]
+/         - if [TrueClass,FalseClass].include?(settings[keys[i]].class)
+/           = f.check_box( keys[i])
+/         - else
+/           = f.text_field(keys[i])
 

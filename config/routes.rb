@@ -166,7 +166,7 @@ Rails.application.routes.draw do
   get 'payouts', to: 'home#payouts'
 
   get 'test', to: 'home#test'
-  # get 'home', to: 'home#show'
+  get 'home', to: 'home#show'
   # get 'autocomplete' , to: 'home#autocomplete'
   # get 'sinners', to: 'home#sinners'
   # get 'saints', to: 'home#saints'

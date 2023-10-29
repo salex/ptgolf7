@@ -19,7 +19,7 @@ module TailwindHelper
   end
 
   def btn
-    "py-1 px-2 rounded font-lg font-bold "
+    "py-1 px-2 rounded-md font-lg font-bold "
   end
 
   def w3_btn
