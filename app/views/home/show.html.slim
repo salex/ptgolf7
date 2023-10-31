@@ -3,7 +3,7 @@ div.border-gold.bg-malt.border-4
   h3.p-2.text-white.text-lg
     strong Demo#show
   span.mx-2.text-gold Find me in app/views/demo/show.html.slim
-  span = link_to('Reload Page',home_path, class:"bg-green-500 hover:bg-green-700 text-white font-bold mx-2 py px-2 rounded inline-block")
+  span.inline-block = button_to('Reload Page',home_path,method: :get, class:"bg-green-500 hover:bg-green-700 text-white font-bold mx-2 py px-2 rounded inline-block")
 
 .grid.grid-cols-3.gap-4.m-1.mx-4
   div
@@ -32,6 +32,10 @@ div.border-gold.bg-malt.border-4
     p[class=greenBox]= text_field_tag "date",nil,data:{controller:'flatpickr'}, placeholder:"Enter a Date",class:" px-1 my-2"
 
   div
+    - @game = Game.find 2917
+    - toggle = @game.method == 'sides' ? "Places" : "Sides"
+    span.mb-2 = button_to "Change Pay Method to #{toggle}",update_pays_games_scheduled_path(@game),method:'patch',params:{method:toggle},class:"bg-green-500 hover:bg-green-700 text-black font-bold p-2 mb-2 rounded"
+
     .w3-dropdown-hover
 
       div.btn-info.font-bold.p-2.w-52.rounded-md 

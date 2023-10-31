@@ -3,9 +3,13 @@ div
   - @expired = @game.expired_players
   - @active = @game.active_players
   - @inactive = @game.inactive_players
+  - toggle = @game.method == 'sides' ? "Places" : "Sides"
 
   section.scheduler[ data-controller="schedule"]
-    div.bg-lime-lighter.border-bottom = render partial:'games/shared/event'
+    div.bg-lime-lighter.border-bottom.flex.gap-2
+      div = button_to "Toggle Pay to #{toggle}",update_pays_games_scheduled_path(@game),method:'patch',params:{method:toggle},class:"bg-orange-400 hover:bg-orange-600 font-bold px-1 rounded"
+
+      = render partial:'games/shared/event'
 
     div.my-2[data-schedule-target="group" data-preferences="#{Current.group.options.to_json}"]
     div[class="flex flex-wrap "]

@@ -6,6 +6,8 @@ export default class extends Controller {
 
   connect(){
     // console.log("got a toggler")
+    // console.log(this.hasTogglerTarget)
+    // console.log(this.hasPaysTarget)
   }
 
   toggleMenu() {
@@ -25,4 +27,12 @@ export default class extends Controller {
 
     this.menuTarget.classList.toggle('hidden');
   }
+
+  // togglePays(){
+  //   var game_id = this.game_idTarget.value
+  //   var pays = this.paysTarget.value
+
+  //   location.assign(`/games/scheduled/${game_id}/update_pays?pays=${pays}`)
+
+  // }
 }

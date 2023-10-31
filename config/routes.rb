@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       member do
         get :form_teams
         get :assign_teams
+        patch :update_pays
         patch :update_teams
         patch :update_assigned_teams
       end
