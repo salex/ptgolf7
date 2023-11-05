@@ -75,7 +75,7 @@ GEM
     bcrypt (3.1.19)
     bindex (0.8.1)
     builder (3.2.4)
-    capistrano (3.18.0)
+    capistrano (3.17.1)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -273,7 +273,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord_where_assoc (~> 1.0)
   bcrypt (~> 3.1.7)
-  capistrano (~> 3.18)
+  capistrano (= 3.17.1)
   capistrano-bundler
   capistrano-rails
   capistrano-rails-collection
