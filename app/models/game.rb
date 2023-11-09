@@ -4,14 +4,14 @@ class Game < ApplicationRecord
   has_many :rounds, dependent: :destroy
   has_many :players, through: :rounds
 
-  serialize :stats, Hash
+  serialize :stats, coder: YAML, type: Hash
 
   before_save :set_player_teams
 
   attribute :state
 
-  serialize :par3, JSON
-  serialize :skins, JSON
+  serialize :par3, coder: JSON
+  serialize :skins, coder: JSON
 
   def set_stats
     self.stats = {

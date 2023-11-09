@@ -9,8 +9,8 @@ class Group < ApplicationRecord
   validates :club_id, presence: true
 
   # remove after settings set
-  serialize :settings, ActiveSupport::HashWithIndifferentAccess
-  serialize :preferences, JSON
+  serialize :settings, coder: YAML, type: ActiveSupport::HashWithIndifferentAccess
+  serialize :preferences, coder: JSON
 
   after_initialize :set_attributes
 
