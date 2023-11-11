@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   # validates :full_name, :uniqueness => {:scope => [:group_id, :nickname]}
 
   validates_format_of :username, :with => /[-\w\._@]+/i, :allow_blank => true, :message => "should only contain letters, numbers, or .-_@"
-  serialize :role, coder: YAML, Array
+  # serialize :role, coder: YAML, Array
   before_save :downcase_login
 
   def roles
