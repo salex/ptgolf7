@@ -29,11 +29,9 @@
   div[class="#{sidebar_menu}"]= link_to 'Visit Club/Groups', '/clubs/groups'
   .btn-sqr-blue.text-center.font-bold.py-1.w3-yellow= link_to "Whoa! What's Changed","/changes"
 
-  div
+  div.p-1
    .annotate=  "Rails Version #{Rails.version}"
    - appdir = Rails.root.join("app")
    .annotate = "Updated: #{File.mtime(appdir)}"
-   .annotate Test deploy puma
-   .annotate A nother test
 
    / div = session_inspect

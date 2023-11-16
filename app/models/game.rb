@@ -248,7 +248,7 @@ class Game < ApplicationRecord
         new_par3['good'].delete(hole)
       end
     end
-    stats[:par3] = new_par3
+    # stats[:par3] = new_par3
     self.par3 = new_par3
     side = GameObjects::Par3.new(self)
     side.pay_winners

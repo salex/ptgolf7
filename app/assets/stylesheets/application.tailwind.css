@@ -6,9 +6,9 @@
 
 @layer components {
 
-/*  .btn-primary {
+  .btn-primary {
     @apply py-1 px-2 pt-blue text-white rounded-md border-2 border-green ;
-  }*/
+  }
   .pt-blue{
     background-color: #273862;
   }
