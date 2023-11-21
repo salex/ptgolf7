@@ -20,7 +20,7 @@ export default class extends Controller {
     var perc = this.percTarget.value
     console.log(`got refresh click ${dues}`)
 
-    location.assign(`/payouts?dues=${dues};meth=${meth};perc=${perc}`)
+    location.assign(`/payouts?dues=${dues}&meth=${meth}&perc=${perc}`)
   }
 
 }

@@ -35,13 +35,13 @@ div.p-2.m-2
           span = text_field_tag "stats[dues]",dues,style:"width:6rem;",data:{placePayouts_target:"dues"}
       div 
         strong Payout Method
-        div = select_tag 'stats[game]', options_for_select([['PGA Clone','pga'],['Card Deal','deal'],['Low Deal','deal1'],['Even Dist','even'],['Composite','rate'],['Original','other']],meth),data:{placePayouts_target:"meth"}
+        div = select_tag 'stats[game]', options_for_select([['PGA Clone','pga'],['Card Deal','deal'],['High Deal','deal1'],['Even Dist','even'],['Composite','rate'],['Original','other']],meth),data:{placePayouts_target:"meth"}
       div 
         strong Pay Places Percent
         div = select_tag 'stats[perc]', options_for_select(['10','20','25','30','40','50','60'],perc),data:{placePayouts_target:"perc"}
 
       div 
-        button.btn.btn-warning.mr-2[data-action="placePayouts#refresh"] Refresh
+        button.pt-btn.btn-warning.mr-2[data-action="placePayouts#refresh"] Refresh
 
 div.content-center[ data-controller="toggle"]
   button[class="#{btn_green} " data-action="click->toggle#toggleMenu"] 
@@ -67,7 +67,7 @@ div.content-center[ data-controller="toggle"]
 
 .mx-1.overflow-x-auto
   table.small-table-stripped.w75
-
+    / caption = "METH #{params["meth"]} ??"
     thead
       tr
         th #P

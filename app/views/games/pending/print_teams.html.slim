@@ -15,12 +15,12 @@ div.flex.gap-4.m-2
           td.strong Front
           td.strong Back
           td.strong Total
-          td.strong Birdies
+          td.w-32.strong Birdies
         - @game.current_players_name.each do |m|
           tr 
             td.name = m.name[0..22]
             td = m.quota_limited
-            td = m.quota / 2.0
+            td.text-right = m.quota / 2.0
             td 
             td
             td
@@ -36,6 +36,8 @@ div.flex.gap-4.m-2
           td.strong Front
           td.strong Back
           td.strong Total
+          td.w-32.strong Birdies
+
 
 
         - teams.each do |t,members|
@@ -45,7 +47,8 @@ div.flex.gap-4.m-2
             tr 
               td.name = m.name
               td = m.quota_limited
-              td = m.quota / 2.0
+              td.text-right = m.quota / 2.0
+              td
               td
               td
               td
@@ -58,6 +61,6 @@ div.flex.gap-4.m-2
     - @game.current_players_name.each do |p|
       .box = p.name
 
-  div[style="font-size:14px;"]
-    div places
+  / div[style="font-size:14px;"]
+  /   div places
 
