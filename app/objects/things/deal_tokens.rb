@@ -1,10 +1,18 @@
 module Things
   class DealTokens
-    attr_accessor :winners,:pot #, :perc_arr
+    attr_accessor :winners,:pot, :perc
+    include Things::Utilities
 
-    def initialize(numb_players,dues,dist=nil)
+    def initialize(numb_players,dues,dist=nil,perc=nil)
       @pot = numb_players * dues.to_f 
-      places_paid = numb_players / 2
+      # places_paid = numb_players / 2
+      if perc.present?
+        places_paid = (perc.to_f/100 * numb_players).round 
+      else
+        places_paid = numb_players / 2
+      end
+
+
       if dist == 'high'
         min_payout = 0.5
       elsif dist == 'low'
@@ -21,7 +29,8 @@ module Things
       winners.each_with_index do |w,i|
         winners[i] += (pot_percents[i] * inc)
       end
-      Things::Utilities.dollarize(@winners,@pot)
+      # Things::Utilities.
+      dollarize(@winners,@pot)
     end
 
     def deal_tokens(places_paid,min_payout,dist)

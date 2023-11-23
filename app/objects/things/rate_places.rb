@@ -1,6 +1,8 @@
 module Things
   class RatePlaces
     attr_accessor :winners, :purse, :places_paid
+    include Things::Utilities
+
 
     def initialize(numb_players,dues)
       @dues = dues.to_f
@@ -18,7 +20,8 @@ module Things
       end
       # ink = (purse -  @winners.sum)
       # @winners[-1] += ink if ink.positive?
-      Things::Utilities.dollarize(@winners,@purse)
+      # Things::Utilities.
+      dollarize(@winners,@purse)
 
 
       # @winners.each_with_index{|w,i| winners[i] = round_to_quarters(w)}

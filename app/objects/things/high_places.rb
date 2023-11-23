@@ -1,6 +1,8 @@
 module Things
   class HighPlaces
     attr_accessor :winners, :pot, :perc , :arr
+    include Things::Utilities
+
 
     def initialize(numb_players,dues)
       # @perc = [11.0, 8.8, 5.8, 4.8, 4.0, 3.6, 3.3, 3.1, 2.9, 2.7, 2.5, 2.3, 2.1, 1.9, 1.7, 1.5, 1.4, 1.3, 1.2]      
@@ -15,7 +17,8 @@ module Things
         @winners[i] = @pot*(p/100.0)
 
       end
-      Things::Utilities.dollarize(@winners,@pot)
+      # Things::Utilities.
+      dollarize(@winners,@pot)
 
       # ink = (@pot -  @winners.sum)
       # @winners[-1] += ink if ink.positive?

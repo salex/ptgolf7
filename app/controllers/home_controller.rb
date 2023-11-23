@@ -29,8 +29,10 @@ class HomeController < ApplicationController
   def update
     # flash.now[:message] = "Got refresh request"
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace('refresh', partial: 'home/stats_refresh',
-        locals:{dues:params[:stats][:dues],meth:params[:stats][:game]})}
+      format.turbo_stream { render turbo_stream: turbo_stream.replace('refresh', 
+          partial: 'home/stats_refresh',
+          locals:{dues:params[:stats][:dues],
+          meth:params[:stats][:game],perc:params[:stats][:perc]})}
       format.html { render :template => 'home/payouts'}
     end
 
