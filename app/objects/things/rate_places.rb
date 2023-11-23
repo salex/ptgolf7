@@ -16,8 +16,10 @@ module Things
           @winners[w] = round_to_quarters((1 + @rate ) * (winners[w-1]))
         end
       end
-      ink = (purse -  @winners.sum)
-      @winners[-1] += ink if ink.positive?
+      # ink = (purse -  @winners.sum)
+      # @winners[-1] += ink if ink.positive?
+      Things::Utilities.dollarize(@winners,@purse)
+
 
       # @winners.each_with_index{|w,i| winners[i] = round_to_quarters(w)}
 

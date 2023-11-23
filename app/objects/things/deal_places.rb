@@ -1,34 +1,23 @@
 module Things
   class DealPlaces
-    attr_accessor :winners #, :perc_arr
+    attr_accessor :winners,:pot #, :perc_arr
 
     def initialize(numb_players,dues)
-      pot = numb_players * dues.to_f 
+      @pot = numb_players * dues.to_f 
       places_paid = numb_players / 2
-      min_payout = 1
+      min_payout = 0
         #hard coded to at least 1 card/token for each place
         # this evens out distribution
       pot_percents = self.deal_cards(places_paid,min_payout)
       @winners = Array.new(places_paid,min_payout)
       inc = pot - winners.sum 
       winners.each_with_index do |w,i|
-        winners[i] += (pot_percents[i] * inc).round 
+        winners[i] += (pot_percents[i] * inc)
       end
-      # rounding may introduce a pot error, correct it
-      if winners.sum != pot 
-        diff = (winners.sum - pot).to_i
-        if diff.negative?
-          # pot short, add shortage to low players
-          (diff*-1).times do |i|
-            winners[i] += 1
-          end
-        else
-          # pot over, subtract shortage to low players
-          (diff).times do |i|
-            winners[i] -= 1
-          end
-        end
-      end
+      # puts "start  #{winners} #{winners.sum}" 
+      Things::Utilities.dollarize(@winners,@pot)
+      # puts "end  #{winners} #{winners.sum}" 
+
     end
 
     def deal_cards(places_paid,min_payout)

@@ -7,13 +7,18 @@ module Things
       @dues = dues.to_f
       @pot = numb_players * dues 
       @places_paid = numb_players / 2
-      @winners = Array.new(@places_paid)
+      @winners = Array.new(@places_paid,1.0)
       set_places
+      # puts "TEST #{@perc}"
       @perc.each_with_index do |p,i|
-        @winners[i] = round_to_quarters(@pot*(p/100.0))
+        # @winners[i] = round_to_quarters(@pot*(p/100.0))
+        @winners[i] = @pot*(p/100.0)
+
       end
-      ink = (@pot -  @winners.sum)
-      @winners[-1] += ink if ink.positive?
+      Things::Utilities.dollarize(@winners,@pot)
+
+      # ink = (@pot -  @winners.sum)
+      # @winners[-1] += ink if ink.positive?
     end
 
     def round_to_quarters(num)

@@ -1,0 +1,36 @@
+= turbo_frame_tag "refresh"
+  - dues = dues.to_i
+  .mx-1.overflow-x-auto
+    table.small-table-stripped.w75
+      caption = "METH #{params["stats"]} ??"
+      thead
+        tr
+          th #P
+          th Pot
+          - 1.upto(12)do |i|
+            th = i.ordinalize
+      tbody
+        - 4.upto(25) do |p|
+          / - puts "PARAMS #{meth}"
+          tr
+            td = p 
+            td = "$#{ p*dues}"
+            - if meth == 'dealt'
+              - places = Things::DealTokens.new(p,dues,'top').winners.reverse
+            - elsif meth == 'dealh'
+              - places = Things::DealTokens.new(p,dues,'high').winners.reverse
+            - elsif meth == 'dealm'
+              - places = Things::DealTokens.new(p,dues,'mid').winners.reverse
+            - elsif meth == 'deall'
+              - places = Things::DealTokens.new(p,dues,'low').winners.reverse
+            - elsif meth == 'rate'
+              - places = Things::RatePlaces.new(p,dues).winners.reverse
+            - elsif meth == 'pga'
+              - places = Things::VarPlaces.new(p,dues).winners.reverse
+            - elsif meth == 'even'
+              - places = Things::HighPlaces.new(p,dues).winners.reverse
+            -else
+              - places = Things::DealTokens.new(p,dues,'mid').winners.reverse
+
+            - places.each do |i|
+              td.text-right = number_to_currency i

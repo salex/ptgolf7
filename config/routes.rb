@@ -165,6 +165,8 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#profile'
   get 'score_sheet', to: 'home#score_sheet'
   get 'payouts', to: 'home#payouts'
+  patch 'payouts/update', to: 'home#update'
+
 
   get 'test', to: 'home#test'
   get 'home', to: 'home#show'

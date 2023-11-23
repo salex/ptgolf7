@@ -3,7 +3,7 @@ module Things
 
     attr_accessor :winners, :payouts, :pot, :perc
     def initialize(numb_players,dues)
-      @pot = numb_players * dues
+      @pot = numb_players * dues.to_f
       @winners = numb_players / 2
       @places = (1..@winners).to_a
       @perc = []
@@ -11,11 +11,13 @@ module Things
       @payouts = []
       @perc.each{|v| @payouts << round_to_quarters(v* @pot)}
       slush = ((@pot -payouts.sum)/0.25).to_i
-      puts slush
+      # puts slush
       slush.times{|i|
         payouts[i] += 0.25
       }
       @winners = @payouts
+      Things::Utilities.dollarize(@winners,@pot)
+
     end
 
     def round_to_quarters(num)
