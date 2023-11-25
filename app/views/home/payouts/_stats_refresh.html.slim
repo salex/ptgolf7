@@ -27,10 +27,9 @@
             - elsif meth == 'pga'
               - places = Things::PgaPlaces.new(p,dues,perc).winners.reverse
             - elsif meth == 'even'
-              - places = Things::HighPlaces.new(p,dues).winners.reverse
+              - places = Things::EvenPlaces.new(p,dues).winners.reverse
             -else
               - places = Things::DealTokens.new(p,dues,'mid',perc).winners.reverse
-              - puts "PARAMS #{meth}"
-
+              / - puts "PARAMS #{meth}"
             - places.each do |i|
               td.text-right = number_to_currency i

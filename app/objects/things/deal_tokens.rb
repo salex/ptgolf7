@@ -7,11 +7,10 @@ module Things
       @pot = numb_players * dues.to_f 
       # places_paid = numb_players / 2
       if perc.present?
-        places_paid = (perc.to_f/100 * numb_players).round 
+        places_paid = (perc.to_f/100 * numb_players).to_i 
       else
         places_paid = numb_players / 2
       end
-
 
       if dist == 'high'
         min_payout = 0.5

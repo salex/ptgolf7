@@ -6,6 +6,12 @@
 div.flex.gap-4.m-2
   div
     - if  @game.stats[:makeup] == 'individuals' || @game.stats[:seed_method] == 'blind_draw'
+      - if @game.method == 'places' 
+        - places = Things::PgaPlaces.new(@game.state[:players],@game.state[:dues]).winners.reverse
+        div.flex.gap-4
+          div.strong Suggested Places Payout (First..Last):
+          div = places
+
       table.small-table[style="font-size:120%;"]
         tr
           td.strong.name Name

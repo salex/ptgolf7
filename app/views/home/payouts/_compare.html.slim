@@ -1,0 +1,60 @@
+table.small-table-stripped.w75
+  thead
+    tr
+      th Meth
+      th Pot
+      - 1.upto(5)do |i|
+        th = i.ordinalize
+  tbody
+    tr
+      td = "Top" 
+      td = "$#{ 10*6}"
+      - places = Things::DealTokens.new(10,6,'top').winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+    tr
+      td = "High" 
+      td = "$#{ 10*6}"
+      - places = Things::DealTokens.new(10,6,'high').winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+    tr
+      td = "Mid" 
+      td = "$#{ 10*6}"
+      - places = Things::DealTokens.new(10,6,'mid').winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+    tr
+      td = "Low" 
+      td = "$#{ 10*6}"
+      - places = Things::DealTokens.new(10,6,'low').winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+    tr
+      td = "PGA" 
+      td = "$#{ 10*6}"
+      - places = Things::PgaPlaces.new(10,6).winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+    tr
+      td = "Rate" 
+      td = "$#{ 10*6}"
+      - places = Things::RatePlaces.new(10,6).winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+    tr
+      td = "Even" 
+      td = "$#{ 10*6}"
+      - places = Things::EvenPlaces.new(10,6).winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+
+
+
+
+    
+    
+
+
+
+

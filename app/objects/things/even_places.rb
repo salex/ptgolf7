@@ -1,5 +1,5 @@
 module Things
-  class HighPlaces
+  class EvenPlaces
     attr_accessor :winners, :pot, :perc , :arr
     include Things::Utilities
 

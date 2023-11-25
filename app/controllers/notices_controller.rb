@@ -68,6 +68,7 @@ class NoticesController < ApplicationController
 
   def display
     puts "Shoul dispay notice #{params[:id]}"
+    @notice = Notice.find(params[:id])
   end
 
 
