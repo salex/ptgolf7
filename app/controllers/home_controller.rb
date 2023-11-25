@@ -23,20 +23,39 @@ class HomeController < ApplicationController
   end
 
   def payouts
-    render template: 'home/payouts'
+    render template: 'home/payouts/payouts'
   end
 
   def update
-    # flash.now[:message] = "Got refresh request"
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.replace('refresh', 
-          partial: 'home/stats_refresh',
+          partial: 'home/payouts/stats_refresh',
           locals:{dues:params[:stats][:dues],
           meth:params[:stats][:game],perc:params[:stats][:perc]})}
-      format.html { render :template => 'home/payouts'}
+      format.html { render :template => 'home/payouts/payouts'}
     end
 
   end
+
+  def about
+    render template: 'home/payouts/about'
+  end
+  def deals
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'home/payouts/deals')
+  end
+  def pga
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'home/payouts/pga')
+  end
+  def rate
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'home/payouts/rate')
+  end
+
 
   def redirect
     group = redirect_group(params[:path])

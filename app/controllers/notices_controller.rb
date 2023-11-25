@@ -1,5 +1,5 @@
 class NoticesController < ApplicationController
-  before_action :set_notice, only: [:show, :edit, :update, :destroy]
+  before_action :set_notice, only: [:show, :edit, :update, :destroy, :display]
   before_action :require_super
 
 
@@ -65,6 +65,11 @@ class NoticesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def display
+    puts "Shoul dispay notice #{params[:id]}"
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

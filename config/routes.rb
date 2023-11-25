@@ -55,7 +55,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   resources :games do
     collection do
       get :new_today
@@ -113,7 +112,11 @@ Rails.application.routes.draw do
   resources :rounds, only: [:show, :edit, :update, :destroy]
 
   resources :inquiries
-  resources :notices
+  resources :notices do
+    member do
+      get :display
+    end
+  end
 
   resources :users do
     collection do
@@ -166,6 +169,13 @@ Rails.application.routes.draw do
   get 'score_sheet', to: 'home#score_sheet'
   get 'payouts', to: 'home#payouts'
   patch 'payouts/update', to: 'home#update'
+  get 'payouts/about', to: 'home#about'
+  get 'payouts/about/deals', to: 'home#deals'
+  get 'payouts/about/pga', to: 'home#pga'
+  get 'payouts/about/rate', to: 'home#rate'
+
+
+
 
 
   get 'test', to: 'home#test'

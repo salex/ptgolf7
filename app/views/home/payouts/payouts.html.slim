@@ -1,0 +1,36 @@
+div.border-gold.bg-malt.border-4.noprint
+  h3.p-2.text-white.text-lg
+    strong Pay Places Payouts
+div.p-2.m-2
+  - dues = 6
+  - perc = 50
+  - meth = 'dealm' 
+  - if params[:stats].present?
+    - if params[:stats][:dues].present?
+      - dues = params[:stats]["dues"].to_i
+
+    - if params[:stats]["perc"].present?
+      - perc = params[:stats]["perc"].to_i
+ 
+    - if params[:stats]['game'].present?
+      - meth = params[:stats]["game"]
+
+  .px-2.border-b[ data-controller="toggle"]
+    = form_with url: "/payouts/update", method: :patch,class:"gap-4 flex p-1"
+       
+      strong Entry Dues:
+      div  
+        span $
+        span = select_tag 'stats[dues]', options_for_select(['2','4','5','6','8','10','15'],dues)
+       
+      strong Payout Method:
+      div = select_tag 'stats[game]', options_for_select([['Deal Top','dealt'],['Deal High','dealh'],['Deal Mid','dealm'],['Deal Low','deall'],['Even Dist','even'],['Exonio Rate','rate'],['PGA Clone','pga']],meth)
+       
+      strong Pay Percent:
+      div = select_tag 'stats[perc]', options_for_select(['10','20','25','30','40','50','60'],perc)
+
+      div 
+        button.btn-primary.font-bold = icon('fas fa-arrows-alt-h', 'Refresh Payouts')
+      div
+        button[class="#{btn_green}"] = link_to("About Payouts",payouts_about_path)
+.max-height= render partial: 'home/payouts/stats_refresh', locals:{dues:dues,meth:meth,perc:perc}

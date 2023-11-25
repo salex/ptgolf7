@@ -1,0 +1,34 @@
+= turbo_frame_tag "content"
+
+  div
+    div
+      h3.strong Exonio Rate Method
+      p I have one other method that seems like a candidate to consider. I installed some software that has common SpreadSheet functions. The software is called Exionio. It describes the rate function as:
+      fieldset
+        p RATE
+
+        p Suppose you take a loan of $50,000.00 to pay in 3 years with a monthly payment of $2,500.00. What is the rate applied to this loan?
+
+        p Exonio.rate(12 * 3, 2_500, -50_000) # ==> 0.036006853458478955
+        p So, the rate applied is 3.60%.
+      p I call this function with
+      ul
+        li
+          |@rate = Exonio.rate(@places_paid, @dues,0, -@purse)
+      p I only semi-remember how I figured this out but
+      ul
+        li Period is places_paid
+        li You pay dues each period for each player
+        li At the end you should have the purse/pot
+        li You pay the last place team dues (they won $dues)
+        li for each other player, you pay the rate * the previous players winnings (dues for last place winners).
+      p This gives a pretty even distribution. Problem is setting last place winner to dues. I'll have to look at it more since when I changed dues, it created an error.
+      table.small-table-stripped
+        <tr><td>10</td><td>$60</td><td class="text-right">$20.00</td><td class="text-right">$15.00</td><td class="text-right">$11.00</td><td class="text-right">$8.00</td><td class="text-right">$6.00</td></tr>
+
+
+
+
+
+
+

@@ -1,0 +1,110 @@
+= turbo_frame_tag "content"
+
+  div
+    div
+      h3.strong Dealing Cards/Tokens
+      p 
+        | The dealing methods use cards, chips or dollars to distribute the pot.
+          If you have 10 players in the game and pay 50% of the players, you'll have 
+          5 winners. You start out with dealing 5 cards.
+      .box
+        span.w3-badge.w3-green 1
+        span.w3-badge.w3-green 1
+        span.w3-badge.w3-green 1
+        span.w3-badge.w3-green 1
+        span.w3-badge.w3-green 1
+      p
+        | You then deal another card to each player starting and the second player.
+      .box
+        span.w3-badge.w3-green 1
+        span.w3-badge.w3-green 2
+        span.w3-badge.w3-green 2
+        span.w3-badge.w3-green 2
+        span.w3-badge.w3-green 2
+      p 
+        |You then repeat this process starting at the third, forth and fifth player.
+      .flex.gap-8
+        .box
+          span.w3-badge.w3-green 1
+          span.w3-badge.w3-green 2
+          span.w3-badge.w3-green 3
+          span.w3-badge.w3-green 3
+          span.w3-badge.w3-green 3
+        .box
+          span.w3-badge.w3-green 1
+          span.w3-badge.w3-green 2
+          span.w3-badge.w3-green 3
+          span.w3-badge.w3-green 4
+          span.w3-badge.w3-green 4
+
+        .box
+          | Ending up with: 
+          span.w3-badge.w3-green 1
+          span.w3-badge.w3-green 2
+          span.w3-badge.w3-green 3
+          span.w3-badge.w3-green 4
+          span.w3-badge.w3-green 5
+      p 
+        |If you count the cards, you've dealt 15 cards. If your dues are $1 a player, you're pot would be $10. If you divide the pot by 15, each card/token is worth $0.66. If you multiply by then number of cards each player was dealt, you'd have a payout of:
+
+      p 
+        .box
+          span.w3-badge.w3-green 0.66
+          span.w3-badge.w3-green 1.32
+          span.w3-badge.w3-green 1.98
+          span.w3-badge.w3-green 2.64
+          span.w3-badge.w3-green 3.30
+
+          span 
+            | (Hope you have some pennies!)
+      p 
+        | If you look at it in another way and divide the number of the card by 15, you'd get [0.067, 0.133, 0.2, 0.267, 0.333] or the percentage of the pot each player would get. Yes, its the same, but the percents will work for any pot size.
+
+      p 
+        | If your dues are $8, your pot would be $80 and the 1st place winner would get $26.66 (0.333 * 80). Your last place winner would get $5.36 (0.067 * 80). The payouts for this case would be: 
+      p |[5.33, 10.67, 16.0, 21.33, 26.67]
+
+      p Still have to deal with the pennies. Fortunately I have a `Dollarize` method that rounds the payout to the nearest whole number [5, 11, 16, 21, 27]. You then sum the rounded payouts. If it's less or more than the pot, you distribute the difference to the top or bottom winners.
+
+      h2.strong Modified Options
+
+      p I actually have 4 versions of card/token deal
+
+      ul
+        li Low Deal (the basic version used above)
+        li 
+          | Mid Deal: 
+
+          p Starts off by dealing one card to each player, then add 1 for each place. You'd end up with:
+          span.w3-badge.w3-green 2
+          span.w3-badge.w3-green 3
+          span.w3-badge.w3-green 4
+          span.w3-badge.w3-green 5
+          span.w3-badge.w3-green 6
+
+
+        li 
+          | High Deal:
+          p Starts off by dealing 1/2 card to each player. You'd end up with:
+          span.w3-badge.w3-green 1.5
+          span.w3-badge.w3-green 2.5
+          span.w3-badge.w3-green 3.5
+          span.w3-badge.w3-green 4.5
+          span.w3-badge.w3-green 5.5
+        li 
+          | Top Deal:
+          p Adds an extra deal to the top 60% of the playerYou'd end up with:
+          span.w3-badge.w3-green 1
+          span.w3-badge.w3-green 2
+          span.w3-badge.w3-green 3
+          span.w3-badge.w3-green 5
+          span.w3-badge.w3-green 6
+
+
+
+
+
+
+
+
+

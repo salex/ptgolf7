@@ -1,0 +1,34 @@
+= turbo_frame_tag "content"
+
+  div
+    div
+      h3.strong PGA Method
+      p I've had a PGA clone method for years, but it was a little convoluted. While the <b><i>Deals</i></b> methods purpose is to create a Percentage array. PGA starts with a percentage, which I convoluted!
+
+      P 
+        |I discovered a few weeks ago that I was over thinking on how it could be used. There are several web sited that explain how a PGA Tournament purse is distributed. 
+
+       
+        span.text-blue-500= link_to("One being here","https://www.easyofficepools.com/pga-tour-payout-percentages-and-projected-earnings/")
+      p In case you don't know it, 60% of a purse is distributed to the top 10 places. The rest (40%) is distributed to the remaining 60 or so players.
+      p I just copied the percents array from the top 20 players.
+      div 
+        |[18.000,10.900,6.900,4.900,4.100,3.625,3.375,3.125,2.925,2.725,
+          2.525,2.325,2.125,1.925,1.825,1.725,1.625,1.525,1.425,1.325]
+      p Using the example of 10 players with an $8 dues.
+      ul
+        li copy the first 5 percentage to pay 5 places: [18.000, 10.900, 6.900,4.900,4.100]
+        li Sum the percentages: 44.8
+        li Divide each element of the array by the sum to get a new percentage array:
+        li 
+          | [0.402, 0.243, 0.154, 0.109, 0.092]
+        li Multiply the pot time each element of the percents array and get a payout array.
+        li 
+          | [32.16, 19.44, 12.32, 8.72, 7.36]
+        li Round (dollarize) the array and your done!
+        table.small-table-stripped
+          <tr><td>10</td><td>$80</td><td class="text-right">$32.00</td><td class="text-right">$19.00</td><td class="text-right">$12.00</td><td class="text-right">$9.00</td><td class="text-right">$8.00</td></tr>
+        li Compared to low deal:
+        table
+          <tr><td>10</td><td>$80</td><td class="text-right">$27.00</td><td class="text-right">$21.00</td><td class="text-right">$16.00</td><td class="text-right">$11.00</td><td class="text-right">$5.00</td></tr>
+    h3.strong Pick your poison!
