@@ -1,6 +1,6 @@
 module Things
   class DealTokens
-    attr_accessor :winners,:pot, :perc
+    attr_accessor :winners,:pot, :percents
     include Things::Utilities
 
     def initialize(numb_players,dues,dist=nil,perc=nil)
@@ -13,20 +13,18 @@ module Things
       end
 
       if dist == 'high'
-        min_payout = 0.5
+        min_payout = 0.0
       elsif dist == 'low'
-        min_payout = 0.0
-      elsif dist == 'top'
-        min_payout = 0.0
+        min_payout = 1.0
       else
         dist = 'mid'
-        min_payout = 1.0
+        min_payout = 0.0
       end
-      pot_percents = self.deal_tokens(places_paid,min_payout,dist)
+      @percents = self.deal_tokens(places_paid,min_payout,dist)
       @winners = Array.new(places_paid,min_payout)
       inc = pot - winners.sum 
       winners.each_with_index do |w,i|
-        winners[i] += (pot_percents[i] * inc)
+        winners[i] += (@percents[i] * inc)
       end
       # Things::Utilities.
       dollarize(@winners,@pot)
@@ -35,11 +33,6 @@ module Things
     def deal_tokens(places_paid,min_payout,dist)
       deal = (1..places_paid).to_a
       if dist == 'high'
-        start = places_paid / 2 
-        start.upto(places_paid - 1) do |i|
-          deal[i] += 1
-        end
-      elsif dist == 'top'
         start = places_paid / 2 
         pos = (start..(places_paid - 1)).to_a
         pos.each_with_index do |e,i|

@@ -5,6 +5,26 @@ module Things
       return "Hello World"
     end
 
+    def self.get_place_percents(places_paid,rate=nil)
+      if rate.present?
+        perc = [1.0,rate]
+      else
+        rate = 1.6 - (places_paid * 0.04)
+        perc = [1.0,rate]
+      end
+      # puts "RATE #{rate}"
+      (places_paid - 2).times do |i|
+        last = perc[i+1]
+        perc[i+2] = last*rate 
+      end
+      base_rate = 100/(perc.sum)
+      places = [base_rate]
+      1.upto(places_paid-1) do |i|
+        places[i] = (places[i-1]* rate) 
+      end
+      places.each_with_index{|v,i| places[i] = (places[i]/100).round(4)}
+    end
+
     def dollarize(winners,pot)
       # dollarize takes an array of floats (winners) and rounds each element
       #   to a whole number (up or down)

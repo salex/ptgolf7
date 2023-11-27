@@ -10,7 +10,7 @@
         p Suppose you take a loan of $50,000.00 to pay in 3 years with a monthly payment of $2,500.00. What is the rate applied to this loan?
 
         p Exonio.rate(12 * 3, 2_500, -50_000) # ==> 0.036006853458478955
-        p So, the rate applied is 3.60%.
+        p Period is first argument,Payment the second and Total the last, the rate applied in this exampleis 3.60%.
       p I call this function with
       ul
         li
@@ -21,7 +21,7 @@
         li You pay dues each period for each player
         li At the end you should have the purse/pot
         li You pay the last place team dues (they won $dues)
-        li for each other player, you pay the rate * the previous players winnings (dues for last place winners).
+        li For each other player, you pay the rate * the previous players winnings (dues for last place winners).
       p This gives a pretty even distribution. Problem is setting last place winner to dues. I'll have to look at it more since when I changed dues, it created an error.
       table.small-table-stripped
         <tr><td>10</td><td>$60</td><td class="text-right">$20.00</td><td class="text-right">$15.00</td><td class="text-right">$11.00</td><td class="text-right">$8.00</td><td class="text-right">$6.00</td></tr>

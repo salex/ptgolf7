@@ -29,19 +29,21 @@ div.border-gold.bg-malt.border-4.noprint
 
             p.mb-2 When my main group (sinners) decided they wanted to try paying places (for small groups), I dusted off the code and tried again. This is my latest attempt to develop a fair winner distribution. I've always tried to start with a common 60/40 split. That works if there are only two winners, but gets more complicated if there are more players. A 50/30/20 split works for paying three places, but whats the next split?
 
-            p.mb-2 This version will compute the distribution for up to 24 player with up to 12(place) winning something. It uses 7 different methods and you can see the results on the main demo page. You can change any of the options (Dues, Methods, etc.) Then click the Refresh button.
+            p.mb-2 This version will compute the distribution for up to 24 player with up to 12(place) winning something. It uses 9 different methods and you can see the results on the main demo page. You can change any of the options (Dues, Methods, etc.) Then click the Refresh button.
           div
-            h3.strong Methods (There are 7!)
-            p.mb-2 All paying methods are about the same. They are just different versions that I tried to improve over the years. There all based on some form of an array like [18.0,10.8, 6.8, 4.8, 4, 3.6, 3.35, 3.1, 2.9, 2.7] were each number is the percent of the pot that player will receive. That base array is then modified for then number of player is some fashion.(Sum the array then divide each element by to sum to get percent array!)
+            h3.strong Methods (There are 9!)
+            p.mb-2 All paying methods are about the same. They are just different versions that I tried to improve over the years. There all based on some form of an array like [18.0,10.8, 6.8, 4.8, 4, 3.6, 3.35, 3.1, 2.9, 2.7] were each number is the percent of the pot that player will receive. That base array is then modified for then number of player in some fashion.(Sum the array then divide each element by to sum to get percent array!)
           ul
-            li Card Deal is the default and newest attempt. You just deal each winner a $1, then deal again starting at next to last place, etc. Repeat until you out of money? There are 4 different version of dealing. The purpose of the dealing is to generate a Percent Array that is used to pay the places.
+            li Card Deal is the default and newest attempt. You just deal each winner a $1, then deal again starting at next to last place, etc. Repeat until you out of money? There are 3 different version (High/Mid/Low) of dealing. The purpose of the dealing is to generate a Percent Array that is used to pay the places.
 
-            li PGA Clone gets it Percent array from a PGA site that defines the percentages of each place for a PGA tour event. 
+            li PGA High/Mid/Low gets a Percent array from a PGA site that defines the percentages of each place for a PGA tour event. Low start with value of 3rd place.
+
             li Rate Distribution is my latest version that does a fairly even distribution using a spreadsheet function Rate.
 
             li Even Distribution is just another version I had around that does close to PGA Distribution.
+            li Base 60/40 starts with the concept that you start with a 60/40 percent split for paying 2 winner. For each additional play you compute a new split. For 3 places it may be 52/38/20.
             li My opinion is that PGA or Even are the best methods!
-          p.italic Click the Method buttons in the sidebar for more information/details or see the comparison of the different methods with 10 players, paying 5 places with $6 dues.
+          p.italic Click the Method buttons in the sidebar for more information/details or see the comparison some of the different methods with 10 players, paying 5 places with $6 dues.
 
           h3.strong Compare Methods
 
@@ -53,7 +55,7 @@ div.border-gold.bg-malt.border-4.noprint
             li The payouts will be displayed on the Pending Game page and on the Print list.
             li The best way to score places is:
             ul#selector
-              li Print a print list for each group/cart. It has quotas, payout etc. for all players. If also has areas to record scores, birdies.
+              li Print a print list for each group/cart. It has quotas, payout etc. for all players. If also has areas to record scores and birdies.
               li Use course score cards to score players.
-              li At end of game, transfer stuff to the print list for the players in your cart/group.
+              li At end of game, transfer stuff to the print list for the players in your cart/group. Turn in you print list to the scorer.
 

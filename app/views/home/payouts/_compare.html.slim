@@ -7,35 +7,42 @@ table.small-table-stripped.w75
         th = i.ordinalize
   tbody
     tr
-      td = "Top" 
-      td = "$#{ 10*6}"
-      - places = Things::DealTokens.new(10,6,'top').winners.reverse
-      - places.each do |i|
-        td.text-right = number_to_currency i
-    tr
-      td = "High" 
+      td = "Deal High" 
       td = "$#{ 10*6}"
       - places = Things::DealTokens.new(10,6,'high').winners.reverse
       - places.each do |i|
         td.text-right = number_to_currency i
     tr
-      td = "Mid" 
+      td = "Deal Mid" 
       td = "$#{ 10*6}"
       - places = Things::DealTokens.new(10,6,'mid').winners.reverse
       - places.each do |i|
         td.text-right = number_to_currency i
     tr
-      td = "Low" 
+      td = "Deal Low" 
       td = "$#{ 10*6}"
       - places = Things::DealTokens.new(10,6,'low').winners.reverse
       - places.each do |i|
         td.text-right = number_to_currency i
     tr
-      td = "PGA" 
+      td = "PGA High" 
       td = "$#{ 10*6}"
-      - places = Things::PgaPlaces.new(10,6).winners.reverse
+      - places = Things::PgaPlaces.new(10,6,'high').winners.reverse
       - places.each do |i|
         td.text-right = number_to_currency i
+    tr
+      td = "PGA Mid" 
+      td = "$#{ 10*6}"
+      - places = Things::PgaPlaces.new(10,6,'mid').winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+    tr
+      td = "PGA Low" 
+      td = "$#{ 10*6}"
+      - places = Things::PgaPlaces.new(10,6,'low').winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+
     tr
       td = "Rate" 
       td = "$#{ 10*6}"
@@ -48,13 +55,9 @@ table.small-table-stripped.w75
       - places = Things::EvenPlaces.new(10,6).winners.reverse
       - places.each do |i|
         td.text-right = number_to_currency i
-
-
-
-
-    
-    
-
-
-
-
+    tr
+      td = "Base 60/40" 
+      td = "$#{ 10*6}"
+      - places = Things::Base6040.new(10,6).winners
+      - places.each do |i|
+        td.text-right = number_to_currency i
