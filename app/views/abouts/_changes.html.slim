@@ -2,6 +2,16 @@
   h5.strong Change Log 
 
   dl.indent-dd
+    dt 2023-11-30
+    dd
+      span.strong.annotate Again - I can't believe I have not updated this in over a year! I'll just try to summarize the major changes.
+    dt.strong This year (2023)
+    dd Rails 7.1 upgrade. A minor upgrade late in the year that took a few weeks before release.
+    dt.strong Last year (2022)
+    dd Rails 7.0 upgrade. A major upgrade that took a few months before ite was released.
+
+
+  dl.indent-dd
     dt 2021-12-23
     dd
       span.strong.annotate I can't believe I have not updated this in over a year! I'll just try to summarize the major changes.
@@ -79,7 +89,12 @@
     dd Groups that pay by Places only have the limit applied to the total points pulled. Groups who pay Sides have the limit applied to the front, back and total. If a player was limited (their quota was 11 and they pulled 8 points or -3), the scored event would indicate the limit was applied by putting an * after their points pulled and then what was used for the team in brackets 8*[9.0(-2.0)]
     dd Tees. Quotas are based on Tees and Group. If you play with multiple groups, your quota can be different for each group. Each player is assigned a Default Tee. It assumed you will play from that tee. If for some strange reason you want to play form the Tips one day (Think Avery!). You can change the tee for that player for that event in the "Current Participants" list for a Scheduled event (teams not formed), or the Adjust Teams page for Pending events (teams formed but not scored). This change will compute a quota for that tee and any limits/Frozen setting will be applied. If you change the Default Tee for a player, all new rounds will use the new tee and any limits will be applied.
 
-  h5 Needs update, I changed alot!
+  h5 Git Change logs since 2017!
+  div
+    strong 2022-23 log
+  ul
+    = render partial:'2022-23'
+
 
   div
     strong 2021 log
@@ -89,7 +104,7 @@
     strong 2020 log
   ul
     / git log --pretty=format:"li %h - %s  : %ad" --date=short --since=2021-01-01 >  ~/work/current/ptgolf/app/views/abouts/_2021log.html.classic.ml-4
-    = render partial:'log'
+    = render partial:'2020-log'
   div
     strong Previous version log
   ul

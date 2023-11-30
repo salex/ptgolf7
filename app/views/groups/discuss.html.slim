@@ -1,7 +1,7 @@
 div.min-height.w3e-blue
   br
   .w-96.m-4.p-4.mx-auto.bg-white
-    = form_tag discussin_group_path(current_group) do
+    .w3-card-4.p-2 = form_tag discussin_group_path(current_group) do
       h5.strong.malt Discuss Login
       .row
         .form-inputs.small-4.columns
@@ -11,7 +11,8 @@ div.min-height.w3e-blue
             = label_tag(:email, 'Player ID')
             - uname = params[:email].present? ? params[:email] : cookies[remember_me]
           .ffield = text_field_tag( :email, uname)
-          button.submit.actions.bg-blue-700= submit_tag( "Login",class:'button small')
+          br
+          button[class=mbtn_send]= submit_tag( "Login")
           |&nbsp;
           span.indent2
             = check_box_tag(remember_me,1,cookies[remember_me].present?)

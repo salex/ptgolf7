@@ -24,7 +24,7 @@ module CrudHelper
   # destroyTag and ConfirmTag uses button_to with turbo_confirm
   # which was added after I created a stimulus confirm script
   def destroyTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
-    klass= to_tw("btn-danger inline-block py-px mr-2") if klass.blank?
+    klass= "#{btn_danger} inline-block mr-1" if klass.blank?
     confirm_msg = "Are You Sure?" if confirm_msg.blank?
     meth = "delete" if meth.blank?
     url_type = model_path.class

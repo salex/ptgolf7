@@ -5,12 +5,23 @@ div.border-gold.bg-malt.border-4
   span.mx-2.text-gold Find me in app/views/demo/show.html.slim
   span.inline-block = button_to('Reload Page',home_path,method: :get, class:"bg-green-500 hover:bg-green-700 text-white font-bold mx-2 py px-2 rounded inline-block")
 
+div.gap-4.m-1
+  button[class=mbtn_link] link button
+  button[class="#{mbtn_link} py-1.5 px-3 "] md link button
+  button[class="#{mbtn_link} py-2 "] lg link
+  button[class=mbtn_send] send button
+  button[class=mbtn_warn] warn button
+  button[class=mbtn_danger] danger button
+  button[class=mbtn_warn]= icon('fas fa-pencil-alt',"Edit Options ")
+  button[class=mbtn_warn] Warn button
+  button[class="#{mbtn_send} px-3 py-3 font-xlg "] Submit
+
 .grid.grid-cols-3.gap-4.m-1.mx-4
   div
     strong AutoPickr Demo 
     i Just enter a name to search field
 
-    div[
+    div.card-4[
       data-autopickr-url-value="/home/search" 
       data-controller="autopickr"
       data-autopickr-slen-value="1"
@@ -31,10 +42,10 @@ div.border-gold.bg-malt.border-4
 
     p[class=greenBox]= text_field_tag "date",nil,data:{controller:'flatpickr'}, placeholder:"Enter a Date",class:" px-1 my-2"
 
-  div
+  div.card-4.p-2
     - @game = Game.find 2917
     - toggle = @game.method == 'sides' ? "Places" : "Sides"
-    span.mb-2 = button_to "Change Pay Method to #{toggle}",update_pays_games_scheduled_path(@game),method:'patch',params:{method:toggle},class:"bg-green-500 hover:bg-green-700 text-black font-bold p-2 mb-2 rounded"
+    span.mb-2 = button_to "Change Pay Method to #{toggle}",update_pays_games_scheduled_path(@game),method:'patch',params:{method:toggle},class:"bg-green-400 hover:bg-green-700 text-black font-bold p-2 mb-2 rounded"
 
     .w3-dropdown-hover
 

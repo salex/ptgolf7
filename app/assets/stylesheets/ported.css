@@ -1,4 +1,4 @@
-.height-auto{height: auto;}
+/*.height-auto{height: auto;}*/
 
 #error_explanation {
   color: red;
@@ -47,121 +47,6 @@ button.actions:hover {
   background-color: #0c97d6;
 }
 
-/*.boxes .row-box, .row-box-18 .row-box {
-  height: 1.5rem;
-  font-weight: 200;
-  margin: 0;
-  padding: 0;
-  border-left: solid 1px #aaddaa;
-  border-top: solid 1px #aaddaa;
-  display: inline-block;
-  background-color: white;
-  line-height: 1.5rem;
-  font-size: 0.9rem;
-}
-.boxes .row-box.lbl, .row-box-18 .row-box.lbl {
-  background-color: #e7ffe7;
-  font-weight: 500;
-}
-.boxes .row-box span, .row-box-18 .row-box span {
-  width: 2rem;
-  height: inherit;
-  text-align: center;
-  border-right: solid 1px #aaddaa;
-  border-bottom: solid 1px #aaddaa;
-  display: inline-block;
-  overflow: hidden;
-}
-.boxes .row-box span.lbl, .row-box-18 .row-box span.lbl {
-  background-color: #e7ffe7;
-  font-weight: 500;
-}
-.boxes .row-box span.err, .row-box-18 .row-box span.err {
-  color: red;
-}
-.boxes .row-box span.cut, .row-box-18 .row-box span.cut {
-  color: red;
-  background-color: #ffe6e6;
-  font-weight: 700;
-}
-.boxes .row-box span.good, .boxes .row-box span.birdie, .boxes .row-box span.card-B, .row-box-18 .row-box span.good, .row-box-18 .row-box span.birdie, .row-box-18 .row-box span.card-B {
-  color: green;
-  background-color: #b3ffb3;
-  font-weight: 700;
-}
-.boxes .row-box span.eagle, .boxes .row-box span.card-E, .row-box-18 .row-box span.eagle, .row-box-18 .row-box span.card-E {
-  color: #00f;
-  background-color: #b3b3ff;
-  font-weight: 700;
-}
-.boxes .row-box span.albatros, .boxes .row-box span.card-A, .row-box-18 .row-box span.albatros, .row-box-18 .row-box span.card-A {
-  color: yellow;
-  background-color: #999900;
-  font-weight: 700;
-}
-.boxes .row-box span.title, .row-box-18 .row-box span.title {
-  width: 4rem;
-  font-weight: 700;
-}
-.row-box-small {
-  font-size: 0.7rem;
-}
-.row-box-small .row-box {
-  height: 1.1rem;
-  font-weight: 200;
-  margin: 0;
-  padding: 0;
-  border-left: solid 1px #aaddaa;
-  border-top: solid 1px #aaddaa;
-  display: inline-block;
-  background-color: white;
-  line-height: 1.1rem;
-  font-size: 0.9rem;
-}
-.row-box-small .row-box.lbl {
-  background-color: #e7ffe7;
-  font-weight: 500;
-}
-.row-box-small .row-box span {
-  width: 1.1rem;
-  height: inherit;
-  text-align: center;
-  border-right: solid 1px #aaddaa;
-  border-bottom: solid 1px #aaddaa;
-  display: inline-block;
-  overflow: hidden;
-}
-.row-box-small .row-box span.lbl {
-  background-color: #e7ffe7;
-  font-weight: 500;
-}
-.row-box-small .row-box span.err {
-  color: red;
-}
-.row-box-small .row-box span.cut {
-  color: red;
-  background-color: #ffe6e6;
-  font-weight: 700;
-}
-.row-box-small .row-box span.good, .row-box-small .row-box span.birdie, .row-box-small .row-box span.card-B {
-  color: green;
-  background-color: #b3ffb3;
-  font-weight: 700;
-}
-.row-box-small .row-box span.eagle, .row-box-small .row-box span.card-E {
-  color: #00f;
-  background-color: #b3b3ff;
-  font-weight: 700;
-}
-.row-box-small .row-box span.albatros, .row-box-small .row-box span.card-A {
-  color: yellow;
-  background-color: #999900;
-  font-weight: 700;
-}
-.row-box-small .row-box span.title {
-  width: 2.2rem;
-  font-weight: 700;
-}*/
 .vh-75 {
   height:75vh;
 }
@@ -247,11 +132,6 @@ button.actions:hover {
  .menubar {
    background-color: #e2ffe2;
 }
-/* section.dashboard {
-   background-color: #b8ffb8;
-   padding: 2px;
-}
-*/ 
 .strong {
    font-weight: bold;
 }
@@ -328,24 +208,19 @@ button.actions:hover {
    text-align: right;
    margin-right: 8px;
 }
- input[type=submit] {
-   background-color: inherit;
-   border: none;
-   color: white;
-}
- .small-caps {
+.small-caps {
    font-variant: small-caps;
 }
  .flash-box {
    min-width: 50vw;
 }
- span.annotate, div.annotate, dd.annotate, dl.annotate, li.annnotate, p.annotate {
+ span.annotate, div.annotate, dd.annotate, dl.annotate, li.annotate, p.annotate {
    font-style: italic;
    font-size: 80%;
    line-height: 110%;
    font-weight: normal;
 }
- span.annotate.strong, div.annotate.strong, dd.annotate.strong, dl.annotate.strong, li.annnotate.strong, p.annotate.strong {
+ span.annotate.strong, div.annotate.strong, dd.annotate.strong, dl.annotate.strong, li.annotate.strong, p.annotate.strong {
    font-weight: bold;
 }
  td.rpad-td {

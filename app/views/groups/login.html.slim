@@ -1,10 +1,11 @@
 div.min-height.w3e-blue
   br
   .w-96.m-4.p-4.mx-auto.bg-white
-    = form_tag signin_group_path(current_group) do
+    .w3-card-4.p-2 = form_tag signin_group_path(current_group) do
       h5.strong.malt Login
       .row
         br
+
         .form-inputs.small-4.columns
           = hidden_field_tag(group_id:current_group.id)
           - remember_me = "remember_me_#{current_group.id}".to_sym
@@ -15,7 +16,10 @@ div.min-height.w3e-blue
           .f.label= label_tag( :password)
           .ffield= password_field_tag( :password)
           br
-          button.submit.actions.bg-blue-700= submit_tag( "Login",class:'button small')
+          button[class=mbtn_send] = submit_tag( "Login")
+
+          / button.rounded.p-2.font-bold.bg-blue-400.text-black.text-lg.font-bold Shit
+          / = submit_tag( "Login")
           |&nbsp;
           span.indent2
             = check_box_tag(remember_me,1,cookies[remember_me].present?)

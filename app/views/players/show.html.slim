@@ -1,7 +1,7 @@
 - links = []
-- links << link_to( icon('fas fa-list', 'Cancel - List Players'),  players_path, class: 'btn btn-warning mr-2 ')
+- links << link_to( icon('fas fa-list', 'Cancel - List Players'),  players_path, class: mbtn_send)
 - if is_manager?
-  - links << link_to( icon('fas fa-edit','Edit Player'), edit_player_path(@player), title: 'Edit it', class:'btn btn-warning mr-2')
+  - links << link_to( icon('fas fa-edit','Edit Player'), edit_player_path(@player), title: 'Edit it', class:mbtn_warn)
   - links<< destroyTag(@player, prompt: icon("fas fa-trash",'Delete Player'))
 = render partial:'shared/dashboard', locals:{name:"Show Player",links:links}
 

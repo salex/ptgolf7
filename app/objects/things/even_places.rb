@@ -35,7 +35,7 @@ module Things
       bmp = bumps[@places_paid - 1 ]
       case @places_paid
       when 2
-        @arr = [1.0,1.6]
+        @arr = [1.0,1.5]
       when 3
         @arr = [1.0,bmp,bmp**2]
       when 4

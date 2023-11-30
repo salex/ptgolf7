@@ -8,7 +8,7 @@ module CommentsHelper
       #css clases start with . and end with [,:. ]
       content.scan(/\.[^\,^\:^\{^\.^\s]+/).uniq.sort.each do |i|
         # filter out classes that picked up a .[number] as a class
-        results << i unless i[1].match(/\d/)
+        results << i + " - " + stylesheet unless i[1].match(/\d/)
       end
     end
     results

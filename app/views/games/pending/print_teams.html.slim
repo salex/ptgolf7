@@ -5,12 +5,13 @@
 
 div.flex.gap-4.m-2
   div
+    - if @game.method == 'places' 
+      - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues]).winners.reverse
+      div.flex.gap-4
+        div.strong Suggested Places Payout (First..Last):
+        div = places
+
     - if  @game.stats[:makeup] == 'individuals' || @game.stats[:seed_method] == 'blind_draw'
-      - if @game.method == 'places' 
-        - places = Things::PgaPlaces.new(@game.state[:players],@game.state[:dues]).winners.reverse
-        div.flex.gap-4
-          div.strong Suggested Places Payout (First..Last):
-          div = places
 
       table.small-table[style="font-size:120%;"]
         tr
@@ -27,7 +28,7 @@ div.flex.gap-4.m-2
             td.name = m.name[0..22]
             td = m.quota_limited
             td.text-right = m.quota / 2.0
-            td 
+            td.text-right = m.team
             td
             td
             td

@@ -22,7 +22,7 @@ div[class="flex flex-wrap"]
       span.font-bold Teams/Seed: 
       span =  "#{@game.state[:teams].count}/#{@game.stats[:seed_method]}"
     - if @game.method == 'places' 
-      - places = Things::PgaPlaces.new(@game.state[:players],@game.state[:dues]).winners.reverse
+      - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues]).winners.reverse
       div.flex.gap-4
         div.strong Suggested Places Payout (First..Last):
         div = places

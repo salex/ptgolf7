@@ -9,7 +9,7 @@ module Things
       if rate.present?
         perc = [1.0,rate]
       else
-        rate = 1.6 - (places_paid * 0.04)
+        rate = 1.5 #  - (places_paid * 0.04)
         perc = [1.0,rate]
       end
       # puts "RATE #{rate}"

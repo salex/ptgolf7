@@ -1,7 +1,7 @@
 - teams = @game.teams
 - team_stats = @game.team_stats
 - links = []
-- links << link_to(icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning')
+- links << link_to(icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class:mbtn_send)
 - if is_manager? && @game.state[:can_delete]
   - links << destroyTag(game_path(@game),prompt:icon('fas fa-trash',"Destroy Incomplete Game"))
 = render partial:'shared/dashboard', locals:{name:"Pending Game",links:links}
@@ -20,13 +20,11 @@
 
   
   - if is_manager?
-    / - unless zero_team
-    div
-      div[class="btn-success font-bold p-1.5 mr-2 rounded-md hover:text-green-700"] 
-        = link_to icon('fas fa-pencil-alt', 'Score Teams'), score_teams_games_pending_path(@game)
+    - unless zero_team
+      div.mr-2.pt-1 = link_to icon('fas fa-pencil-alt', 'Score Teams'),
+        score_teams_games_pending_path(@game),
+        class:"#{mbtn_link}"
 
-      / = link_to icon('fas fa-pencil-alt', 'Score Teams'), score_teams_games_pending_path(@game),
-      /   class: 'btn-success font-bold p-1 br-2 rounded-md'
     div.flex-grow
       div.block.lg:hidden
 
@@ -51,18 +49,19 @@
             = link_to icon('fas fa-users', 'Reform Teams'), @game.namespace_url('reform_teams'),
               class: 'block wbtn'
       div.hidden.lg:flex
+
         div.mr-2.pt-1 = link_to icon('fas fa-user-plus', 'Add Player'),  @game.namespace_url('add_players'),
-          class: " rounded-md wbtn font-bold",
+          class: " #{mbtn_warn}",
           title: "Pete showed up late at the tee box, there was a threesome teeing off. Put Pete in the threesome and when you get in use this button to add Pete. Then adjust teams to change the threesome to a foursome"
         div.mr-2.pt-1 = link_to icon('fas fa-arrows-alt-h', 'Adjust Teams'), @game.namespace_url('adjust_teams'),
-          class: 'rounded-md wbtn font-bold',
+          class: " #{mbtn_warn}",
           title: "Joe would like to play with Pete! You can move Joe to another team and move another player from Pete's to Joe's team. Pick player in same point range if using seeded teams."
         div.mr-2.pt-1 = link_to icon('fas fa-arrows-alt-h', 'Swap Teams'), @game.namespace_url('swap_teams'),
-          class: 'rounded-md wbtn font-bold',
+          class: " #{mbtn_warn}",
           title: "Joe needs to go off early, swap his team to first."
         
         div.mr-2.pt-1 = link_to icon('fas fa-users', 'Reform Teams'), @game.namespace_url('reform_teams'),
-          class: 'rounded-md wbtn font-bold'
+          class: " #{mbtn_warn}"
 
 
     div.w3-dropdown-hover.mr-2.w-48
