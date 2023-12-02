@@ -1,6 +1,6 @@
 - links = []
-- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'pt-btn btn-warning mr-2')
-- links << link_to( icon('fas fa-arrow-left', 'Cancel - Show Game with Players'), @game.namespace_url,class: 'btn btn-warning mr-2')
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: 'btn-warn mr-2')
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - Show Game with Players'), @game.namespace_url,class: 'btn-warn mr-2')
 - if is_manager? && @game.state.present? && @game.state[:can_delete]
   - links << destroyTag(game_path(@game),prompt: icon('fas fa-trash','Delete Incomplete Game'))
 
@@ -8,10 +8,10 @@
   
 .px-2.border-b.md:block
   div.content-center[ data-controller="toggle"]
-    button[class="#{btn_green} " data-action="click->toggle#toggleMenu"] 
+    button[class="btn-link " data-action="click->toggle#toggleMenu"] 
       i[class="fa fa-toggle-on px-2" data-toggle-target="toggler"]
       | Show Scheduled Game Instructions
-    = link_to icon('fas fa-edit', "Edit Game"), edit_game_path(@game), title: 'Edit it', class: 'btn btn-icon btn-warning m-2 px-2'
+    = link_to icon('fas fa-edit', "Edit Game"), edit_game_path(@game), title: 'Edit it', class: 'btn-warn m-2 px-2'
     
     div[class=" bg-green-50 w-full px-2 hidden" data-toggle-target="menu"]
       div.grid.grid-cols-12.gap-4

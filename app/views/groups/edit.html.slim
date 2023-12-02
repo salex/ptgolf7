@@ -1,7 +1,7 @@
 - links = []
 - if is_manager?
-  - links << link_to( icon('fas fa-list', 'Cancel List Groups'),  groups_path, class: mbtn_send)
-  - links << link_to( icon('fas fa-eye','Cancel Show Group'), group_path(@group), title: 'Edit it', class: mbtn_warn)
+  - links << link_to( icon('fas fa-list', 'Cancel List Groups'),  groups_path, class: "btn-send")
+  - links << link_to( icon('fas fa-eye','Cancel Show Group'), group_path(@group), title: 'Edit it', class: "btn-warn")
 = render partial:'shared/dashboard', locals:{name:"Edit Group",links:links}
 
 == render 'aform'

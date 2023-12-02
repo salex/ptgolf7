@@ -1,9 +1,9 @@
 - links = []
-- links << link_to(icon('fas fa-list', 'List Groups'),  groups_path, class: mbtn_send)
+- links << link_to(icon('fas fa-list', 'List Groups'),  groups_path, class: "btn-send")
 - if is_manager?
-  - links << link_to(icon('fas fa-edit','Edit Group'), edit_group_path(@group), title: 'Edit it', class: mbtn_warn)
+  - links << link_to(icon('fas fa-edit','Edit Group'), edit_group_path(@group), title: 'Edit it', class: "btn-warn")
 
-  - links << link_to(icon('fas fa-cut','Trim Expired Players'),expired_players_group_path(@group),class: mbtn_warn)
+  - links << link_to(icon('fas fa-cut','Trim Expired Players'),expired_players_group_path(@group),class: "btn-warn")
 
   - links << confirmTag(recompute_quotas_group_path(@group),
     prompt: icon('fas fa-calculator','Recompute Quota'),

@@ -105,7 +105,7 @@ class Group < ApplicationRecord
       use_keyboard_scoring:false,
       default_in_sidegames:true,
       use_autoscroll:true
-    }  
+    }.with_indifferent_access  
   end
 
   def update_group(params)

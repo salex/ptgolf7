@@ -34,44 +34,44 @@ module ComponentsHelper
     "box-border box-content m-3 p-4 bg-blue-400 border-blue-200 border-2 text-black"
   end
 
-  def btn
-    "py-1 px-2 text-black hover:text-white rounded font-lg font-bold "
-  end
+  # def btn
+  #   "py-1 px-2 text-black hover:text-white rounded font-lg font-bold "
+  # end
 
-  def pt_btn
-    "py-1 px-2 text-black hover:text-white rounded font-lg font-bold "
-  end
+  # def pt_btn
+  #   "py-1 px-2 text-black hover:text-white rounded font-lg font-bold "
+  # end
 
-  def btn_sqr
-    "p-0.5 border border-gray-300 text-gray-300 hover:text-white pt-blue "
-  end
-  def btn_info
-    btn << " " << "bg-blue-400 text-blue-link hover:text-blue-100 "
-  end
+  # def btn_sqr
+  #   "p-0.5 border border-gray-300 text-gray-300 hover:text-white pt-blue "
+  # end
+  # def btn_info
+  #   btn << " " << "bg-blue-400 text-blue-link hover:text-blue-100 "
+  # end
 
-  def btn_warning
-    btn + "bg-orange hover:text-yellow-200 "
-  end
+  # def btn_warning
+  #   btn + "bg-orange hover:text-yellow-200 "
+  # end
 
-  def btn_green
-    btn + "bg-green-500 hover:text-green-100 "
-  end
+  # def btn_green
+  #   btn + "bg-green-500 hover:text-green-100 "
+  # end
 
-  def btn_danger
-    btn + "bg-red-500 hover:text-white "
-  end
+  # def btn_danger
+  #   btn + "bg-red-500 hover:text-white "
+  # end
 
-  def btn_success
-    btn + "bg-success hover:bg-green-700 "
-  end
+  # def btn_success
+  #   btn + "bg-success hover:bg-green-700 "
+  # end
 
-  def btn_secondary
-    btn + "bg-secondary "
-  end
+  # def btn_secondary
+  #   btn + "bg-secondary "
+  # end
 
-  def btn_destroy
-    "inline-block bg-red-500 py-0 rounded hover:text-white font-bold px-2 mr-1"
-  end
+  # def btn_destroy
+  #   "inline-block bg-red-500 py-0 rounded hover:text-white font-bold px-2 mr-1"
+  # end
 
 
 end

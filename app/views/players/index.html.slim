@@ -6,9 +6,9 @@ section.dashboard
       - else
         span = "Players(#{ params[:filter]})"
     div.flex-grow.text-center
-      = link_to icon('fas fa-user-plus', 'Add New Player'),  new_player_path, class: mbtn_warn if is_manager?
-      = link_to icon('fas fa-list', 'Status View'),  players_path, class: mbtn_link if @players.present?
-      = link_to icon('fas fa-list', 'Table View'),  players_path(table:1), class: mbtn_link if @players.blank?
+      = link_to icon('fas fa-user-plus', 'Add New Player'),  new_player_path, class: "btn-warn" if is_manager?
+      = link_to icon('fas fa-list', 'Status View'),  players_path, class: "btn-link" if @players.present?
+      = link_to icon('fas fa-list', 'Table View'),  players_path(table:1), class: "btn-link" if @players.blank?
 
       div.inline-block[data-controller=" playerSearch pairingSearch" data-autocomplete-url="/players/player_search" data-autocomplete-min-length="1"]
 

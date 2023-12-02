@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    @group = Current.club.groups.build(name:"New Group #{Group.maximum(:id) + 1}")
+    @group = Current.club.groups.build(name:"New Group #{Group.maximum(:id) + 1}", tees:Current.club.tees)
   end
 
   # GET /groups/1/edit
@@ -26,17 +26,40 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(group_params)
+    # THIS IS A BAND-AID, DOES NOT LIKE GROUP PARAMS
+    @group =  @group = Current.club.groups.build(name:"New Group #{Group.maximum(:id) + 1}", tees:Current.club.tees)
 
-    respond_to do |format|
-      if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render :show, status: :created, location: @group }
-      else
-        format.html { render :new, status: :unprocessable_entity}
-        format.json { render json: @group.errors, status: :unprocessable_entity }
+    if  @group.valid?
+      respond_to do |format|
+        if @group.save
+          format.html { redirect_to edit_group_path(@group), notice: 'Group was successfully created.' }
+          format.json { render :show, status: :created, location: @group }
+        else
+          format.html { render :new, status: :unprocessable_entity}
+          format.json { render json: @group.errors, status: :unprocessable_entity }
+        end
       end
     end
+
+    # redirect_to edit_group_path(@group)
+
+    # puts "GP #{group_params}"
+    # @group.name = group_params[:name]
+    # @group.tees = group_params[:tees]
+    # puts "GN #{@group.inspect}"
+
+    # shit = crap
+
+    # @group = Group.new(group_params)
+    # respond_to do |format|
+    #   if @group.save
+    #     format.html { redirect_to @group, notice: 'Group was successfully created.' }
+    #     format.json { render :show, status: :created, location: @group }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity}
+    #     format.json { render json: @group.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /groups/1
@@ -223,7 +246,11 @@ class GroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def group_params
-      params.require(:group).permit(:club_id, :name, :tees,@group.default_settings.keys)
+      if @group.new_record?
+        params.require(:group).permit(:club_id, :name, :tees)
+      else
+        params.require(:group).permit(:club_id, :name, :tees,@group.default_settings.keys)
+      end
        #  ["par_in", "par_out", "welcome", "alert",
        # "notice", "tee_time", "play_days", "dues", "skins_dues", "par3_dues", "other_dues", 
        # "truncate_quota", "pay", "limit_new_player", "limit_rounds", "limit_points",

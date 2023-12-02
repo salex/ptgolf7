@@ -32,9 +32,9 @@ table.small-table.m-2
         td = club.par_out
         td = club.tees
         td 
-          = link_to icon('fas fa-eye'),  club, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
+          = linkIcon(icon('fas fa-eye'),
+            club, btn_class: 'btn-send py-1 px-1')
           - if is_super?
-            = link_to icon('fas fa-edit'), edit_club_path(club), title: 'Edit it', 
-              class: 'btn btn-icon btn-warning mr-2'
-            = destroyTag(club,
-              prompt: icon("fas fa-trash"))
+            = linkIcon(icon('fas fa-edit'),
+              edit_club_path(club),btn_class:"btn-warn px-1 py-1")          
+            = destroyIcon(club)

@@ -12,7 +12,7 @@ div.min-height.w3e-blue
             - uname = params[:email].present? ? params[:email] : cookies[remember_me]
           .ffield = text_field_tag( :email, uname)
           br
-          button[class=mbtn_send]= submit_tag( "Login")
+          button[class="btn-send"]= submit_tag( "Login")
           |&nbsp;
           span.indent2
             = check_box_tag(remember_me,1,cookies[remember_me].present?)

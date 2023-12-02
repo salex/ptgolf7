@@ -1,6 +1,6 @@
 - links = []
-- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path,class: 'btn btn-warning mr-2')
-- links << link_to( icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,class: 'btn btn-warning mr-2')
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),games_path,class: "btn-send")
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - Show Game'),  @game.namespace_url,class: "btn-warn")
 = render partial:'shared/dashboard', locals:{name:"Swap Team Order",links:links}
 
 div

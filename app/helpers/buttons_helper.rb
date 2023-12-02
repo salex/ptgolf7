@@ -1,4 +1,4 @@
-module MyButtonsHelper
+module ButtonsHelper
   # A basic consistant button
   def mbtn
     "py-1 px-2 mr-1 rounded-md text-lg font-bold "
@@ -15,40 +15,45 @@ module MyButtonsHelper
     "bg-blue-400 hover:bg-blue-700 hover:text-white border-2 border-blue-600 "
   end
   def bg_danger
-    "bg-red-400 hover:bg-red-600 hover:text-white border-2 border-red-800 "
+    "bg-red-500 hover:bg-red-600 hover:text-white border-2 border-red-600 "
   end
 
-  def mbtn_link
+  def btn_link
     mbtn + bg_link
   end
 
-  def mbtn_warn
+  def btn_warn
     mbtn + bg_warn
   end
 
-  def mbtn_send
+  def btn_send
     mbtn + bg_send
   end
 
-  def mbtn_danger
+  def btn_danger
     mbtn + bg_danger
   end
 
+  # def btni_danger
+  #   mbtn + bg_danger + " py-0 "
+  # end
+
+
   # Aliases colors in case you forget link, send, warn, danger
-  def mbtn_green
-    mbtn_link
+  def btn_green
+    btn_link
   end
 
-  def mbtn_orange
-    mbtn_warn
+  def btn_orange
+    btn_warn
   end
 
-  def mbtn_blue
-    mbtn_send
+  def btn_blue
+    btn_send
   end
 
-  def mbtn_red
-    mbtn_danger
+  def btn_red
+    btn_danger
   end
 
 end

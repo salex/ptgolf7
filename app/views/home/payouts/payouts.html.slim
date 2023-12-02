@@ -32,5 +32,5 @@ div.p-2.m-2
       div 
         button.btn-primary.font-bold = icon('fas fa-arrows-alt-h', 'Refresh Payouts')
       div
-        button[class="#{btn_green}"] = link_to("About Payouts",payouts_about_path)
+        button[class="btn-link py-0.5"] = link_to("About Payouts",payouts_about_path)
 .max-height= render partial: 'home/payouts/stats_refresh', locals:{dues:dues,meth:meth,perc:perc}

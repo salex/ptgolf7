@@ -143,7 +143,7 @@ abbr {
   cursor: help;
 }
 
-button:focus,
+/*button:focus,
 button:enabled:hover,
 [role="button"]:focus,
 [role="button"]:not([aria-disabled="true"]):hover,
@@ -156,7 +156,7 @@ input[type="button"]:enabled:hover {
   filter: brightness(1.4);
   cursor: pointer;
 }
-
+*/
 .grid4 {
   /* ... */
   display: grid;

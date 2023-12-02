@@ -1,9 +1,11 @@
 - teams = @game.teams
 - team_stats = @game.team_stats
 - links = []
-- links << link_to(icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class:mbtn_send)
+- links << link_to(icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class:"btn-send")
 - if is_manager? && @game.state[:can_delete]
-  - links << destroyTag(game_path(@game),prompt:icon('fas fa-trash',"Destroy Incomplete Game"))
+  / - links << destroyTag(game_path(@game),prompt:icon('fas fa-trash',"Destroy Incomplete Game"))
+  - links << button_to(icon("fas fa-trash","Destroy Incomplete Game"),game_path(@game),method: :delete,form: { data: { turbo_confirm: "Are You Sure?"}},form_class:"btn-danger inline-block py-0 "  )
+
 = render partial:'shared/dashboard', locals:{name:"Pending Game",links:links}
 
 .px-2.bg-lime-lighter
@@ -23,14 +25,14 @@
     - unless zero_team
       div.mr-2.pt-1 = link_to icon('fas fa-pencil-alt', 'Score Teams'),
         score_teams_games_pending_path(@game),
-        class:"#{mbtn_link}"
+        class:"btn-link"
 
     div.flex-grow
       div.block.lg:hidden
 
         div.w3-dropdown-hover.mr-2
 
-          div[class="btn-warning font-bold p-1 w-52 rounded-md"] 
+          div[class="btn-warn font-bold py-0 w-52 rounded-md"] 
             = icon('fas fa-print'," Update Options")
             i.fa.fa-caret-down
 
@@ -51,17 +53,17 @@
       div.hidden.lg:flex
 
         div.mr-2.pt-1 = link_to icon('fas fa-user-plus', 'Add Player'),  @game.namespace_url('add_players'),
-          class: " #{mbtn_warn}",
+          class: " btn-warn",
           title: "Pete showed up late at the tee box, there was a threesome teeing off. Put Pete in the threesome and when you get in use this button to add Pete. Then adjust teams to change the threesome to a foursome"
         div.mr-2.pt-1 = link_to icon('fas fa-arrows-alt-h', 'Adjust Teams'), @game.namespace_url('adjust_teams'),
-          class: " #{mbtn_warn}",
+          class: " btn-warn",
           title: "Joe would like to play with Pete! You can move Joe to another team and move another player from Pete's to Joe's team. Pick player in same point range if using seeded teams."
         div.mr-2.pt-1 = link_to icon('fas fa-arrows-alt-h', 'Swap Teams'), @game.namespace_url('swap_teams'),
-          class: " #{mbtn_warn}",
+          class: " btn-warn",
           title: "Joe needs to go off early, swap his team to first."
         
         div.mr-2.pt-1 = link_to icon('fas fa-users', 'Reform Teams'), @game.namespace_url('reform_teams'),
-          class: " #{mbtn_warn}"
+          class: " btn-warn"
 
 
     div.w3-dropdown-hover.mr-2.w-48
@@ -74,23 +76,6 @@
         = link_to "List", print_teams_games_pending_path(@game), class:"block bbtn ", target:"_blank" 
         = link_to "ScoreCard Landscape",@game.namespace_url('score_card') , class:"block bbtn", target:"_blank"
         = link_to "ScoreCard Portrait", @game.namespace_url('score_cardp'), class:"block bbtn", target:"_blank"
-
-          / = link_to icon('fas fa-print',"Print List"), print_teams_games_pending_path(@game), 
-          /   class: 'block bbtn', target:"_blank"
-          / = link_to icon('fas fa-print',"ScoreCard Landscape"), @game.namespace_url('score_card'),class: 'block bbtn'
-          / = link_to icon('fas fa-print',"ScoreCard Portrait"), @game.namespace_url('score_cardp'),
-          /   class: 'block bbtn', target:"_blank"
-
-
-
-          / = link_to icon('fas fa-print',"Print List"), print_teams_games_pending_path(@game), title: 'Print it',
-          /   class: 'block bbtn', target:"_blank"
-          / = link_to icon('fas fa-print',"ScoreCard Landscape"), @game.namespace_url('score_card'), title: 'Print it',
-          /   target:"_blank", class: 'btn  btn-info mr-2'
-          / = link_to icon('fas fa-print',"ScoreCard Portrait"), @game.namespace_url('score_cardp'), title: 'Print it',
-          /   class: 'btn  btn-info mr-2', target:"_blank"
-
-
 
 .flex.flex-wrap
   - team_keys  = teams.keys.sort

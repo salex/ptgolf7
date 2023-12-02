@@ -5,6 +5,31 @@
 
 
 @layer components {
+  .bg-green1 {
+    @apply bg-green-400 hover:bg-green-700 hover:text-white  border-2 border-green-600   
+  }
+  .bg-orange1 {
+    @apply bg-amber-400 hover:bg-amber-600 hover:text-white border-2 border-amber-600 
+  }
+  .bg-blue1 {
+    @apply bg-blue-400 hover:bg-blue-700 hover:text-white border-2 border-blue-700 
+  }
+  .bg-red1 {
+    @apply bg-red-500 border-2 border-red-600 hover:text-white  hover:bg-red-600   
+  }
+
+  .btn-link, .btn_link {
+    @apply bg-green1 py-1 px-2 mr-1 rounded-md text-lg font-bold
+  }
+  .btn-send, .btn_send {
+    @apply bg-blue1 py-1 px-2 mr-1 rounded-md text-lg font-bold
+  }
+  .btn-warn, .btn_warn {
+    @apply bg-orange1 py-1 px-2 mr-1 rounded-md text-lg font-bold
+  }
+  .btn-danger, .btn_danger {
+    @apply bg-red1 py-1 px-2 mr-1 rounded-md text-lg font-bold 
+  }
 
   .btn-primary {
     @apply py-1 px-2 pt-blue text-white rounded-md border-2 border-green ;

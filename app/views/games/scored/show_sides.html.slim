@@ -4,7 +4,7 @@
 - win = scoring.winners
 
 - links = []
-- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: mbtn_send)
+- links << link_to( icon('fas fa-arrow-left', 'Cancel - List Games'),  games_path, class: "btn-send")
 - if is_manager? && @game.state.present? && @game.state[:can_delete]
   - links << destroyTag(game_path(@game),prompt: icon('fas fa-trash','Delete Incomplete Game'))
 = render partial:'shared/dashboard', locals:{name:"Scored Game",links:links}
@@ -15,11 +15,11 @@
 .bg-lime-lighter.p-2
   - if is_manager?
     = link_to icon('fas fa-pencil-alt', 'ReScore Teams'), @game.namespace_url('rescore_teams'),
-      class: mbtn_danger
+      class: "btn-danger"
     = link_to icon('fas fa-pencil-alt', 'Score Skins/Birdies'), @game.namespace_url('score_skins'),
-      class: mbtn_warn
+      class: "btn-warn"
     = link_to icon('fas fa-pencil-alt', 'Score Par3s'), @game.namespace_url('score_par3s'),
-      class: mbtn_warn
+      class: "btn-warn"
 
 
 .flex.flex-wrap

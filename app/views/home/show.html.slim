@@ -3,18 +3,34 @@ div.border-gold.bg-malt.border-4
   h3.p-2.text-white.text-lg
     strong Demo#show
   span.mx-2.text-gold Find me in app/views/demo/show.html.slim
-  span.inline-block = button_to('Reload Page',home_path,method: :get, class:"bg-green-500 hover:bg-green-700 text-white font-bold mx-2 py px-2 rounded inline-block")
+  span.inline-block = button_to('Reload Page',home_path,method: :get, form_class:"bg-green-500 hover:bg-green-700 text-white font-bold mx-2 py-1 px-2 rounded inline-block")
+
+div.gap-4.m-2
+  mark[class="btn-link"] GreenComponent
+  mark[class="btn-send"] BlueComponent
+  mark[class="btn-warn"] OrangeComponent
+  mark[class="btn-danger"] RedComponent
+  mark.w-24.bg-red-500.mr-1.p-2 display
+  mark.w-24.bg-red-600.mr-1.p-2 toggle
+
+  / button[class="bg-red-500 hover:bg-red-700 hover:text-white border-2 border-red-800 py-1 px-2 mr-1 rounded-md text-lg font-bold "] xComponent
+
+
+div.gap-4.m-2
+  mark[class="btn-link"]   GreenHelper 
+  mark[class="btn-send"]   BlueHelper  
+  mark[class="btn-warn"]   OrangeHelper
+  mark[class="btn-danger"] RedHelper   
 
 div.gap-4.m-1
-  button[class=mbtn_link] link button
-  button[class="#{mbtn_link} py-1.5 px-3 "] md link button
-  button[class="#{mbtn_link} py-2 "] lg link
-  button[class=mbtn_send] send button
-  button[class=mbtn_warn] warn button
-  button[class=mbtn_danger] danger button
-  button[class=mbtn_warn]= icon('fas fa-pencil-alt',"Edit Options ")
-  button[class=mbtn_warn] Warn button
-  button[class="#{mbtn_send} px-3 py-3 font-xlg "] Submit
+  mark[class="btn-danger px-10"] = icon("fas fa-trash","by1")
+  mark[class="btn-danger py-0 px-10"] = icon("fas fa-trash","by0")
+  = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block py-1 px-10 "  )
+  = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block px-10 py-0"  )
+  = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block px-10 py-0"  )
+  = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block py-0 "  )
+  = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block py-0 px-10 "  )
+  = destroyIcon('#')
 
 .grid.grid-cols-3.gap-4.m-1.mx-4
   div

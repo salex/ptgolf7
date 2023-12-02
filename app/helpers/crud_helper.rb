@@ -24,7 +24,7 @@ module CrudHelper
   # destroyTag and ConfirmTag uses button_to with turbo_confirm
   # which was added after I created a stimulus confirm script
   def destroyTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
-    klass= "#{btn_danger} inline-block mr-1" if klass.blank?
+    klass= "btn-danger py-0 inline-block mr-1" if klass.blank?
     confirm_msg = "Are You Sure?" if confirm_msg.blank?
     meth = "delete" if meth.blank?
     url_type = model_path.class
@@ -35,6 +35,7 @@ module CrudHelper
         prompt = "Delete #{model_path.class.name}"
       end
     end
+    # puts "KLASS #{klass}"
     return button_to prompt, model_path, method: meth,form_class:klass,
       form: { data: { turbo_confirm: confirm_msg }}
   end
@@ -43,6 +44,22 @@ module CrudHelper
     meth = "patch" if meth.blank?
     destroyTag(model_path,meth:meth,confirm_msg:confirm_msg,klass:klass,prompt:prompt)
   end
+
+  def destroyIcon(model_path,icon:nil)
+    prompt = icon.blank? ? icon("fas fa-trash") : icon
+    return button_to(prompt, model_path,
+      method: 'delete',
+      form_class: "btn-danger py-0.5 px-1.5 text-sm inline-block mr-1 ",
+      form: { data: { turbo_confirm: "Are You Sure?" }}
+      )
+  end
+
+  def linkIcon(icon,model_path,btn_class:nil)
+    return link_to(icon,model_path,class:(btn_class << " text-sm "))
+  end
+
+
+
 
   # def destroyConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
   #   # note button_to add 4px padding, don't use btn class, set py to px

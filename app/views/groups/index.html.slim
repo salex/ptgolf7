@@ -1,5 +1,5 @@
 - links = []
-- links << link_to(icon('fas fa-user-plus', 'Add New Group'),  new_group_path, class: 'inline-block btn btn-success mx-1') if is_super?
+- links << link_to(icon('fas fa-user-plus', 'Add New Group'),  new_group_path, class: "btn-warn") if is_super?
 = render partial:'shared/dashboard', locals:{name:"Show Club",links:links}
 
 div.mx-2
@@ -20,7 +20,10 @@ div.mx-2
           td = group.tees
           - if is_super?
             td 
-              = link_to icon('fas fa-eye'),  group, title: 'Show it', class: 'btn btn-icon btn-info mr-2'
-              = link_to icon('fas fa-edit'), edit_group_path(group), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2'
-              = destroyTag(group,
-                prompt: icon("fas fa-trash"))
+              = linkIcon(icon('fas fa-eye'),
+                group, btn_class: 'btn-send py-1 px-1')
+              = linkIcon(icon('fas fa-edit'),
+                edit_group_path(group),btn_class:"btn-warn px-1 py-1")            
+              = destroyIcon(group)
+
+

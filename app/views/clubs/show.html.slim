@@ -1,6 +1,6 @@
 - links = []
 - links << link_to( icon('fas fa-edit','Edit'), edit_club_path(@club), title: 'Edit it', class: 'btn btn-icon btn-warning mr-2') if is_super?
-- links << link_to( icon('fas fa-list','List'), clubs_path, title: 'List it', class: 'btn btn-icon btn-info mr-2')
+- links << link_to( icon('fas fa-list','List Clubs'), clubs_path, title: 'List it', class: "btn-send")
 = render partial:'shared/dashboard', locals:{name:"Show Club",links:links}
 
 .flex
