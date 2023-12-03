@@ -1,5 +1,5 @@
 - links = []
-- links << link_to( icon('fas fa-user-plus', 'New User'),  new_user_path, class: 'btn btn-success mr-2')
+- links << link_to( icon('fas fa-user-plus', 'New User'),  new_user_path, class: 'btn-warn')
 = render partial:'shared/dashboard', locals:{name:"List Users",links:links}
 
 div.mx-2
@@ -27,7 +27,9 @@ div.mx-2
             td = user.password
             td = user.reset_token
             td 
-              = link_to icon('fas fa-eye'),  user, title: 'Show it', class: 'btn btn-info mr-2'
-              = link_to icon('fas fa-edit'), edit_user_path(user), title: 'Edit it', class: 'btn btn-warning mr-2'
-              = destroyTag(user,
-                prompt: icon("fas fa-trash"))
+              = linkIcon(icon('fas fa-eye'),
+                user, btn_class: 'btn-send py-1 px-1')
+              = linkIcon(icon('fas fa-edit'),
+                edit_user_path(user),btn_class:"btn-warn px-1 py-1")          
+              = destroyIcon(user)
+

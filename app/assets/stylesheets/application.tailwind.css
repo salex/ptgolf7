@@ -6,29 +6,32 @@
 
 @layer components {
   .bg-green1 {
-    @apply bg-green-400 hover:bg-green-700 hover:text-white  border-2 border-green-600   
+    @apply bg-green-500 hover:bg-green-400 hover:text-green-900 hover:opacity-90  border-2 border-green-600   
   }
   .bg-orange1 {
-    @apply bg-amber-400 hover:bg-amber-600 hover:text-white border-2 border-amber-600 
+    @apply bg-amber-500 hover:bg-amber-400 hover:text-amber-900 hover:opacity-90 border-2 border-amber-600 
   }
   .bg-blue1 {
-    @apply bg-blue-400 hover:bg-blue-700 hover:text-white border-2 border-blue-700 
+    @apply bg-blue-400 hover:bg-blue-300 hover:text-blue-900 hover:opacity-90 border-2 border-blue-700 
   }
   .bg-red1 {
-    @apply bg-red-500 border-2 border-red-600 hover:text-white  hover:bg-red-600   
+    @apply bg-red-500 hover:bg-red-400 hover:text-red-900 hover:opacity-90 border-2 border-red-700    
   }
 
   .btn-link, .btn_link {
-    @apply bg-green1 py-1 px-2 mr-1 rounded-md text-lg font-bold
+    @apply bg-green1 py-1 px-2 mr-1 rounded-md text-lg font-bold cursor-pointer
   }
   .btn-send, .btn_send {
-    @apply bg-blue1 py-1 px-2 mr-1 rounded-md text-lg font-bold
+    @apply bg-blue1 py-1 px-2 mr-1 rounded-md text-lg font-bold cursor-pointer
   }
-  .btn-warn, .btn_warn {
-    @apply bg-orange1 py-1 px-2 mr-1 rounded-md text-lg font-bold
+  .btn-warn, .btn-warning {
+    @apply bg-orange1 py-1 px-2 mr-1 rounded-md text-lg font-bold cursor-pointer
   }
   .btn-danger, .btn_danger {
-    @apply bg-red1 py-1 px-2 mr-1 rounded-md text-lg font-bold 
+    @apply bg-red1 py-1 px-2 mr-1 rounded-md text-lg font-bold cursor-pointer
+  }
+  .btnSubmit {
+    @apply  mr-1 px-1 py-2 rounded-lg cursor-pointer bg-[#2040b0] hover:bg-[#2563eb] font-bold text-blue-100 border-2 border-blue-500 
   }
 
   .btn-primary {

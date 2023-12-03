@@ -6,7 +6,7 @@ div.flex.flex-wrap.bg-lime-light.border-bottom.p-2
 
     - if is_manager?
       = link_to icon('fas fa-edit','Edit Round'), edit_round_path(@round), title: 'Edit it', 
-      class: "#{to_tw("btn-warning mr-2")}"
+      class: "#{to_tw("btn-warn mr-2")}"
       = destroyTag(@round,
         prompt: icon("fas fa-trash","Delete Unfinished Round"))
 

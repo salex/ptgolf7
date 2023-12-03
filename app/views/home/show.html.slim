@@ -31,6 +31,22 @@ div.gap-4.m-1
   = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block py-0 "  )
   = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block py-0 px-10 "  )
   = destroyIcon('#')
+div.gap-4.m-2
+  p &nbsp;
+  span[class="btn-submit"]   Submit
+  span[class="btn-submit p-1"]   Submit 
+ 
+  span[class="p-1 py-3 btn-submit"]   Update Something 
+  span[class=btnSubmit]   Update Something 
+  span[class="btnSubmit py-2"]   Update tw
+  span[class="btn-warn hover:text-black"]   Update Something
+
+
+  mark one
+  mark two
+ 
+
+
 
 .grid.grid-cols-3.gap-4.m-1.mx-4
   div
@@ -59,6 +75,7 @@ div.gap-4.m-1
     p[class=greenBox]= text_field_tag "date",nil,data:{controller:'flatpickr'}, placeholder:"Enter a Date",class:" px-1 my-2"
 
   div.card-4.p-2
+    .w3-button.w3-btn I be w3
     - @game = Game.find 2917
     - toggle = @game.method == 'sides' ? "Places" : "Sides"
     span.mb-2 = button_to "Change Pay Method to #{toggle}",update_pays_games_scheduled_path(@game),method:'patch',params:{method:toggle},class:"bg-green-400 hover:bg-green-700 text-black font-bold p-2 mb-2 rounded"

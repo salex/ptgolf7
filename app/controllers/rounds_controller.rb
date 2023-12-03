@@ -12,6 +12,13 @@ class RoundsController < ApplicationController
   def edit
   end
 
+  def new
+    nil
+  end
+
+  def create
+    nil
+  end
 
   # PATCH/PUT /root/1
   # PATCH/PUT /root/1.json

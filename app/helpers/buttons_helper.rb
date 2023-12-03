@@ -56,5 +56,9 @@ module ButtonsHelper
     btn_danger
   end
 
+  def btnSubmit
+    "mr-1 px-1 py-2 rounded-lg cursor-pointer bg-[#2040b0] hover:bg-[#2563eb] font-bold text-blue-100 border-2 border-blue-500 "
+  end
+
 end
 

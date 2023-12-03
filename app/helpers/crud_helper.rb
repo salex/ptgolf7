@@ -59,63 +59,6 @@ module CrudHelper
   end
 
 
-
-
-  # def destroyConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
-  #   # note button_to add 4px padding, don't use btn class, set py to px
-  #   klass= to_tw('btn-danger mr-2 inline-block py-px') if klass.blank?
-  #   confirm_msg = "Are You Sure?" if confirm_msg.blank?
-  #   meth = "delete" if meth.blank?
-  #   url_type = model_path.class
-  #   if prompt.blank?
-  #     if url_type == String
-  #       prompt = "Delete"
-  #     else
-  #       prompt = "Delete #{model_path.class.name}"
-  #     end
-  #   end
-  #   node = content_tag(:div, class: klass,
-  #     data:{
-  #       controller:"actionConfirm", 
-  #       action:"click->actionConfirm#confirm",
-  #       actionConfirm_cmsg_value:confirm_msg
-  #     }) do
-  #       content_tag(:div) do
-  #         concat(tag.span(prompt))
-  #         concat(button_to( '',model_path, method: "#{meth}",class:" hidden",data:{actionConfirm_target:"submit"}))
-  #       end
-  #     end
-  #   node 
-  # end
-
-  # def actionConfirmTag(model_path,meth:"",confirm_msg:"",klass:"",prompt:"")
-  #   # note button_to add 4px padding, don't use btn class, set py to px
-  #   klass= to_tw('btn-warning mr-2 inline-block py-px') if klass.blank?
-  #   confirm_msg = "Are You Sure?" if confirm_msg.blank?
-  #   meth = "patch" if meth.blank?
-  #   url_type = model_path.class
-  #   if prompt.blank?
-  #     if url_type == String
-  #       prompt = "Confirm Action"
-  #     else
-  #       prompt = "Confirm #{model_path.class.name}"
-  #     end
-  #   end
-  #   node = content_tag(:div, class: klass,
-  #     data:{
-  #       controller:"actionConfirm", 
-  #       action:"click->actionConfirm#confirm",
-  #       actionConfirm_cmsg_value:confirm_msg
-  #     }) do
-  #       concat(tag.span(prompt))
-  #       concat(button_to( '',model_path, method: "#{meth}",class:"hidden",data:{actionConfirm_target:"submit"}))
-  #     end
-  #   node 
-  # end
-
-
-
-
   # # used in home/show demo
   def greenBox
     "box-border box-content m-3 p-4 bg-green-300 border-green-100 border-2 text-black"

@@ -1,10 +1,10 @@
 section.dashboard.border-bottom.pb-1.bg-lime-light
-  div.md:flex
+  div.md:flex.p-1
     div.ml-2
       .text-lg.strong Edit User
     div.flex-grow.text-center
-      = link_to icon('fas fa-list', 'Cancel - List Users'), users_path, class: 'btn btn-warning mr-2 '
-      = link_to icon('fas fa-arrow-left', 'Cancel - Show User'),  user_path(@user), class: 'btn btn-warning mr-2'
+      = link_to icon('fas fa-list', 'Cancel - List Users'), users_path, class: 'btn-send '
+      = link_to icon('fas fa-arrow-left', 'Cancel - Show User'),  user_path(@user), class: 'btn-warn'
 
     div.mr-4.hidden.md:flex.float-right
       = link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-secondary'
