@@ -8,7 +8,7 @@
 
   = f.fields_for :inquiry, OpenStruct.new(@inquiry.inquiry) do |ff|
     .form-fields[data-controller="real"]
-      button.submit.actions.mx-4 = f.submit "Submit"
+      button.btnSubmit.actions.mx-4 = f.submit "Submit"
       .field
         = ff.label :name
         = ff.text_field :name

@@ -316,7 +316,7 @@ dl.indent-dd.strong-dt dt {
 }
 
 .btn-submit {
-/*    padding: .5rem;*/
+    padding: .5rem;
     font-weight: 700;
     --tw-text-opacity: 1;
     color:rgba(243, 245, 247, var(--tw-text-opacity))

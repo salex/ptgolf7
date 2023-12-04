@@ -19,7 +19,7 @@ section.flex.flex-wrap.bg-lime-light.border-bottom.p-2
           - @round.errors.full_messages.each do |message|
     .form-fields
       .field
-        label.m-1 = f.submit(  data: { action: "click->doubleClick#disable" },class:"btn-2 w3-blue w-full text-center")
+        label.m-1 = f.submit(  data: { action: "click->doubleClick#disable" },class:"btnSubmit")
 
       = formatField :date,f.text_field( :date,data:{controller:'flatpickr'})
       = formatField :team,f.text_field(:team)

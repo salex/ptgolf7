@@ -12,7 +12,7 @@ section.dashboard
 
       div.inline-block[data-controller=" playerSearch pairingSearch" data-autocomplete-url="/players/player_search" data-autocomplete-min-length="1"]
 
-        button.btn.ml-1.w3-blue-gray.mr-2.[data-action="click->playerSearch#openModal"] = icon('fas fa-user', 'Player Search')
+        button.btn-gray.mr-2.[data-action="click->playerSearch#openModal"] = icon('fas fa-user', 'Player Search')
         .w3-modal[data-playerSearch-target="modal"]
           .w3-modal-content.w3-card-4
             div.bg-lime
@@ -40,7 +40,7 @@ section.dashboard
             footer.lite-lime.mt-4
               p.mb-3 Click on the Players name in the list and it will display the players information or click the &times; charcter to cancel the search
 
-        button.btn.w3-blue-gray[data-action="click->pairingSearch#openModal"]  
+        button.btn-gray[data-action="click->pairingSearch#openModal"]  
           = icon('fas fa-user-plus') 
           = icon('fas fa-user','Pairing Search')
         .w3-modal[data-pairingSearch-target="modal"]
@@ -55,7 +55,7 @@ section.dashboard
             div
               = form_with url:pairings_search_players_path do |f|
                 div
-                  button.btn.w3-blue-gray =  f.submit "Pairing Search"
+                  button.btn-gray =  f.submit "Pairing Search"
                 .grid.grid-cols-2
 
                   div
@@ -72,7 +72,7 @@ section.dashboard
 
       - if @players.present? 
         .inline-block.z-2.absolute[data-controller="toggle"]
-          button[class="btn btn-success"  data-action="click->toggle#toggleMenu"] 
+          button[class="btn-gray"  data-action="click->toggle#toggleMenu"] 
             | Filter Status
             i[class="fas fa-angle-down px-1"]
 
