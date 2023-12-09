@@ -21,6 +21,10 @@ class HomeController < ApplicationController
       type: "application/pdf",
       disposition: "inline"
   end
+  
+  def places_sheet
+    render template: 'home/places_sheet'
+  end
 
   def payouts
     render template: 'home/payouts/payouts'

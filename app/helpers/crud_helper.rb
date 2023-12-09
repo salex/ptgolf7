@@ -27,8 +27,8 @@ module CrudHelper
     klass= "btn-danger py-0 inline-block mr-1" if klass.blank?
     confirm_msg = "Are You Sure?" if confirm_msg.blank?
     meth = "delete" if meth.blank?
-    url_type = model_path.class
     if prompt.blank?
+      url_type = model_path.class
       if url_type == String
         prompt = "Delete"
       else
@@ -49,13 +49,13 @@ module CrudHelper
     prompt = icon.blank? ? icon("fas fa-trash") : icon
     return button_to(prompt, model_path,
       method: 'delete',
-      form_class: "btn-danger py-0.5 px-1.5 text-sm inline-block mr-1 ",
+      form_class: "btn-danger text-sm inline-block mr-1 ",
       form: { data: { turbo_confirm: "Are You Sure?" }}
       )
   end
 
   def linkIcon(icon,model_path,btn_class:nil)
-    return link_to(icon,model_path,class:(btn_class << " text-sm "))
+    return link_to(icon,model_path,class:(btn_class))
   end
 
 

@@ -1,0 +1,241 @@
+span.float-left.noprint 
+  = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn btn-icon btn-info', onclick: "window.print();"
+
+div.text-center.font-bold.text-2xl 
+  span Sides/Places Score Sheet
+
+
+div.font-bold.m-1
+
+  .grid.gap-2.grid-cols-12
+    .col-span-3
+      div.text-xl Player Signin
+      .grid.gap-2.grid-cols-8.px-2
+        div.col-span-6.text-lg #Player
+        div.col-span-1.text-lg Bi
+        div.col-span-1.text-lg P3
+        - 1.upto(20) do |i|
+          div.col-span-6.text-lg.border-b-2.border-black = "#{i} "
+          div.col-span-1 = check_box_tag nil
+          div.col-span-1 = check_box_tag nil
+
+    .col-span-6.text-lg
+      h1.font-bold.text-xl Teams/Players
+
+      / .grid.gap-2.grid-cols-2
+      /   div.col-span-1
+      .grid.gap-2.grid-cols-10
+        div.col-span-1.text-lg #
+        div.col-span-1.text-lg Pd
+        div.col-span-2.text-lg Front
+        div.col-span-2.text-lg Back
+        div.col-span-2.text-lg Total
+        div.col-span-2.text-lg Won
+
+        - 1.upto(12) do |i|
+          div.col-span-1.text-lg 
+            div.py-1 = i
+          div.col-span-1.text-lg = check_box_tag nil
+          div.col-span-2.text-lg.border-2.border-slate-300
+          div.col-span-2.text-lg.border-2.border-slate-300
+          div.col-span-2.text-lg.border-2.border-slate-300
+          div.col-span-2.text-lg.border-2.border-slate-300
+
+      div.mt-3.text-base.italic
+        span #Players ________&nbsp;
+        span Pot ________&nbsp;
+        span Side ________
+
+      br
+      br
+      hr.border-2
+      h1.font-bold.text-xlg Par 3s
+      .grid.gap-2.grid-cols-2
+        div.col-span-1
+          .grid.gap-2.grid-cols-6.px-2
+            div.col-span-1.text-lg #
+            div.col-span-1.text-lg Pd
+            div.col-span-4.text-lg Who
+            - 1.upto(2) do |i|
+              div.col-span-1.text-lg = i
+              div.col-span-1.text-lg = check_box_tag nil
+              div.col-span-4.text-lg.border-b-2.border-black
+        div.col-span-1
+          .grid.gap-2.grid-cols-6.px-2
+            div.col-span-1.text-lg #
+            div.col-span-1.text-lg Pd
+            div.col-span-4.text-lg Who
+            - 3.upto(4) do |i|
+              div.col-span-1.text-lg = i
+              div.col-span-1.text-lg = check_box_tag nil
+              div.col-span-4.text-lg.border-b-2.border-black
+      div.mt-3.text-base.italic
+        span #Players ________&nbsp;
+        span Pot ________&nbsp;
+        span Each ________
+
+    .col-span-3
+      h1.font-bold.text-xl Birdies
+
+      .grid.gap-2.grid-cols-6.px-2
+        div.col-span-1.text-lg #
+        div.col-span-1.text-lg Pd
+        div.col-span-4.text-lg Who
+        - 1.upto(18) do |i|
+          div.col-span-1.text-lg = i
+          div.col-span-1.text-lg = check_box_tag nil
+          div.col-span-4.text-lg.border-b-2.border-black
+      div.mt-3.text-base.italic
+        div #Players________
+        div Pot ________
+        div Good ________
+        div Each ________
+
+      / div.col-span-1
+      /   .grid.gap-2.grid-cols-6.px-2
+      /     div.col-span-1.text-lg #
+      /     div.col-span-1.text-lg Pd
+      /     div.col-span-4.text-lg Who
+      /     - 7.upto(12) do |i|
+      /       div.col-span-1.text-lg = i
+      /       div.col-span-1.text-lg = check_box_tag nil
+      /       div.col-span-4.text-lg.border-b-2.border-black
+      / div.col-span-1
+      /   .grid.gap-2.grid-cols-6.px-2
+      /     div.col-span-1.text-lg #
+      /     div.col-span-1.text-lg Pd
+      /     div.col-span-4.text-lg Who
+      /     - 13.upto(18) do |i|
+      /       div.col-span-1.text-lg = i
+      /       div.col-span-1.text-lg = check_box_tag nil
+      /       div.col-span-4.text-lg.border-b-2.border-black
+
+    / .col-span-9.text-lg
+    /   h1.font-bold.text-lg Teams/Players
+
+    /   .grid.gap-2.grid-cols-2
+    /     div.col-span-1
+    /       .grid.gap-2.grid-cols-11.px-2
+    /         div.col-span-1.text-lg #
+    /         div.col-span-1.text-lg P
+    /         div.col-span-3.text-lg Front
+    /         div.col-span-3.text-lg Back
+    /         div.col-span-3.text-lg Total
+    /         - 1.upto(5) do |i|
+    /           div.col-span-1.text-lg = i
+    /           div.col-span-1.text-lg = check_box_tag nil
+    /           div.col-span-3.text-lg.border-b-2.border-black
+    /           div.col-span-3.text-lg.border-b-2.border-black
+    /           div.col-span-3.text-lg.border-b-2.border-black
+
+
+
+    /     div.col-span-1
+    /       .grid.gap-2.grid-cols-11.px-2
+    /         div.col-span-1.text-lg #
+    /         div.col-span-1.text-lg P
+    /         div.col-span-3.text-lg Front
+    /         div.col-span-3.text-lg Back
+    /         div.col-span-3.text-lg Total
+    /         - 6.upto(10) do |i|
+    /           div.col-span-1.text-lg = i
+    /           div.col-span-1.text-lg = check_box_tag nil
+    /           div.col-span-3.text-lg.border-b-2.border-black
+    /           div.col-span-3.text-lg.border-b-2.border-black
+    /           div.col-span-3.text-lg.border-b-2.border-black
+    /   div.mt-3
+    /     span #Players ________&nbsp;
+    /     span Pot ________&nbsp;
+    /     span Side ________&nbsp;
+    /   br
+    /   hr.border-2
+    /   h1.font-bold.text-lg Birdies
+
+
+    /   .grid.gap-2.grid-cols-3
+    /     div.col-span-1
+    /       .grid.gap-2.grid-cols-6.px-2
+    /         div.col-span-1.text-lg #
+    /         div.col-span-1.text-lg Pd
+    /         div.col-span-4.text-lg Who
+    /         - 1.upto(6) do |i|
+    /           div.col-span-1.text-lg = i
+    /           div.col-span-1.text-lg = check_box_tag nil
+    /           div.col-span-4.text-lg.border-b-2.border-black
+    /     div.col-span-1
+    /       .grid.gap-2.grid-cols-6.px-2
+    /         div.col-span-1.text-lg #
+    /         div.col-span-1.text-lg Pd
+    /         div.col-span-4.text-lg Who
+    /         - 7.upto(12) do |i|
+    /           div.col-span-1.text-lg = i
+    /           div.col-span-1.text-lg = check_box_tag nil
+    /           div.col-span-4.text-lg.border-b-2.border-black
+    /     div.col-span-1
+    /       .grid.gap-2.grid-cols-6.px-2
+    /         div.col-span-1.text-lg #
+    /         div.col-span-1.text-lg Pd
+    /         div.col-span-4.text-lg Who
+    /         - 13.upto(18) do |i|
+    /           div.col-span-1.text-lg = i
+    /           div.col-span-1.text-lg = check_box_tag nil
+    /           div.col-span-4.text-lg.border-b-2.border-black
+    /   div.mt-3
+    /     span #Players ________&nbsp;
+    /     span Pot ________&nbsp;
+    /     span Good ________&nbsp;
+    /     span Each ________&nbsp;
+
+    /   br
+
+
+
+
+
+
+
+
+
+
+
+    /   hr.border-2
+    /   h1.font-bold.text-lg Par 3s
+    /   .grid.gap-2.grid-cols-2
+    /     div.col-span-1
+    /       .grid.gap-2.grid-cols-6.px-2
+    /         div.col-span-1.text-lg #
+    /         div.col-span-1.text-lg Pd
+    /         div.col-span-4.text-lg Who
+    /         - 1.upto(2) do |i|
+    /           div.col-span-1.text-lg = i
+    /           div.col-span-1.text-lg = check_box_tag nil
+    /           div.col-span-4.text-lg.border-b-2.border-black
+    /     div.col-span-1
+    /       .grid.gap-2.grid-cols-6.px-2
+    /         div.col-span-1.text-lg #
+    /         div.col-span-1.text-lg Pd
+    /         div.col-span-4.text-lg Who
+    /         - 3.upto(4) do |i|
+    /           div.col-span-1.text-lg = i
+    /           div.col-span-1.text-lg = check_box_tag nil
+    /           div.col-span-4.text-lg.border-b-2.border-black
+    /   div.mt-3
+    /     span #Players ________&nbsp;
+    /     span Pot ________&nbsp;
+    /     span Each ________&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+ 

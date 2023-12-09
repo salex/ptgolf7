@@ -1,4 +1,3 @@
-
 div.border-gold.bg-malt.border-4
   h3.p-2.text-white.text-lg
     strong Demo#show
@@ -6,6 +5,47 @@ div.border-gold.bg-malt.border-4
   span.inline-block = button_to('Reload Page',home_path,method: :get, form_class:"bg-green-500 hover:bg-green-700 text-white font-bold mx-2 py-1 px-2 rounded inline-block")
 
 div.gap-4.m-2
+  div.font-bold button_to adds vertical padding of 5px because it contains a button
+  - klass = " bg-red-500 hover:bg-red-400 hover:text-red-900 hover:opacity-90 border-2 border-red-700 py-1 px-2 mr-1 rounded-md text-lg font-bold cursor -pointer  "
+  button.bg-red-400.mr-1 123456789
+  span.bg-red-400.mr-1 123456789
+
+  button[class="#{klass}"] test button
+  span[class="#{klass}"] test button
+  = button_to("test button_to","#",method: :delete,
+    form_class:"#{klass} inline-block "  )
+  - cklass = klass + ' inline-block py-0 '
+  = button_to("test button_to","#",method: :delete,
+    form_class:"#{cklass}")
+  = button_to("btn-danger button_to","#",method: :delete,
+    form_class:"btn-danger inline-block py-0 "  )
+
+
+
+  / 
+  / <div class="gap-4 m-2">
+  /   <button class="bg-red-400">123456789</button> 
+  /   <span class="bg-red-400">123456789</span> 
+  /   <button class="#{klass}">test button</button>
+  /   <span class="#{klass}">test button</span>
+  /   <%= button_to("test button_to","#",method: :delete,form_class:"#{klass} inline-block "  )%>
+  / </div>
+
+
+  / = button_to("test button_to confirm","#",method: :delete,
+  /   form_class:"#{klass} inline-block ",
+  /   form: { data: { turbo_confirm: "confirm_msg"}}  )
+  / = destroyTag("#",prompt:"test destroyTag ")
+  / = destroyTag("#",prompt:"test destroyTag klass",klass:"#{klass} inline-block ")
+  / = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block px-10 "  )
+
+
+
+
+  
+div.gap-4.m-2
+  = button_to("test button_to","#",method: :delete,
+    form_class:"btn-danger inline-block "  )
   mark[class="btn-link"] GreenComponent
   mark[class="btn-send"] BlueComponent
   mark[class="btn-warn"] OrangeComponent
@@ -28,11 +68,12 @@ div.gap-4.m-1
   mark[class="btn-danger px-10"] = icon("fas fa-trash","by1")
   mark[class="btn-danger py-0 px-10"] = icon("fas fa-trash","by0")
   = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block py-1 px-10 "  )
-  = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block px-10 py-0"  )
+  = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block px-10 "  )
   = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block px-10 py-0"  )
   = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block py-0 "  )
   = button_to(icon("fas fa-trash"),"#",method: :delete,form: { data: { turbo_confirm: "confirm_msg"}},form_class:"btn-danger inline-block py-0 px-10 "  )
   = destroyIcon('#')
+  = linkIcon(icon("fas fa-trash"),"#",btn_class:"btn-warn text-sm")
 div.gap-4.m-2
   p &nbsp;
   span[class="btn-submit"]   Submit

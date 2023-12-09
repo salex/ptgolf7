@@ -5,8 +5,10 @@ class Pdf::IndvScoreCard < Prawn::Document
     super(page_layout: :landscape, top_margin:0, left_margin:10, right_margin:6,bottom_margin:0)
     @group = game.group
     @game = game
-    @teams = @game.current_players_name
-
+    @teams = set_places_teams
+    @game.set_state
+    @payout = "Places Payout (First..Last): #{Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues]).winners.reverse.to_s}"
+    @teams = set_places_teams
     make_pdf
   end
 
@@ -14,15 +16,30 @@ class Pdf::IndvScoreCard < Prawn::Document
     font_size(14)
     stroke_color "aaaaaa"
     last_team = @teams.last
-    define_grid(:columns => 1, :rows => 1, :gutter => 0)
+    define_grid(:columns => 1, :rows => 2, :gutter => 0)
     i = 0
-    # @teams.each do |p|
-    #   team_card(1,p,i)
-    #   i += 1
-    #   start_new_page if (i % 10).zero? && team != last_team
-    team_card(1,@teams,i)
-    
+    @teams.each_with_index do |val,team|
+      team_card(team,val,i)
+      i += 1
+      start_new_page if (i % 2).zero? && team != last_team
+    end
+  end
 
+  def set_places_teams
+    teams = []
+    players = @game.current_players_name.shuffle
+    opt = GameObjects::ScheduledGame::TeamOptions.new(players.size).options
+    if opt['mixed34'].present?
+      opt['mixed34']['threesome'].times{|i| teams << players.shift(3)}
+      opt['mixed34']['foursome'].times{|i| teams << players.shift(4)}
+    elsif opt['foursomes'].present?
+      opt['foursomes']['foursome'].times{|i| teams << players.shift(4)}
+    elsif opt['threesomes'].present?
+      opt['threesomes']['threesome'].times{|i| teams << players.shift(3)}
+    else
+      teams << players
+    end
+    teams
   end
 
   def blank_row
@@ -70,33 +87,24 @@ class Pdf::IndvScoreCard < Prawn::Document
   def team_card(team,val,i)
     rows = []
     rows << ['Name','TQ SQ',1,2,3,4,5,6,7,8,9,'in','I',10,11,12,13,14,15,16,17,18,'out','tot','+-']
-    # pcount = val.size
+    pcount = val.size
     val.each do |p|
       rows << player_row(p)
     end
-    # (4 - pcount).times do
-    #   rows << blank_row
-    # end
+    rows << blank_row
     rows << blank_row
     rows << par_row
 
-    # rows << blank_row
-    # rows << blank_row
-    # horizontal_line 0,792, at: 306
-    j = i % 3
+    j = i % 2
     grid(j,0).bounding_box do
       transparent(0.5) { dash(1); stroke_bounds; undash }
       # stroke_bounds
       move_down 40
       font_size 12
-      text "Tee Time #{(i + 1).to_s}"
-      # move_down 4
+      text "Tee Time #{(i + 1).to_s} - " + @payout
       draw_table(rows)
-      # font_size(13)
       move_down 2
       font_size 12
-
-      # text @teams[team]
     end
   end
 
@@ -120,6 +128,7 @@ class Pdf::IndvScoreCard < Prawn::Document
   end
 
   def indv_teams
+    # not sure this is used
     group = @game.group
     indv = @game.current_players_name
     opt = Games::Teams::Form.new(indv.count).get_options
@@ -128,7 +137,7 @@ class Pdf::IndvScoreCard < Prawn::Document
       opt["threesomes"]["threesome"].times do |c|
         teams[c] = indv.pop(3)
       end
-      puts teams
+      # puts teams
     elsif opt["foursomes"].present?
       opt["foursomes"]["foursome"].times do |c|
         teams[c] = indv.pop(4)
@@ -152,7 +161,7 @@ class Pdf::IndvScoreCard < Prawn::Document
         teams[c+1] = indv.pop(3)
       end
     else
-      puts opt
+      # puts opt
     end
     teams
   end
