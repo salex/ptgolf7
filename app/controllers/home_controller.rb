@@ -23,7 +23,11 @@ class HomeController < ApplicationController
   end
   
   def places_sheet
-    render template: 'home/places_sheet'
+    if params[:col].present?
+      render template: 'home/places_sheet'
+    else
+      render template: 'home/places_sheet1'
+    end
   end
 
   def payouts

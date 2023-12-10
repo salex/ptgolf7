@@ -1,0 +1,89 @@
+div[style="width:8.25in;"]
+  span.float-left.noprint 
+    = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn btn-icon btn-info', onclick: "window.print();"
+
+  div.text-center.font-bold.text-2xl 
+    span Sides/Places Score Sheet
+
+
+  div.font-bold.m-1.text-base
+
+    .grid.gap-4.grid-cols-12
+      .col-span-3
+        div.text-xl Player Signin
+        .grid.gap-2.grid-cols-10.px-2
+          div.col-span-8 #Player
+          div.col-span-1.text-sm Bi
+          div.col-span-1.text-sm P3
+          - 1.upto(24) do |i|
+            div.col-span-8.border-b-2.border-slate-400 = "#{i} "
+            div.col-span-1 = check_box_tag(nil)
+            div.col-span-1 = check_box_tag(nil)
+
+      /*
+        Team Players grid column
+      .col-span-9
+        div.font-bold
+          span.pr-2.text-xl Teams/Players
+          span.float-right
+            span.pr-2.italic #Players ________&nbsp;
+            span.pr-2.italic Pot ________&nbsp;
+            span.pr-2.italic Side ________
+          
+        .grid.gap-2.grid-cols-12
+          div.col-span-3.text-xs # {Who}
+          div.col-span-2 Front
+          div.col-span-2 Back
+          div.col-span-2 Total
+          div.col-span-2.text-sm Won
+          div.col-span-1.text-sm Paid
+
+          - 1.upto(12) do |i|
+            div.col-span-3.border-b-2.border-slate-400
+              span.pr-2 = i
+            div.col-span-2.border.border-slate-400
+            div.col-span-2.border.border-slate-400
+            div.col-span-2.border.border-slate-400
+            div.col-span-2.border.border-slate-400
+            div.col-span-1 = check_box_tag(nil)
+
+        /*
+          Par 3 grid column
+        hr.border-2.mt-8.mb-2.border-slate-500
+        div.font-bold
+          span.pr-2.text-xl Par3
+          span.float-right
+            span.pr-2.italic #Players ________&nbsp;
+            span.pr-2.italic Pot ________&nbsp;
+            span.pr-2.italic Each ________
+        .grid.gap-2.grid-cols-12
+          - 1.upto(4) do |i|
+            div.col-span-3.italic.text-xs
+              span = "Par3 {who,paid}"
+          - 1.upto(4) do |i|
+            div.col-span-3.border-b-2.border-slate-400
+              span = i
+              span.float-right = check_box_tag(nil)
+
+        /*
+          Birdies grid column
+        hr.border-2.mt-8.mb-2.border-slate-500
+        div.font-bold
+          span.pr-2.text-xl Birdies
+          span.float-right
+            span.pr-2.italic #Players ________
+            span.pr-2.italic Pot ________
+            span.pr-2.italic Good ________
+            span.pr-2.italic Each ________
+
+        .grid.gap-4.grid-cols-3
+          - 1.upto(3) do |i|
+            div.col-span-1.italic.text-xs
+              span = "Hole {who,paid}"
+          - 0.upto(5) do |i|
+            - 1.upto(3) do |c|
+              div.col-span-1.border-b-2.border-slate-400
+                span = (c*6 - 5) + i
+                span.float-right = check_box_tag(nil)
+            
+   
