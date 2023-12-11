@@ -1,7 +1,7 @@
 - teams = @game.event_teams
-.button-bar.noprint 
-  = link_to icon('fas fa-arrow-left', 'Game'), @game.namespace_url, class: 'btn btn-warning '
-  = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn btn-icon btn-info', onclick: "window.print();"
+.button-bar.noprint.m-1 
+  = link_to icon('fas fa-arrow-left', 'Game'), @game.namespace_url, class: ' btn-warn m-1'
+  = link_to icon('fas fa-print',"Print"), '#', title: 'Print it', class: 'btn-send m-1', onclick: "window.print();"
 
 div.flex.gap-4.m-2
   div
@@ -14,15 +14,22 @@ div.flex.gap-4.m-2
     - if  @game.stats[:makeup] == 'individuals' || @game.stats[:seed_method] == 'blind_draw'
 
       table.small-table[style="font-size:120%;"]
+        caption.strong Game Player List/ScoreSheet
         tr
           td.strong.name Name
           td.strong Quota
           td.strong Side
           td.strong Team
-          td.strong Front
-          td.strong Back
-          td.strong Total
           td.w-32.strong Birdies
+          td.w-14.italic Front
+          td.w-14.italic Back
+          td.w-14.strong Total
+          td.w-14.strong Place
+          td.w-14.strong Won
+          td.strong Paid
+
+          
+
         - @game.current_players_name.each do |m|
           tr 
             td.name = m.name[0..22]
@@ -33,6 +40,9 @@ div.flex.gap-4.m-2
             td
             td
             td
+            td
+            td
+            td = check_box_tag(nil)
     - else
       table.small-table
         caption = @game.stats[:makeup]
@@ -64,9 +74,9 @@ div.flex.gap-4.m-2
 
           tr
             td colspan="3" &nbsp;
-  div[style="font-size:14px;"]
-    - @game.current_players_name.each do |p|
-      .box = p.name
+  / div[style="font-size:14px;"]
+  /   - @game.current_players_name.each do |p|
+  /     .box = p.name
 
   / div[style="font-size:14px;"]
   /   div places
