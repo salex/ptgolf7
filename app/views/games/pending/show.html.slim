@@ -17,9 +17,14 @@
     h4 = callout_alert("A Participant was either added or deleted after the teams were formed. You must either ReForm Teams or Adjust Teams before scoring.")
 -if @game.method == 'places' && @game.state[:teams].size >  2 
   div.mx-2.flex.gap-4
-    span.font-bold Teams/Seed: 
+    span.font-bold Teams/Seed:
+    - if Current.group.present? && Current.group.id == 4
+      - perc = 40
+    - else 
+      - perc = nil
+    
     span =  "#{@game.state[:teams].count}/#{@game.stats[:seed_method]}"
-    - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues]).winners.reverse
+    - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],perc:perc).winners.reverse
     span.strong Suggested Places Payout (First..Last):
     span = places
 

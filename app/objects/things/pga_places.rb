@@ -5,9 +5,10 @@ module Things
 
     # pga current payouts
     # https://www.easyofficepools.com/pga-tour-payout-percentages-and-projected-earnings/
-    def initialize(numb_players,dues,dist=nil,perc=nil)
+    def initialize(numb_players,dues,dist:nil,perc:nil)
       dues = dues.to_f
       @pot = numb_players * dues 
+      # puts "PL #{numb_players} DIST #{dist} PERC #{perc} DUES #{dues}"
       if perc.present?
         places_paid = (perc.to_f/100 * numb_players).to_i 
       else
