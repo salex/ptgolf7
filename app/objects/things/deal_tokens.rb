@@ -20,7 +20,11 @@ module Things
         dist = 'mid'
         min_payout = 0.0
       end
-      @percents = self.deal_tokens(places_paid,min_payout,dist)
+      if dist == 'ten'
+        @percents = deal_10(places_paid)
+      else
+        @percents = self.deal_tokens(places_paid,min_payout,dist)
+      end
       @winners = Array.new(places_paid,min_payout)
       inc = pot - winners.sum 
       winners.each_with_index do |w,i|
@@ -49,5 +53,19 @@ module Things
       return percents
     end
   end
+
+  def self.deal_10(places_paid,pot)
+    percents  = Array.new(places_paid,10)
+    sum = percents.sum
+    rem = pot - sum 
+    adders = (0..(places_paid-1)).to_a
+    tms  = rem/adders.sum
+    puts "s #{sum} r #{rem} t #{tms} a #{adders}"
+    tms.times do |i|
+      percents[i] += adders[i] 
+    end
+    percents
+  end
+
 end
 

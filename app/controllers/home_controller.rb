@@ -63,6 +63,12 @@ class HomeController < ApplicationController
       'content',
       partial: 'home/payouts/rate')
   end
+  def scoring
+    render turbo_stream: turbo_stream.replace(
+      'content',
+      partial: 'home/payouts/scoring')
+  end
+
 
 
   def redirect

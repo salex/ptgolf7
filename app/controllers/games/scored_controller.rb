@@ -14,7 +14,7 @@ class Games::ScoredController < GamesController
       end
     when 'places'
       if valid
-        @scoring = GameObjects::ScorePlaces.new(@game)
+        @scoring = GameObjects::PgaScorePlaces.new(@game)
         render template:'games/scored/show_places'
       else
         render template:'games/invalid'

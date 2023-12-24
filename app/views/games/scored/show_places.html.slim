@@ -1,5 +1,6 @@
 - scoring = @scoring
 - game_stats = scoring.team_scores
+- puts "STATS #{game_stats}"
 - teams = scoring.teams
 - win = scoring.winners
 
@@ -63,7 +64,7 @@
 
           - if !team_stats[:team_quality].zero?
             th colspan="8" 
-              = "Team won $#{to_quarters(team_stats[:team_quality],true)}, Each Team Mate $#{to_quarters(team_stats[:mate_quality],true)} "
+              = "Place won $#{to_quarters(team_stats[:team_quality],true)}, Each Team Mate $#{to_quarters(team_stats[:mate_quality],true)} "
 
 hr.underline
 .w3-row-padding 
@@ -76,17 +77,10 @@ hr.underline
   -else
     .annotate Team Winners (Places)
     .flex.flex-wrap.gap-4
-      - scoring.winners.each do |k,v|
-        div.border.p-1
-          strong = k.ordinalize
-          span = " Teams #{v[:team]} &#177; #{v[:pm]} $#{to_quarters(v[:quality],true)}".html_safe
-
-    / table.small-table.w100
-    /   tr
-    /     - scoring.winners.each do |k,v|
-    /       td
-    /         strong = k.ordinalize
-    /         span = " Teams #{v[:team]} &#177; #{v[:pm]} $#{to_quarters(v[:quality],true)}".html_safe
+      - scoring.place_winners.each do |k,v|
+        div.border-2.p-1
+          strong = (k+1).ordinalize
+          span = v.html_safe
 
 
 .w3-row-padding 

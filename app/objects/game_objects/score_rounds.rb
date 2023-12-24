@@ -37,7 +37,9 @@ class GameObjects::ScoreRounds
     if @method == 'sides'
       GameObjects::ScoreSides.new(game)
     else
-      GameObjects::ScorePlaces.new(game)
+      # GameObjects::ScorePlaces.new(game)
+      GameObjects::PgaScorePlaces.new(game)
+
     end
   end
 end

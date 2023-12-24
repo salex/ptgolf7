@@ -1,4 +1,6 @@
 class GameObjects::ScorePlaces
+  include GamesHelper
+
   attr_accessor :scoring, :game, :rounds, :teams, :scored, :team_scores, :winners, :percents
   
   def initialize(game)
@@ -26,6 +28,21 @@ class GameObjects::ScorePlaces
 
   def is_winner?(team)
     team_scores[team].present? && !team_scores[team][:team_quality].zero?
+  end
+
+  def place_winners
+    # team_pm = {}
+    pot = @game.state[:pot]
+
+    place_winners = {}
+    place = 0
+    winners.each do |pm,tms|
+      pays = to_quarters(tms[:quality],true)
+      str = " Team #{tms[:team]}  &#177; #{tms[:pm]} Won: $#{pays}"
+      place_winners[place] = str
+      place+=1
+    end
+    place_winners
   end
 
 

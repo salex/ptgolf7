@@ -23,6 +23,8 @@ module Things
         percents = pga_perc[2..(places_paid + 1)]
       elsif dist == 'high'
         percents = pga_perc[0..(places_paid - 1)]
+      elsif dist == 'even'
+        percents = pga_perc[3..(places_paid + 2)]
       else #mid
         percents = pga_perc[1..(places_paid + 0)]
       end

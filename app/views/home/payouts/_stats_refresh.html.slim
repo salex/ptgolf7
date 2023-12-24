@@ -28,6 +28,8 @@
               - places = Things::PgaPlaces.new(p,dues,'mid',perc).winners.reverse
             - elsif meth == 'pgal'
               - places = Things::PgaPlaces.new(p,dues,'low',perc).winners.reverse
+            - elsif meth == 'pgae'
+              - places = Things::PgaPlaces.new(p,dues,'even',perc).winners.reverse
             - elsif meth == 'even'
               - places = Things::EvenPlaces.new(p,dues).winners.reverse
             - elsif meth == 'b6040'

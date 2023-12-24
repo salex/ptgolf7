@@ -5,6 +5,30 @@ module Things
       return "Hello World"
     end
 
+    def self.deal_10(places_paid,pot)
+      payouts  = Array.new(places_paid,10)
+      sum = payouts.sum
+      rem = pot - sum 
+      adders = (0..(places_paid-1)).to_a
+      tms  = rem/places_paid -1
+      puts "p #{pot} s #{sum} r #{rem} t #{tms} a #{adders.sum} ts #{rem/adders.sum}"
+      (rem/adders.sum).times do 
+        adders.each do |i|
+          payouts[i] += adders[i] 
+        end
+      end
+      # (pot - payouts.sum).times do |i|
+      #   # puts "i #{i}"
+      #   if i >=  places_paid
+      #     i -= places_paid # set back to 0
+      #     # puts "j #{i}"
+      #   end
+      #   payouts[i] += 1 
+      # end
+      payouts
+    end
+
+
     def self.get_place_percents(places_paid,rate=nil)
       if rate.present?
         perc = [1.0,rate]

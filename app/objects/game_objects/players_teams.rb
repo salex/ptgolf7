@@ -1,12 +1,12 @@
 class GameObjects::PlayersTeams
-  attr_accessor :game, :rounds, :teams, :scored
+  attr_accessor :game, :rounds, :teams, :scored, :is_scored
 
   def initialize(game)
     @game = game
     game.set_state if game.state.blank?
     set_rounds
     set_teams
-    @scored = rounds.size == rounds.map(&:type).count('ScoredRound')
+    @scored = @is_scored = rounds.size == rounds.map(&:type).count('ScoredRound')
   end
 
   # these methods should not be call unless scored

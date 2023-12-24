@@ -176,6 +176,7 @@ Rails.application.routes.draw do
   get 'payouts/about/deals', to: 'home#deals'
   get 'payouts/about/pga', to: 'home#pga'
   get 'payouts/about/rate', to: 'home#rate'
+  get 'payouts/about/scoring', to: 'home#scoring'
 
 
 

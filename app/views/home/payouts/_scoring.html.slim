@@ -1,0 +1,34 @@
+= turbo_frame_tag "content"
+
+  div
+    div
+      h3.strong Scoring
+      p Scoring is last of the 3 stage/state of the Game process. 
+      ul
+        li <b>Pending:</b> A Game starts off with a state of Pending. It starts off with no Rounds. As you add Players to the game, it creates a Round that is linked to the Game and the Player. The Player's quota and limited status are the only additional information added to the round.
+        li <b>Scheduled:</b> Once all placer are added, you Form Teams. This changes the state to Scheduled and adds a Team to the Round. A Team is added regardless if the forming method was individual on one of the teams makeups. Once all teams are set, the Game can be scored.
+        li <b>Scored:</b> Scoring is a two stage process.
+        ul
+          li <i>Score Teams</i> only adds the points pulled on the Front and Back and computes the Total. The Round is updated and now contains only {:player_link,:game_link,:team,:quota,:front,:back,:total}
+          li The Game will be passed to a Scoring Method that will complete the Scoring process. All processes are about the same: I computes the Winners and adds the amount won for each player/Team.
+      p Scoring Places takes the Game and Rounds and breaks it down to several Objects or views.
+      ul
+        li <b>Rounds</b> is the current list of the Games Rounds.
+        li <b>Teams</b> is a pointer or index to the Team numbers. team[2] will get only the rounds for team 2
+        li <b>Percents</b> is a Array of the percentage of the Pot for each place. i.e for 10 players and paying 5 places it would be something like [0.3583, 0.2268, 0.1611, 0.1348, 0.1191]. It starts with extracting the places from a larger array then normalizes it so the sum of the percents is 1.0.
+        li <b>Winners</b> is an array of places that includes the top 5 players and and ties. Player/Rounds and team are sorted by total plus/minus points pulled (total points - quota) and team number. Something like {5=>[7], 1=>[9], 1=>[2], 0=>[1], -1=>[8]}. Where the first team was +5 and the team number is 7. Since there was a tie for second place the array would be normalized and pay 4 places {5=>[7], 1=>[9, 2], 0=>[1], -1=>[8]}. 2nd and 3rd place winning would be split by team 9 and 2. Any other ties, except last place would also be merged. A last place tie would split the last place amount. 
+        li <b>Payouts</b> combines percents and winners into a new object to defines all that is needed to update rounds and score teams.
+        div
+        div &nbsp; [{:place=>0, :players=>[7], :percents=>0.3583, :share=>0.3583},
+        div &nbsp; {:place=>1, :players=>[9, 2], :percents=>0.3879, :share=>0.19395},
+        div &nbsp; {:place=>3, :players=>[1], :percents=>0.1348, :share=>0.1348},
+        div &nbsp; {:place=>4, :players=>[8], :percents=>0.1191, :share=>0.1191}]
+        div I realize this is code but place=>1 player>[9 & 2] would get 0.19396 percent of the pot (0.2268 + 0.1611)/2.
+
+
+      p These scoring processes are run anytime a game is displayed or updated. It basically recomputes the scores each time. If nothing was changed, it just formats data for viewing. If something changes, the round will be saved.
+      p Scoring sides uses about the same process, but only pays the top teams(and ties) for each sides. Each side would get 1/3 of the pot.
+      h3.strong Simple!
+
+
+  
