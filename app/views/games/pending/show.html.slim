@@ -22,9 +22,8 @@
       - perc = 40
     - else 
       - perc = nil
-    
     span =  "#{@game.state[:teams].count}/#{@game.stats[:seed_method]}"
-    - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],perc:perc).winners.reverse
+    - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],nil,perc).winners.reverse
     span.strong Suggested Places Payout (First..Last):
     span = places
 

@@ -15,7 +15,6 @@ class GameObjects::PgaScorePlaces
     else
       @perc = nil
     end
-
     @scoring = GameObjects::PlayersTeams.new(game)
     # get basic data form scoring
     @rounds = scoring.rounds
@@ -61,6 +60,9 @@ class GameObjects::PgaScorePlaces
     pga_perc = [18.000,10.900,6.900,4.900,4.100,3.625,3.375,3.125,2.925,2.725,
       2.525,2.325,2.125,1.925,1.825,1.725,1.625,1.525,1.425,1.325,1.225,1.125,
       1.045,0.965,0.885,0.805,0.775,0.745,0.715,0.685,0.655]
+
+    # - puts "PERC p s p #{@perc}"
+
     if @perc.present?
       @pay_places = (@perc.to_f/100 * @teams.size).to_i 
     else

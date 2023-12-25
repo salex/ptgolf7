@@ -15,7 +15,7 @@ class Pdf::IndvScoreCard < Prawn::Document
     
     span =  "#{@game.state[:teams].count}/#{@game.stats[:seed_method]}"
 
-    @payout = "Places Payout (First..Last): #{Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],perc:perc).winners.reverse.to_s}"
+    @payout = "Places Payout (First..Last): #{Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],nil,perc=perc).winners.reverse.to_s}"
     @teams = set_places_teams
     make_pdf
   end

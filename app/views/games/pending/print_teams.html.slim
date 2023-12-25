@@ -11,7 +11,7 @@ div.flex.gap-4.m-2
       - else 
         - perc = nil
       
-      - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],perc:perc).winners.reverse
+      - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],nil,perc=perc).winners.reverse
       div.flex.gap-4
         div.strong Suggested Places Payout (First..Last):
         div = places
