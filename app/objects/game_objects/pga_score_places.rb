@@ -1,20 +1,15 @@
 class GameObjects::PgaScorePlaces
-  include GamesHelper
+  include PlacesHelper
   
   attr_accessor :scoring, :game, :rounds, :teams, :team_scores, :winners, :percents, :payouts
   
-  def initialize(game,pga=nil,perc=nil)
+  def initialize(game)
     @game = game
-    # there a 3 level of spread 0=high 1=mid 2=low
-    @pga = pga.present? ? pga : 1
+    # there a 4 level of spread 0=high 1=mid 2=low 4=even
+    group = game.group
+    dist = group.score_place_dist ||= 'mid'
+    perc = group.score_place_perc ||= 50
 
-    #TEMP FIX UNTIL PLACES SETTINGS ADDED TO GROUP
-    if game.group.id == 4
-    # puts "CURRENT GROUP #{Current.group.id}"
-      @perc = 40 #perc
-    else
-      @perc = nil
-    end
     @scoring = GameObjects::PlayersTeams.new(game)
     # get basic data form scoring
     @rounds = scoring.rounds
@@ -22,7 +17,7 @@ class GameObjects::PgaScorePlaces
     # set other class variables
     @pot = game.state[:pot]
     @has_idividual_teams = @rounds.size == @teams.size
-    @percents = get_percents
+    @percents = pga_percents(teams.size,dist:dist,perc:perc)
     @winners = {}.with_indifferent_access
     score_teams if scoring.is_scored
   end
@@ -55,29 +50,6 @@ class GameObjects::PgaScorePlaces
     team_scores[team].present? && !team_scores[team][:team_quality].zero?
   end
 
-  def get_percents
-    #  taken from pga_score_places.rb
-    pga_perc = [18.000,10.900,6.900,4.900,4.100,3.625,3.375,3.125,2.925,2.725,
-      2.525,2.325,2.125,1.925,1.825,1.725,1.625,1.525,1.425,1.325,1.225,1.125,
-      1.045,0.965,0.885,0.805,0.775,0.745,0.715,0.685,0.655]
-
-    # - puts "PERC p s p #{@perc}"
-
-    if @perc.present?
-      @pay_places = (@perc.to_f/100 * @teams.size).to_i 
-    else
-      @pay_places = @teams.size / 2
-    end
-
-    # percents = pga_perc[@pga..(@teams.size / 2 + (@pga - 1))]
-    percents = pga_perc[@pga..(@pay_places + (@pga - 1))]
-    sum = percents.sum
-    percents.each_with_index do |v,i|
-      percents[i] = (v/sum).round(4) 
-    end
-    return percents
-  end
-
   def score_teams
     # extracts scoring elements team scored rounds
     @team_scores = {}
@@ -105,7 +77,7 @@ class GameObjects::PgaScorePlaces
     # sort the team scores
     placement = team_scores.map { |k, v| [v[:total_pm], k] }.sort.reverse 
     # SET QUALIFIERS
-    last_winner_score = placement[@pay_places - 1][0] 
+    last_winner_score = placement[percents.size - 1][0] 
     qualifiers = []
     #  set qualifiers to all teams greater or equal to the last_winner_score
     placement.each do |e|

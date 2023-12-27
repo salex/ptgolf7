@@ -1,6 +1,6 @@
 - settings =  @group.settings
-- keys = settings.keys
-- len = settings.keys.length
+- keys = @group.default_settings.keys
+- len = keys.length
 - half = (len / 2 ) - 4
 - third = (len / 3)
 - forth = (len / 4)
@@ -63,5 +63,7 @@ div.m-2= form_for @group do |f|
             .ml-4 = f.check_box( keys[i])
           - elsif Group.attribute_types[keys[i]].type == :text
             .ml-4 = f.text_area keys[i],class:"w-60"
+          - elsif keys[i].to_s.include?("place_dist")
+            .ml-4 = f.select(keys[i],['mid','high','low','even'])
           - else
             .ml-4 = f.text_field(keys[i],class:"w-60")

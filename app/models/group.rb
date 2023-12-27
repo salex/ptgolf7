@@ -52,11 +52,21 @@ class Group < ApplicationRecord
   attribute :use_keyboard_scoring, :boolean
   attribute :default_in_sidegames, :boolean
   attribute :use_autoscroll, :boolean
+  attribute :score_place_dist, :string
+  attribute :score_place_perc, :integer
+
 
   def set_attributes
     if self.settings.blank?
       # new record, set settings from default options
       self.settings = self.default_settings
+    elsif self.settings.keys != self.default_settings.keys 
+      puts "KEY ADD"
+      self.default_settings.each do |k,v|
+        if !self.settings.has_key?(k)
+          settings[k] = v
+        end
+      end
     end
 
     self.settings.each do |k,v|
@@ -104,7 +114,9 @@ class Group < ApplicationRecord
       default_stats_rounds:100,
       use_keyboard_scoring:false,
       default_in_sidegames:true,
-      use_autoscroll:true
+      use_autoscroll:true,
+      score_place_dist:'mid',
+      score_place_perc:50
     }.with_indifferent_access  
   end
 
