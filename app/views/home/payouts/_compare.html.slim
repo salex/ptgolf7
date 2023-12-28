@@ -42,6 +42,13 @@ table.small-table-stripped.w75
       - places = Things::PgaPlaces.new(10,6,'low').winners.reverse
       - places.each do |i|
         td.text-right = number_to_currency i
+    tr
+      td = "PGA Even" 
+      td = "$#{ 10*6}"
+      - places = Things::PgaPlaces.new(10,6,'even').winners.reverse
+      - places.each do |i|
+        td.text-right = number_to_currency i
+
 
     tr
       td = "Rate" 

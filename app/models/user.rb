@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
   alias_method :name, :to_label
 
-  
+  # NOT USED
   def generate_token(column,sa="")  
     begin  
       self[column] = sa + SecureRandom.urlsafe_base64  
