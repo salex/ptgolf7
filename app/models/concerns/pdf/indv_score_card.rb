@@ -7,15 +7,10 @@ class Pdf::IndvScoreCard < Prawn::Document
     @game = game
     @teams = set_places_teams
     @game.set_state
-    if Current.group.present? && Current.group.id == 4
-      perc = 40
-    else 
-      perc = nil
-    end
-    
-    span =  "#{@game.state[:teams].count}/#{@game.stats[:seed_method]}"
 
-    @payout = "Places Payout (First..Last): #{Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],nil,perc=perc).winners.reverse.to_s}"
+    perc = Current.group.present? ? Current.group.score_place_perc : nil
+    dist = Current.group.present? ? Current.group.score_place_dist : nil
+    @payout = "Places Payout (First..Last): #{Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],dist,perc).winners.reverse.to_s}"
     @teams = set_places_teams
     make_pdf
   end

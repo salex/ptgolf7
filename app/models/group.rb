@@ -61,12 +61,18 @@ class Group < ApplicationRecord
       # new record, set settings from default options
       self.settings = self.default_settings
     elsif self.settings.keys != self.default_settings.keys 
-      puts "KEY ADD"
+      # sync settings - add new key/value, delete old keys"
       self.default_settings.each do |k,v|
         if !self.settings.has_key?(k)
           settings[k] = v
         end
       end
+      self.settings.each do |k,v|
+        if !self.default_settings.has_key?(k)
+          settings.delete(k)
+        end
+      end
+      self.save
     end
 
     self.settings.each do |k,v|
@@ -165,14 +171,6 @@ class Group < ApplicationRecord
   def home_events
     self.games.where(status:%w(Scheduled Pending)).order(:date).reverse_order
   end
-
-  # def update_group(params)
-  #   self.assign_attributes(params)
-  #   # updates record withou saving, just set attributes
-  #   self.set_settings
-  #   # now take the set attributes and save update to serialized settings
-  #   self.save 
-  # end
 
   def quota_summary
     summary = {active:get_status_summary(active_players), inactive:get_status_summary(inactive_players)}

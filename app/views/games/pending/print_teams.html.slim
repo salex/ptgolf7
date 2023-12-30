@@ -6,12 +6,10 @@
 div.flex.gap-4.m-2
   div
     - if @game.method == 'places' 
-      - if Current.group.present? && Current.group.id == 4
-        - perc = 40
-      - else 
-        - perc = nil
+      - perc = Current.group.present? ? Current.group.score_place_perc : nil
+      - dist = Current.group.present? ? Current.group.score_place_dist : nil
+      - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],dist,perc).winners.reverse
       
-      - places = Things::PgaPlaces.new(@game.state[:teams].size,@game.state[:dues],nil,perc=perc).winners.reverse
       div.flex.gap-4
         div.strong Suggested Places Payout (First..Last):
         div = places
