@@ -9,8 +9,6 @@
 = render partial:'games/shared/event'
 
 - participants = @game.current_players
-/ - pids = participants.pluck(:player_id)
-/ - ptranking = @game.players_quality_stats
 div.grid.grid-cols-12.gap-4.mx-2
   .col-span-6[data-controller='alert']
     = form_with(url:update_teams_games_scheduled_path(@game), method: :patch)do |f|
@@ -50,9 +48,9 @@ div.grid.grid-cols-12.gap-4.mx-2
         div.w-1/3
           = radio_button_tag 'seed_method', 'redistribution'
           strong style="padding-left:4px;" Redistribution
-        div.w-1/3
-          = radio_button_tag 'seed_method', 'blind_draw',nil, data:{action:'click->alert#blind'}
-          strong style="padding-left:4px;" Blind Draw
+        / div.w-1/3
+        /   = radio_button_tag 'seed_method', 'blind_draw',nil, data:{action:'click->alert#blind'}
+        /   strong style="padding-left:4px;" Blind Draw
          
       div
         = f.submit("Form Teams", class:' btn-2 w3-blue w-full', data:{action: 'click->alert#checkOptions',alert_target:'submit'},id:'submit_form',disabled:true)

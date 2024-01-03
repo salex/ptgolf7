@@ -129,7 +129,7 @@ class Pdf::ScoreCard < Prawn::Document
 
   def self.scorecard_teams(game)
     teams = {}
-    game.event_teams.each_pair do |team,gplayers|
+    game.game_teams.each_pair do |team,gplayers|
       teams[team] = {players:[],header:""}.with_indifferent_access
       tquota = 0
       gplayers.each do |gp|

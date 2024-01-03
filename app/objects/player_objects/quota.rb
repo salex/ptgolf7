@@ -113,7 +113,8 @@ class PlayerObjects::Quota < ApplicationService
       rounds = ScoredRound.where(player_id: pins).order(:date).reverse_order.limit(group.rounds_used + 1)
     end
     return nil if rounds.blank? # a player with no rounds, assume its stored quota
-
+    # reinstitute sanitize_first_round setting - lost in some update
+    @first_round = rounds[0] if rounds.size == 1 && group.sanitize_first_round
     @totals = rounds.pluck(:total)
     @dropped = @totals.length > group.rounds_used ? @totals.pop : nil
     # dropped pop the (rounds_used + 1), remaining used used to compute quota
@@ -133,7 +134,12 @@ class PlayerObjects::Quota < ApplicationService
       totals_sum = totals_sum - totals.max - totals.min
       divisor -= 2
     end
-    @raw_quota = (totals_sum / divisor).round(2)
+    if @first_round.present?
+      @raw_quota = ((totals_sum + @first_round.quota)/2).round(2)
+      # puts "GOT A sanitize_first_round Q #{@first_round.quota} RQ #{@raw_quota}"
+    else
+      @raw_quota = (totals_sum / divisor).round(2)
+    end
     rounding = group.truncate_quota ? 0.0 : 0.5
     (@raw_quota + rounding).to_i
   end

@@ -148,14 +148,6 @@ class Game < ApplicationRecord
     end
   end
 
-  def players_quality_stats
-    stats = {}
-    players.includes(:group).each do |gp|
-      stats[gp.id] = gp.quality_stats[:quality]
-    end
-    stats.sort_by { |_k, v| v[5] }.to_h
-  end
-
   def adjust_teams(params)
     # THIS NEEDS REFACTORED (I did)
     if params[:swap_team_1].present? && params[:swap_team_2].present?
@@ -177,18 +169,19 @@ class Game < ApplicationRecord
     update_participants(params)
   end
 
-  def event_teams(team = nil)
-    teams = rounds.pluck(:team).uniq.sort
-    stats = {}
-    if team.present?
-      stats[team.to_i] = rounds.where(team: team)
-    else
-      teams.each do |t|
-        stats[t] = current_team_players.where(team: t)
-      end
-    end
-    stats
-  end
+  # NOT USED same a game_teams
+  # def event_teams(team = nil)
+  #   teams = rounds.pluck(:team).uniq.sort
+  #   results = {}
+  #   if team.present?
+  #     results[team.to_i] = rounds.where(team: team)
+  #   else
+  #     teams.each do |t|
+  #       results[t] = current_team_players.where(team: t)
+  #     end
+  #   end
+  #   results
+  # end
 
   def swap_team_order(team1, team2)
     t1 = rounds.where(team: team1)
@@ -203,15 +196,15 @@ class Game < ApplicationRecord
 
   def game_teams(team = nil)
     teams = rounds.pluck(:team).uniq.sort
-    stats = {}
-    if team.present?
-      stats[team.to_i] = current_players.where(team: team)
+    results = {}
+    if team.present? # just players for single team
+      results[team.to_i] = current_players.where(team: team)
     else
       teams.each do |t|
-        stats[t] = current_players.where(team: t)
+        results[t] = current_players.where(team: t)
       end
     end
-    stats
+    results
   end
 
   def pay_skins=(params)
@@ -220,7 +213,6 @@ class Game < ApplicationRecord
     params[:skins][:in].each_key do |id|
       new_skins['player_par'][id] = params[:skins][:player_par][id]
     end
-    # stats[:skins] = new_skins
     self.skins = new_skins
     #call skins with game not saved but modifed
     # new copy of rounds will be fetched but noting in them used except name
@@ -232,8 +224,6 @@ class Game < ApplicationRecord
   def pay_par3s=(params)
     new_par3 = { 'good' => params[:par3][:good], 'player_good' => {} }
     if params[:par3][:in].blank? || new_par3['good'].blank?
-      # semi delete skins
-      # stats[:par3] = new_par3
       self.par3 = new_par3
       self.save 
       return 
@@ -249,7 +239,6 @@ class Game < ApplicationRecord
         new_par3['good'].delete(hole)
       end
     end
-    # stats[:par3] = new_par3
     self.par3 = new_par3
     side = GameObjects::Par3.new(self)
     side.pay_winners
