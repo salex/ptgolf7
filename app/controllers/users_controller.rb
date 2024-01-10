@@ -71,6 +71,7 @@ class UsersController < ApplicationController
   end 
 
   def signin
+    #  NOT USED, DELETE WHEN CONFIRMED
     #this is only used by signing in a developer (super)
     user = User.find_by_username(params[:email].downcase) || User.find_by_email(params[:email].downcase)
     if user && user.authenticate(params[:password]) && user.is_super?
@@ -89,7 +90,7 @@ class UsersController < ApplicationController
   def logout
     group = current_group
     reset_session
-    # keep last group in session
+    # keep last group in session will go to that group if same browser
     session[:group_id] = group.id
     cookies.delete("last_group_#{group.id}_user")
     redirect_to root_url, notice: "Logged out!"

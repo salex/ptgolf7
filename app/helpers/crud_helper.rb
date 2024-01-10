@@ -58,6 +58,16 @@ module CrudHelper
     return link_to(icon,model_path,class:(btn_class))
   end
 
+  def linkBtn(prompt,model_path,meth:"",klass:"")
+    if meth.blank?
+      meth='patch'
+    end
+    if klass.blank?
+      klass = "btn-danger"
+    end
+    return button_to prompt, model_path, method: meth,form_class:"inline-block py-0 ",class:klass
+  end
+
 
   # # used in home/show demo
   def greenBox

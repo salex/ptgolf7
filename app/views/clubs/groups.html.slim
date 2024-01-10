@@ -28,9 +28,13 @@ div.grid.grid-cols-1.md:grid-cols-2.gap-8.p-4
               td.p-2.w3-center = "#{group.active_players.length}/#{group.inactive_players.length}/#{group.expired_players.length}"
               td.p-2
                 - if Current.group && Current.group.id == group.id
-                  button.lime-link-btn.inline-block.w-20.mb-1 = link_to "Leave", leave_group_path(group), class:'green-link small-caps text-bold'
+                  = linkBtn('Leave',leave_group_path(group),meth:'patch',klass:"btn-link py-0")
+
+                  / button.lime-link-btn.inline-block.w-20.mb-1 = link_to "Leave", leave_group_path(group), class:'green-link small-caps text-bold'
                 - else
-                  button.lime-link-btn.inline-block.w-20.mb-1 = link_to "Visit", visit_group_path(group), class:'green-link small-caps text-bold'
+                  = linkBtn('Visit',visit_group_path(group),meth:'patch',klass:"btn-link py-0")
+
+                  / button.lime-link-btn.inline-block.w-20.mb-1 = link_to "Visit", visit_group_path(group), class:'green-link small-caps text-bold'
   div
     strong.fs2 Welcome to PointGolf (PtGolf.us)
     p.mb-3 A Web tool for managing quotas for your golf groups Low Ball or Dog Fight games.

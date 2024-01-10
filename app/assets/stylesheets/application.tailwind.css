@@ -21,7 +21,6 @@
     @apply bg-slate-500 hover:bg-slate-400 hover:text-slate-800 hover:opacity-90 border-2 border-slate-700 text-slate-100  
   }
 
-
   .btn-link, .btn_link {
     @apply bg-green1 py-1 px-2 mr-1 rounded-md text-lg font-bold cursor-pointer
   }

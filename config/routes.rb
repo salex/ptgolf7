@@ -89,14 +89,14 @@ Rails.application.routes.draw do
   resources :groups do
     member do 
       get :add_player
-      get :leave
+      patch :leave
       get :members_search
       get :move_player
       get :print_quotas
       patch :recompute_quotas
       get :stats
       patch :trim_rounds
-      get :visit
+      patch :visit
       patch :stats_refresh
       post :signin
       post :discussin

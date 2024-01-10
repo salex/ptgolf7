@@ -4,7 +4,7 @@ div.border-gold.bg-malt.border-4
   span.mx-2.text-gold Find me in app/views/demo/show.html.slim
   span.inline-block = button_to('Reload Page',home_path,method: :get, form_class:"bg-green-500 hover:bg-green-700 text-white font-bold mx-2 py-1 px-2 rounded inline-block")
 
-div.gap-4.m-2
+div.gap-4.m-2.bg-orange1
   div.font-bold button_to adds vertical padding of 5px because it contains a button
   - klass = " bg-red-500 hover:bg-red-400 hover:text-red-900 hover:opacity-90 border-2 border-red-700 py-1 px-2 mr-1 rounded-md text-lg font-bold cursor -pointer  "
   button.bg-red-400.mr-1 123456789
@@ -44,14 +44,21 @@ div.gap-4.m-2
 
   
 div.gap-4.m-2
-  = button_to("test button_to","#",method: :delete,
-    form_class:"btn-danger inline-block "  )
+  = button_to("test button_to 1","#",method: :delete,
+    form_class:"inline-block ", class:"btn-danger" )
+  = button_to("test button_to 0.5","#",method: :delete,
+    form_class:"inline-block ", class:"btn-danger py-0.5" )
+  = button_to("test button_to 0","#",method: :delete,
+    form_class:"inline-block ", class:"btn-danger py-0" )
+
   mark[class="btn-link"] GreenComponent
+  mark[class="btn-link py-0"] GreenComponent
+
   mark[class="btn-send"] BlueComponent
   mark[class="btn-warn"] OrangeComponent
   mark[class="btn-danger"] RedComponent
-  mark.w-24.bg-red-500.mr-1.p-2 display
-  mark.w-24.bg-red-600.mr-1.p-2 toggle
+  / mark.w-24.bg-red-500.mr-1.p-2 display
+  / mark.w-24.bg-red-600.mr-1.p-2 toggle
 
   / button[class="bg-red-500 hover:bg-red-700 hover:text-white border-2 border-red-800 py-1 px-2 mr-1 rounded-md text-lg font-bold "] xComponent
 
