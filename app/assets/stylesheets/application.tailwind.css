@@ -39,7 +39,15 @@
   .btn-gray {
     @apply  bg-gray1 py-1 px-2 mr-1 rounded-md text-lg font-bold cursor-pointer
   }
-
+  .btn-sm {
+    @apply rounded-md font-bold py-1 px-3 bg-gray-300 hover:bg-gray-400 inline-block;
+  }
+  .btn-sm-green {
+    @apply btn-sm bg-green-400 hover:bg-green-500 inline-block;
+  }
+  .btn-sm-blue {
+    @apply btn-sm bg-blue-300 hover:bg-blue-400 inline-block;
+  }
 
   .btn-primary {
     @apply py-1 px-2 pt-blue text-white rounded-md border-2 border-green ;

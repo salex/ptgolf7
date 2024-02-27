@@ -1,22 +1,41 @@
 div.flex.flex-wrap.gap-4
-  div
+  / div
 
-    .row-box-18
-      .row-box
-        - 1.upto(9) do |i|
-          = content_tag :span,i, class:"skin_hole"
-    .row-box-18
-      .row-box
-        - 1.upto(9) do |i|
+  /   .row-box-18
+  /     .row-box
+  /       - 1.upto(9) do |i|
+  /         = content_tag :span,i, class:"skin_hole"
+  /   .row-box-18
+  /     .row-box
+  /       - 1.upto(9) do |i|
+  /         - cc = par[i-1] == '.' ? "" :"card-#{par[i-1]}"
+  /         = content_tag :span,par[i-1], class: cc, data:{hole:i,idx:idx,action:"click->sideSkins#holeClicked"}
+  / div 
+  /   .row-box-18
+  /     .row-box
+  /       - 10.upto(18) do |i|
+  /         = content_tag :span,i, class:"skin_hole"
+  /   .row-box-18
+  /     .row-box
+  /       - 10.upto(18) do |i|
+  /         - cc = par[i-1] == '.' ? "" :"card-#{par[i-1]}"
+  /         = content_tag :span,par[i-1], class: cc, data:{hole:i,idx:idx,action:"click->sideSkins#holeClicked"}
+
+  table
+    tr
+      - 1.upto(9) do |i|
+        td.border.w-7
           - cc = par[i-1] == '.' ? "" :"card-#{par[i-1]}"
-          = content_tag :span,par[i-1], class: cc, data:{hole:i,idx:idx,action:"click->sideSkins#holeClicked"}
-  div 
-    .row-box-18
-      .row-box
-        - 10.upto(18) do |i|
-          = content_tag :span,i, class:"skin_hole"
-    .row-box-18
-      .row-box
-        - 10.upto(18) do |i|
+          div.w-7 
+            div.text-center = i
+            = content_tag :span,par[i-1], class:"btn-sm-green text-left #{cc}", data:{hole:i,idx:idx,action:"click->sideSkins#holeClicked"}
+  table
+    tr
+      - 10.upto(18) do |i|
+        td.border.w-7
           - cc = par[i-1] == '.' ? "" :"card-#{par[i-1]}"
-          = content_tag :span,par[i-1], class: cc, data:{hole:i,idx:idx,action:"click->sideSkins#holeClicked"}
+          div.w-7
+            div.text-center = i
+            = content_tag :spad,par[i-1], class:"btn-sm-green text-center #{cc}", data:{hole:i,idx:idx,action:"click->sideSkins#holeClicked"}
+
+
