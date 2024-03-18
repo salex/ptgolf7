@@ -12,7 +12,7 @@
 
 # app/services/player_quota.rb
 class PlayerObjects::Quota < ApplicationService
-  attr_reader :player, :group
+  attr_reader :player, :group, :scored_rounds 
   attr_accessor :player_quota, :raw_quota, :last_played, :dropped, :totals, :limited
 
   def initialize(player)
@@ -73,8 +73,6 @@ class PlayerObjects::Quota < ApplicationService
     results = {}
     # get results for each tee on record
     tees = @scored_rounds.select(:tee).distinct.pluck(:tee).sort
-    # tees = player.scored_rounds.select(:tee).distinct.pluck(:tee).sort
-
 
     tees.each do |t|
       player_tee_quota(t)
@@ -107,10 +105,11 @@ class PlayerObjects::Quota < ApplicationService
   def player_rounds(tee = nil)
     if tee.present?
       rounds = @scored_rounds.where(tee: tee).order(:date).reverse_order.limit(group.rounds_used + 1)
-      # rounds = player.scored_rounds.where(tee: tee).order(:date).reverse_order.limit(group.rounds_used + 1)
     else
-      pins = Player.where(pin: player.pin).pluck(:id)
-      rounds = ScoredRound.where(player_id: pins).order(:date).reverse_order.limit(group.rounds_used + 1)
+      # this was an old feature where a player was duplicated in another group by pin]
+        # pins = Player.where(pin: player.pin).pluck(:id)
+        # rounds = ScoredRound.where(player_id: pins).order(:date).reverse_order.limit(group.rounds_used + 1)
+      rounds = @scored_rounds.order(:date).reverse_order.limit(group.rounds_used + 1)
     end
     return nil if rounds.blank? # a player with no rounds, assume its stored quota
     # reinstitute sanitize_first_round setting - lost in some update
