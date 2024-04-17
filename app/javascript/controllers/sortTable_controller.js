@@ -10,6 +10,10 @@ export default class extends Controller {
 
   sortBy(){
     const th = event.target
+    if (th.tagName != 'TH') {
+      // clicked on icon
+      th = th.parentNode
+    }
     this.numeric = th.classList.contains('numeric')
     const tr = th.closest('tr')
     const table = tr.closest('table')
