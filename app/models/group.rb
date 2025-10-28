@@ -54,6 +54,8 @@ class Group < ApplicationRecord
   attribute :use_autoscroll, :boolean
   attribute :score_place_dist, :string
   attribute :score_place_perc, :integer
+  attribute :active_player_days, :integer
+
 
 
   def set_attributes
@@ -122,7 +124,8 @@ class Group < ApplicationRecord
       default_in_sidegames:true,
       use_autoscroll:true,
       score_place_dist:'mid',
-      score_place_perc:50
+      score_place_perc:50,
+      active_player_days:90
     }.with_indifferent_access  
   end
 
@@ -141,12 +144,12 @@ class Group < ApplicationRecord
     self.players.where_assoc_not_exists(:rounds).order(:name)
   end
 
-  def active_players(ago=60)
+  def active_players(ago=self.active_player_days)
     active_date = Date.today - ago.days
     active = self.players.where_assoc_exists(:rounds).where(Player.arel_table[:last_played].gteq(active_date)).or(new_players).order(:name)
   end
 
-  def inactive_players(ago=60)
+  def inactive_players(ago=90)
     active_date = Date.today - ago.days
     inactive = self.players.where_assoc_exists(:rounds).where(Player.arel_table[:last_played].lt(active_date)).order(:name)
   end
@@ -156,7 +159,7 @@ class Group < ApplicationRecord
   end
 
 
-  def players_by_status(ago=60)
+  def players_by_status(ago=90)
     return expired_players,active_players(ago),inactive_players(ago)
   end
 
