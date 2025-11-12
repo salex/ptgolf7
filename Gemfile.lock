@@ -343,6 +343,7 @@ PLATFORMS
   arm64-darwin-23
   ruby
   x86_64-linux
+  x86_64-linux-gnu
 
 DEPENDENCIES
   activerecord_where_assoc (~> 1.0)
