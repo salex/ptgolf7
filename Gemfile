@@ -93,4 +93,5 @@ gem 'rouge'
 gem 'capistrano-rails-collection'
 
 gem 'exonio'
+gem 'ffi'
 
