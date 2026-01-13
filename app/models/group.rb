@@ -142,6 +142,7 @@ class Group < ApplicationRecord
 
   def expired_players
     self.players.where_assoc_not_exists(:rounds).order(:name)
+    #  p = Player.where("last_played < ?" ,Date.today - 3.years)
   end
 
   def active_players(ago=self.active_player_days)

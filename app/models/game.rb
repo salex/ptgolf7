@@ -19,6 +19,10 @@ class Game < ApplicationRecord
     }.with_indifferent_access
   end
 
+  def formed
+    self.stats[:round]
+  end 
+
   def namespace_url(action = nil)
     "/games/#{status.downcase}/#{id}/#{action if action.present?}"
   end
