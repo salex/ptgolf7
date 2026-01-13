@@ -358,7 +358,6 @@ DEPENDENCIES
   capistrano3-puma
   capybara
   exonio
-  ffi
   font-awesome-sass (~> 5.12.0)
   importmap-rails
   jbuilder

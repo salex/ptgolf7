@@ -26,7 +26,7 @@ gem "stimulus-rails"
 
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 # gem "tailwindcss-rails"
-gem "tailwindcss-rails", "~> 3.3.1"
+gem "tailwindcss-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
@@ -93,5 +93,4 @@ gem 'rouge'
 gem 'capistrano-rails-collection'
 
 gem 'exonio'
-gem 'ffi'
 
