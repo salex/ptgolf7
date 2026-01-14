@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.20"
+lock "~> 3.19.2"
 
 set :application, "ptgolf"
 # set :repo_url, "developer@stevealex.us:/Users/developer/repo/#{fetch(:application)}.git"
