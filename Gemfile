@@ -94,5 +94,5 @@ gem 'capistrano-rails-collection'
 
 gem 'exonio'
 
-gem 'ffi', '~> 1.17.3', force_ruby_platform: true
+gem 'ffi', '~> 1.17.3'
 
